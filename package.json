@@ -1,0 +1,25 @@
+{
+  "name": "etools-unicef",
+  "version": "0.0.1",
+  "description": "eTools UNICEF library of reusable components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unicef-polymer/etools-unicef.git"
+  },
+  "keywords": [
+    "etools",
+    "reusable",
+    "components",
+    "Lit"
+  ],
+  "author": "UNICEF Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unicef-polymer/etools-unicef/issues"
+  },
+  "homepage": "https://github.com/unicef-polymer/etools-unicef#readme"
+}
