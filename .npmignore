@@ -1,0 +1,10 @@
+/node_modules
+.idea
+/.circleci
+/demo
+/test
+/src_ts
+.eslintignore
+.eslintrc.json
+.prettierrc
+analysis.json
