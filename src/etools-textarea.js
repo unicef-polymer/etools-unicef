@@ -9,11 +9,11 @@ import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import { ShoelaceCustomizations } from './styles/shoelace-customizations';
 import { fireEvent } from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import '@unicef-polymer/etools-info-tooltip/info-icon-tooltip';
-import { detailsTextareaRowsCount } from './utils/utils';
 let EtoolsTextarea = class EtoolsTextarea extends LitElement {
     constructor() {
         super(...arguments);
         this.charCount = 0;
+        this.rows = 1;
     }
     get value() {
         return this._value;
@@ -27,7 +27,7 @@ let EtoolsTextarea = class EtoolsTextarea extends LitElement {
             ShoelaceCustomizations,
             css `
         .spacing {
-          padding-top: 8px;
+          padding-top: var(--etools-input-padding-top, 8px);
         }
         info-icon-tooltip {
           --iit-icon-size: 18px;
@@ -61,8 +61,7 @@ let EtoolsTextarea = class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
-        ?showCharCounter="${this.showCharCounter}"
-        rows="${detailsTextareaRowsCount(!this.readonly)}"
+        rows="${this.rows}"
         maxlength="${this.maxlength}"
         .value="${this.value ? this.value : ''}"
         @sl-invalid="${(e) => e.preventDefault()}"
@@ -71,10 +70,11 @@ let EtoolsTextarea = class EtoolsTextarea extends LitElement {
             fireEvent(this, 'value-changed', { value: val });
             this.charCount = val.length;
         }}"
+        exportparts="textarea,base"
       >
         <div slot="help-text" style="display: flex; justify-content: space-between;">
           <div class="err-msg">${this.errorMessage}</div>
-          <div class="char-counter">${this.charCount}/${this.maxlength}</div>
+          <div class="char-counter" ?hidden="${!this.charCounter}">${this.charCount}/${this.maxlength}</div>
         </div>
       </sl-textarea>
     `;
@@ -125,10 +125,13 @@ __decorate([
 ], EtoolsTextarea.prototype, "infoIconMessage", void 0);
 __decorate([
     property({ type: Boolean, reflect: true })
-], EtoolsTextarea.prototype, "showCharCounter", void 0);
+], EtoolsTextarea.prototype, "charCounter", void 0);
 __decorate([
     property({ type: Number })
 ], EtoolsTextarea.prototype, "charCount", void 0);
+__decorate([
+    property({ type: Number })
+], EtoolsTextarea.prototype, "rows", void 0);
 __decorate([
     property({ type: Number })
 ], EtoolsTextarea.prototype, "maxlength", void 0);

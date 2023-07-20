@@ -41,10 +41,13 @@ export class EtoolsTextarea extends LitElement {
   infoIconMessage!: string;
 
   @property({type: Boolean, reflect: true})
-  showCharCounter!: boolean;
+  charCounter!: boolean;
 
   @property({type: Number})
   charCount = 0;
+
+  @property({type: Number})
+  rows = 1;
 
   @property({type: Number})
   maxlength!: number;
@@ -57,7 +60,8 @@ export class EtoolsTextarea extends LitElement {
       ShoelaceCustomizations,
       css`
         .spacing {
-          padding-top: 8px;
+          padding-top: var(--etools-input-padding-top, 8px);
+          padding-bottom: var(--etools-input-padding-bottom, 8px);
         }
         info-icon-tooltip {
           --iit-icon-size: 18px;
@@ -92,8 +96,7 @@ export class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
-        ?showCharCounter="${this.showCharCounter}"
-        rows="${detailsTextareaRowsCount(!this.readonly)}"
+        rows="${this.rows}"
         maxlength="${this.maxlength}"
         .value="${this.value ? this.value : ''}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
@@ -102,10 +105,11 @@ export class EtoolsTextarea extends LitElement {
           fireEvent(this, 'value-changed', {value: val});
           this.charCount = val.length;
         }}"
+        exportparts="textarea,base,form-control"
       >
         <div slot="help-text" style="display: flex; justify-content: space-between;">
           <div class="err-msg">${this.errorMessage}</div>
-          <div class="char-counter">${this.charCount}/${this.maxlength}</div>
+          <div class="char-counter" ?hidden="${!this.charCounter}">${this.charCount}/${this.maxlength}</div>
         </div>
       </sl-textarea>
     `;

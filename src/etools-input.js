@@ -14,7 +14,7 @@ let EtoolsInput = class EtoolsInput extends LitElement {
             ShoelaceCustomizations,
             css `
         .spacing {
-          padding-top: 8px;
+          padding-top: var(--etools-input-padding-top, 8px);
         }
       `
         ];
@@ -36,6 +36,7 @@ let EtoolsInput = class EtoolsInput extends LitElement {
         @sl-input="${(event) => fireEvent(this, 'value-changed', {
             detail: { value: event.target.value }
         })}"
+        exportparts="base,input"
       >
         <div slot="help-text">
           <div class="err-msg">${this.errorMessage}</div>

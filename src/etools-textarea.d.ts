@@ -13,8 +13,9 @@ export declare class EtoolsTextarea extends LitElement {
     readonly: boolean;
     errorMessage: string;
     infoIconMessage: string;
-    showCharCounter: boolean;
+    charCounter: boolean;
     charCount: number;
+    rows: number;
     maxlength: number;
     slTextarea: SlTextarea;
     static get styles(): import("lit-element").CSSResult[];

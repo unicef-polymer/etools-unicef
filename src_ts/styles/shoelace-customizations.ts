@@ -18,14 +18,14 @@ const validationStyles = css`
   sl-input[data-user-invalid] div[slot='help-text'] div.err-msg,
   sl-textarea[data-user-invalid] div[slot='help-text'] div.err-msg {
     visibility: visible;
-    height: 15px;
+    height: 0;
     overflow: visible;
   }
 
   sl-input div[slot='help-text'] div.err-msg,
   sl-textarea div[slot='help-text'] div.err-msg {
     visibility: hidden;
-    height: 15px;
+    height: 0;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -86,7 +86,6 @@ export const ShoelaceCustomizations = css`
   }
 
   sl-textarea::part(textarea) {
-    padding-top: 2px;
     font-family: inherit;
     color: var(--primary-text-color) !important;
   }
