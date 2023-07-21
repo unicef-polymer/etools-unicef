@@ -65,6 +65,7 @@ export class EtoolsInput extends LitElement {
         <div slot="help-text">
           <div class="err-msg">${this.errorMessage}</div>
         </div>
+        <slot slot="prefix" name="prefix"></slot>
       </sl-input>
     `;
   }
