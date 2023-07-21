@@ -4,7 +4,6 @@ import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import '@unicef-polymer/etools-info-tooltip/info-icon-tooltip';
-import {detailsTextareaRowsCount} from './utils/utils';
 
 @customElement('etools-textarea')
 export class EtoolsTextarea extends LitElement {
@@ -59,6 +58,9 @@ export class EtoolsTextarea extends LitElement {
     return [
       ShoelaceCustomizations,
       css`
+        :host {
+          width: 100%;
+        }
         .spacing {
           padding-top: var(--etools-input-padding-top, 8px);
           padding-bottom: var(--etools-input-padding-bottom, 8px);

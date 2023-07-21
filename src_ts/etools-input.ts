@@ -38,6 +38,9 @@ export class EtoolsInput extends LitElement {
           padding-top: var(--etools-input-padding-top, 8px);
           padding-bottom: var(--etools-input-padding-bottom, 8px);
         }
+        sl-input::part(input) {
+          width: 100%;
+        }
       `
     ];
   }
@@ -56,10 +59,7 @@ export class EtoolsInput extends LitElement {
         ?readonly="${this.readonly}"
         .value="${this.value ? this.value : ''}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
-        @sl-input="${(event: any) =>
-          fireEvent(this, 'value-changed', {
-            detail: {value: event.target!.value}
-          })}"
+        @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
         exportparts="base,input,form-control"
       >
         <div slot="help-text">
