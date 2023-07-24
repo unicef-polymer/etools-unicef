@@ -71,7 +71,7 @@ export const ShoelaceCustomizations = css`
   sl-textarea:not([readonly]):focus::part(base) {
     border: none;
     border-bottom: 2px solid var(--primary-color);
-    box-shadow: 0 0 0 -1px var(--primary-color), 0 2px 3px -2px var(--primary-color);
+    box-shadow: 0 0 0 -1px var(--primary-color), 0 3px 0 -2px var(--primary-color);
     border-radius: 0;
   }
 
@@ -88,6 +88,11 @@ export const ShoelaceCustomizations = css`
   sl-textarea::part(textarea) {
     font-family: inherit;
     color: var(--primary-text-color) !important;
+  }
+
+  sl-input[data-user-invalid]::part(base),
+  sl-textarea[data-user-invalid]::part(base) {
+    border-bottom: 1px solid red;
   }
 
   sl-input[readonly]::part(base),

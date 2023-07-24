@@ -75,6 +75,12 @@ export class EtoolsInput extends LitElement {
   }
 
   validate() {
-    return this.slInput.reportValidity();
+    const valid = this.slInput.reportValidity();
+    if (!valid) {
+      this.slInput.setAttribute('data-user-invalid', '');
+    } else {
+      this.slInput.removeAttribute('data-user-invalid');
+    }
+    return valid;
   }
 }

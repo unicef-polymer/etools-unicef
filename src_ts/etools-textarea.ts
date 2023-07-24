@@ -136,6 +136,12 @@ export class EtoolsTextarea extends LitElement {
   }
 
   validate() {
-    return this.slTextarea.reportValidity();
+    const valid = this.slTextarea.reportValidity();
+    if (!valid) {
+      this.slTextarea.setAttribute('data-user-invalid', '');
+    } else {
+      this.slTextarea.removeAttribute('data-user-invalid');
+    }
+    return valid;
   }
 }
