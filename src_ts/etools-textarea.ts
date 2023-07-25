@@ -39,7 +39,7 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String})
   infoIconMessage!: string;
 
-  @property({type: Boolean, reflect: true})
+  @property({type: Boolean, reflect: true, attribute: 'char-counter'})
   charCounter!: boolean;
 
   @property({type: Number})
