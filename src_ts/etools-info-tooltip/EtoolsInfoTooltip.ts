@@ -1,7 +1,6 @@
-import {LitElement, html} from 'lit';
+import {LitElement, html, property} from 'lit-element';
 import '@polymer/iron-icons/iron-icons.js';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
-import {property} from 'lit/decorators.js';
 import SlTooltip from '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
 /**

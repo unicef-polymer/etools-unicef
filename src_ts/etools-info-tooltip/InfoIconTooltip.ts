@@ -1,8 +1,7 @@
-import {LitElement, html, css} from 'lit';
-import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {LitElement, html, css, property} from 'lit-element';
+import {unsafeHTML} from 'lit-html/directives/unsafe-html';
 import '@polymer/iron-icons/iron-icons';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
-import {property} from 'lit/decorators.js';
 
 /**
  * `info-icon-tooltip`
@@ -68,7 +67,7 @@ export class InfoIconTooltip extends LitElement {
         <div slot="content">
           <div id="etools-iit-content" part="etools-iit-content">
             <div class="tooltip-info gray-border">
-              ${this.tooltipText ? unsafeHTML(this.tooltipText) : html`${this.tooltipHtml}`}
+              ${this.tooltipText ? unsafeHTML(this.tooltipText) : this.tooltipHtml}
             </div>
           </div>
         </div>
