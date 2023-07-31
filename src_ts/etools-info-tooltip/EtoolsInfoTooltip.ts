@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import '@polymer/iron-icons/iron-icons.js';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
-import {property} from 'lit/decorators';
+import {property} from 'lit/decorators.js';
 import SlTooltip from '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
 /**
