@@ -1,6 +1,6 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "0.0.11",
+  "version": "0.0.16",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "scripts": {
@@ -28,8 +28,7 @@
     "@unicef-polymer/etools-behaviors": "^3.1.1",
     "@unicef-polymer/etools-loading": "^6.1.1",
     "@unicef-polymer/etools-utils": "^2.0.0-rc.1",
-    "lit": "^2.7.6",
-    "lit-element": "^2.5.1"
+    "lit": "^2.7.6"
   },
   "peerDependencies": {
     "@unicef-polymer/etools-behaviors": ">=3.1.1",

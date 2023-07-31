@@ -1,7 +1,8 @@
-import {LitElement, html, css} from 'lit-element';
-import {unsafeHTML} from 'lit-html/directives/unsafe-html';
+import {LitElement, html, css} from 'lit';
+import {unsafeHTML} from 'lit/directives/unsafe-html';
 import '@polymer/iron-icons/iron-icons';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
+import {property} from 'lit/decorators.js';
 
 /**
  * `info-icon-tooltip`
@@ -67,7 +68,7 @@ export class InfoIconTooltip extends LitElement {
         <div slot="content">
           <div id="etools-iit-content" part="etools-iit-content">
             <div class="tooltip-info gray-border">
-              ${this.tooltipText ? unsafeHTML(this.tooltipText) : this.tooltipHtml}
+              ${this.tooltipText ? unsafeHTML(this.tooltipText) : html`${this.tooltipHtml}`}
             </div>
           </div>
         </div>
@@ -83,19 +84,18 @@ export class InfoIconTooltip extends LitElement {
     `;
   }
 
-  static get properties() {
-    return {
-      tooltipText: {type: String},
-      tooltipHtml: {type: Object},
-      position: {type: String},
-      offset: {type: Number},
-      language: {type: String, attribute: true},
-      _tooltipHandler: {
-        attribute: false,
-        type: Object
-      }
-    };
-  }
+  @property({type: String})
+  tooltipText!: string;
+  @property({type: Object})
+  tooltipHtml!: any;
+  @property({type: String})
+  position!: string;
+  @property({type: String})
+  offset!: string | number;
+  @property({type: String})
+  language!: string;
+
+  private _tooltipHandler!: any;
 
   constructor() {
     super();
@@ -108,7 +108,7 @@ export class InfoIconTooltip extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    setTimeout(() => this.callClickOnEnterPushListener(this.shadowRoot.querySelector('#info-icon')), 200);
+    setTimeout(() => this.callClickOnEnterPushListener(this.shadowRoot!.querySelector('#info-icon')), 200);
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
   }
 
@@ -123,7 +123,7 @@ export class InfoIconTooltip extends LitElement {
 
   showTooltip(e) {
     e.stopImmediatePropagation();
-    const tooltip = this.shadowRoot!.querySelector('#tooltip');
+    const tooltip = this.shadowRoot!.querySelector('#tooltip')! as any;
     tooltip.show();
 
     this._tooltipHandler = this.hideTooltip.bind(this);
