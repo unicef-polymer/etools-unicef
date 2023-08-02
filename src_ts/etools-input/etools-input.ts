@@ -35,11 +35,18 @@ export class EtoolsInput extends LitElement {
       ShoelaceCustomizations,
       css`
         .spacing {
-          padding-top: var(--etools-input-padding-top, 8px);
-          padding-bottom: var(--etools-input-padding-bottom, 8px);
         }
         sl-input::part(input) {
           width: 100%;
+        }
+        sl-input::part(form-control-label) {
+          line-height: 19px;
+          font-size: 12px;
+          display: block;
+        }
+        sl-input::part(form-control) {
+          padding-top: var(--etools-input-padding-top, 8px);
+          padding-bottom: var(--etools-input-padding-bottom, 8px);
         }
       `
     ];
