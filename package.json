@@ -4,7 +4,10 @@
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsToJs": "tsc",
+    "lint": "eslint ./src_ts/**/* --ext ts",
+    "format": "eslint --ext .ts ./src_ts/**/* --fix --ignore-path .gitignore",
+    "prepublishOnly": "npm run tsToJs"
   },
   "repository": {
     "type": "git",
@@ -28,7 +31,8 @@
     "@unicef-polymer/etools-behaviors": "^3.1.1",
     "@unicef-polymer/etools-loading": "^6.1.1",
     "@unicef-polymer/etools-utils": "^2.0.0-rc.1",
-    "lit": "^2.7.6"
+    "lit": "^2.7.6",
+    "typescript": "^4.9.5"
   },
   "peerDependencies": {
     "@unicef-polymer/etools-behaviors": ">=3.1.1",

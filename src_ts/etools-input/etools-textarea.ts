@@ -1,4 +1,5 @@
-import {LitElement, css, customElement, html, property, query} from 'lit-element';
+import {css, html, LitElement} from 'lit';
+import {customElement, query, property} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
