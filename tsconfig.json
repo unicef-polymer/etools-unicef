@@ -13,6 +13,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "noImplicitAny": false,
     "outDir": "src"
   },
   "include": ["src_ts/**/*.ts"]
