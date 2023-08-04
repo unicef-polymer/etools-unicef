@@ -51,11 +51,22 @@ const labelStyles = css`
     --sl-input-spacing-small: 2px;
   }
   sl-input::part(form-control-label) {
-    font-size: 13px;
+    line-height: 19px;
+    font-size: 12px;
+    display: block;
   }
 `;
 
 export const ShoelaceCustomizations = css`
+  sl-input::part(form-control) {
+    padding-top: var(--etools-input-padding-top, 8px);
+    padding-bottom: var(--etools-input-padding-bottom, 8px);
+  }
+  sl-textarea::part(textarea) {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 24px;
+  }
   sl-input,
   sl-textarea {
     --sl-input-font-size-small: 16px;
