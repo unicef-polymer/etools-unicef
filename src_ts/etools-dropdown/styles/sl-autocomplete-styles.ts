@@ -583,4 +583,7 @@ export default css`
   :host([capitalize]) sl-menu-item::part(label) {
     text-transform: capitalize;
   }
+  sl-menu-item::part(base) {
+    line-height: 38px;
+  }
 `;
