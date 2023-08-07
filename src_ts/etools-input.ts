@@ -60,7 +60,7 @@ export class EtoolsInput extends LitElement {
         .value="${this.value ? this.value : ''}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
-        exportparts="base,input,form-control"
+        exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
         <div slot="help-text">
           <div class="err-msg">${this.errorMessage}</div>
