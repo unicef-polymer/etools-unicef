@@ -34,11 +34,9 @@ export class EtoolsInput extends LitElement {
     return [
       ShoelaceCustomizations,
       css`
-        .spacing {
-        }
         sl-input::part(input) {
           width: 100%;
-        }       
+        }
       `
     ];
   }
@@ -47,7 +45,6 @@ export class EtoolsInput extends LitElement {
     return html`
       <sl-input
         id="sl-input"
-        class="spacing"
         autocomplete="off"
         size="small"
         .label="${this.label}"
@@ -58,7 +55,7 @@ export class EtoolsInput extends LitElement {
         .value="${this.value ? this.value : ''}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
-        exportparts="base,input,form-control"
+        exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
         <div slot="help-text">
           <div class="err-msg">${this.errorMessage}</div>
