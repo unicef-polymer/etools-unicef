@@ -17,7 +17,7 @@ export class EtoolsInput extends EtoolsInputBase {
       css`
         sl-input::part(input) {
           width: 100%;
-        }       
+        }
       `
     ];
   }
@@ -26,7 +26,6 @@ export class EtoolsInput extends EtoolsInputBase {
     return html`
       <sl-input
         id="sl-input"
-        class="spacing"
         autocomplete="off"
         part="sl-input"
         size="small"
@@ -46,10 +45,8 @@ export class EtoolsInput extends EtoolsInputBase {
           }
         }}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
-        @sl-input="${(event: any) => {
-          fireEvent(this, 'value-changed', {value: event.target!.value});
-        }}"
-        exportparts="base,input,form-control"
+        @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
+        exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
         <div slot="help-text">
           <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>

@@ -54,7 +54,6 @@ const labelStyles = css`
     --sl-input-spacing-small: 2px;
   }
   sl-input::part(form-control-label) {
-    font-size: 13px;
     line-height: 19px;
     font-size: 12px;
     display: block;
