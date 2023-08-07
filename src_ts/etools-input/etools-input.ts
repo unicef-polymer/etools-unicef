@@ -15,13 +15,9 @@ export class EtoolsInput extends EtoolsInputBase {
     return [
       ShoelaceCustomizations,
       css`
-        .spacing {
-          padding-top: var(--etools-input-padding-top, 8px);
-          padding-bottom: var(--etools-input-padding-bottom, 8px);
-        }
         sl-input::part(input) {
           width: 100%;
-        }
+        }       
       `
     ];
   }

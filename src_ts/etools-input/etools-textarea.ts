@@ -108,7 +108,7 @@ export class EtoolsTextarea extends LitElement {
           fireEvent(this, 'value-changed', {value: val});
           this.charCount = val.length;
         }}"
-        exportparts="textarea,base,form-control"
+        exportparts="textarea,base,form-control,form-control-input,form-control-label,form-control-help-text"
       >
         <div slot="help-text" style="display: flex; justify-content: space-between;">
           <div class="err-msg">${this.errorMessage}</div>
