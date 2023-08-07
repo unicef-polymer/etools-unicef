@@ -1,11 +1,11 @@
 import {LitElement, html, property} from 'lit-element';
 import {etoolsPaginationStyles} from '../styles/pagination-style';
-import {fireEvent} from '../utils/utils';
 import {getTranslation} from '../utils/translate';
 
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 
 // #region Paginator methods
 export const defaultPaginator = {
