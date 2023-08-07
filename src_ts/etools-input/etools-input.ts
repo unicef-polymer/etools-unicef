@@ -49,7 +49,7 @@ export class EtoolsInput extends LitElement {
         size="small"
         .label="${this.label}"
         .pattern="${this.pattern}"
-        placeholder="${this.placeholder}"
+        placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
         .value="${this.value ? this.value : ''}"

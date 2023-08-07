@@ -95,7 +95,7 @@ export class EtoolsTextarea extends LitElement {
         .label="${this.infoIconMessage ? '' : this.label}"
         .pattern="${this.pattern}"
         resize="auto"
-        placeholder="${this.placeholder}"
+        placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
         rows="${this.rows}"

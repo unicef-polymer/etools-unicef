@@ -10,6 +10,11 @@ const validationStyles = css`
     overflow-x: clip;
   }
 
+  sl-input div[slot='help-text'],
+  sl-textarea div[slot='help-text'] {
+    height: 0;
+  }
+
   sl-input[readonly] div[slot='help-text'] div.char-counter,
   sl-textarea[readonly] div[slot='help-text'] div.char-counter {
     visibility: hidden;
