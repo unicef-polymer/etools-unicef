@@ -37,6 +37,7 @@ const validationStyles = css`
   sl-input[data-user-invalid],
   sl-textarea[data-user-invalid] {
     --sl-input-border-color: red;
+    --sl-input-label-color: red;
   }
   sl-input,
   sl-textarea {

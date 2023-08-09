@@ -51,6 +51,9 @@ export class EtoolsTextarea extends LitElement {
   @property({type: Number})
   maxlength!: number;
 
+  @property({type: String})
+  resize = 'auto';
+
   @query('sl-textarea')
   slTextarea!: SlTextarea;
 
@@ -94,7 +97,7 @@ export class EtoolsTextarea extends LitElement {
         size="small"
         .label="${this.infoIconMessage ? '' : this.label}"
         .pattern="${this.pattern}"
-        resize="auto"
+        resize="${this.resize}"
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"

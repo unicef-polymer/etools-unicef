@@ -34,6 +34,9 @@ export class EtoolsInput extends LitElement {
     return [
       ShoelaceCustomizations,
       css`
+        :host {
+          width: 100%;
+        }
         sl-input::part(input) {
           width: 100%;
         }
