@@ -103,7 +103,7 @@ export class EtoolsTextarea extends LitElement {
         ?readonly="${this.readonly}"
         rows="${this.rows}"
         maxlength="${this.maxlength}"
-        .value="${this.value ? this.value : ''}"
+        .value="${this.value == undefined || this.value == null ? '' : this.value}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {
           const val = event.target!.value ? event.target!.value : '';

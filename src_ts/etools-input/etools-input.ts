@@ -16,7 +16,7 @@ export class EtoolsInput extends LitElement {
   placeholder!: string;
 
   @property({type: String})
-  value!: string;
+  value!: string | null | undefined;
 
   @property({type: Boolean})
   required!: boolean;
@@ -55,7 +55,7 @@ export class EtoolsInput extends LitElement {
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
-        .value="${this.value ? this.value : ''}"
+        .value="${this.value == undefined || this.value == null ? '' : this.value}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
         exportparts="base,input,form-control,form-control-label,form-control-help-text"
