@@ -351,6 +351,7 @@ export class SlAutocomplete extends LitElement {
               slot="anchor"
               tabindex="${this.readonly ? '-1' : '0'}"
               class="select__combobox"
+              title="${this.selectedLabels.replaceAll(',', ' | ')}"
               @mousedown="${this.handleComboboxMouseDown}"
             >
               <slot part="prefix" name="prefix" class="select__prefix"></slot>
