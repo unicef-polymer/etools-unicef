@@ -349,14 +349,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   }
 
   getDialog() {
-    return this.shadowRoot.querySelector('#dialog');
+    return this.shadowRoot?.querySelector('#dialog');
   }
 
   scrollDown() {
     setTimeout(() => {
       const d = this.getDialog();
       if (d) {
-        const scrollableContent = d.shadowRoot.querySelector('slot[part="body"]');
+        const scrollableContent = d.shadowRoot?.querySelector('slot[part="body"]');
         if (scrollableContent) {
           scrollableContent.scrollTop = scrollableContent.scrollHeight;
         }
