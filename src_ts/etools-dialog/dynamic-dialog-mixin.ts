@@ -3,19 +3,16 @@
      everything becomes unselectable.
      This behaviour will fix the issue. */
 
-import EtoolsLogsMixin from '@unicef-polymer/etools-behaviors/etools-logs-mixin.js';
-
 import './etools-dialog.js';
 
 /**
  * @polymer
  * @mixinFunction
- * @appliesMixin EtoolsLogsMixin
  * @demo demo/index-dynamic.html
  * !!! DEPRECATED - use the exported methods form dynamic-dialog.js
  */
 export const DynamicDialogMixin = (baseClass) =>
-  class extends EtoolsLogsMixin(baseClass) {
+  class extends baseClass {
     createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       const config = {
         title: title,
@@ -72,8 +69,6 @@ export const DynamicDialogMixin = (baseClass) =>
 
     _validateParams(config) {
       if (typeof config.content === 'undefined' || config.content === null) {
-        // eslint-disable-next-line no-console
-        this.logError('[DynamicDialogBehavior] You must provide a valid dialog content');
         return false;
       }
       return true;
