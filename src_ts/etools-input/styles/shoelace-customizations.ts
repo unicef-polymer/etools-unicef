@@ -40,6 +40,9 @@ const validationStyles = css`
   .err-msg {
     color: red;
   }
+  sl-input::part(prefix) {
+    margin-inline-end: 5px;
+  }
 `;
 
 const labelStyles = css`
