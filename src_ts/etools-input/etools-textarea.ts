@@ -52,6 +52,12 @@ export class EtoolsTextarea extends LitElement {
   @property({type: Number})
   maxlength!: number;
 
+  @property({type: String})
+  resize = 'auto';
+
+  @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
+  alwaysFloatLabel = false;
+
   @query('sl-textarea')
   slTextarea!: SlTextarea;
 
@@ -95,13 +101,14 @@ export class EtoolsTextarea extends LitElement {
         size="small"
         .label="${this.infoIconMessage ? '' : this.label}"
         .pattern="${this.pattern}"
-        resize="auto"
+        resize="${this.resize}"
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
+        always-float-label="${this.alwaysFloatLabel}"
         rows="${this.rows}"
         maxlength="${this.maxlength}"
-        .value="${this.value ? this.value : ''}"
+        .value="${this.value == undefined || this.value == null ? '' : this.value}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {
           const val = event.target!.value ? event.target!.value : '';

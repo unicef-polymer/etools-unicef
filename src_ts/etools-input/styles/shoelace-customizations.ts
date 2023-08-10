@@ -37,6 +37,7 @@ const validationStyles = css`
   sl-input[data-user-invalid],
   sl-textarea[data-user-invalid] {
     --sl-input-border-color: red;
+    --sl-input-label-color: red;
   }
   sl-input,
   sl-textarea {
@@ -62,6 +63,10 @@ const labelStyles = css`
     line-height: 19px;
     font-size: 12px;
     display: block;
+  }
+  sl-textarea[always-float-label]::part(form-control-label),
+  sl-input[always-float-label]::part(form-control-label) {
+    min-height: 19px;
   }
 `;
 

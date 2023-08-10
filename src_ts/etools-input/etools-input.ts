@@ -15,6 +15,9 @@ export class EtoolsInput extends EtoolsInputBase {
     return [
       ShoelaceCustomizations,
       css`
+        :host {
+          width: 100%;
+        }
         sl-input::part(input) {
           width: 100%;
         }
@@ -32,10 +35,11 @@ export class EtoolsInput extends EtoolsInputBase {
         .label="${this.label}"
         .pattern="${this.pattern}"
         placeholder="${this.placeholder ? this.placeholder : ''}"
-        allowed-pattern="${this.allowedPattern}"       
+        allowed-pattern="${this.allowedPattern}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
-        .value="${this.value ? this.value : ''}"
+        always-float-label="${this.alwaysFloatLabel}"
+        .value="${this.value == undefined || this.value == null ? '' : this.value}"
         @keydown="${(event) => {
           if (this.allowedPattern) {
             const regex = new RegExp(this.allowedPattern);
