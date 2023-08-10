@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "tsToJs": "tsc",
-    "lint": "eslint ./src_ts/**/* --ext ts",
-    "format": "eslint --ext .ts ./src_ts/**/* --fix --ignore-path .gitignore",
+    "watch": "tsc --watch",
+    "lint": "eslint ./src_ts/**/*.ts --ext ts",
+    "format": "eslint --ext .ts ./src_ts/**/*.ts --fix --ignore-path .gitignore",
     "prepublishOnly": "npm run tsToJs"
   },
   "repository": {

@@ -31,7 +31,7 @@ export class EtoolsInputBase extends LitElement {
   readonly = false;
 
   @property({type: String, reflect: true, attribute: 'error-message'})
-  errorMessage: string = 'This field is required';
+  errorMessage = 'This field is required';
 
   @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
   autoValidate = false;
