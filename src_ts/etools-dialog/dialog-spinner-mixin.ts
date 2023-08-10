@@ -1,4 +1,4 @@
-import {property} from 'lit-element';
+import {property, Constructor} from 'lit-element';
 import {getTranslation} from './utils/translate';
 declare global {
   interface Window {
@@ -10,7 +10,7 @@ declare global {
  * @mixinFunction
  * @demo demo/index-spinner.html
  */
-export function DialogSpinnerMixin(baseClass: any) {
+export function DialogSpinnerMixin<T extends Constructor<any>>(baseClass: T) {
   class DialogSpinnerMixinClass extends baseClass {
     @property({type: Boolean, reflect: true, attribute: 'keep-dialog-open'})
     keepDialogOpen: boolean;
@@ -21,8 +21,8 @@ export function DialogSpinnerMixin(baseClass: any) {
     @property({type: String})
     language!: string;
 
-    constructor() {
-      super();
+    constructor(...args) {
+      super(...args);
       this.keepDialogOpen = false;
       this.showSpinner = false;
       if (!this.language) {
