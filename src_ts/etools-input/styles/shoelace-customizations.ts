@@ -64,6 +64,10 @@ const labelStyles = css`
     font-size: 12px;
     display: block;
   }
+  sl-textarea[always-float-label]::part(form-control-label),
+  sl-input[always-float-label]::part(form-control-label) {
+    min-height: 19px;
+  }
 `;
 
 export const ShoelaceCustomizations = css`

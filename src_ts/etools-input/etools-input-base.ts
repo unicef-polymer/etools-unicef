@@ -38,4 +38,7 @@ export class EtoolsInputBase extends LitElement {
 
   @property({type: Boolean, reflect: true, attribute: 'invalid'})
   invalid = false;
+
+  @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
+  alwaysFloatLabel = false;
 }

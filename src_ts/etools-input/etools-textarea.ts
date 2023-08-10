@@ -55,6 +55,9 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String})
   resize = 'auto';
 
+  @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
+  alwaysFloatLabel = false;
+
   @query('sl-textarea')
   slTextarea!: SlTextarea;
 
@@ -102,6 +105,7 @@ export class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
+        always-float-label="${this.alwaysFloatLabel}"
         rows="${this.rows}"
         maxlength="${this.maxlength}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
