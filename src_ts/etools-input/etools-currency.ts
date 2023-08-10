@@ -33,6 +33,9 @@ import {EtoolsInput} from './etools-input';
 
 @customElement('etools-currency')
 export class EtoolsCurrency extends EtoolsInputBase {
+  @property({type: String})
+  value: number | null = null;
+
   @property({type: String, reflect: true, attribute: 'currency'})
   currency!: string;
 
@@ -385,9 +388,9 @@ export class EtoolsCurrency extends EtoolsInputBase {
       return null;
     }
     if (decimals) {
-      return parseFloat(floatVal.toFixed(decimals)).toString();
+      return parseFloat(floatVal.toFixed(decimals));
     }
-    return floatVal.toString();
+    return floatVal;
   }
 
   _onKeyDown(e: any) {

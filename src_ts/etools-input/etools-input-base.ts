@@ -19,7 +19,7 @@ export class EtoolsInputBase extends LitElement {
   allowedPattern!: string;
 
   @property({type: String})
-  value: string | null = null;
+  value: number | string | null = null;
 
   @property({type: Boolean, reflect: true, attribute: 'disabled'})
   disabled = false;
