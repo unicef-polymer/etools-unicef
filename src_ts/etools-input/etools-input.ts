@@ -38,7 +38,7 @@ export class EtoolsInput extends EtoolsInputBase {
         allowed-pattern="${this.allowedPattern}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
-        always-float-label="${this.alwaysFloatLabel}"
+        ?always-float-label="${this.alwaysFloatLabel}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
         @keydown="${(event) => {
           if (this.allowedPattern) {

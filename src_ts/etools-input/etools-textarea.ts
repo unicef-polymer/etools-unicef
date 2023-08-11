@@ -104,7 +104,7 @@ export class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
-        always-float-label="${this.alwaysFloatLabel}"
+        ?always-float-label="${this.alwaysFloatLabel}"
         rows="${this.rows}"
         maxlength="${this.maxlength}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
