@@ -109,6 +109,9 @@ export class InfoIconTooltip extends LitElement {
     super.connectedCallback();
     setTimeout(() => this.callClickOnEnterPushListener(this.shadowRoot!.querySelector('#info-icon')), 200);
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+    document.addEventListener('sl-hide', (event) => {
+      event.stopImmediatePropagation();
+    });
   }
 
   disconnectedCallback() {
