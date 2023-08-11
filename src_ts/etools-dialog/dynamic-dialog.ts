@@ -5,7 +5,6 @@
   This way of creating the dialog will fix the issue. */
 
 import './etools-dialog.js';
-import {logError} from '@unicef-polymer/etools-behaviors/etools-logging';
 
 export function createDynamicDialog(config) {
   if (!_validateParams(config)) {
@@ -68,8 +67,6 @@ export function removeDialog(dialogElement) {
 
 function _validateParams(config) {
   if (typeof config.content === 'undefined' || config.content === null) {
-    // eslint-disable-next-line no-console
-    logError('[DynamicDialogBehavior] You must provide a valid dialog content');
     return false;
   }
   return true;
