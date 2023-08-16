@@ -1,4 +1,5 @@
-import {LitElement, html, property} from 'lit-element';
+import {LitElement, html} from 'lit';
+import {property} from 'lit/decorators.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 import SlTooltip from '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';

@@ -1,4 +1,4 @@
-import {Constructor} from 'lit-element';
+import {Constructor} from '../../utils/types';
 
 export type MixinTarget<T extends object> = Constructor<{
   // Enumerate only public members to avoid the following compiler error:

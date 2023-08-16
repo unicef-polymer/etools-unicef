@@ -1,5 +1,5 @@
-import {Constructor} from 'lit-element';
 import {addCurrencyAmountDelimiter, displayCurrencyAmount} from '../utils/currency';
+import {Constructor} from '../utils/types';
 
 /**
  * Currency amount input. US format only.

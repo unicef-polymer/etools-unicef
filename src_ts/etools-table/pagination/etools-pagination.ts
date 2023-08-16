@@ -1,4 +1,5 @@
-import {LitElement, html, property} from 'lit-element';
+import {LitElement, html} from 'lit';
+import {property} from 'lit/decorators.js';
 import {etoolsPaginationStyles} from '../styles/pagination-style';
 import {getTranslation} from '../utils/translate';
 

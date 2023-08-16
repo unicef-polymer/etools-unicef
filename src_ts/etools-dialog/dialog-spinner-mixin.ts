@@ -1,5 +1,6 @@
-import {property, Constructor} from 'lit-element';
+import {property} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate';
+import {Constructor} from '../utils/types';
 declare global {
   interface Window {
     EtoolsLanguage: any;

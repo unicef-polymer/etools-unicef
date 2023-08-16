@@ -1,4 +1,4 @@
-import {css} from 'lit-element';
+import {css} from 'lit';
 // TODO - submodule should not import it fro here
 
 const validationStyles = css`

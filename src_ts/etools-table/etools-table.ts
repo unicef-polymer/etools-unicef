@@ -1,7 +1,8 @@
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
-import {LitElement, html, css, property} from 'lit-element';
+import {LitElement, html, css} from 'lit';
+import {property} from 'lit/decorators.js';
 import {ifDefined} from 'lit-html/directives/if-defined';
 
 import {etoolsTableStyles} from './styles/table-styles';

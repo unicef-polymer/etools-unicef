@@ -1,4 +1,5 @@
-import {LitElement, html, property, query} from 'lit-element';
+import {LitElement, html} from 'lit';
+import {property, query} from 'lit/decorators.js';
 import '@a11y/focus-trap/focus-trap.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
