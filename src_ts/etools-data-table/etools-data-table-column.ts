@@ -11,13 +11,13 @@ import {customElement, property} from 'lit/decorators.js';
  */
 @customElement('etools-data-table-column')
 export class EtoolsDataTableColumn extends LitElement {
-  @property({type: Boolean, reflect: true})
+  @property({type: Boolean, reflect: true, attribute: 'selected'})
   selected!: boolean;
 
-  @property({type: String})
+  @property({type: String, reflect: true, attribute: 'direction'})
   direction!: string;
 
-  @property({type: String, reflect: true})
+  @property({type: String, reflect: true, attribute: 'field'})
   field!: string;
 
   render() {
@@ -90,8 +90,8 @@ export class EtoolsDataTableColumn extends LitElement {
         <slot></slot>
       </span>
       <div id="icon-wrapper">
-        <sl-icon id="up" name="chevron-up"></sl-icon>
-        <sl-icon id="down" name="chevron-down"></sl-icon>
+        <sl-icon id="up" name="arrow-up"></sl-icon>
+        <sl-icon id="down" name="arrow-down"></sl-icon>
       </div>
     `;
   }
