@@ -1,6 +1,6 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "0.0.25",
+  "version": "0.0.27",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "scripts": {
