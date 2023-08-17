@@ -1,4 +1,4 @@
-import {html, unsafeCSS} from 'lit-element';
+import {html, unsafeCSS} from 'lit';
 
 export const dataTableStylesContent = `
   a {
