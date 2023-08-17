@@ -3,7 +3,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
 import {LitElement, html, css} from 'lit';
 import {property} from 'lit/decorators.js';
-import {ifDefined} from 'lit/directives/if-defined';
+import {ifDefined} from 'lit/directives/if-defined.js';
 
 import {etoolsTableStyles} from './styles/table-styles';
 import {etoolsTableResponsiveStyles} from './styles/table-responsive-styles';
