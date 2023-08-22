@@ -28,6 +28,7 @@
   "homepage": "https://github.com/unicef-polymer/etools-unicef#readme",
   "dependencies": {
     "@a11y/focus-trap": "^1.0.5",
+    "@open-wc/dedupe-mixin": "^1.4.0",
     "@shoelace-style/shoelace": "^2.5.2",
     "@unicef-polymer/etools-loading": "^6.1.1",
     "@unicef-polymer/etools-types": "^1.11.17",
