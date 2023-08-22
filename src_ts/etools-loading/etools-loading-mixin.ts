@@ -1,0 +1,148 @@
+import './etools-loading.js';
+import remove from 'lodash-es/remove';
+import last from 'lodash-es/last';
+import {default as lodashGet} from 'lodash-es/get';
+import isEmpty from 'lodash-es/isEmpty';
+import {dedupeMixin} from '@open-wc/dedupe-mixin';
+import {getTranslation} from './utils/translate.js';
+import {EtoolsLoading} from './etools-loading.js';
+
+/**
+ * @polymer
+ * @mixinFunction
+ */
+const internalLoadingMixin = (baseClass) =>
+  class extends baseClass {
+    static get properties() {
+      return {
+        /**
+         *  If is set, this element will be used as loading container instead of default body
+         */
+        etoolsLoadingContainer: {
+          type: Object
+        }
+      };
+    }
+
+    constructor() {
+      super();
+      if (!this.language) {
+        this.language = window.EtoolsLanguage || 'en';
+      }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.addEventListener('global-loading', this.handleLoading);
+      this.addEventListener('clear-loading-messages', this.clearLoadingQueue);
+      document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+
+      // create loading element, used for global loading
+      this.globalLoadingElement = this.createLoading();
+      this.globalLoadingElement.messages = [];
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+    }
+
+    handleLanguageChange(e) {
+      this.language = e.detail.language;
+    }
+
+    /**
+     * This method will create an etools-loading absolute element
+     * (loading element is appended to the body and it will cover entire screen)
+     * @param loadingMessage
+     * @returns {Element}
+     */
+    createLoading(loadingMessage?: string) {
+      const newLoadingElement = document.createElement('etools-loading') as EtoolsLoading;
+      if (typeof loadingMessage === 'string' && loadingMessage !== '') {
+        newLoadingElement.loadingText = loadingMessage;
+      }
+      newLoadingElement.setAttribute('id', 'fromLoadingLixin');
+      newLoadingElement.setAttribute('absolute', '');
+      this.getContainer().appendChild(newLoadingElement);
+
+      return newLoadingElement;
+    }
+
+    /**
+     * Use this method to remove a loading element in the detached state of the element where loading is used
+     * @param loadingElement
+     */
+    removeLoading(loadingElement) {
+      if (loadingElement) {
+        this.getContainer().removeChild(loadingElement);
+      }
+    }
+
+    addMessageToQue(messages, source) {
+      const _messages = messages.slice();
+      _messages.push(source);
+      return _messages;
+    }
+
+    removeMessageFromQue(messages, source) {
+      const _messages = messages.slice();
+      remove(_messages, {loadingSource: source.loadingSource});
+      return _messages;
+    }
+
+    /**
+     * Show loading when data is requested from server, or save is in progress...
+     */
+    handleLoading(event) {
+      event.stopImmediatePropagation();
+      if (!this.globalLoadingElement) {
+        return;
+      }
+
+      const loadingSource = event.detail.loadingSource
+        ? event.detail.loadingSource
+        : lodashGet(event, 'path.0.localName', 'na');
+
+      if (event.detail.active) {
+        const message = lodashGet(event, 'detail.message', getTranslation(this.language, 'LOADING'));
+        this.globalLoadingElement.messages = this.addMessageToQue(this.globalLoadingElement.messages, {
+          loadingSource: loadingSource,
+          message: message
+        });
+        this.globalLoadingElement.loadingText = last(this.globalLoadingElement.messages).message;
+        this.globalLoadingElement.setAttribute('source', last(this.globalLoadingElement.messages).loadingSource);
+        this.globalLoadingElement.active = true;
+      } else {
+        this.globalLoadingElement.messages = this.removeMessageFromQue(this.globalLoadingElement.messages, {
+          loadingSource: loadingSource
+        });
+        if (isEmpty(this.globalLoadingElement.messages)) {
+          this.globalLoadingElement.active = false;
+        } else {
+          this.globalLoadingElement.loadingText = last(this.globalLoadingElement.messages).message;
+        }
+      }
+    }
+
+    clearLoadingQueue(event) {
+      event.stopImmediatePropagation();
+      this.globalLoadingElement.messages = [];
+      this.globalLoadingElement.active = false;
+    }
+
+    getContainer() {
+      if (this.etoolsLoadingContainer) {
+        return this.etoolsLoadingContainer;
+      } else {
+        return document.querySelector('body');
+      }
+    }
+  };
+
+/**
+ * @polymer
+ * @mixinFunction
+ */
+const LoadingMixin = dedupeMixin(internalLoadingMixin);
+export default LoadingMixin;
