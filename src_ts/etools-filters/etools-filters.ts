@@ -11,7 +11,7 @@ import '../etools-dropdown/etools-dropdown-multi';
 import '../etools-dropdown/etools-dropdown';
 import '../etools-input/etools-input';
 import '@unicef-polymer/etools-date-time/datepicker-lite';
-import '@unicef-polymer/etools-loading/etools-loading';
+import '../etools-loading/etools-loading';
 import debounce from 'lodash-es/debounce';
 import {Callback} from '@unicef-polymer/etools-types';
 import {getTranslation} from './utils/translate';
