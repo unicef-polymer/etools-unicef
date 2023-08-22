@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import '../etools-collapse/etools-collapse';
 
 /**
  * `etools-data-table-row`
@@ -126,18 +127,6 @@ export class EtoolsDataTableRow extends LitElement {
           @apply --list-row-no-collapse;
         }
 
-        #details {
-          overflow: hidden;
-        }
-
-        :host(:not([no-animation])) #details {
-          transition: max-height var(--sl-transition-medium);
-        }
-
-        #details:not([open]) {
-          max-height: 0;
-        }
-
         /* Mobile view CSS */
         :host([medium-resolution-layout]) div#wrapper,
         :host([low-resolution-layout]) div#wrapper {
@@ -182,11 +171,11 @@ export class EtoolsDataTableRow extends LitElement {
         <slot name="row-data"></slot>
       </div>
 
-      <div id="details" ?open="${this.detailsOpened}">
+      <etools-collapse id="details" ?opened="${this.detailsOpened}">
         <div id="collapse-wrapper" part="edt-list-row-collapse-wrapper">
           <slot name="row-data-details"></slot>
         </div>
-      </div>
+      </etools-collapse>
     `;
   }
 
@@ -224,12 +213,12 @@ export class EtoolsDataTableRow extends LitElement {
   }
 
   _toggleRowDetails() {
-    if (!this.detailsOpened) {
-      (this.shadowRoot!.querySelector('#details') as HTMLElement)!.style.maxHeight =
-        this.shadowRoot!.querySelector('#collapse-wrapper')!.getBoundingClientRect().height + 'px';
-    } else {
-      (this.shadowRoot!.querySelector('#details') as HTMLElement)!.style.maxHeight = '0px';
-    }
+    // if (!this.detailsOpened) {
+    //   (this.shadowRoot!.querySelector('#details') as HTMLElement)!.style.maxHeight =
+    //     this.shadowRoot!.querySelector('#collapse-wrapper')!.getBoundingClientRect().height + 'px';
+    // } else {
+    //   (this.shadowRoot!.querySelector('#details') as HTMLElement)!.style.maxHeight = '0px';
+    // }
     this.detailsOpened = !this.detailsOpened;
     this.dispatchEvent(
       new CustomEvent('opened-changed', {

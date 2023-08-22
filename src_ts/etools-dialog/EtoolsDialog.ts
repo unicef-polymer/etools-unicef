@@ -3,7 +3,7 @@ import {property, query} from 'lit/decorators.js';
 import '@a11y/focus-trap/focus-trap.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
-import '@unicef-polymer/etools-loading/etools-loading';
+import '../etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
