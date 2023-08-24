@@ -37,6 +37,7 @@ import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 @customElement('etools-loading')
 export class EtoolsLoading extends LitElement {
   private _active: boolean;
+  messages!: string[];
 
   @property({type: Boolean, reflect: true})
   set active(val) {

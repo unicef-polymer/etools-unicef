@@ -1,37 +1,46 @@
 import './etools-loading.js';
+import {LitElement} from 'lit';
+import {property} from 'lit/decorators.js';
 import remove from 'lodash-es/remove';
 import last from 'lodash-es/last';
 import {default as lodashGet} from 'lodash-es/get';
 import isEmpty from 'lodash-es/isEmpty';
-import {dedupeMixin} from '@open-wc/dedupe-mixin';
 import {getTranslation} from './utils/translate.js';
 import {EtoolsLoading} from './etools-loading.js';
+import {Constructor} from '@unicef-polymer/etools-types';
+
+interface ILoadingMixingClass {
+  globalLoadingElement: EtoolsLoading;
+  etoolsLoadingContainer: any;
+  language: string;
+  connectedCallback(): void;
+  disconnectedCallback(): void;
+  handleLanguageChange(e: any): void;
+  createLoading(loadingMessage: string): EtoolsLoading;
+  removeLoading(loadingElement: EtoolsLoading): void;
+  addMessageToQue(messages: string[], source: any): string[];
+  removeMessageFromQue(messages: any, source: any): string[];
+  handleLoading(event: any): void;
+  clearLoadingQueue(event: any): void;
+  getContainer(): any;
+}
 
 /**
  * @polymer
  * @mixinFunction
  */
-const internalLoadingMixin = (baseClass) =>
-  class extends baseClass {
-    static get properties() {
-      return {
-        /**
-         *  If is set, this element will be used as loading container instead of default body
-         */
-        etoolsLoadingContainer: {
-          type: Object
-        }
-      };
-    }
+// @ts-ignore
+export default function LoadingMixin<T extends Constructor<LitElement>>(baseClass: T) {
+  class LoadingMixingClass extends baseClass implements ILoadingMixingClass {
+    globalLoadingElement!: EtoolsLoading;
 
-    constructor() {
-      super();
-      if (!this.language) {
-        this.language = window.EtoolsLanguage || 'en';
-      }
-    }
+    @property({type: Object})
+    etoolsLoadingContainer: any;
 
-    connectedCallback() {
+    @property({type: String})
+    language: string = window.EtoolsLanguage || 'en';
+
+    connectedCallback(): void {
       super.connectedCallback();
       this.addEventListener('global-loading', this.handleLoading);
       this.addEventListener('clear-loading-messages', this.clearLoadingQueue);
@@ -42,12 +51,12 @@ const internalLoadingMixin = (baseClass) =>
       this.globalLoadingElement.messages = [];
     }
 
-    disconnectedCallback() {
+    disconnectedCallback(): void {
       super.disconnectedCallback();
       document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
     }
 
-    handleLanguageChange(e) {
+    handleLanguageChange(e: any): void {
       this.language = e.detail.language;
     }
 
@@ -57,7 +66,7 @@ const internalLoadingMixin = (baseClass) =>
      * @param loadingMessage
      * @returns {Element}
      */
-    createLoading(loadingMessage?: string) {
+    createLoading(loadingMessage?: string): EtoolsLoading {
       const newLoadingElement = document.createElement('etools-loading') as EtoolsLoading;
       if (typeof loadingMessage === 'string' && loadingMessage !== '') {
         newLoadingElement.loadingText = loadingMessage;
@@ -73,19 +82,19 @@ const internalLoadingMixin = (baseClass) =>
      * Use this method to remove a loading element in the detached state of the element where loading is used
      * @param loadingElement
      */
-    removeLoading(loadingElement) {
+    removeLoading(loadingElement: EtoolsLoading): void {
       if (loadingElement) {
         this.getContainer().removeChild(loadingElement);
       }
     }
 
-    addMessageToQue(messages, source) {
+    addMessageToQue(messages: string[], source: any): string[] {
       const _messages = messages.slice();
       _messages.push(source);
       return _messages;
     }
 
-    removeMessageFromQue(messages, source) {
+    removeMessageFromQue(messages: string[], source: any): string[] {
       const _messages = messages.slice();
       remove(_messages, {loadingSource: source.loadingSource});
       return _messages;
@@ -94,7 +103,7 @@ const internalLoadingMixin = (baseClass) =>
     /**
      * Show loading when data is requested from server, or save is in progress...
      */
-    handleLoading(event) {
+    handleLoading(event: any): void {
       event.stopImmediatePropagation();
       if (!this.globalLoadingElement) {
         return;
@@ -125,24 +134,20 @@ const internalLoadingMixin = (baseClass) =>
       }
     }
 
-    clearLoadingQueue(event) {
+    clearLoadingQueue(event: any): void {
       event.stopImmediatePropagation();
       this.globalLoadingElement.messages = [];
       this.globalLoadingElement.active = false;
     }
 
-    getContainer() {
+    getContainer(): any {
       if (this.etoolsLoadingContainer) {
         return this.etoolsLoadingContainer;
       } else {
         return document.querySelector('body');
       }
     }
-  };
+  }
 
-/**
- * @polymer
- * @mixinFunction
- */
-const LoadingMixin = dedupeMixin(internalLoadingMixin);
-export default LoadingMixin;
+  return LoadingMixingClass as Constructor<ILoadingMixingClass> & T;
+}
