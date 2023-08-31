@@ -3,7 +3,7 @@ import remove from 'lodash-es/remove';
 import last from 'lodash-es/last';
 import {default as lodashGet} from 'lodash-es/get';
 import isEmpty from 'lodash-es/isEmpty';
-import {dedupeMixin} from '@open-wc/dedupe-mixin';
+import {Constructor} from '../utils/types';
 import {getTranslation} from './utils/translate.js';
 import {EtoolsLoading} from './etools-loading.js';
 
@@ -11,8 +11,8 @@ import {EtoolsLoading} from './etools-loading.js';
  * @polymer
  * @mixinFunction
  */
-const internalLoadingMixin = (baseClass) =>
-  class extends baseClass {
+export function LoadingMixin<T extends Constructor<any>>(baseClass: T) {
+  class LoadingMixinClass extends baseClass {
     static get properties() {
       return {
         /**
@@ -24,8 +24,8 @@ const internalLoadingMixin = (baseClass) =>
       };
     }
 
-    constructor() {
-      super();
+    constructor(...args) {
+      super(...args);
       if (!this.language) {
         this.language = window.EtoolsLanguage || 'en';
       }
@@ -138,11 +138,6 @@ const internalLoadingMixin = (baseClass) =>
         return document.querySelector('body');
       }
     }
-  };
-
-/**
- * @polymer
- * @mixinFunction
- */
-const LoadingMixin = dedupeMixin(internalLoadingMixin);
-export default LoadingMixin;
+  }
+  return LoadingMixinClass;
+}
