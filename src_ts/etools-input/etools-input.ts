@@ -11,8 +11,12 @@ export class EtoolsInput extends EtoolsInputBase {
   @query('sl-input')
   slInput!: SlInput;
 
-  @property({type: Boolean, reflect: true, attribute: 'allow-edit'})
-  allowEdit = true;
+  /**
+   * Disable shoelace internal input interaction/input. Mark internal input as readonly while keeping
+   * standard shoelace input styles and functionalities. Used by datepicker at this point.
+   */
+  @property({type: Boolean, reflect: true, attribute: 'prevent-user-direct-input'})
+  preventUserDirectInput = false;
 
   static get styles() {
     return [
@@ -41,7 +45,7 @@ export class EtoolsInput extends EtoolsInputBase {
           placeholder="${this.placeholder ? this.placeholder : ''}"
           allowed-pattern="${this.allowedPattern}"
           ?required="${this.required}"
-          ?readonly="${!this.allowEdit || this.readonly}"
+          ?readonly="${this.preventUserDirectInput || this.readonly}"
           ?always-float-label="${this.alwaysFloatLabel}"
           .value="${this.value == undefined || this.value == null ? '' : this.value}"
           @keydown="${(event) => {

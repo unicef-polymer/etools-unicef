@@ -352,7 +352,7 @@ export class DatePickerLite extends LitElement {
         ?readonly="${this.readonly}"
         ?required="${this.required}"
         ?invalid="${this.invalid}"
-        .allowEdit="${false}"
+        prevent-user-direct-input
         value="${this.formatDateForDisplay(this.value, this.readonly)}"
         .errorMessage="${this.errorMessage}"
         @keypress="${this._toggelOnKeyPressFromPaperInput}"
