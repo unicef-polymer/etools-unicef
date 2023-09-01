@@ -34,13 +34,18 @@ export class EtoolsCollapse extends LitElement {
           transition: max-height 0s;
         }
 
-        :host(:not([no-animation])) {
+        :host {
           display: block;
           overflow: hidden;
         }
 
-        :host(:not([opened])) {
+        :host([no-animation]:not([opened])) {
+          overflow: hidden;
           max-height: 0;
+        }
+
+        :host([no-animation][opened]) {
+          overflow: visible;
         }
       </style>
 
@@ -50,11 +55,21 @@ export class EtoolsCollapse extends LitElement {
 
   constructor() {
     super();
-    this.addEventListener('transitionend', (event) => {
-      if (event.propertyName === 'max-height') {
-        this.style.transitionDuration = '0s';
-      }
-    });
+    if (!this.noAnimation) {
+      this.addEventListener('transitionstart', (event) => {
+        if (event.propertyName === 'max-height') {
+          this.style.overflow = 'hidden';
+        }
+      });
+
+      this.addEventListener('transitionend', (event) => {
+        if (event.propertyName === 'max-height') {
+          this.style.transitionDuration = '0s';
+          this.style.overflow = this.opened ? 'visible' : 'hidden';
+          this.setDesiredSize(this.opened ? 'auto' : '0px');
+        }
+      });
+    }
   }
 
   firstUpdated() {
@@ -63,31 +78,34 @@ export class EtoolsCollapse extends LitElement {
 
   updated(changedProperties: PropertyValues<this>) {
     if (changedProperties.has('opened') && changedProperties.get('opened') !== undefined) {
-      this.setDesiredSize(this.opened ? 'auto' : '0px');
       this.prepareBeforeToggle();
     }
   }
 
   prepareBeforeToggle() {
-    if (this._desiredSize === 'auto') {
-      this.style.transitionDuration = '0s';
-      this.setDesiredSize(this._calcSize());
-    }
+    if (this.noAnimation) {
+      this.removeAttribute('style');
+    } else {
+      if (this._desiredSize === 'auto') {
+        this.style.transitionDuration = '0s';
+        this.setDesiredSize(this._calcSize());
+      }
 
-    if (this._timeout) {
-      clearTimeout(this._timeout);
-      this._timeout = undefined;
-    }
+      if (this._timeout) {
+        clearTimeout(this._timeout);
+        this._timeout = undefined;
+      }
 
-    this._timeout = setTimeout(() => {
-      this.style.transitionDuration = 'var(--etools-collapse-transition-duration, var(--sl-transition-medium, .3s))';
-      this.setDesiredSize(this.opened ? this._calcSize() : '0px');
-    }, 60);
+      this._timeout = setTimeout(() => {
+        this.style.transitionDuration = 'var(--etools-collapse-transition-duration, var(--sl-transition-medium, .3s))';
+        this.setDesiredSize(this.opened ? this._calcSize() : '0px');
+      }, 60);
+    }
   }
 
   setDesiredSize(value) {
     this._desiredSize = value;
-    this.style.maxHeight = this._desiredSize;
+    this.style.maxHeight = this._desiredSize === 'auto' ? '' : this._desiredSize;
   }
 
   getSlotContent() {
