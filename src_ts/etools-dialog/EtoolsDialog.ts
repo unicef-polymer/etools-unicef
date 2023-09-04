@@ -98,7 +98,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           opacity: 0.85;
         }
         sl-button {
-          --sl-input-height-medium: 40px;
+          --sl-input-height-medium: 36px;
         }
 
         sl-dialog.confirmation .close-btn,
