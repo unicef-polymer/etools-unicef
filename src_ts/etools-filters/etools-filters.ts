@@ -10,7 +10,7 @@ import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
 import '../etools-dropdown/etools-dropdown-multi';
 import '../etools-dropdown/etools-dropdown';
 import '../etools-input/etools-input';
-import '@unicef-polymer/etools-unicef/src/etools-date-time/datepicker-lite';
+import '../etools-date-time/datepicker-lite.js';
 import '../etools-loading/etools-loading';
 import debounce from 'lodash-es/debounce';
 import {Callback} from '@unicef-polymer/etools-types';
