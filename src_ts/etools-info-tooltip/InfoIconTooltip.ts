@@ -1,5 +1,6 @@
-import {LitElement, html, css, property} from 'lit-element';
-import {unsafeHTML} from 'lit-html/directives/unsafe-html';
+import {LitElement, html, css} from 'lit';
+import {property} from 'lit/decorators.js';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import '@polymer/iron-icons/iron-icons';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 

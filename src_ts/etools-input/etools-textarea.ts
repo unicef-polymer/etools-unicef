@@ -1,9 +1,11 @@
-import {css, html, LitElement, customElement, query, property} from 'lit-element';
+import {css, html, LitElement} from 'lit';
+import {customElement, query, property} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import '../etools-info-tooltip/info-icon-tooltip';
+import {ifDefined} from 'lit/directives/if-defined.js';
 
 @customElement('etools-textarea')
 export class EtoolsTextarea extends LitElement {
@@ -105,8 +107,8 @@ export class EtoolsTextarea extends LitElement {
         ?required="${this.required}"
         ?readonly="${this.readonly}"
         ?always-float-label="${this.alwaysFloatLabel}"
-        rows="${this.rows}"
-        maxlength="${this.maxlength}"
+        rows="${ifDefined(this.rows)}"
+        maxlength="${ifDefined(this.maxlength)}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {

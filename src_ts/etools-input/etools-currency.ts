@@ -98,8 +98,8 @@ export class EtoolsCurrency extends EtoolsInputBase {
     if (_changedProperties.has('internalValue')) {
       this._onInternalValueChange(this.internalValue, _changedProperties.get('internalValue'));
     }
-    if (this.autoValidate && _changedProperties.has('internalValue')) {
-      this.invalid = !this.inputElement.reportValidity();
+    if (this.autoValidate && _changedProperties.has('internalValue') && this.internalValue !== undefined) {
+      setTimeout(() => (this.invalid = !this.inputElement.reportValidity()));
     }
     if (_changedProperties.has('readonly') && this.readonly) {
       this.invalid = false;

@@ -1,4 +1,4 @@
-import {css} from 'lit-element';
+import {css} from 'lit';
 // TODO - submodule should not import it fro here
 
 const validationStyles = css`
@@ -15,8 +15,8 @@ const validationStyles = css`
     height: 0;
   }
 
-  sl-input[readonly] div[slot='help-text'] div.char-counter,
-  sl-textarea[readonly] div[slot='help-text'] div.char-counter {
+  :host([readonly]) sl-input div[slot='help-text'] div.char-counter,
+  :host([readonly]) sl-textarea div[slot='help-text'] div.char-counter {
     visibility: hidden;
   }
 
@@ -81,15 +81,15 @@ export const ShoelaceCustomizations = css`
   sl-textarea {
     --sl-input-font-size-small: 16px;
   }
-  sl-input[readonly],
-  sl-textarea[readonly] {
+  :host([readonly]) sl-input,
+  :host([readonly]) sl-textarea {
     --sl-input-border-width: 0;
     --sl-input-spacing-small: 0;
     --sl-input-focus-ring-color: rgba(0, 0, 0, 0);
   }
 
-  sl-input:not([readonly]):focus::part(base),
-  sl-textarea:not([readonly]):focus::part(base) {
+  :host(:not([readonly])) sl-input:focus::part(base),
+  :host(:not([readonly])) sl-textarea:focus::part(base) {
     border: none;
     border-bottom: 2px solid var(--primary-color);
     box-shadow: 0 0 0 -1px var(--primary-color), 0 3px 0 -2px var(--primary-color);
@@ -116,8 +116,8 @@ export const ShoelaceCustomizations = css`
     border-bottom: 1px solid red;
   }
 
-  sl-input[readonly]::part(base),
-  sl-textarea[readonly]::part(base) {
+  :host([readonly]) sl-input::part(base),
+  :host([readonly]) sl-textarea::part(base) {
     border: none;
     border-bottom: none;
   }
