@@ -77,7 +77,7 @@ export class EtoolsCollapse extends LitElement {
   }
 
   updated(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('opened') && changedProperties.get('opened') !== undefined) {
+    if (changedProperties.has('opened') && this.opened !== undefined) {
       this.prepareBeforeToggle();
     }
   }
