@@ -197,7 +197,7 @@ export class SlAutocomplete extends LitElement {
 
   // Enable autoValidate only after first focus on input
   @property({type: Boolean})
-  _autoValidate: boolean | undefined;
+  _autoValidate = false;
 
   @property({type: Boolean, attribute: 'expand-icon'})
   expandIcon = 'caret-down-fill'; // chevron-down
