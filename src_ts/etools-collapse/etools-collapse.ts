@@ -82,6 +82,10 @@ export class EtoolsCollapse extends LitElement {
     }
   }
 
+  toggle() {
+    this.opened = !this.opened;
+  }
+
   prepareBeforeToggle() {
     if (this.noAnimation) {
       this.removeAttribute('style');
