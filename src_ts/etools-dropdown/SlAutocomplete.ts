@@ -195,6 +195,7 @@ export class SlAutocomplete extends LitElement {
   @property({type: Boolean, attribute: 'auto-validate'})
   autoValidate: boolean | undefined;
 
+  // Enable autoValidate only after first focus on input
   @property({type: Boolean})
   _autoValidate: boolean | undefined;
 
