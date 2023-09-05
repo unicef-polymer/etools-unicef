@@ -56,6 +56,9 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String})
   resize = 'auto';
 
+  @property({type: Boolean, reflect: true, attribute: 'invalid'})
+  invalid = false;
+
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel = false;
 
@@ -145,12 +148,13 @@ export class EtoolsTextarea extends LitElement {
   }
 
   validate() {
-    const valid = this.slTextarea.reportValidity();
-    if (!valid) {
+    this.invalid = !this.slTextarea.reportValidity();
+    if (this.invalid) {
       this.slTextarea.setAttribute('data-user-invalid', '');
     } else {
       this.slTextarea.removeAttribute('data-user-invalid');
     }
-    return valid;
+    return !this.invalid;
   }
 }
+;
