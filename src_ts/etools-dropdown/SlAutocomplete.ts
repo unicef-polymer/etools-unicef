@@ -195,6 +195,10 @@ export class SlAutocomplete extends LitElement {
   @property({type: Boolean, attribute: 'auto-validate'})
   autoValidate: boolean | undefined;
 
+  // Enable autoValidate only after first focus on input
+  @property({type: Boolean})
+  _autoValidate = false;
+
   @property({type: Boolean, attribute: 'expand-icon'})
   expandIcon = 'caret-down-fill'; // chevron-down
 
@@ -264,7 +268,7 @@ export class SlAutocomplete extends LitElement {
         }
       }
 
-      if (this.autoValidate) {
+      if (this._autoValidate) {
         this.validate();
       }
     }
@@ -633,6 +637,10 @@ export class SlAutocomplete extends LitElement {
       return;
     }
 
+    if (this.autoValidate) {
+      this._autoValidate = true;
+    }
+
     if (!this.open) {
       this.show();
     }
@@ -848,7 +856,7 @@ export class SlAutocomplete extends LitElement {
    */
   private setSelectedValues() {
     this.selectedValues = this.selectedItems.map((x) => x?.[this.optionValue]);
-    if (this.autoValidate) {
+    if (this._autoValidate) {
       this.validate();
     }
     this.dispatchEvent(
