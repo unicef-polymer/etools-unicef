@@ -310,7 +310,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     this.addEventListener('sl-request-close', (event: any) => {
       if (event.detail.source === 'overlay') {
         event.preventDefault();
-      } else {
+      }
+    });
+
+    this.addEventListener('sl-after-hide', (event: any) => {
+      if (event.target === event.currentTarget) {
         this.dispatchEvent(
           new CustomEvent('close', {
             detail: {confirmed: false},
