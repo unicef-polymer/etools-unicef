@@ -91,6 +91,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         sl-dialog.confirmation sl-button.confirm-btn {
           --sl-color-primary-600: var(--etools-dialog-confirm-btn-bg, #ea4022);
+          --sl-color-primary-500: var(--etools-dialog-confirm-btn-bg, #ea4022);
           --sl-color-neutral-0: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
