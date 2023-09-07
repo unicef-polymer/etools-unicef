@@ -582,6 +582,9 @@ export class SlAutocomplete extends LitElement {
     document.addEventListener('language-changed', this.handleLanguageChange);
 
     setTimeout(() => {
+      if (this.multiple) {
+        return;
+      }
       const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
       if (selItem) {
         this.addPeventDeselectListeners(selItem);
