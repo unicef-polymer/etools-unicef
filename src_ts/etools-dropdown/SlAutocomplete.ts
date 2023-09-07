@@ -275,7 +275,7 @@ export class SlAutocomplete extends LitElement {
   }
 
   // Used to prevent deselect by click/enter on single selection dropdw
-  private prevSelectedMenuItemElement?: SlMenuItem;
+  private previousSelMenuItemElem?: SlMenuItem;
 
   render() {
     const hasHelpText = this.helpText ? true : false;
@@ -601,14 +601,14 @@ export class SlAutocomplete extends LitElement {
   addPeventDeselectListeners(selItem: SlMenuItem) {
     selItem.addEventListener('keydown', this.preventDeselectByEnter as any);
     selItem.addEventListener('click', this.preventDeselectByClick as any);
-    this.prevSelectedMenuItemElement = selItem;
+    this.previousSelMenuItemElem = selItem;
   }
   removePeventDeselectListeners() {
-    if (!this.prevSelectedMenuItemElement) {
+    if (!this.previousSelMenuItemElem) {
       return;
     }
-    this.prevSelectedMenuItemElement?.removeEventListener('keydown', this.preventDeselectByEnter as any);
-    this.prevSelectedMenuItemElement?.removeEventListener('click', this.preventDeselectByClick as any);
+    this.previousSelMenuItemElem?.removeEventListener('keydown', this.preventDeselectByEnter as any);
+    this.previousSelMenuItemElem?.removeEventListener('click', this.preventDeselectByClick as any);
   }
 
   disconnectedCallback() {
