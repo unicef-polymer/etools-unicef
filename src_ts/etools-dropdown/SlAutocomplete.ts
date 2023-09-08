@@ -587,7 +587,7 @@ export class SlAutocomplete extends LitElement {
       }
       const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
       if (selItem) {
-        this.addPeventDeselectListeners(selItem);
+        this.addPreventDeselectListeners(selItem);
       }
     }, 1500);
   }
@@ -601,12 +601,12 @@ export class SlAutocomplete extends LitElement {
     e.stopImmediatePropagation();
   }
 
-  addPeventDeselectListeners(selItem: SlMenuItem) {
+  addPreventDeselectListeners(selItem: SlMenuItem) {
     selItem.addEventListener('keydown', this.preventDeselectByEnter as any);
     selItem.addEventListener('click', this.preventDeselectByClick as any);
     this.previousSelMenuItemElem = selItem;
   }
-  removePeventDeselectListeners() {
+  removePreventDeselectListeners() {
     if (!this.previousSelMenuItemElem) {
       return;
     }
@@ -859,9 +859,9 @@ export class SlAutocomplete extends LitElement {
     }
 
     if (item.classList.contains('noneOption')) {
-      this.removePeventDeselectListeners();
+      this.removePreventDeselectListeners();
       this.selectedItems = [];
-      this.addPeventDeselectListeners(e.detail.item);
+      this.addPreventDeselectListeners(e.detail.item);
     } else {
       const selectedItem = this.options.find((x) => x[this.optionValue].toString() === item.value.toString());
       if (selectedItem) {
@@ -881,9 +881,9 @@ export class SlAutocomplete extends LitElement {
           if (this.multiple) {
             this.selectedItems = [...this.selectedItems, selectedItem];
           } else {
-            this.removePeventDeselectListeners();
+            this.removePreventDeselectListeners();
             this.selectedItems = [selectedItem];
-            this.addPeventDeselectListeners(e.detail.item);
+            this.addPreventDeselectListeners(e.detail.item);
           }
         }
       }
