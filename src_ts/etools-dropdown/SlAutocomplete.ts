@@ -10,7 +10,7 @@ import '@shoelace-style/shoelace/dist/components/popup/popup.js';
 import styles from './styles/sl-autocomplete-styles';
 import etoolsStyles from './styles/sl-autocomplete-etools-styles';
 
-import SlMenuItem from '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import type SlMenuItem from '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {SlInput, SlInputEvent, SlMenu} from '@shoelace-style/shoelace';
 import {classMap} from 'lit/directives/class-map.js';
