@@ -3,7 +3,7 @@ import {customElement, query, property} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
-import SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
+import type SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import '../etools-info-tooltip/info-icon-tooltip';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
@@ -71,6 +71,7 @@ export class EtoolsTextarea extends LitElement {
       css`
         :host {
           width: 100%;
+          --sl-input-label-font-size-small: 12px;
         }
         .spacing {
           padding-top: var(--etools-input-padding-top, 8px);
@@ -156,5 +157,8 @@ export class EtoolsTextarea extends LitElement {
     }
     return !this.invalid;
   }
+
+  focus() {
+    this.shadowRoot!.querySelector<SlTextarea>('sl-textarea')!.focus();
+  }
 }
-;
