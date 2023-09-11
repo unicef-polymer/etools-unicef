@@ -70,8 +70,7 @@ export class EtoolsTextarea extends LitElement {
       ShoelaceCustomizations,
       css`
         :host {
-          width: 100%;
-          --sl-input-label-font-size-small: 12px;
+          width: 100%;      
         }
         .spacing {
           padding-top: var(--etools-input-padding-top, 8px);
