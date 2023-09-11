@@ -274,6 +274,9 @@ export class SlAutocomplete extends LitElement {
     }
   }
 
+  // Used to prevent deselect by click/enter on single selection dropdw
+  private previousSelMenuItemElem?: SlMenuItem;
+
   render() {
     const hasHelpText = this.helpText ? true : false;
     const hasClearIcon =
@@ -566,6 +569,8 @@ export class SlAutocomplete extends LitElement {
     this.handleParentFocus = this.handleParentFocus.bind(this);
     this.handleFocusOut = this.handleFocusOut.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.preventDeselectByEnter = this.preventDeselectByEnter.bind(this);
+    this.preventDeselectByClick = this.preventDeselectByClick.bind(this);
   }
 
   connectedCallback(): void {
@@ -575,6 +580,38 @@ export class SlAutocomplete extends LitElement {
     this.addEventListener('focusin', this.handleParentFocus);
     this.addEventListener('focusout', this.handleFocusOut);
     document.addEventListener('language-changed', this.handleLanguageChange);
+
+    setTimeout(() => {
+      if (this.multiple) {
+        return;
+      }
+      const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
+      if (selItem) {
+        this.addPreventDeselectListeners(selItem);
+      }
+    }, 1500);
+  }
+
+  preventDeselectByEnter(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      e.stopImmediatePropagation();
+    }
+  }
+  preventDeselectByClick(e: MouseEvent) {
+    e.stopImmediatePropagation();
+  }
+
+  addPreventDeselectListeners(selItem: SlMenuItem) {
+    selItem.addEventListener('keydown', this.preventDeselectByEnter as any);
+    selItem.addEventListener('click', this.preventDeselectByClick as any);
+    this.previousSelMenuItemElem = selItem;
+  }
+  removePreventDeselectListeners() {
+    if (!this.previousSelMenuItemElem) {
+      return;
+    }
+    this.previousSelMenuItemElem?.removeEventListener('keydown', this.preventDeselectByEnter as any);
+    this.previousSelMenuItemElem?.removeEventListener('click', this.preventDeselectByClick as any);
   }
 
   disconnectedCallback() {
@@ -809,7 +846,10 @@ export class SlAutocomplete extends LitElement {
    * Set selected options. Has logic to resolve multiple selections and single selection
    * @param option Option that has been selected
    */
-  private setSelectedOption({detail: {item}}: {detail: {item: SlMenuItem}}) {
+  private setSelectedOption(e) {
+    const {
+      detail: {item}
+    } = e;
     if (!this.selectedItems) {
       this.selectedItems = [];
     }
@@ -819,7 +859,9 @@ export class SlAutocomplete extends LitElement {
     }
 
     if (item.classList.contains('noneOption')) {
+      this.removePreventDeselectListeners();
       this.selectedItems = [];
+      this.addPreventDeselectListeners(e.detail.item);
     } else {
       const selectedItem = this.options.find((x) => x[this.optionValue].toString() === item.value.toString());
       if (selectedItem) {
@@ -830,14 +872,18 @@ export class SlAutocomplete extends LitElement {
         if (itemSelectedAtIndex >= 0) {
           if (this.multiple) {
             this.selectedItems.splice(itemSelectedAtIndex, 1);
-          } else {
-            this.selectedItems = [];
           }
+          // Do nt allow deselect by click on single sel dropdown
+          // else {
+          //     this.selectedItems = [];
+          // }
         } else {
           if (this.multiple) {
             this.selectedItems = [...this.selectedItems, selectedItem];
           } else {
+            this.removePreventDeselectListeners();
             this.selectedItems = [selectedItem];
+            this.addPreventDeselectListeners(e.detail.item);
           }
         }
       }
