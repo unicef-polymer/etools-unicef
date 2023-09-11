@@ -58,7 +58,7 @@ export class EtoolsInput extends EtoolsInputBase {
           }}"
           @sl-invalid="${(e: any) => e.preventDefault()}"
           @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
-          exportparts="base,input,form-control,form-control-label,form-control-help-text"
+          exportparts="base,input,form-control,form-control-label,form-control-help-text, form-control-input"
         >
           <div slot="help-text">
             <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>
