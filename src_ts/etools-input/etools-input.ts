@@ -3,7 +3,7 @@ import {customElement, query, property} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
-import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
+import type SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
 import {EtoolsInputBase} from './etools-input-base';
 
 @customElement('etools-input')
@@ -58,7 +58,7 @@ export class EtoolsInput extends EtoolsInputBase {
           }}"
           @sl-invalid="${(e: any) => e.preventDefault()}"
           @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
-          exportparts="base,input,form-control,form-control-label,form-control-help-text"
+          exportparts="base,input,form-control,form-control-label,form-control-help-text, form-control-input"
         >
           <div slot="help-text">
             <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>
@@ -78,5 +78,9 @@ export class EtoolsInput extends EtoolsInputBase {
       this.slInput.removeAttribute('data-user-invalid');
     }
     return !this.invalid;
+  }
+
+  focus() {
+    this.shadowRoot!.querySelector<SlInput>('sl-input')!.focus();
   }
 }
