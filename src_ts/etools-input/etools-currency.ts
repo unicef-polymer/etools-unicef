@@ -77,6 +77,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
         @value-changed="${({detail}: CustomEvent) => {
           this.internalValue = detail.value;
         }}"
+        exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
         <div slot="prefix" class="prefix" ?hidden="${!this.currency}">${this.currency}</div>
       </etools-input>
