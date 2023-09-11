@@ -74,6 +74,7 @@ export class EtoolsCollapse extends LitElement {
 
   firstUpdated() {
     this.setDesiredSize(this.opened ? 'auto' : '0px');
+    this.style.overflow = this.opened ? 'visible' : 'hidden';
   }
 
   updated(changedProperties: PropertyValues<this>) {
