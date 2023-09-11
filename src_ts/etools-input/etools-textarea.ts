@@ -107,6 +107,7 @@ export class EtoolsTextarea extends LitElement {
         .pattern="${this.pattern}"
         resize="${this.resize}"
         placeholder="${this.placeholder ? this.placeholder : ''}"
+        ?invalid="${this.invalid}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
         ?always-float-label="${this.alwaysFloatLabel}"
@@ -149,11 +150,6 @@ export class EtoolsTextarea extends LitElement {
 
   validate() {
     this.invalid = !this.slTextarea.reportValidity();
-    if (this.invalid) {
-      this.slTextarea.setAttribute('data-user-invalid', '');
-    } else {
-      this.slTextarea.removeAttribute('data-user-invalid');
-    }
     return !this.invalid;
   }
 

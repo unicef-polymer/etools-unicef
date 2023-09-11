@@ -20,8 +20,8 @@ const validationStyles = css`
     visibility: hidden;
   }
 
-  sl-input[data-user-invalid] div[slot='help-text'] div.err-msg,
-  sl-textarea[data-user-invalid] div[slot='help-text'] div.err-msg {
+  sl-input[invalid] div[slot='help-text'] div.err-msg,
+  sl-textarea[invalid] div[slot='help-text'] div.err-msg {
     visibility: visible;
     height: 0;
     overflow: visible;
@@ -34,8 +34,8 @@ const validationStyles = css`
     overflow: hidden;
     white-space: nowrap;
   }
-  sl-input[data-user-invalid],
-  sl-textarea[data-user-invalid] {
+  sl-input[invalid],
+  sl-textarea[invalid] {
     --sl-input-border-color: red;
     --sl-input-label-color: red;
   }
@@ -128,9 +128,9 @@ export const ShoelaceCustomizations = css`
     border-color: var(--primary-color);
     border-bottom-width: 2px;
   }
-  
-  :host(:not([readonly])) sl-input[data-user-invalid]::part(form-control-input)::after,
-  :host(:not([readonly])) sl-textarea[data-user-invalid]::part(form-control-input)::after {
+
+  :host(:not([readonly])) sl-input[invalid]::part(form-control-input)::after,
+  :host(:not([readonly])) sl-textarea[invalid]::part(form-control-input)::after {
     border-bottom: 2px solid red;
   }
 

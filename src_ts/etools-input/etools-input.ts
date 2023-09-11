@@ -44,6 +44,7 @@ export class EtoolsInput extends EtoolsInputBase {
           .pattern="${this.pattern}"
           placeholder="${this.placeholder ? this.placeholder : ''}"
           allowed-pattern="${this.allowedPattern}"
+          ?invalid="${this.invalid}"
           ?required="${this.required}"
           ?readonly="${this.preventUserDirectInput || this.readonly}"
           ?always-float-label="${this.alwaysFloatLabel}"
@@ -72,11 +73,6 @@ export class EtoolsInput extends EtoolsInputBase {
 
   validate() {
     this.invalid = !this.slInput.reportValidity();
-    if (this.invalid) {
-      this.slInput.setAttribute('data-user-invalid', '');
-    } else {
-      this.slInput.removeAttribute('data-user-invalid');
-    }
     return !this.invalid;
   }
 
