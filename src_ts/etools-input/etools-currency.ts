@@ -108,11 +108,6 @@ export class EtoolsCurrency extends EtoolsInputBase {
 
   validate() {
     this.invalid = !this.inputElement?.reportValidity();
-    if (this.invalid) {
-      this.inputElement.setAttribute('data-user-invalid', '');
-    } else {
-      this.inputElement.removeAttribute('data-user-invalid');
-    }
     return !this.invalid;
   }
 
