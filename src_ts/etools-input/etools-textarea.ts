@@ -65,7 +65,7 @@ export class EtoolsTextarea extends LitElement {
       ShoelaceCustomizations,
       css`
         :host {
-          width: 100%;      
+          width: 100%;
         }
         .spacing {
           padding-top: var(--etools-input-padding-top, 8px);
@@ -144,9 +144,11 @@ export class EtoolsTextarea extends LitElement {
   }
 
   protected updated(_changedProperties: any): void {
-    if (this.autoValidate && _changedProperties.has('value') && this.value !== undefined) {
+    if (_changedProperties.has('value') && this.value !== undefined) {
       this.charCount = this.value ? this.value.length : 0;
-      setTimeout(() => this.validate());
+      if (this.autoValidate) {
+        setTimeout(() => this.validate());
+      }
     }
   }
 
