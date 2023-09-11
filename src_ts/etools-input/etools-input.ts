@@ -71,6 +71,12 @@ export class EtoolsInput extends EtoolsInputBase {
     `;
   }
 
+  protected updated(_changedProperties: any): void {
+    if (this.autoValidate && _changedProperties.has('value') && this.value !== undefined) {
+      setTimeout(() => this.validate());
+    }
+  }
+
   validate() {
     this.invalid = !this.slInput.reportValidity();
     return !this.invalid;

@@ -18,16 +18,8 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String, reflect: true})
   placeholder!: string;
 
-  private _value!: string;
   @property({type: String})
-  get value() {
-    return this._value;
-  }
-
-  set value(val: string) {
-    this._value = val;
-    this.charCount = this._value ? this._value.length : 0;
-  }
+  value: string | null = null;
 
   @property({type: Boolean})
   required!: boolean;
@@ -61,6 +53,9 @@ export class EtoolsTextarea extends LitElement {
 
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel = false;
+
+  @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
+  autoValidate = false;
 
   @query('sl-textarea')
   slTextarea!: SlTextarea;
@@ -148,9 +143,15 @@ export class EtoolsTextarea extends LitElement {
     `;
   }
 
+  protected updated(_changedProperties: any): void {
+    if (this.autoValidate && _changedProperties.has('value') && this.value !== undefined) {
+      this.charCount = this.value ? this.value.length : 0;
+      setTimeout(() => this.validate());
+    }
+  }
+
   validate() {
     this.invalid = !this.slTextarea.reportValidity();
     return !this.invalid;
   }
 }
-;
