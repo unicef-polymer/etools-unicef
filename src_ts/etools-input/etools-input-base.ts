@@ -1,5 +1,5 @@
 import {LitElement} from 'lit';
-import {property} from 'lit/decorators.js';
+import {property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 
 export class EtoolsInputBase extends LitElement {
@@ -35,6 +35,9 @@ export class EtoolsInputBase extends LitElement {
 
   @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
   autoValidate = false;
+
+  @state()
+  _autoValidate = false;
 
   @property({type: Boolean, reflect: true, attribute: 'invalid'})
   invalid = false;

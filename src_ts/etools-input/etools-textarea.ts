@@ -1,5 +1,5 @@
 import {css, html, LitElement} from 'lit';
-import {customElement, query, property} from 'lit/decorators.js';
+import {customElement, query, property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
@@ -57,6 +57,9 @@ export class EtoolsTextarea extends LitElement {
   @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
   autoValidate = false;
 
+  @state()
+  _autoValidate = false;
+
   @query('sl-textarea')
   slTextarea!: SlTextarea;
 
@@ -109,6 +112,11 @@ export class EtoolsTextarea extends LitElement {
         rows="${ifDefined(this.rows)}"
         maxlength="${ifDefined(this.maxlength)}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
+        @keydown="${() => {
+          if (this.autoValidate) {
+            this._autoValidate = true;
+          }
+        }}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {
           const val = event.target!.value ? event.target!.value : '';
@@ -146,7 +154,7 @@ export class EtoolsTextarea extends LitElement {
   protected updated(_changedProperties: any): void {
     if (_changedProperties.has('value') && this.value !== undefined) {
       this.charCount = this.value ? this.value.length : 0;
-      if (this.autoValidate) {
+      if (this._autoValidate) {
         setTimeout(() => this.validate());
       }
     }
