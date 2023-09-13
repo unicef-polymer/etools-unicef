@@ -563,7 +563,8 @@ export class DatePickerLite extends LitElement {
     this.toggleCalendar();
   }
 
-  toggleCalendarFromIcon() {
+  toggleCalendarFromIcon(e) {
+    e.stopImmediatePropagation();
     this.toggleCalendar();
   }
 
@@ -601,6 +602,7 @@ export class DatePickerLite extends LitElement {
   }
 
   _toggelOnKeyPressFromIcon(event) {
+    event.stopImmediatePropagation();
     this._toggelOnKeyPress(event);
   }
 
