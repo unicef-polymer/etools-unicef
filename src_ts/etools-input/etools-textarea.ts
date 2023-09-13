@@ -1,5 +1,5 @@
 import {css, html, LitElement} from 'lit';
-import {customElement, query, property} from 'lit/decorators.js';
+import {customElement, query, property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
@@ -18,16 +18,8 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String, reflect: true})
   placeholder!: string;
 
-  private _value!: string;
   @property({type: String})
-  get value() {
-    return this._value;
-  }
-
-  set value(val: string) {
-    this._value = val;
-    this.charCount = this._value ? this._value.length : 0;
-  }
+  value: string | null = null;
 
   @property({type: Boolean})
   required!: boolean;
@@ -62,6 +54,12 @@ export class EtoolsTextarea extends LitElement {
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel = false;
 
+  @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
+  autoValidate = false;
+
+  @state()
+  _autoValidate = false;
+
   @query('sl-textarea')
   slTextarea!: SlTextarea;
 
@@ -70,7 +68,7 @@ export class EtoolsTextarea extends LitElement {
       ShoelaceCustomizations,
       css`
         :host {
-          width: 100%;      
+          width: 100%;
         }
         .spacing {
           padding-top: var(--etools-input-padding-top, 8px);
@@ -114,6 +112,11 @@ export class EtoolsTextarea extends LitElement {
         rows="${ifDefined(this.rows)}"
         maxlength="${ifDefined(this.maxlength)}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
+        @keydown="${() => {
+          if (this.autoValidate) {
+            this._autoValidate = true;
+          }
+        }}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {
           const val = event.target!.value ? event.target!.value : '';
@@ -146,6 +149,15 @@ export class EtoolsTextarea extends LitElement {
         .tooltipText="${this.infoIconMessage}"
       ></info-icon-tooltip>
     `;
+  }
+
+  protected updated(_changedProperties: any): void {
+    if (_changedProperties.has('value') && this.value !== undefined) {
+      this.charCount = this.value ? this.value.length : 0;
+      if (this._autoValidate) {
+        setTimeout(() => this.validate());
+      }
+    }
   }
 
   validate() {

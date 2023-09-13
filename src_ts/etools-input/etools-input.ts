@@ -50,6 +50,9 @@ export class EtoolsInput extends EtoolsInputBase {
           ?always-float-label="${this.alwaysFloatLabel}"
           .value="${this.value == undefined || this.value == null ? '' : this.value}"
           @keydown="${(event) => {
+            if (this.autoValidate) {
+              this._autoValidate = true;
+            }
             if (this.allowedPattern) {
               const regex = new RegExp(this.allowedPattern);
               if (!regex.test(event.key) && event.keyCode > 46 && !event.ctrlKey && !event.altKey) {
@@ -69,6 +72,12 @@ export class EtoolsInput extends EtoolsInputBase {
         </sl-input>
       </div>
     `;
+  }
+
+  protected updated(_changedProperties: any): void {
+    if (this._autoValidate && _changedProperties.has('value') && this.value !== undefined) {
+      setTimeout(() => this.validate());
+    }
   }
 
   validate() {
