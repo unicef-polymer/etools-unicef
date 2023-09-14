@@ -136,10 +136,21 @@ export class CalendarLite extends LitElement {
   })
   hideHeader = false;
 
+  private _language = window.EtoolsLanguage || 'en';
   @property({
     type: String
   })
-  language: string = window.localStorage.defaultLanguage || 'en';
+  set language(val) {
+    if (val) {
+      this._language = val;
+      this.days_names = translatedDayNames(this._language);
+      this.months_names = translatedMonthNames(this._language);
+      this.requestUpdate();
+    }
+  }
+  get language() {
+    return this._language;
+  }
 
   static get styles() {
     return [elevationStyles];
