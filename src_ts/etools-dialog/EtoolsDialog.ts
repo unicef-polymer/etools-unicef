@@ -1,14 +1,13 @@
 import {LitElement, html} from 'lit';
 import {property, query} from 'lit/decorators.js';
 import '@a11y/focus-trap/focus-trap.js';
-import '@polymer/paper-button/paper-button.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
 import '../etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import {SlDialog} from '@shoelace-style/shoelace';
 import {setDefaultAnimation} from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 /**
  * @customElement
@@ -33,15 +32,13 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           opacity: 0.6;
         }
 
-        paper-button.confirm-btn {
-          background: var(--etools-dialog-confirm-btn-bg, #ea4022);
-          color: var(--etools-dialog-confirm-btn-text-color, #fff);
+        sl-button.confirm-btn {
+          --sl-color-primary-600: var(--etools-dialog-confirm-btn-bg, #ea4022);
+          --sl-color-neutral-0: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
-        paper-button.confirm-btn.default {
-          min-width: 90px;
-          margin-inline-end: 0;
-          background: var(--etools-dialog-default-btn-bg, var(--primary-color));
-          color: var(--etools-dialog-confirm-btn-text-color, #fff);
+        sl-button.confirm-btn.default {
+          --sl-color-primary-600: var(--etools-dialog-default-btn-bg, var(--primary-color));
+          --sl-color-neutral-0: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
         sl-dialog .cancel-btn {
@@ -82,29 +79,40 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
-        sl-dialog.default paper-button.confirm-btn {
+        sl-button.confirm-btn {
+          margin-inline-end: 5px;
+        }
+
+        sl-dialog.default sl-button.confirm-btn {
           min-width: 90px;
-          margin-inline-end: 0;
-          background: var(--etools-dialog-default-btn-bg, var(--primary-color));
-          color: var(--etools-dialog-confirm-btn-text-color, #fff);
+          --sl-color-primary-600: var(--etools-dialog-default-btn-bg, var(--primary-color));
+          --sl-color-neutral-0: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
-        paper-button {
-          color: initial;
+        sl-dialog.confirmation sl-button.confirm-btn {
+          --sl-color-primary-600: var(--etools-dialog-confirm-btn-bg, #ea4022);
+          --sl-color-primary-500: var(--etools-dialog-confirm-btn-bg, #ea4022);
+          --sl-color-neutral-0: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
-        paper-button:not(.confirm-btn) {
+        sl-button:not(.confirm-btn) {
           opacity: 0.85;
         }
-
-        sl-dialog.confirmation paper-button.confirm-btn {
-          background: var(--etools-dialog-confirm-btn-bg, #ea4022);
-          color: var(--etools-dialog-confirm-btn-text-color, #fff);
+        sl-button {
+          --sl-input-height-medium: 36px;
         }
 
         sl-dialog.confirmation .close-btn,
         sl-dialog .cancel-btn {
-          color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
+          --sl-color-primary-600: var(--primary-text-color, rgba(0, 0, 0, 0.87));
+          --sl-spacing-medium: 6px;
+        }
+        sl-button::part(label) {
+          text-transform: uppercase;
+        }
+
+        sl-button.confirm-btn {
+          margin-inline-start: 15px;
         }
 
         sl-dialog::part(header-actions) {
@@ -162,6 +170,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         #dialogContent {
           height: 100%;
+        }
+
+        sl-dialog::part(header-actions) {
+          border-radius: 0 0.25rem 0 0;
+        }
+
+        sl-dialog::part(title) {
+          border-radius: 0.25rem 0 0 0;
         }
 
         @media screen and (max-width: 930px) {
@@ -295,7 +311,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     this.addEventListener('sl-request-close', (event: any) => {
       if (event.detail.source === 'overlay') {
         event.preventDefault();
-      } else {
+      }
+    });
+
+    this.addEventListener('sl-after-hide', (event: any) => {
+      if (event.target === event.currentTarget) {
         this.dispatchEvent(
           new CustomEvent('close', {
             detail: {confirmed: false},
@@ -319,17 +339,23 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   getButtonsHTML() {
     return this.showButtons
       ? html` <div class="buttons" part="ed-button-styles" slot="footer">
-          <paper-button @click="${this._cancelBtClicked}" class="cancel-btn" ?disabled="${this.disableDismissBtn}">
+          <sl-button
+            variant="text"
+            @click="${this._cancelBtClicked}"
+            class="cancel-btn"
+            ?disabled="${this.disableDismissBtn}"
+          >
             ${this.cancelBtnText}
-          </paper-button>
-          <paper-button
+          </sl-button>
+          <sl-button
+            variant="primary"
             @click="${this._confirmBtClicked}"
             ?disabled="${this.disableConfirmBtn}"
             ?hidden="${this.hideConfirmBtn}"
             class="confirm-btn"
           >
             ${this.okBtnText}
-          </paper-button>
+          </sl-button>
         </div>`
       : html``;
   }

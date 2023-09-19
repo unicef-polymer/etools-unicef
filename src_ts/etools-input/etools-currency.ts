@@ -77,6 +77,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
         @value-changed="${({detail}: CustomEvent) => {
           this.internalValue = detail.value;
         }}"
+        exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
         <div slot="prefix" class="prefix" ?hidden="${!this.currency}">${this.currency}</div>
       </etools-input>
@@ -98,8 +99,8 @@ export class EtoolsCurrency extends EtoolsInputBase {
     if (_changedProperties.has('internalValue')) {
       this._onInternalValueChange(this.internalValue, _changedProperties.get('internalValue'));
     }
-    if (this.autoValidate && _changedProperties.has('internalValue')) {
-      this.invalid = !this.inputElement.reportValidity();
+    if (this.autoValidate && _changedProperties.has('internalValue') && this.internalValue !== undefined) {
+      setTimeout(() => (this.invalid = !this.inputElement.reportValidity()));
     }
     if (_changedProperties.has('readonly') && this.readonly) {
       this.invalid = false;
@@ -108,11 +109,6 @@ export class EtoolsCurrency extends EtoolsInputBase {
 
   validate() {
     this.invalid = !this.inputElement?.reportValidity();
-    if (this.invalid) {
-      this.inputElement.setAttribute('data-user-invalid', '');
-    } else {
-      this.inputElement.removeAttribute('data-user-invalid');
-    }
     return !this.invalid;
   }
 

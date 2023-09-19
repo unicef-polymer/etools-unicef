@@ -15,13 +15,13 @@ const validationStyles = css`
     height: 0;
   }
 
-  sl-input[readonly] div[slot='help-text'] div.char-counter,
-  sl-textarea[readonly] div[slot='help-text'] div.char-counter {
+  :host([readonly]) sl-input div[slot='help-text'] div.char-counter,
+  :host([readonly]) sl-textarea div[slot='help-text'] div.char-counter {
     visibility: hidden;
   }
 
-  sl-input[data-user-invalid] div[slot='help-text'] div.err-msg,
-  sl-textarea[data-user-invalid] div[slot='help-text'] div.err-msg {
+  sl-input[invalid] div[slot='help-text'] div.err-msg,
+  sl-textarea[invalid] div[slot='help-text'] div.err-msg {
     visibility: visible;
     height: 0;
     overflow: visible;
@@ -34,8 +34,8 @@ const validationStyles = css`
     overflow: hidden;
     white-space: nowrap;
   }
-  sl-input[data-user-invalid],
-  sl-textarea[data-user-invalid] {
+  sl-input[invalid],
+  sl-textarea[invalid] {
     --sl-input-border-color: red;
     --sl-input-label-color: red;
   }
@@ -57,53 +57,65 @@ const labelStyles = css`
     --sl-input-spacing-small: 2px;
   }
   sl-input::part(form-control-label) {
-    line-height: 19px;
+    line-height: 18px;
     font-size: 12px;
     display: block;
   }
   sl-textarea[always-float-label]::part(form-control-label),
   sl-input[always-float-label]::part(form-control-label) {
-    min-height: 19px;
+    min-height: 18px;
   }
 `;
 
 export const ShoelaceCustomizations = css`
-  sl-input::part(form-control) {
+  :host .input-wrapper {
     padding-top: var(--etools-input-padding-top, 8px);
     padding-bottom: var(--etools-input-padding-bottom, 8px);
   }
+
   sl-textarea::part(textarea) {
     padding-top: 0;
     padding-bottom: 0;
     line-height: 24px;
   }
+
   sl-input,
   sl-textarea {
+    position: relative;
     --sl-input-font-size-small: 16px;
   }
-  sl-input[readonly],
-  sl-textarea[readonly] {
+
+  :host([readonly]) sl-input,
+  :host([readonly]) sl-textarea {
     --sl-input-border-width: 0;
     --sl-input-spacing-small: 0;
     --sl-input-focus-ring-color: rgba(0, 0, 0, 0);
   }
 
-  sl-input:not([readonly]):focus::part(base),
-  sl-textarea:not([readonly]):focus::part(base) {
-    border: none;
-    border-bottom: 2px solid var(--primary-color);
-    box-shadow: 0 0 0 -1px var(--primary-color), 0 3px 0 -2px var(--primary-color);
-    border-radius: 0;
+  sl-input::part(form-control-input),
+  sl-textarea::part(form-control-input) {
+    position: relative;
+    padding-bottom: 2px;
   }
 
   sl-input::part(base),
   sl-textarea::part(base) {
-    border: none;
-    border-bottom: 1px solid var(--secondary-text-color);
+    border: 0;
     box-shadow: none;
     border-radius: 0;
     background: inherit;
     font-family: inherit;
+    align-items: center;
+  }
+
+  sl-input::part(form-control-input)::after,
+  sl-textarea::part(form-control-input)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    display: block;
+    bottom: 0;
+    border-bottom: 1px solid var(--secondary-text-color);
   }
 
   sl-textarea::part(textarea) {
@@ -111,13 +123,19 @@ export const ShoelaceCustomizations = css`
     color: var(--primary-text-color) !important;
   }
 
-  sl-input[data-user-invalid]::part(base),
-  sl-textarea[data-user-invalid]::part(base) {
-    border-bottom: 1px solid red;
+  :host(:not([readonly])) sl-input:focus::part(form-control-input)::after,
+  :host(:not([readonly])) sl-textarea:focus::part(form-control-input)::after {
+    border-color: var(--primary-color);
+    border-bottom-width: 2px;
   }
 
-  sl-input[readonly]::part(base),
-  sl-textarea[readonly]::part(base) {
+  :host(:not([readonly])) sl-input[invalid]::part(form-control-input)::after,
+  :host(:not([readonly])) sl-textarea[invalid]::part(form-control-input)::after {
+    border-bottom: 2px solid red;
+  }
+
+  :host([readonly]) sl-input::part(form-control-input)::after,
+  :host([readonly]) sl-textarea::part(form-control-input)::after {
     border: none;
     border-bottom: none;
   }

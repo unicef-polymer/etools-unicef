@@ -1,46 +1,37 @@
 import './etools-loading.js';
-import {LitElement} from 'lit';
-import {property} from 'lit/decorators.js';
 import remove from 'lodash-es/remove';
 import last from 'lodash-es/last';
 import {default as lodashGet} from 'lodash-es/get';
 import isEmpty from 'lodash-es/isEmpty';
+import {Constructor} from '../utils/types';
 import {getTranslation} from './utils/translate.js';
 import {EtoolsLoading} from './etools-loading.js';
-import {Constructor} from '@unicef-polymer/etools-types';
-
-interface ILoadingMixingClass {
-  globalLoadingElement: EtoolsLoading;
-  etoolsLoadingContainer: any;
-  language: string;
-  connectedCallback(): void;
-  disconnectedCallback(): void;
-  handleLanguageChange(e: any): void;
-  createLoading(loadingMessage: string): EtoolsLoading;
-  removeLoading(loadingElement: EtoolsLoading): void;
-  addMessageToQue(messages: string[], source: any): string[];
-  removeMessageFromQue(messages: any, source: any): string[];
-  handleLoading(event: any): void;
-  clearLoadingQueue(event: any): void;
-  getContainer(): any;
-}
 
 /**
  * @polymer
  * @mixinFunction
  */
-// @ts-ignore
-export default function LoadingMixin<T extends Constructor<LitElement>>(baseClass: T) {
-  class LoadingMixingClass extends baseClass implements ILoadingMixingClass {
-    globalLoadingElement!: EtoolsLoading;
+export function LoadingMixin<T extends Constructor<any>>(baseClass: T) {
+  class LoadingMixinClass extends baseClass {
+    static get properties() {
+      return {
+        /**
+         *  If is set, this element will be used as loading container instead of default body
+         */
+        etoolsLoadingContainer: {
+          type: Object
+        }
+      };
+    }
 
-    @property({type: Object})
-    etoolsLoadingContainer: any;
+    constructor(...args) {
+      super(...args);
+      if (!this.language) {
+        this.language = window.EtoolsLanguage || 'en';
+      }
+    }
 
-    @property({type: String})
-    language: string = window.EtoolsLanguage || 'en';
-
-    connectedCallback(): void {
+    connectedCallback() {
       super.connectedCallback();
       this.addEventListener('global-loading', this.handleLoading);
       this.addEventListener('clear-loading-messages', this.clearLoadingQueue);
@@ -51,12 +42,12 @@ export default function LoadingMixin<T extends Constructor<LitElement>>(baseClas
       this.globalLoadingElement.messages = [];
     }
 
-    disconnectedCallback(): void {
+    disconnectedCallback() {
       super.disconnectedCallback();
       document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
     }
 
-    handleLanguageChange(e: any): void {
+    handleLanguageChange(e) {
       this.language = e.detail.language;
     }
 
@@ -66,7 +57,7 @@ export default function LoadingMixin<T extends Constructor<LitElement>>(baseClas
      * @param loadingMessage
      * @returns {Element}
      */
-    createLoading(loadingMessage?: string): EtoolsLoading {
+    createLoading(loadingMessage?: string) {
       const newLoadingElement = document.createElement('etools-loading') as EtoolsLoading;
       if (typeof loadingMessage === 'string' && loadingMessage !== '') {
         newLoadingElement.loadingText = loadingMessage;
@@ -82,19 +73,19 @@ export default function LoadingMixin<T extends Constructor<LitElement>>(baseClas
      * Use this method to remove a loading element in the detached state of the element where loading is used
      * @param loadingElement
      */
-    removeLoading(loadingElement: EtoolsLoading): void {
+    removeLoading(loadingElement) {
       if (loadingElement) {
         this.getContainer().removeChild(loadingElement);
       }
     }
 
-    addMessageToQue(messages: string[], source: any): string[] {
+    addMessageToQue(messages, source) {
       const _messages = messages.slice();
       _messages.push(source);
       return _messages;
     }
 
-    removeMessageFromQue(messages: string[], source: any): string[] {
+    removeMessageFromQue(messages, source) {
       const _messages = messages.slice();
       remove(_messages, {loadingSource: source.loadingSource});
       return _messages;
@@ -103,7 +94,7 @@ export default function LoadingMixin<T extends Constructor<LitElement>>(baseClas
     /**
      * Show loading when data is requested from server, or save is in progress...
      */
-    handleLoading(event: any): void {
+    handleLoading(event) {
       event.stopImmediatePropagation();
       if (!this.globalLoadingElement) {
         return;
@@ -134,13 +125,13 @@ export default function LoadingMixin<T extends Constructor<LitElement>>(baseClas
       }
     }
 
-    clearLoadingQueue(event: any): void {
+    clearLoadingQueue(event) {
       event.stopImmediatePropagation();
       this.globalLoadingElement.messages = [];
       this.globalLoadingElement.active = false;
     }
 
-    getContainer(): any {
+    getContainer() {
       if (this.etoolsLoadingContainer) {
         return this.etoolsLoadingContainer;
       } else {
@@ -148,6 +139,5 @@ export default function LoadingMixin<T extends Constructor<LitElement>>(baseClas
       }
     }
   }
-
-  return LoadingMixingClass as Constructor<ILoadingMixingClass> & T;
+  return LoadingMixinClass;
 }

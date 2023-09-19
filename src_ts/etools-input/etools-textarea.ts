@@ -1,9 +1,9 @@
 import {css, html, LitElement} from 'lit';
-import {customElement, query, property} from 'lit/decorators.js';
+import {customElement, query, property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
-import SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
+import type SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import '../etools-info-tooltip/info-icon-tooltip';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
@@ -18,16 +18,8 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String, reflect: true})
   placeholder!: string;
 
-  private _value!: string;
   @property({type: String})
-  get value() {
-    return this._value;
-  }
-
-  set value(val: string) {
-    this._value = val;
-    this.charCount = this._value ? this._value.length : 0;
-  }
+  value: string | null = null;
 
   @property({type: Boolean})
   required!: boolean;
@@ -56,8 +48,17 @@ export class EtoolsTextarea extends LitElement {
   @property({type: String})
   resize = 'auto';
 
+  @property({type: Boolean, reflect: true, attribute: 'invalid'})
+  invalid = false;
+
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel = false;
+
+  @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
+  autoValidate = false;
+
+  @state()
+  _autoValidate = false;
 
   @query('sl-textarea')
   slTextarea!: SlTextarea;
@@ -104,12 +105,18 @@ export class EtoolsTextarea extends LitElement {
         .pattern="${this.pattern}"
         resize="${this.resize}"
         placeholder="${this.placeholder ? this.placeholder : ''}"
+        ?invalid="${this.invalid}"
         ?required="${this.required}"
         ?readonly="${this.readonly}"
         ?always-float-label="${this.alwaysFloatLabel}"
         rows="${ifDefined(this.rows)}"
         maxlength="${ifDefined(this.maxlength)}"
         .value="${this.value == undefined || this.value == null ? '' : this.value}"
+        @keydown="${() => {
+          if (this.autoValidate) {
+            this._autoValidate = true;
+          }
+        }}"
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {
           const val = event.target!.value ? event.target!.value : '';
@@ -144,13 +151,21 @@ export class EtoolsTextarea extends LitElement {
     `;
   }
 
-  validate() {
-    const valid = this.slTextarea.reportValidity();
-    if (!valid) {
-      this.slTextarea.setAttribute('data-user-invalid', '');
-    } else {
-      this.slTextarea.removeAttribute('data-user-invalid');
+  protected updated(_changedProperties: any): void {
+    if (_changedProperties.has('value') && this.value !== undefined) {
+      this.charCount = this.value ? this.value.length : 0;
+      if (this._autoValidate) {
+        setTimeout(() => this.validate());
+      }
     }
-    return valid;
+  }
+
+  validate() {
+    this.invalid = !this.slTextarea.reportValidity();
+    return !this.invalid;
+  }
+
+  focus() {
+    this.shadowRoot!.querySelector<SlTextarea>('sl-textarea')!.focus();
   }
 }
