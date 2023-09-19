@@ -562,6 +562,15 @@ export class CalendarLite extends LitElement {
     `;
   }
 
+  updated(changedProperties) {
+    if (
+      (changedProperties.has('minDate') && changedProperties.get('minDate')) ||
+      (changedProperties.has('maxDate') && changedProperties.get('maxDate'))
+    ) {
+      this.generateTable();
+    }
+  }
+
   get mainContent() {
     if (!this._mainContent) {
       this._mainContent = this.shadowRoot!.querySelector('#mainContent');
@@ -664,7 +673,7 @@ export class CalendarLite extends LitElement {
     this.generateTable();
 
     // push into years list
-    if (this.maxDate != null && this.minDate != null) {
+    if (!!this.maxDate && !!this.minDate) {
       this._generateYears(this.minDate.getFullYear(), this.maxDate.getFullYear());
     } else {
       this._generateYears(this.currentYear - 10, this.currentYear + 10);
@@ -692,8 +701,8 @@ export class CalendarLite extends LitElement {
     for (let i = 1; i <= this.monthDays(this.tmpDate); i++) {
       this.tmpDate.setDate(i);
       if (
-        (this.minDate != null && this.tmpDate < this.minDate) ||
-        (this.maxDate != null && this.tmpDate > this.maxDate) ||
+        (!!this.minDate && this.tmpDate < this.minDate) ||
+        (!!this.maxDate && this.tmpDate > this.maxDate) ||
         this.disabledWeekDay.indexOf(this.days_names[this.tmpDate.getDay()]) != -1 ||
         this.disabledDays.indexOf(i) != -1
       ) {
@@ -741,8 +750,8 @@ export class CalendarLite extends LitElement {
           for (let j = 1; this.multiple.length < this.multiSelect.max; j++) {
             this.tmpDate = new Date(this.currentYear, this.currentMonth, f.text + j);
             if (
-              (this.minDate != null && this.tmpDate <= this.minDate) ||
-              (this.maxDate != null && this.tmpDate >= this.maxDate) ||
+              (!!this.minDate && this.tmpDate <= this.minDate) ||
+              (!!this.maxDate && this.tmpDate >= this.maxDate) ||
               this.disabledWeekDay.indexOf(this.days_names[this.tmpDate.getDay()]) != -1 ||
               this.disabledDays.indexOf(this.tmpDate.getDate()) != -1
             ) {
