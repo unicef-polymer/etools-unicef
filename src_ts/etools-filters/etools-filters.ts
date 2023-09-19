@@ -91,6 +91,9 @@ export class EtoolsFilters extends LitElement {
         .date {
           margin-inline-end: 16px;
         }
+        sl-button[variant='text'] {
+          --sl-color-primary-600: var(--primary-color, rgb(2, 132, 199));
+        }
       `
     ];
   }
