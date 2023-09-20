@@ -184,7 +184,7 @@ export class EtoolsDataTableFooter extends LitElement {
 
         <span class="pagination-item pag-btns">
           <sl-icon-button
-            name="${this.direction === 'ltr' ? 'chevron-bar-left' : 'chevron-bar-right'}"
+            name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
             @click="${this._firstPage}"
             ?disabled="${this._pageBackDisabled(this.pageNumber)}"
           ></sl-icon-button>
@@ -202,7 +202,7 @@ export class EtoolsDataTableFooter extends LitElement {
           ></sl-icon-button>
 
           <sl-icon-button
-            name="${this.direction === 'ltr' ? 'chevron-bar-right' : 'chevron-bar-left'}"
+            name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
             @click="${this._lastPage}"
             ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"
           ></sl-icon-button>

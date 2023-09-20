@@ -361,7 +361,7 @@ export class DatePickerLite extends LitElement {
         <sl-icon
           @keypress="${this._toggelOnKeyPressFromIcon}"
           ?readonly="${this.readonly}"
-          name="calendar-date"
+          name="date-range"
           title="Toggle calendar"
           tabindex="${this._getTabindexByReadonly(this.readonly)}"
           @click="${this.toggleCalendarFromIcon}"
@@ -439,7 +439,7 @@ export class DatePickerLite extends LitElement {
     const showXBtn = this.showXBtn(this.readonly, this.disabled, this.value);
     return showXBtn
       ? html` <sl-icon
-          name="x"
+          name="clear"
           slot="suffix"
           @click="${this._clearData}"
           title="Clear"

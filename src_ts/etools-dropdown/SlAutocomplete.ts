@@ -200,7 +200,7 @@ export class SlAutocomplete extends LitElement {
   _autoValidate = false;
 
   @property({type: Boolean, attribute: 'expand-icon'})
-  expandIcon = 'caret-down-fill'; // chevron-down
+  expandIcon = 'expand-more'; // chevron-down
 
   @property({type: String})
   get selected() {
@@ -435,8 +435,7 @@ export class SlAutocomplete extends LitElement {
                     <button part="clear-button" class="select__clear" type="button" tabindex="-1">
                       <slot name="clear-icon">
                         <sl-icon
-                          name="x-circle-fill"
-                          library="default"
+                          name="clear"
                           @mousedown=${this.handleClearMouseDown}
                           @click=${this.handleClearClick}
                         ></sl-icon>
@@ -446,7 +445,7 @@ export class SlAutocomplete extends LitElement {
                 : ''}
 
               <slot name="expand-icon" part="expand-icon" class="select__expand-icon">
-                <sl-icon library="default" name="${this.expandIcon}"></sl-icon>
+                <sl-icon name="${this.expandIcon}"></sl-icon>
               </slot>
             </div>
 

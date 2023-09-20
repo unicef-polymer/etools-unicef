@@ -467,7 +467,7 @@ export class CalendarLite extends LitElement {
                 @click="${this._show}"
               >
                 ${this.monthFormat}
-                <sl-icon-button type="monthsList" @click="${this._show}" name="chevron-down"></sl-icon-button>
+                <sl-icon-button type="monthsList" @click="${this._show}" name="expand-more"></sl-icon-button>
               </div>
               <div
                 id="headerYear"
@@ -477,7 +477,7 @@ export class CalendarLite extends LitElement {
                 @click="${this._show}"
               >
                 ${this.yearFormat}
-                <sl-icon-button type="yearList" @click="${this._show}" name="chevron-down"></sl-icon-button>
+                <sl-icon-button type="yearList" @click="${this._show}" name="expand-more"></sl-icon-button>
               </div>
             </div>
             <div class="swipePanel">

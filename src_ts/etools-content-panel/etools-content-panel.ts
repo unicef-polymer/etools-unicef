@@ -186,6 +186,6 @@ export class EtoolsContentPanel extends LitElement {
   }
 
   _getExpandBtnIcon(open) {
-    return open ? 'chevron-up' : 'chevron-right';
+    return open ? 'expand-more' : 'chevron-right';
   }
 }

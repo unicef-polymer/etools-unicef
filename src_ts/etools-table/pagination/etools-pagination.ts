@@ -120,7 +120,7 @@ export class EtoolsPagination extends LitElement {
 
       <span class="pagination-item pagination-btns">
         <sl-icon-button
-          name="${this.direction === 'ltr' ? 'chevron-bar-left' : 'chevron-bar-right'}"
+          name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
           @click="${this.goToFirstPage}"
           ?disabled="${this.paginator.page === 1}"
         ></sl-icon-button>
@@ -138,7 +138,7 @@ export class EtoolsPagination extends LitElement {
         ></sl-icon-button>
 
         <sl-icon-button
-          name="${this.direction === 'ltr' ? 'chevron-bar-right' : 'chevron-bar-left'}"
+          name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
           @click="${this.goToLastPage}"
           ?disabled="${this.paginator.page === this.paginator.total_pages}"
         ></sl-icon-button>

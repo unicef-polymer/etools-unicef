@@ -290,7 +290,7 @@ export class EtoolsFilters extends LitElement {
       <div id="filters-selector">
         <sl-dropdown id="filterMenu" stay-open-on-select>
           <sl-button variant="text" class="trigger-button" slot="trigger">
-            <sl-icon name="filter" slot="prefix"></sl-icon>
+            <sl-icon name="filter-list" slot="prefix"></sl-icon>
             ${this.textFilters || getTranslation(this.language, 'FILTERS')}
           </sl-button>
 

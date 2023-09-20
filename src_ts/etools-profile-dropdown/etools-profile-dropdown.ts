@@ -147,14 +147,14 @@ export class EtoolsProfileDropdown extends LitElement {
           this.opened = false;
         }}"
       >
-        <sl-icon-button id="profile" name="person-fill" slot="trigger" role="button"></sl-icon-button>
+        <sl-icon-button id="profile" name="social:person" slot="trigger" role="button"></sl-icon-button>
         <sl-menu>
           <sl-menu-item @click="${this._openUserProfileDialog}">
-            <sl-icon slot="prefix" name="person-circle"></sl-icon>
+            <sl-icon slot="prefix" name="communication:textsms"></sl-icon>
             ${getTranslation(this.language, 'PROFILE')}
           </sl-menu-item>
           <sl-menu-item @click="${this._logout}">
-            <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
+            <sl-icon slot="prefix" name="refresh"></sl-icon>
             ${getTranslation(this.language, 'SIGN_OUT')}
           </sl-menu-item>
         </sl-menu>

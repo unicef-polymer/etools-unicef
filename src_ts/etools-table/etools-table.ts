@@ -240,25 +240,25 @@ export class EtoolsTable extends LitElement {
       <div class="actions">
         <sl-icon-button
           ?hidden="${!showEdit}"
-          name="plus-square-fill"
+          name="create"
           @click="${() => this.triggerAction(EtoolsTableActionType.Edit, item)}"
           tabindex="0"
         ></sl-icon-button>
         <sl-icon-button
           ?hidden="${!showDelete}"
-          name="trash3-fill"
+          name="delete"
           @click="${() => this.triggerAction(EtoolsTableActionType.Delete, item)}"
           tabindex="0"
         ></sl-icon-button>
         <sl-icon-button
           ?hidden="${!showCopy}"
-          name="files"
+          name="content-copy"
           @click="${() => this.triggerAction(EtoolsTableActionType.Copy, item)}"
           tabindex="0"
         ></sl-icon-button>
         <sl-icon-button
           ?hidden="${!showView}"
-          name="eye-fill"
+          name="icons:visibility"
           @click="${() => this.triggerAction(EtoolsTableActionType.View, item)}"
           tabindex="0"
         ></sl-icon-button>
@@ -303,11 +303,11 @@ export class EtoolsTable extends LitElement {
   }
 
   getSortIcon(sort: string) {
-    return sort === EtoolsTableColumnSort.Asc ? 'arrow-up-short' : 'arrow-down-short';
+    return sort === EtoolsTableColumnSort.Asc ? 'arrow-upward' : 'arrow-downward';
   }
 
   getExpandIcon(expanded: boolean) {
-    return expanded === true ? 'chevron-down' : 'chevron-right';
+    return expanded === true ? 'expand-more' : 'chevron-right';
   }
 
   toggleChildRow(ev: any) {
@@ -315,7 +315,7 @@ export class EtoolsTable extends LitElement {
     if (nextRow) {
       nextRow.classList.toggle('display-none');
     }
-    toggleAttributeValue(ev.target, 'name', 'chevron-down', 'chevron-right');
+    toggleAttributeValue(ev.target, 'name', 'expand-more', 'chevron-right');
   }
 
   callClickOnSpace(event: any) {

@@ -90,8 +90,8 @@ export class EtoolsDataTableColumn extends LitElement {
         <slot></slot>
       </span>
       <div id="icon-wrapper">
-        <sl-icon id="up" name="arrow-up"></sl-icon>
-        <sl-icon id="down" name="arrow-down"></sl-icon>
+        <sl-icon id="up" name="arrow-upward"></sl-icon>
+        <sl-icon id="down" name="arrow-downward"></sl-icon>
       </div>
     `;
   }

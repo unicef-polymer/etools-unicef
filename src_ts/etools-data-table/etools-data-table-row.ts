@@ -160,7 +160,7 @@ export class EtoolsDataTableRow extends LitElement {
           </sl-icon>
           <sl-icon
             id="less"
-            name="chevron-down"
+            name="expand-more"
             ?hidden="${!this.detailsOpened}"
             @keyup="${this._callClickOnSpace}"
             @click="${this._toggleRowDetails}"
