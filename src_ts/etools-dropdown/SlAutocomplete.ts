@@ -435,7 +435,7 @@ export class SlAutocomplete extends LitElement {
                     <button part="clear-button" class="select__clear" type="button" tabindex="-1">
                       <slot name="clear-icon">
                         <sl-icon
-                          name="clear"
+                          name="cancel"
                           @mousedown=${this.handleClearMouseDown}
                           @click=${this.handleClearClick}
                         ></sl-icon>
