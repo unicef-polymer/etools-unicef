@@ -626,7 +626,7 @@ export class SlAutocomplete extends LitElement {
     if (changedProperties.has('options') || changedProperties.has('selectedValues')) {
       const strSelectedVals = this.selectedValues ? this.selectedValues?.map((v) => String(v)) : this.selectedValues;
       this.selectedItems = this.options?.filter((o: any) => strSelectedVals?.includes(String(o[this.optionValue])));
-      if (!this.selectedItems.length) {
+      if (this.selectedItems && !this.selectedItems.length) {
         this.removePreventDeselectListeners();
       }
     }
