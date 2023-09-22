@@ -16,6 +16,7 @@ import {SlInput, SlInputEvent, SlMenu} from '@shoelace-style/shoelace';
 import {classMap} from 'lit/directives/class-map.js';
 import {property, query, state} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate';
+import {callClickOnEnterPushListener} from '@unicef-polymer/etools-utils/dist/accessibility.util';
 /**
  * @summary Advanced dropdown capable of searching and filtering options,
  * get data dynamically, scroll by key typing etc.
@@ -541,7 +542,7 @@ export class SlAutocomplete extends LitElement {
                 <div aria-hidden="true" style=${styleMap({width: `${this.clientWidth}px`})}></div>
               </div>
               <div class="footer" ?hidden="${!this.multiple || this.hideClose}">
-                <sl-button size="small" variant="text" @mouseup="${() => this.hide()}">
+                <sl-button id="closeBtn" size="small" variant="text" @click="${() => this.hide()}">
                   ${getTranslation(this.language, 'CLOSE')}
                 </sl-button>
               </div>
@@ -583,6 +584,7 @@ export class SlAutocomplete extends LitElement {
 
     setTimeout(() => {
       if (this.multiple) {
+        callClickOnEnterPushListener(this.shadowRoot?.querySelector('#closeBtn'));
         return;
       }
       const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
