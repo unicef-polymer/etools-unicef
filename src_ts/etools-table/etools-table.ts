@@ -1,5 +1,5 @@
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '../etools-icon-button/etools-icon-button';
+import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
 import {LitElement, html, css} from 'lit';
 import {property} from 'lit/decorators.js';
@@ -158,7 +158,9 @@ export class EtoolsTable extends LitElement {
     return html`
       <th class="${this.getColumnClassList(column)}" @tap="${() => this.toggleAndSortBy(column)}">
         ${column.label}
-        ${this.columnHasSort(column.sort) ? html`<sl-icon name="${this.getSortIcon(column.sort)}"> </sl-icon>` : ''}
+        ${this.columnHasSort(column.sort)
+          ? html`<etools-icon name="${this.getSortIcon(column.sort)}"> </etools-icon>`
+          : ''}
       </th>
     `;
   }
@@ -190,13 +192,13 @@ export class EtoolsTable extends LitElement {
       <tr class="${rowClass}" comment-element=${ifDefined(item.commentElement ? item.commentElement : undefined)}>
         ${this.showChildRows
           ? html`<td class="expand-cell">
-              <sl-icon
+              <etools-icon
                 @keydown="${this.callClickOnSpace}"
                 expanded="${childRow.showExpanded}"
                 @click="${this.toggleChildRow}"
                 name="${this.getExpandIcon(childRow.showExpanded)}"
                 tabindex="0"
-              ></sl-icon>
+              ></etools-icon>
             </td>`
           : ''}
         ${this.columns.map(
@@ -238,30 +240,30 @@ export class EtoolsTable extends LitElement {
     } = rowActionsVisibility;
     return html`
       <div class="actions">
-        <sl-icon-button
+        <etools-icon-button
           ?hidden="${!showEdit}"
           name="create"
           @click="${() => this.triggerAction(EtoolsTableActionType.Edit, item)}"
           tabindex="0"
-        ></sl-icon-button>
-        <sl-icon-button
+        ></etools-icon-button>
+        <etools-icon-button
           ?hidden="${!showDelete}"
           name="delete"
           @click="${() => this.triggerAction(EtoolsTableActionType.Delete, item)}"
           tabindex="0"
-        ></sl-icon-button>
-        <sl-icon-button
+        ></etools-icon-button>
+        <etools-icon-button
           ?hidden="${!showCopy}"
           name="content-copy"
           @click="${() => this.triggerAction(EtoolsTableActionType.Copy, item)}"
           tabindex="0"
-        ></sl-icon-button>
-        <sl-icon-button
+        ></etools-icon-button>
+        <etools-icon-button
           ?hidden="${!showView}"
           name="icons:visibility"
           @click="${() => this.triggerAction(EtoolsTableActionType.View, item)}"
           tabindex="0"
-        ></sl-icon-button>
+        ></etools-icon-button>
       </div>
     `;
   }

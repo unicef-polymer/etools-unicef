@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '../etools-icons/etools-icon';
 
 /**
  * `etools-data-table-header`

@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import '../etools-icon-button/etools-icon-button';
 import '../etools-collapse/etools-collapse';
 import {elevationStyles} from './styles/elevation-styles';
 
@@ -136,22 +136,26 @@ export class EtoolsContentPanel extends LitElement {
           max-width: 100%;
         }
 
-        :host-context([dir='rtl']) [icon='chevron-right'] {
+        :host-context([dir='rtl']) [name='chevron-right'] {
           transform: rotate(180deg);
+        }
+
+        etools-icon-button {
+          --etools-icon-font-size: 24px;
         }
       </style>
 
       <div class="elevation" elevation="${this.elevation}">
         <div class="panel-header" part="ecp-header" ?hidden="${this.noHeader}">
           <div class="flex-h">
-            <sl-icon-button
+            <etools-icon-button
               class="toggle-btn"
               part="ecp-toggle-btn"
               @click="${this._toggle}"
               name="${this._getExpandBtnIcon(this.open)}"
               ?hidden="${!this.showExpandBtn}"
               ?disabled="${this.disabled}"
-            ></sl-icon-button>
+            ></etools-icon-button>
             <h2 class="title" part="ecp-header-title">
               <span>${this.panelTitle}</span>
             </h2>

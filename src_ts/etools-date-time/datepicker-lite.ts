@@ -1,7 +1,7 @@
 'use strict';
 import {LitElement, html} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@a11y/focus-trap';
 
@@ -284,18 +284,17 @@ export class DatePickerLite extends LitElement {
           max-width: 100%;
         }
 
-        :host(:not([readonly])) sl-icon {
+        :host(:not([readonly])) etools-icon {
           cursor: pointer;
         }
 
-        sl-icon[slot='prefix'] {
+        etools-icon[slot='prefix'] {
           margin-inline-end: 8px;
         }
 
-        sl-icon[slot='suffix'] {
+        etools-icon[slot='suffix'] {
           margin-inline-start: 8px;
-          width: 20px;
-          height: 20px;
+          --etools-icon-font-size: 20px;
         }
 
         .clear-btn,
@@ -358,7 +357,7 @@ export class DatePickerLite extends LitElement {
         @keypress="${this._toggelOnKeyPressFromPaperInput}"
         @click="${this.toggleCalendarFromPaperInput}"
       >
-        <sl-icon
+        <etools-icon
           @keypress="${this._toggelOnKeyPressFromIcon}"
           ?readonly="${this.readonly}"
           name="date-range"
@@ -366,8 +365,8 @@ export class DatePickerLite extends LitElement {
           tabindex="${this._getTabindexByReadonly(this.readonly)}"
           @click="${this.toggleCalendarFromIcon}"
           slot="prefix"
-          part="dp-iron-icon"
-        ></sl-icon>
+          part="dp-etools-icon"
+        ></etools-icon>
         ${this.getXBtnHTML()}
       </etools-input>
       <focus-trap>
@@ -438,7 +437,7 @@ export class DatePickerLite extends LitElement {
   getXBtnHTML() {
     const showXBtn = this.showXBtn(this.readonly, this.disabled, this.value);
     return showXBtn
-      ? html` <sl-icon
+      ? html` <etools-icon
           name="clear"
           slot="suffix"
           @click="${this._clearData}"
@@ -446,8 +445,8 @@ export class DatePickerLite extends LitElement {
           tabindex="0"
           ?hidden="${this.clearBtnInsideDr}"
           @keydown="${this.activateOnEnterAndSpace}"
-          part="dp-iron-icon"
-        ></sl-icon>`
+          part="dp-etools-icon"
+        ></etools-icon>`
       : html``;
   }
 

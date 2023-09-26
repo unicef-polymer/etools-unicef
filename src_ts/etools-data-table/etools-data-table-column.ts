@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '../etools-icons/etools-icon';
 import {customElement, property} from 'lit/decorators.js';
 
 /**
@@ -47,9 +47,8 @@ export class EtoolsDataTableColumn extends LitElement {
         }
 
         #icon-wrapper,
-        sl-icon {
-          width: 16px;
-          height: 16px;
+        etools-icon {
+          --etools-icon-font-size: 16px;
         }
 
         #up,
@@ -77,11 +76,11 @@ export class EtoolsDataTableColumn extends LitElement {
           display: block;
         }
 
-        :host(:not([selected])) iron-icon {
+        :host(:not([selected])) etools-icon {
           color: var(--list-icon-hover-color, rgba(0, 0, 0, 0.38));
         }
 
-        :host([selected]) iron-icon {
+        :host([selected]) etools-icon {
           color: var(--list-icon-color, rgba(0, 0, 0, 0.87));
         }
       </style>
@@ -90,8 +89,8 @@ export class EtoolsDataTableColumn extends LitElement {
         <slot></slot>
       </span>
       <div id="icon-wrapper">
-        <sl-icon id="up" name="arrow-upward"></sl-icon>
-        <sl-icon id="down" name="arrow-downward"></sl-icon>
+        <etools-icon id="up" name="arrow-upward"></etools-icon>
+        <etools-icon id="down" name="arrow-downward"></etools-icon>
       </div>
     `;
   }

@@ -5,7 +5,7 @@ import {getTranslation} from '../utils/translate';
 
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import '../../etools-icon-button/etools-icon-button';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 
 // #region Paginator methods
@@ -119,29 +119,29 @@ export class EtoolsPagination extends LitElement {
       </span>
 
       <span class="pagination-item pagination-btns">
-        <sl-icon-button
+        <etools-icon-button
           name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
           @click="${this.goToFirstPage}"
           ?disabled="${this.paginator.page === 1}"
-        ></sl-icon-button>
+        ></etools-icon-button>
 
-        <sl-icon-button
+        <etools-icon-button
           name="${this.direction === 'ltr' ? 'chevron-left' : 'chevron-right'}"
           @click="${this.pageLeft}"
           ?disabled="${this.paginator.page === 1}"
-        ></sl-icon-button>
+        ></etools-icon-button>
 
-        <sl-icon-button
+        <etools-icon-button
           name="${this.direction === 'ltr' ? 'chevron-right' : 'chevron-left'}"
           @click="${this.pageRight}"
           ?disabled="${this.paginator.page === this.paginator.total_pages}"
-        ></sl-icon-button>
+        ></etools-icon-button>
 
-        <sl-icon-button
+        <etools-icon-button
           name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
           @click="${this.goToLastPage}"
           ?disabled="${this.paginator.page === this.paginator.total_pages}"
-        ></sl-icon-button>
+        ></etools-icon-button>
       </span>
     `;
   }

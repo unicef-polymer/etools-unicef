@@ -200,7 +200,7 @@ export class SlAutocomplete extends LitElement {
   _autoValidate = false;
 
   @property({type: Boolean, attribute: 'expand-icon'})
-  expandIcon = 'expand-more'; // chevron-down
+  expandIcon = 'expand-more'; // arrow-drop-down
 
   @property({type: String})
   get selected() {
@@ -434,18 +434,18 @@ export class SlAutocomplete extends LitElement {
                 ? html`
                     <button part="clear-button" class="select__clear" type="button" tabindex="-1">
                       <slot name="clear-icon">
-                        <sl-icon
+                        <etools-icon
                           name="cancel"
                           @mousedown=${this.handleClearMouseDown}
                           @click=${this.handleClearClick}
-                        ></sl-icon>
+                        ></etools-icon>
                       </slot>
                     </button>
                   `
                 : ''}
 
               <slot name="expand-icon" part="expand-icon" class="select__expand-icon">
-                <sl-icon name="${this.expandIcon}"></sl-icon>
+                <etools-icon name="${this.expandIcon}"></etools-icon>
               </slot>
             </div>
 
@@ -458,7 +458,7 @@ export class SlAutocomplete extends LitElement {
                   @sl-input=${this.handleSearchChanged}
                   autocomplete="off"
                 >
-                  <sl-icon name="search" slot="prefix"></sl-icon>
+                  <etools-icon name="search" slot="prefix"></etools-icon>
                 </sl-input>
               </div>
               <div
@@ -667,7 +667,7 @@ export class SlAutocomplete extends LitElement {
 
   handleParentFocus(event: FocusEvent) {
     const path = event.composedPath();
-    const isIconButton = path.some((el) => el instanceof Element && el.tagName.toLowerCase() === 'sl-icon-button');
+    const isIconButton = path.some((el) => el instanceof Element && el.tagName.toLowerCase() === 'etools-icon-button');
 
     if (this.disabled || this.readonly || isIconButton) {
       return;
@@ -714,7 +714,7 @@ export class SlAutocomplete extends LitElement {
    */
   private handleComboboxMouseDown(event: MouseEvent) {
     const path = event.composedPath();
-    const isIconButton = path.some((el) => el instanceof Element && el.tagName.toLowerCase() === 'sl-icon-button');
+    const isIconButton = path.some((el) => el instanceof Element && el.tagName.toLowerCase() === 'etools-icon-button');
 
     if (this.disabled || this.readonly || isIconButton) {
       return;

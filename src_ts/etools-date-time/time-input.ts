@@ -179,7 +179,7 @@ export class TimeInput extends LitElement {
           margin-inline-end: 5px;
         }
 
-        .input__prefix sl-icon {
+        .input__prefix etools-icon {
           color: var(--sl-input-icon-color);
         }
 
@@ -265,7 +265,7 @@ export class TimeInput extends LitElement {
         <div part="form-control-input" class="form-control-input">
           <div part="base" class="input">
             <span part="prefix" class="input__prefix">
-              <sl-icon name="device:access-time" part="prefix" ?hidden="${this.hideIcon}"></sl-icon>
+              <etools-icon name="device:access-time" part="prefix" ?hidden="${this.hideIcon}"></etools-icon>
             </span>
 
             <div class="input__control">

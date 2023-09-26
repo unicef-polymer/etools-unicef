@@ -93,17 +93,17 @@ export class EtoolsDataTableRow extends LitElement {
           width: 24px;
         }
 
-        iron-icon:focus {
+        etools-icon:focus {
           outline: 0;
           background-color: rgba(170, 165, 165, 0.3);
           border-radius: 50%;
         }
 
-        iron-icon {
+        etools-icon {
           color: var(--list-icon-color, #2b2b2b);
         }
 
-        iron-icon:hover {
+        etools-icon:hover {
           color: var(--list-icon-hover-color, rgba(0, 0, 0, 0.87));
         }
 
@@ -149,7 +149,7 @@ export class EtoolsDataTableRow extends LitElement {
 
       <div id="wrapper" part="edt-list-row-wrapper">
         <div id="iconWrapper" part="edt-icon-wrapper">
-          <sl-icon
+          <etools-icon
             id="more"
             name="chevron-right"
             ?hidden="${this.detailsOpened}"
@@ -157,8 +157,8 @@ export class EtoolsDataTableRow extends LitElement {
             @click="${this._toggleRowDetails}"
             tabindex="0"
           >
-          </sl-icon>
-          <sl-icon
+          </etools-icon>
+          <etools-icon
             id="less"
             name="expand-more"
             ?hidden="${!this.detailsOpened}"
@@ -166,7 +166,7 @@ export class EtoolsDataTableRow extends LitElement {
             @click="${this._toggleRowDetails}"
             tabindex="0"
           >
-          </sl-icon>
+          </etools-icon>
         </div>
         <slot name="row-data"></slot>
       </div>

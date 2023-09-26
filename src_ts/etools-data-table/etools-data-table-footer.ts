@@ -1,8 +1,8 @@
 import {LitElement, html} from 'lit';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '../etools-icon-button/etools-icon-button';
+import '../etools-icons/etools-icon';
 import {getTranslation} from './utils/translate';
 import {customElement, property} from 'lit/decorators.js';
 
@@ -97,8 +97,7 @@ export class EtoolsDataTableFooter extends LitElement {
           display: none;
         }
 
-        sl-icon-button {
-          font-size: 18px;
+        etools-icon-button {
           color: var(--dark-icon-color, #6f6f70);
         }
 
@@ -113,15 +112,15 @@ export class EtoolsDataTableFooter extends LitElement {
           background-color: var(--list-bg-color, #ffffff);
         }
 
-        #table-footer sl-icon-button {
+        #table-footer etools-icon-button {
           color: var(--list-disabled-icon-color, rgba(0, 0, 0, 0.64));
         }
 
-        #table-footer sl-icon-button:not([disabled]) {
+        #table-footer etools-icon-button:not([disabled]) {
           color: var(--list-icon-color, #2b2b2b);
         }
 
-        #table-footer sl-icon-button:not([disabled]):hover {
+        #table-footer etools-icon-button:not([disabled]):hover {
           color: var(--list-icon-hover-color, rgba(0, 0, 0, 0.87));
         }
 
@@ -183,29 +182,29 @@ export class EtoolsDataTableFooter extends LitElement {
         </span>
 
         <span class="pagination-item pag-btns">
-          <sl-icon-button
+          <etools-icon-button
             name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
             @click="${this._firstPage}"
             ?disabled="${this._pageBackDisabled(this.pageNumber)}"
-          ></sl-icon-button>
+          ></etools-icon-button>
 
-          <sl-icon-button
+          <etools-icon-button
             name="${this.direction === 'ltr' ? 'chevron-left' : 'chevron-right'}"
             @click="${this._pageLeft}"
             ?disabled="${this._pageBackDisabled(this.pageNumber)}"
-          ></sl-icon-button>
+          ></etools-icon-button>
 
-          <sl-icon-button
+          <etools-icon-button
             name="${this.direction === 'ltr' ? 'chevron-right' : 'chevron-left'}"
             @click="${this._pageRight}"
             ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"
-          ></sl-icon-button>
+          ></etools-icon-button>
 
-          <sl-icon-button
+          <etools-icon-button
             name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
             @click="${this._lastPage}"
             ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"
-          ></sl-icon-button>
+          ></etools-icon-button>
         </span>
       </div>
     `;
