@@ -94,9 +94,8 @@ export default css`
   }
 
   .select__expand-icon {
-    width: 12px;
-    height: 12px;
     color: rgba(0, 0, 0, 0.54);
+    font-size: 22px;
   }
 
   :host-context([multiple]) sl-tag::part(base) {
@@ -186,5 +185,9 @@ export default css`
   /* We need to keep it here for the button because it is used to calculate the line-height*/
   .footer {
     --sl-input-border-width: 1px;
+  }
+
+  etools-icon[name='cancel'] {
+    --etools-icon-font-size: 16px;
   }
 `;

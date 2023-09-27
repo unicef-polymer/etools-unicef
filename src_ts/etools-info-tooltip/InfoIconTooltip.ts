@@ -1,7 +1,7 @@
 import {LitElement, html, css} from 'lit';
 import {property} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
-import '@polymer/iron-icons/iron-icons';
+import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
 /**
@@ -42,10 +42,9 @@ export class InfoIconTooltip extends LitElement {
         .tooltip-info.gray-border {
           border: solid 1px var(--secondary-background-color);
         }
-        iron-icon {
+        etools-icon {
           margin: var(--iit-margin, 0);
-          width: var(--iit-icon-size, 24px);
-          height: var(--iit-icon-size, 24px);
+          --etools-icon-font-size: var(--iit-icon-size, 24px);
         }
 
         sl-tooltip {
@@ -73,13 +72,13 @@ export class InfoIconTooltip extends LitElement {
           </div>
         </div>
 
-        <iron-icon
+        <etools-icon
           tabindex="0"
           id="info-icon"
           part="etools-iit-icon"
-          icon="info-outline"
+          name="info-outline"
           @click="${this.showTooltip}"
-        ></iron-icon>
+        ></etools-icon>
       </sl-tooltip>
     `;
   }
