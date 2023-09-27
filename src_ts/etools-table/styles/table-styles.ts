@@ -65,8 +65,8 @@ export const etoolsTableStyles = css`
     cursor: pointer;
   }
 
-  table th.sort sl-icon {
-    font-size: 20px;
+  table th.sort etools-icon {
+    --etools-icon-font-size: 20px;
     line-height: 0;
     vertical-align: middle;
   }
@@ -120,11 +120,11 @@ export const etoolsTableStyles = css`
     background: transparent;
   }
 
-  .row-actions .actions sl-icon-button {
+  .row-actions .actions etools-icon-button {
     height: 100%;
     display: inline-flex;
     align-items: center;
-    font-size: 18px;
+    --etools-icon-font-size: 18px;
   }
 
   tr:hover .row-actions .actions {
@@ -135,7 +135,7 @@ export const etoolsTableStyles = css`
     opacity: 1;
   }
 
-  .row-actions sl-icon-button {
+  .row-actions etools-icon-button {
     color: var(--dark-icon-color, #6f6f70);
   }
 
@@ -160,7 +160,7 @@ export const etoolsTableStyles = css`
     vertical-align: middle;
   }
 
-  :host-context([dir='rtl']) .expand-cell [icon='chevron-right'] {
+  :host-context([dir='rtl']) .expand-cell [name='chevron-right'] {
     transform: rotate(180deg);
   }
 

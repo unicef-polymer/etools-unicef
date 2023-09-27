@@ -40,7 +40,7 @@ export const etoolsFiltersStyles = css`
     min-width: 280px;
   }
 
-  sl-icon[name='search'] {
+  etools-icon[name='search'] {
     color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
   }
 

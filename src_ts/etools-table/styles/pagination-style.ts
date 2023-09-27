@@ -15,8 +15,8 @@ export const etoolsPaginationStyles = css`
     display: none;
   }
 
-  sl-icon-button {
-    font-size: 16px;
+  etools-icon-button {
+    --etools-icon-font-size: 16px;
     color: var(--dark-icon-color, #6f6f70);
   }
 

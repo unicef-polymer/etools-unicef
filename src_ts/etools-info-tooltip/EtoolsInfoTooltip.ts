@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
-import '@polymer/iron-icons/iron-icons.js';
+import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 import SlTooltip from '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
@@ -97,7 +97,7 @@ export class EtoolsInfoTooltip extends LitElement {
           <slot name="message"></slot>
         </div>
         <span id="tooltip-trigger" part="eit-trigger-icon" ?hidden="${this.hideTooltip}" tabindex="0">
-          <iron-icon ?hidden="${this.customIcon}" .icon="${this.icon}"></iron-icon>
+          <etools-icon ?hidden="${this.customIcon}" .name="${this.icon}"></etools-icon>
 
           <slot ?hidden="${!this.customIcon}" name="custom-icon"></slot>
         </span>

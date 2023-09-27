@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import '../etools-icon-button/etools-icon-button';
 import {elevationStyles} from './styles/elevation-styles';
 import {translatedDayNames, translatedDaysFirstLetter, translatedMonthNames} from './assets/translations';
 
@@ -328,7 +328,7 @@ export class CalendarLite extends LitElement {
           font-weight: 700;
         }
 
-        .flexchild > div > sl-icon-button {
+        .flexchild > div > etools-icon-button {
           margin-inline-start: -4px;
         }
 
@@ -415,7 +415,7 @@ export class CalendarLite extends LitElement {
           align-items: center;
         }
 
-        .swipePanel sl-icon-button {
+        .swipePanel etools-icon-button {
           margin: 2px;
           border: solid 2px #dddddd;
           border-radius: 50%;
@@ -425,7 +425,7 @@ export class CalendarLite extends LitElement {
           height: 195px;
         }
 
-        .swipePanel sl-icon-button[focused] {
+        .swipePanel etools-icon-button[focused] {
           background: #dddddd;
         }
         .elevation[elevation='1'] {
@@ -467,7 +467,7 @@ export class CalendarLite extends LitElement {
                 @click="${this._show}"
               >
                 ${this.monthFormat}
-                <sl-icon-button type="monthsList" @click="${this._show}" name="chevron-down"></sl-icon-button>
+                <etools-icon-button type="monthsList" @click="${this._show}" name="expand-more"></etools-icon-button>
               </div>
               <div
                 id="headerYear"
@@ -477,16 +477,16 @@ export class CalendarLite extends LitElement {
                 @click="${this._show}"
               >
                 ${this.yearFormat}
-                <sl-icon-button type="yearList" @click="${this._show}" name="chevron-down"></sl-icon-button>
+                <etools-icon-button type="yearList" @click="${this._show}" name="expand-more"></etools-icon-button>
               </div>
             </div>
             <div class="swipePanel">
-              <sl-icon-button @click="${this._swipePrevMonth}" name="chevron-left"></sl-icon-button>
-              <sl-icon-button
+              <etools-icon-button @click="${this._swipePrevMonth}" name="chevron-left"></etools-icon-button>
+              <etools-icon-button
                 @click="${this._swipeNextMonth}"
                 name="chevron-right"
                 @keydown="${this.onSwipeNextKeyDown}"
-              ></sl-icon-button>
+              ></etools-icon-button>
             </div>
           </div>
 

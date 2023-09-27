@@ -2,7 +2,7 @@ import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {etoolsFiltersStyles} from './etools-filters-styles';
 
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/switch/switch.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
@@ -112,7 +112,7 @@ export class EtoolsFilters extends LitElement {
         data-filter-key="${f.filterKey}"
         @value-changed="${this.textInputChange}"
       >
-        <sl-icon name="search" slot="prefix"></sl-icon>
+        <etools-icon name="search" slot="prefix"></etools-icon>
       </etools-input>
     `;
   }
@@ -290,7 +290,7 @@ export class EtoolsFilters extends LitElement {
       <div id="filters-selector">
         <sl-dropdown id="filterMenu" stay-open-on-select>
           <sl-button variant="text" class="trigger-button" slot="trigger">
-            <sl-icon name="filter" slot="prefix"></sl-icon>
+            <etools-icon name="filter-list" slot="prefix"></etools-icon>
             ${this.textFilters || getTranslation(this.language, 'FILTERS')}
           </sl-button>
 

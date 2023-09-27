@@ -3,8 +3,8 @@ import {customElement, property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import '../etools-icons/etools-icon';
+import '../etools-icon-button/etools-icon-button';
 import './etools-user-profile-dialog';
 import {getTranslation} from './utils/translate';
 
@@ -147,14 +147,14 @@ export class EtoolsProfileDropdown extends LitElement {
           this.opened = false;
         }}"
       >
-        <sl-icon-button id="profile" name="person-fill" slot="trigger" role="button"></sl-icon-button>
+        <etools-icon-button id="profile" name="social:person" slot="trigger" role="button"></etools-icon-button>
         <sl-menu>
           <sl-menu-item @click="${this._openUserProfileDialog}">
-            <sl-icon slot="prefix" name="person-circle"></sl-icon>
+            <etools-icon slot="prefix" name="account-circle"></etools-icon>
             ${getTranslation(this.language, 'PROFILE')}
           </sl-menu-item>
           <sl-menu-item @click="${this._logout}">
-            <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
+            <etools-icon slot="prefix" name="power-settings-new"></etools-icon>
             ${getTranslation(this.language, 'SIGN_OUT')}
           </sl-menu-item>
         </sl-menu>

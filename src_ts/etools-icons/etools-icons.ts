@@ -1,4 +1,4 @@
-import ironIcons from './icons/iron-icons';
+import defaultIcons from './icons/icons-icons';
 import {registerIconLibrary} from '@shoelace-style/shoelace/dist/utilities/icon-library.js';
 import camelCase from 'lodash-es/camelCase';
 import kebabCase from 'lodash-es/kebabCase';
@@ -13,6 +13,7 @@ export enum EtoolsIconSet {
   maps = 'maps',
   notification = 'notification',
   places = 'places',
+  icons = 'icons',
   social = 'social',
   custom = 'custom'
 }
@@ -30,7 +31,7 @@ export const initializeIcons = async (
   const icons = Object.assign(
     {
       default: {
-        ...ironIcons,
+        ...defaultIcons,
         ...additionalIcons
       }
     },
