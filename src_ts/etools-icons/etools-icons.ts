@@ -24,7 +24,9 @@ export const initializeIcons = async (
 ) => {
   const iconSets = await Promise.all(
     iconSetsToLoad.map(async (iconSet) => ({
-      [iconSet]: (await import(`./icons/${iconSet}-icons.js`))?.default
+      [iconSet]: (
+        await import(`../node_modules/@unicef-polymer/etools-unicef/src/etools-icons/icons/${iconSet}-icons.js`)
+      )?.default
     }))
   );
 
