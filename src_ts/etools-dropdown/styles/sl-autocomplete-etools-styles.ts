@@ -17,7 +17,7 @@ export default css`
   }
 
   sl-menu-item:focus-visible::part(base) {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(192, 192, 192, 0.2);
     color: var(--sl-color-neutral-1000);
   }
 
