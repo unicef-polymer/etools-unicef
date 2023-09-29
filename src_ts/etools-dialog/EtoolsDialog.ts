@@ -123,7 +123,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           padding: 15px 15px 0 15px;
         }
         sl-dialog::part(title) {
-          padding: 8px 0 8px 24px;
+          padding: 8px 24px;
         }
         sl-dialog.confirmation::part(title) {
           padding: 15px 15px 0 15px;
