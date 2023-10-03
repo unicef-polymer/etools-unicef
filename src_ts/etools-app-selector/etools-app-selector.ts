@@ -17,7 +17,7 @@ import {
 } from './app-selector-icons';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
 import '../etools-icon-button/etools-icon-button';
-import {getTranslation} from './utils/translation-helper';
+import {getTranslation} from './utils/translate';
 
 export enum Applications {
   PMP = 'pmp',
@@ -180,12 +180,20 @@ export class AppSelector extends LitElement {
     }
   `;
 
-  // @ts-ignore
-  @property({type: String, attribute: 'language'}) language: string = window.EtoolsLanguage || 'en';
-  @property({type: String}) iconTitle: string = 'APP_SELECTOR';
-  @property({type: String}) baseSite: string = window.location.origin;
-  @property({type: Array}) allowedAps: Applications[] = [];
-  @property({type: Boolean, attribute: 'opened', reflect: true}) opened: boolean = false;
+  @property({type: String, attribute: 'language'})
+  language: string = window.EtoolsLanguage || 'en';
+
+  @property({type: String})
+  iconTitle = 'APP_SELECTOR';
+
+  @property({type: String})
+  baseSite: string = window.location.origin;
+
+  @property({type: Array})
+  allowedAps: Applications[] = [];
+
+  @property({type: Boolean, attribute: 'opened', reflect: true})
+  opened = false;
 
   set user(user: EtoolsUser) {
     this.setPermissions(user);
@@ -524,7 +532,7 @@ export class AppSelector extends LitElement {
     // show AMP app for all users
     const allowedApplications: Applications[] = [Applications.AMP];
     // check admin app
-    const isAdmin: boolean = Boolean(
+    const isAdmin = Boolean(
       Boolean(user.is_superuser) || (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
     );
     if (isAdmin) {

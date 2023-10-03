@@ -20,10 +20,10 @@ export class EtoolsIconButton extends LitElement {
   src: string | undefined;
 
   @property({type: String})
-  label: string = '';
+  label = '';
 
   @property({type: String})
-  library: string = 'default';
+  library = 'default';
 
   @property({type: String})
   href: string | undefined;
