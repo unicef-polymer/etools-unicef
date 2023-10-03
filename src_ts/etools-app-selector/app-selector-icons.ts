@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import {html, TemplateResult} from 'lit-element';
 
-export const dashIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const dashIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="dashIcon">
     <polygon id="Shape" fill="#009A54" points="0,0 72,0 72,72 0,72"></polygon>
     <path
@@ -36,7 +36,7 @@ export const pmpIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72
   </g>
 </svg>`;
 
-export const tripsIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const tripsIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="tripsIcon">
     <polygon id="tripShape" fill="#0061E9" points="0,0 72,0 72,72 0,72     " />
     <path
@@ -57,7 +57,7 @@ export const tripsIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 7
   </g>
 </svg>`;
 
-export const famIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const famIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="famIcon">
     <polygon id="Shape" fill="#4B6F80" points="0 0 72 0 72 72 0 72"></polygon>
     <path
@@ -87,7 +87,7 @@ export const famIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72"
   </g>
 </svg>`;
 
-export const pseaIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const pseaIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="pseaIcon">
     <polygon id="Shape" fill="#0099ff" points="0 0 72 0 72 72 0 72"></polygon>
     <path
@@ -117,7 +117,7 @@ export const pseaIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72
   </g>
 </svg>`;
 
-export const adminIcon: TemplateResult = html`<svg height="24" viewBox="0 0 20 20" width="24">
+export const adminIcon: TemplateResult = html` <svg height="24" viewBox="0 0 20 20" width="24">
   <g id="adminIcon">
     <path fill="none" d="M0 0h20v20H0V0z" />
     <path
@@ -127,7 +127,7 @@ export const adminIcon: TemplateResult = html`<svg height="24" viewBox="0 0 20 2
   </g>
 </svg>`;
 
-export const tpmIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const tpmIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="tpmIcon">
     <polygon id="Shape" fill="#72C300" points="0 0 72 0 72 72 0 72"></polygon>
     <polygon id="Line" fill="#FFFFFF" fill-rule="nonzero" points="27 21 41 21 41 18 27 18"></polygon>
@@ -144,7 +144,7 @@ export const tpmIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72"
   </g>
 </svg>`;
 
-export const apdIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const apdIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="apdIcon" fill-rule="nonzero">
     <polygon id="Shape" fill="#00B8D4" points="0 0 72 0 72 72 0 72"></polygon>
     <polygon
@@ -155,7 +155,7 @@ export const apdIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72"
   </g>
 </svg>`;
 
-export const ampIcon: TemplateResult = html`<svg
+export const ampIcon: TemplateResult = html` <svg
   width="36px"
   height="36px"
   viewBox="0 0 24 24"
@@ -171,7 +171,7 @@ export const ampIcon: TemplateResult = html`<svg
   </g>
 </svg>`;
 
-export const unppIcon: TemplateResult = html`<svg
+export const unppIcon: TemplateResult = html` <svg
   width="36px"
   height="36px"
   viewBox="0 0 36 32"
@@ -474,7 +474,7 @@ export const unppIcon: TemplateResult = html`<svg
   </g>
 </svg>`;
 
-export const etoolsLogo: TemplateResult = html`<svg
+export const etoolsLogo: TemplateResult = html` <svg
   width="104"
   height="32"
   viewBox="0 0 400 110"
@@ -603,12 +603,14 @@ export const fmIcon: TemplateResult = html` <svg
   </g>
 </svg>`;
 
-export const storageIcon: TemplateResult = html`<svg
+export const storageIcon: TemplateResult = html` <svg
   id="storageIcon"
   viewBox="0 0 24 24"
   preserveAspectRatio="xMidYMid meet"
   width="36"
   height="36"
 >
-  <g><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"></path></g>
+  <g>
+    <path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"></path>
+  </g>
 </svg>`;

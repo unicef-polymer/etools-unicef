@@ -213,6 +213,7 @@ export class AppSelector extends LitElement {
           z-index: 100;
           box-sizing: content-box !important;
         }
+
         etools-icon-button.icon-opened {
           background: #ffffff;
           color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
@@ -228,211 +229,242 @@ export class AppSelector extends LitElement {
       <div class="dropdown">
         ${this.opened
           ? html`
-          <div class="etools-apps">
-            <span class="module-group-title">${getTranslation(this.language, 'PROGRAMME_MANAGEMENT')}</span>
-            <div class="module-group">
-              <a
-                class="content-wrapper"
-                rel="external"
-                @click="${this.goToPage}"
-                href="https://www.unpartnerportal.org/login"
-                target="_blank"
-              >
-                ${unppIcon}
-                <div class="app-title">${getTranslation(this.language, 'UN_PARTNER_PORTAL')}</div>
-                ${externalIcon}
-              </a>
-              ${
-                this.checkAllowedApps([Applications.PMP])
-                  ? html`
-                      <a
-                        class="content-wrapper"
-                        rel="external"
-                        @click="${this.goToPage}"
-                        href="${this.baseSite}/${Applications.PMP}/"
-                      >
-                        ${pmpIcon}
-                        <div class="app-title">${getTranslation(this.language, 'PARTNERSHIP_MANAGEMENT')}</div>
-                      </a>
+                        <div class="etools-apps">
+                            <span class="module-group-title">${getTranslation(
+                              this.language,
+                              'PROGRAMME_MANAGEMENT'
+                            )}</span>
+                            <div class="module-group">
+                                <a
+                                        class="content-wrapper"
+                                        rel="external"
+                                        @click="${this.goToPage}"
+                                        href="https://www.unpartnerportal.org/login"
+                                        target="_blank"
+                                >
+                                    ${unppIcon}
+                                    <div class="app-title">${getTranslation(this.language, 'UN_PARTNER_PORTAL')}</div>
+                                    ${externalIcon}
+                                </a>
+                                ${
+                                  this.checkAllowedApps([Applications.PMP])
+                                    ? html`
+                                        <a
+                                          class="content-wrapper"
+                                          rel="external"
+                                          @click="${this.goToPage}"
+                                          href="${this.baseSite}/${Applications.PMP}/"
+                                        >
+                                          ${pmpIcon}
+                                          <div class="app-title">
+                                            ${getTranslation(this.language, 'PARTNERSHIP_MANAGEMENT')}
+                                          </div>
+                                        </a>
+                                      `
+                                    : ''
+                                }
+                                ${
+                                  this.checkAllowedApps([Applications.EPD])
+                                    ? html`
+                                        <a
+                                          class="content-wrapper"
+                                          rel="external"
+                                          @click="${this.goToPage}"
+                                          href="${this.baseSite}/${Applications.EPD}/"
+                                        >
+                                          ${pmpIcon}
+                                          <div class="app-title">${getTranslation(this.language, 'EPD')}</div>
+                                        </a>
+                                      `
+                                    : ''
+                                }
+                            </div>
+
+                            ${
+                              this.checkAllowedApps([
+                                Applications.T2F,
+                                Applications.AP,
+                                Applications.TPM,
+                                Applications.PSEA
+                              ])
+                                ? html`
+                                    <span class="module-group-title"
+                                      >${getTranslation(this.language, 'MONITORING_ASSURANCE')}</span
+                                    >
+                                    <div class="module-group">
+                                      ${this.checkAllowedApps([Applications.T2F])
+                                        ? html`
+                                            <a
+                                              class="content-wrapper"
+                                              rel="external"
+                                              @click="${this.goToPage}"
+                                              href="${this.baseSite}/${Applications.T2F}/"
+                                            >
+                                              ${tripsIcon}
+                                              <div class="app-title">
+                                                ${getTranslation(this.language, 'TRIP_MANAGEMENT')}
+                                              </div>
+                                            </a>
+                                          `
+                                        : ''}
+                                      ${this.checkAllowedApps([Applications.TPM])
+                                        ? html`
+                                            <a
+                                              class="content-wrapper"
+                                              rel="external"
+                                              @click="${this.goToPage}"
+                                              href="${this.baseSite}/${Applications.TPM}/"
+                                            >
+                                              ${tpmIcon}
+                                              <div class="app-title">
+                                                ${getTranslation(this.language, 'THIRD_PARTY_MONITORING')}
+                                              </div>
+                                            </a>
+                                          `
+                                        : ''}
+                                      ${this.checkAllowedApps([Applications.AP])
+                                        ? html`
+                                            <a
+                                              class="content-wrapper"
+                                              rel="external"
+                                              @click="${this.goToPage}"
+                                              href="${this.baseSite}/${Applications.AP}/"
+                                            >
+                                              ${famIcon}
+                                              <div class="app-title">
+                                                ${getTranslation(this.language, 'FINANCIAL_ASSURANCE')}
+                                              </div>
+                                            </a>
+                                          `
+                                        : ''}
+                                      ${this.checkAllowedApps([Applications.PSEA])
+                                        ? html`
+                                            <a
+                                              class="content-wrapper"
+                                              rel="external"
+                                              @click="${this.goToPage}"
+                                              href="${this.baseSite}/${Applications.PSEA}/"
+                                            >
+                                              ${pseaIcon}
+                                              <div class="app-title">
+                                                ${getTranslation(this.language, 'PSEA_ASSURANCE')}
+                                              </div>
+                                            </a>
+                                          `
+                                        : ''}
+                                      ${this.checkAllowedApps([Applications.FM])
+                                        ? html`
+                                            <a
+                                              class="content-wrapper"
+                                              rel="external"
+                                              @click="${this.goToPage}"
+                                              href="${this.baseSite}/${Applications.FM}/"
+                                            >
+                                              ${fmIcon}
+                                              <div class="app-title">
+                                                ${getTranslation(this.language, 'FIELD_MONITORING')}
+                                              </div>
+                                            </a>
+                                          `
+                                        : ''}
+                                    </div>
+                                  `
+                                : ''
+                            }
+
+                            <span class="module-group-title">${getTranslation(
+                              this.language,
+                              'DASHBOARDS_ANALYTICS'
+                            )}</span>
+                            <div class="module-group">
+                                ${
+                                  this.checkAllowedApps([Applications.APD])
+                                    ? html`
+                                        <a
+                                          class="content-wrapper"
+                                          rel="external"
+                                          @click="${this.goToPage}"
+                                          href="${this.baseSite}/${Applications.APD}/"
+                                        >
+                                          ${apdIcon}
+                                          <div class="app-title">${getTranslation(this.language, 'ACTION_POINTS')}</div>
+                                        </a>
+                                      `
+                                    : ''
+                                }
+                                ${
+                                  this.checkAllowedApps([Applications.DASH])
+                                    ? html`
+                                        <a
+                                          class="content-wrapper"
+                                          rel="external"
+                                          @click="${this.goToPage}"
+                                          href="${this.baseSite}/${Applications.DASH}/"
+                                        >
+                                          ${dashIcon}
+                                          <div class="app-title">${getTranslation(this.language, 'DASHBOARDS')}</div>
+                                        </a>
+                                      `
+                                    : ''
+                                }
+
+                                <a
+                                        class="content-wrapper"
+                                        rel="external"
+                                        target="_blank"
+                                        href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52"
+                                >
+                                    ${powerBiIcon}
+                                    <span class="app-title"
+                                    >${getTranslation(
+                                      this.language,
+                                      'IMPLEMENTATION_INTELLIGENCE'
+                                    )} (I<sup>2</sup>)</span
+                                    >
+                                    ${externalIcon}
+                                </a>
+
+                                <a class="datamart content-wrapper" rel="external" href="https://datamart.unicef.io"
+                                   target="_blank">
+                                    ${storageIcon}
+                                    <div class="app-title">${getTranslation(this.language, 'DATAMART')}</div>
+                                    ${externalIcon}
+                                </a>
+                            </div>
+                        </div>
+                        ${
+                          this.checkAllowedApps([Applications.AMP])
+                            ? html`
+                                <span class="module-group-title"
+                                  >${getTranslation(this.language, 'ADMINISTRATION')}</span
+                                >
+                                <div class="module-group">
+                                  <a
+                                    class="content-wrapper"
+                                    rel="external"
+                                    @click="${this.goToPage}"
+                                    href="${this.baseSite}/${Applications.AMP}/"
+                                  >
+                                    ${ampIcon}
+                                    <div class="app-title">${getTranslation(this.language, 'AMP')}</div>
+                                  </a>
+                                  <div class="content-wrapper empty-wrapper"></div>
+                                </div>
+                              `
+                            : ''
+                        }
+                        ${
+                          this.checkAllowedApps([Applications.ADMIN])
+                            ? html`
+                                <a class="admin" rel="external" href="${this.baseSite}/${Applications.ADMIN}/">
+                                  ${adminIcon}
+                                  <div class="app-title">${getTranslation(this.language, 'ADMIN')}</div>
+                                </a>
+                              `
+                            : ''
+                        }
+                        </div>
                     `
-                  : ''
-              }
-                ${
-                  this.checkAllowedApps([Applications.EPD])
-                    ? html`
-                        <a
-                          class="content-wrapper"
-                          rel="external"
-                          @click="${this.goToPage}"
-                          href="${this.baseSite}/${Applications.EPD}/"
-                        >
-                          ${pmpIcon}
-                          <div class="app-title">${getTranslation(this.language, 'EPD')}</div>
-                        </a>
-                      `
-                    : ''
-                }
-            </div>
-
-            ${
-              this.checkAllowedApps([Applications.T2F, Applications.AP, Applications.TPM, Applications.PSEA])
-                ? html`
-                    <span class="module-group-title">${getTranslation(this.language, 'MONITORING_ASSURANCE')}</span>
-                    <div class="module-group">
-                      ${this.checkAllowedApps([Applications.T2F])
-                        ? html`
-                            <a
-                              class="content-wrapper"
-                              rel="external"
-                              @click="${this.goToPage}"
-                              href="${this.baseSite}/${Applications.T2F}/"
-                            >
-                              ${tripsIcon}
-                              <div class="app-title">${getTranslation(this.language, 'TRIP_MANAGEMENT')}</div>
-                            </a>
-                          `
-                        : ''}
-                      ${this.checkAllowedApps([Applications.TPM])
-                        ? html`
-                            <a
-                              class="content-wrapper"
-                              rel="external"
-                              @click="${this.goToPage}"
-                              href="${this.baseSite}/${Applications.TPM}/"
-                            >
-                              ${tpmIcon}
-                              <div class="app-title">${getTranslation(this.language, 'THIRD_PARTY_MONITORING')}</div>
-                            </a>
-                          `
-                        : ''}
-                      ${this.checkAllowedApps([Applications.AP])
-                        ? html`
-                            <a
-                              class="content-wrapper"
-                              rel="external"
-                              @click="${this.goToPage}"
-                              href="${this.baseSite}/${Applications.AP}/"
-                            >
-                              ${famIcon}
-                              <div class="app-title">${getTranslation(this.language, 'FINANCIAL_ASSURANCE')}</div>
-                            </a>
-                          `
-                        : ''}
-                      ${this.checkAllowedApps([Applications.PSEA])
-                        ? html`
-                            <a
-                              class="content-wrapper"
-                              rel="external"
-                              @click="${this.goToPage}"
-                              href="${this.baseSite}/${Applications.PSEA}/"
-                            >
-                              ${pseaIcon}
-                              <div class="app-title">${getTranslation(this.language, 'PSEA_ASSURANCE')}</div>
-                            </a>
-                          `
-                        : ''}
-                      ${this.checkAllowedApps([Applications.FM])
-                        ? html`
-                            <a
-                              class="content-wrapper"
-                              rel="external"
-                              @click="${this.goToPage}"
-                              href="${this.baseSite}/${Applications.FM}/"
-                            >
-                              ${fmIcon}
-                              <div class="app-title">${getTranslation(this.language, 'FIELD_MONITORING')}</div>
-                            </a>
-                          `
-                        : ''}
-                    </div>
-                  `
-                : ''
-            }
-
-            <span class="module-group-title">${getTranslation(this.language, 'DASHBOARDS_ANALYTICS')}</span>
-            <div class="module-group">
-              ${
-                this.checkAllowedApps([Applications.APD])
-                  ? html`
-                      <a
-                        class="content-wrapper"
-                        rel="external"
-                        @click="${this.goToPage}"
-                        href="${this.baseSite}/${Applications.APD}/"
-                      >
-                        ${apdIcon}
-                        <div class="app-title">${getTranslation(this.language, 'ACTION_POINTS')}</div>
-                      </a>
-                    `
-                  : ''
-              }
-              ${
-                this.checkAllowedApps([Applications.DASH])
-                  ? html`
-                      <a
-                        class="content-wrapper"
-                        rel="external"
-                        @click="${this.goToPage}"
-                        href="${this.baseSite}/${Applications.DASH}/"
-                      >
-                        ${dashIcon}
-                        <div class="app-title">${getTranslation(this.language, 'DASHBOARDS')}</div>
-                      </a>
-                    `
-                  : ''
-              }
-
-              <a
-                class="content-wrapper"
-                rel="external"
-                target="_blank"
-                href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52"
-              >
-                ${powerBiIcon}
-                <span class="app-title"
-                  >${getTranslation(this.language, 'IMPLEMENTATION_INTELLIGENCE')} (I<sup>2</sup>)</span
-                >
-                ${externalIcon}
-              </a>
-
-              <a class="datamart content-wrapper" rel="external" href="https://datamart.unicef.io" target="_blank">
-                ${storageIcon}
-                <div class="app-title">${getTranslation(this.language, 'DATAMART')}</div>
-                ${externalIcon}
-              </a>
-            </div>
-          </div>
- ${
-   this.checkAllowedApps([Applications.AMP])
-     ? html`
-         <span class="module-group-title">${getTranslation(this.language, 'ADMINISTRATION')}</span>
-         <div class="module-group">
-           <a
-             class="content-wrapper"
-             rel="external"
-             @click="${this.goToPage}"
-             href="${this.baseSite}/${Applications.AMP}/"
-           >
-             ${ampIcon}
-             <div class="app-title">${getTranslation(this.language, 'AMP')}</div>
-           </a>
-           <div class="content-wrapper empty-wrapper"></div>
-         </div>
-       `
-     : ''
- }
-          ${
-            this.checkAllowedApps([Applications.ADMIN])
-              ? html`
-                  <a class="admin" rel="external" href="${this.baseSite}/${Applications.ADMIN}/">
-                    ${adminIcon}
-                    <div class="app-title">${getTranslation(this.language, 'ADMIN')}</div>
-                  </a>
-                `
-              : ''
-          }
-        </div>
-        `
           : ''}
       </div>
     `;
@@ -460,11 +492,11 @@ export class AppSelector extends LitElement {
 
   handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'Escape') {
-        this.opened = false;
-        const button = this.shadowRoot?.querySelector<HTMLElement>('etools-icon-button');
-        if (button) {
-            button.focus();
-        }
+      this.opened = false;
+      const button = this.shadowRoot?.querySelector<HTMLElement>('etools-icon-button');
+      if (button) {
+        button.focus();
+      }
     }
   }
 
