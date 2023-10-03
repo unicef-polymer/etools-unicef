@@ -52,7 +52,7 @@ export class SlAutocomplete extends LitElement {
   private searchHasChanged = false;
   private pageHasChanged = false;
   private noMoreItemsToLoad = false;
-  private collectingKeyboardKeysTimeout: NodeJS.Timeout | undefined = undefined;
+  private collectingKeyboardKeysTimeout: any = undefined;
   private collectedKeyboardKeys = '';
 
   @property({type: String, attribute: 'label'})
