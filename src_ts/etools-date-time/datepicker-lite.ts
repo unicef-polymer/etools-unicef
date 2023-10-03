@@ -111,7 +111,7 @@ export class DatePickerLite extends LitElement {
   @property({
     type: String
   })
-  label!: String;
+  label!: string;
 
   @property({
     type: Number
@@ -182,12 +182,12 @@ export class DatePickerLite extends LitElement {
   @property({
     type: Boolean
   })
-  _clearDateInProgress!: Boolean;
+  _clearDateInProgress!: boolean;
 
   @property({
     type: Boolean
   })
-  _stopDateCompute!: Boolean;
+  _stopDateCompute!: boolean;
 
   @property({
     type: Boolean,

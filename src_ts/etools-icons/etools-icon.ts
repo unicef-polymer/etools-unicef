@@ -49,10 +49,10 @@ export class EtoolsIcon extends LitElement {
   src: string | undefined;
 
   @property({type: String})
-  label: string = '';
+  label = '';
 
   @property({type: String})
-  library: string = 'default';
+  library = 'default';
 
   @query('sl-icon')
   slIcon!: SlIcon;

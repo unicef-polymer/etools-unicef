@@ -35,7 +35,7 @@ export class EtoolsUserProfileDialog extends LitElement {
   users: any = [];
 
   @property({type: Boolean})
-  readonly: boolean = true;
+  readonly = true;
 
   @property({type: Array})
   availableCountryIds: any[] = [];
@@ -44,13 +44,59 @@ export class EtoolsUserProfileDialog extends LitElement {
   availableGroups: any[] = [];
 
   @property({type: Boolean})
-  showEmail: boolean = false;
+  showEmail = false;
 
   @property({type: Boolean})
-  hideAvailableWorkspaces: boolean = false;
+  hideAvailableWorkspaces = false;
 
   @property({type: String})
   language: string = window.EtoolsLanguage || 'en';
+
+  /** 
+   * 
+   * FIELDS HIDDEN AS REQUIRED BY BUSINESS SPECS - CH6215
+    <div class="row-h flex-c" hidden>
+      <div class="col col-6">
+        <etools-dropdown id="office" label="Office" placeholder="—" .selected="${this.profile?.office}"
+                          .options="${this.offices}" auto-validate="" error-message="Please select an office">
+        </etools-dropdown>
+      </div>
+      <div class="col col-6">
+        <etools-dropdown id="section" label="Section" placeholder="—" .selected="${this.profile?.section}"
+                          .options="${this.sections}" auto-validate="" error-message="Please select a section">
+        </etools-dropdown>
+      </div>
+    </div>
+    <div class="row-h flex-c">
+      <div class="col col-6">
+        <etools-input label="Job title" .value="${this.profile.job_title}" placeholder="—"></etools-input>
+      </div>
+      <div class="col col-6">
+        <etools-input label="Phone number" .value="${this.profile.phone_number}" placeholder="—"></etools-input>
+      </div>
+    </div>
+    <div class="row-h flex-c">
+      <div class="col col-6">
+        <etools-input id="supervisor" label="My supervisor" placeholder="—" .value="${this.profile.supervisor}"
+                      readonly="">
+        </etools-input>
+      </div>
+      <div class="col col-6">
+        <etools-dropdown id="oic" label="My OIC" placeholder="—"
+        .selected="${this.profile.oic}" .options="${this.users}"
+                          auto-validate="" error-message="Please select an OIC">
+        </etools-dropdown>
+      </div>
+    </div>
+
+    <div class="row-h flex-c">
+      <div class="col col-12">
+        <etools-dropdown-multi id="supervisees" label="My supervisees" placeholder="—"
+                                .selectedValues="${this.profile.supervisees}" .options="${this.users}" readonly>
+        </etools-dropdown-multi>
+      </div>
+    </div>
+  */
 
   render() {
     // language=HTML
@@ -169,40 +215,6 @@ export class EtoolsUserProfileDialog extends LitElement {
         @close="${this._closeUserProfileDialog}"
       >
         <div id="profile-content" part="epd-user-profile-dropdown-content">
-          <!-- FIELDS HIDDEN AS REQUIRED BY BUSINESS SPECS - CH6215 -->
-          <!-- <div class="row-h flex-c">
-              <div class="col col-6">
-                <etools-dropdown id="office" label="Office" placeholder="—" .selected="${this.profile.office}"
-                                 .options="${this.offices}" auto-validate="" error-message="Please select an office">
-                </etools-dropdown>
-              </div>
-              <div class="col col-6">
-                <etools-dropdown id="section" label="Section" placeholder="—" .selected="${this.profile.section}"
-                                 .options="${this.sections}" auto-validate="" error-message="Please select a section">
-                </etools-dropdown>
-              </div>
-            </div>
-            <div class="row-h flex-c">
-              <div class="col col-6">
-                <etools-input label="Job title" .value="${this.profile.job_title}" placeholder="—"></etools-input>
-              </div>
-              <div class="col col-6">
-                <etools-input label="Phone number" .value="${this.profile.phone_number}" placeholder="—"></etools-input>
-              </div>
-            </div>
-            <div class="row-h flex-c">
-              <div class="col col-6">
-                <etools-input id="supervisor" label="My supervisor" placeholder="—" .value="${this.profile.supervisor}"
-                             readonly="">
-                </etools-input>
-              </div>
-              <div class="col col-6">
-                <etools-dropdown id="oic" label="My OIC" placeholder="—"
-                .selected="${this.profile.oic}" .options="${this.users}"
-                                 auto-validate="" error-message="Please select an OIC">
-                </etools-dropdown>
-              </div>
-            </div> -->
           <div class="row-h flex-c">
             <div class="col col-12">
               <etools-input
@@ -259,13 +271,6 @@ export class EtoolsUserProfileDialog extends LitElement {
               </div>
             </div>
           </div>
-          <!-- <div class="row-h flex-c">
-              <div class="col col-12">
-                <etools-dropdown-multi id="supervisees" label="My supervisees" placeholder="—"
-                                        .selectedValues="${this.profile.supervisees}" .options="${this.users}" readonly>
-                </etools-dropdown-multi>
-              </div>
-            </div> -->
         </div>
       </etools-dialog>
     `;
