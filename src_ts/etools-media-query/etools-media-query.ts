@@ -1,7 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-
 /**
  * `etools-media-query` component detects when a media query is true or false
  *
@@ -55,7 +54,7 @@ export class EtoolsMediaQuery extends LitElement {
   }
 
   handleResize() {
-    if(!this.query) {
+    if (!this.query) {
       return;
     }
 
