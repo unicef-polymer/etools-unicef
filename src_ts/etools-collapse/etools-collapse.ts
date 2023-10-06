@@ -15,15 +15,15 @@ export class EtoolsCollapse extends LitElement {
    * Set opened to true to show the collapse element and to false to hide it.
    */
   @property({type: Boolean, reflect: true, attribute: 'opened'})
-  opened: boolean = false;
+  opened = false;
 
   /**
    * Set noAnimation to true to disable animations.
    */
   @property({type: Boolean, reflect: true, attribute: 'no-animation'})
-  noAnimation: boolean = false;
+  noAnimation = false;
 
-  private _desiredSize: string = '';
+  private _desiredSize = '';
   private _timeout?: any;
 
   render() {

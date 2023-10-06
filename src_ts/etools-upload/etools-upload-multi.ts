@@ -1,11 +1,9 @@
-import {html, LitElement, property} from 'lit-element';
-import '@polymer/paper-button/paper-button.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/paper-input/paper-input-container.js';
-import '@polymer/paper-input/paper-input-error.js';
-import '@polymer/paper-progress/paper-progress.js';
+import {html, LitElement, property, customElement} from 'lit-element';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
+import '../etools-icons/etools-icon';
 import {CommonStyles} from './common-styles';
+
 import {CommonMixin} from './common-mixin';
 import {RequestHelperMulti} from './request-helper-multi';
 import {getBlob, getFileUrl} from './offline/file-conversion';
@@ -14,6 +12,7 @@ import {abortActiveRequests, getActiveXhrRequests} from '@unicef-polymer/etools-
 import {OfflineMixin} from './offline/offline-mixin';
 import {getTranslation} from './utils/translate';
 
+@customElement('etools-upload-multi')
 export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMixin(LitElement))) {
   @property({type: String, reflect: true, attribute: 'upload-btn-label'})
   uploadBtnLabel?: string;
@@ -67,9 +66,13 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMix
           flex-wrap: nowrap;
           width: 180px;
         }
-        paper-progress {
-          --paper-progress-active-color: var(--primary-color);
+        sl-progress-bar {
+          --indicator-color: var(--primary-color);
+          --height: 4px;
           width: 100%;
+        }
+        sl-progress-bar::part(base) {
+          border-radius: unset;
         }
         .progress-container span {
           font-size: 11px;
@@ -79,26 +82,30 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMix
 
       <div>
         <div class="upload-btn-and-actions">
-          <paper-button
+          <sl-button
+            variant="text"
+            size="small"
             class="upload-button"
-            @tap="${this._openFileChooser}"
+            @click="${this._openFileChooser}"
             title="${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILES')}"
             ?disabled="${this._shouldDisableUploadBtn(this.readonly, this.uploadInProgress)}"
           >
-            <iron-icon icon="file-upload"></iron-icon>
+            <etools-icon name="file-upload"></etools-icon>
             ${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILES')}
-          </paper-button>
+          </sl-button>
 
           <div class="file-actions">
-            <paper-button
+            <sl-button
+              variant="text"
+              size="small"
               class="delete-button"
-              @tap="${this._cancelUpload}"
+              @click="${this._cancelUpload}"
               ?disabled="${!this.uploadInProgress}"
               ?hidden="${!this.uploadInProgress}"
             >
-              <iron-icon icon="clear"></iron-icon>
+              <etools-icon name="clear"></etools-icon>
               ${getTranslation(this.language, 'CANCEL')}
-            </paper-button>
+            </sl-button>
           </div>
         </div>
 
@@ -107,22 +114,22 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMix
             (item) => html`
               <div class="filename-line">
                 <div class="filename-container">
-                  <iron-icon class="file-icon" icon="attachment"></iron-icon>
+                  <etools-icon class="file-icon" name="attachment"></etools-icon>
                   <span class="filename" title="${item.filename}">${item.filename}</span>
 
-                  <iron-icon
+                  <etools-icon
                     title="${getTranslation(this.language, 'UPLOADED_SUCCESSFULY')}"
-                    icon="done"
+                    name="done"
                     ?hidden="${!item.success}"
-                  ></iron-icon>
-                  <iron-icon title="${getTranslation(this.language, 'UPLOAD_FAILED')}"
-                  ?hidden="${!item.fail}"}"></iron-icon>
+                  ></etools-icon>
+                  <etools-icon name="${getTranslation(this.language, 'UPLOAD_FAILED')}"
+                  ?hidden="${!item.fail}"}"></etools-icon>
                 </div>
                 ${
                   item.uploadProgressValue
                     ? html`
                         <div class="progress-container">
-                          <paper-progress .value="${item.uploadProgressValue}"></paper-progress>
+                          <sl-progress-bar .value="${item.uploadProgressValue}"></sl-progress-bar>
                           <span>${item.uploadProgressMsg}</span>
                           <div></div>
                         </div>

@@ -19,7 +19,7 @@ export class CalendarLite extends LitElement {
   private days_names: string[] = [];
   private _mainContent: any;
   private months_names: any;
-  private current_page: string = '';
+  private current_page = '';
   private tmpObject: any = null;
   private multiple: string[] = [];
   private _animationEvent: any;

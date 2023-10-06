@@ -315,10 +315,7 @@ export class TimeInput extends LitElement {
 
   constructor() {
     super();
-    this.initializeProperties();
   }
-
-  initializeProperties() {}
 
   _valueChanged(newValue) {
     if (!newValue) {

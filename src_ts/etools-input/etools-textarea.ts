@@ -42,6 +42,9 @@ export class EtoolsTextarea extends LitElement {
   @property({type: Number})
   rows = 1;
 
+  @property({type: Number, reflect: true, attribute: 'max-rows'})
+  maxRows: number | undefined;
+
   @property({type: Number})
   maxlength!: number;
 
@@ -135,6 +138,7 @@ export class EtoolsTextarea extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.setMaxHeight();
   }
 
   getInfoIconTemplate() {
@@ -156,6 +160,27 @@ export class EtoolsTextarea extends LitElement {
       this.charCount = this.value ? this.value.length : 0;
       if (this._autoValidate) {
         setTimeout(() => this.validate());
+      }
+    }
+
+    if (_changedProperties.has('maxRows')) {
+      this.setMaxHeight();
+    }
+  }
+
+  setMaxHeight() {
+    if (this.maxRows) {
+      const textarea = this.slTextarea?.shadowRoot?.querySelector('textarea');
+      if (textarea) {
+        const computedStyle = window.getComputedStyle(textarea, null) || {};
+
+        const lineHeight: string = computedStyle.lineHeight || '';
+        const lineHeightPx: number = parseInt(lineHeight, 10);
+
+        if (lineHeightPx) {
+          const maxHeight: number = this.maxRows * lineHeightPx + 5;
+          textarea.style.maxHeight = `${maxHeight}px`;
+        }
       }
     }
   }

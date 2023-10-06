@@ -1,11 +1,7 @@
-import {LitElement, html, property} from 'lit-element';
-import '@polymer/paper-button/paper-button.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/paper-input/paper-input-container.js';
-import '@polymer/paper-input/paper-input-error.js';
-import '@polymer/paper-spinner/paper-spinner.js';
-import '@polymer/paper-progress/paper-progress.js';
+import {LitElement, html, property, customElement} from 'lit-element';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
+import '../etools-icons/etools-icon';
 import {CommonStyles} from './common-styles';
 
 import {CommonMixin} from './common-mixin';
@@ -16,17 +12,12 @@ import {getBlob, getFileUrl} from './offline/file-conversion';
 import {storeFileInDexie} from './offline/dexie-operations';
 import {getTranslation} from './utils/translate';
 
-/**
- * `etools-upload`
- * Use to upload files
- *
- * @customElement
- * @polymer
- * @demo demo/index.html
- */
+@customElement('etools-upload')
 export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(LitElement))) {
   @property({type: String, reflect: true, attribute: 'upload-btn-label'})
   uploadBtnLabel?: string | null | undefined;
+  @property({type: Boolean, attribute: 'no-label-float'})
+  noLabelFloat: boolean | undefined;
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel?: boolean | null | undefined;
   @property({type: String, reflect: true, attribute: 'file-url'})
@@ -65,6 +56,58 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
     return html`
       ${CommonStyles}
       <style>
+        :host {
+          display: block;
+          padding: 8px 0;
+          --sl-input-required-content-offset: 3px;
+          --sl-input-required-content-color: #ea4022;
+          --sl-input-label-font-size-medium: 12px;
+        }
+
+        .form-control .form-control__label {
+          display: none;
+          font-size: var(--sl-input-label-font-size-medium);
+        }
+        /* Label */
+        .form-control--has-label .form-control__label {
+          display: block;
+          color: var(--secondary-text-color);
+          line-height: 18px;
+          font-size: 12px;
+        }
+
+        :host([required]) .form-control--has-label .form-control__label::after {
+          content: var(--sl-input-required-content);
+          margin-inline-start: var(--sl-input-required-content-offset);
+          color: var(--sl-input-required-content-color);
+        }
+        :host(:not([disabled]):not([readonly])) .invalid-message[visible] {
+          font-size: 12px;
+          visibility: visible;
+          height: 0;
+          overflow: visible;
+        }
+
+        .invalid-message {
+          visibility: hidden;
+          height: 0;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .input::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          display: block;
+          bottom: 0;
+          border-bottom: 1px solid var(--secondary-text-color);
+        }
+
+        :host([invalid]:not([disabled]):not([readonly])) .form-control__label,
+        :host([invalid]:not([disabled]):not([readonly])) .invalid-message {
+          color: red;
+        }
         #input-main-content {
           display: flex;
           flex-direction: row;
@@ -103,7 +146,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           border-bottom: 1px dashed var(--secondary-text-color, rgba(0, 0, 0, 0.54));
         }
 
-        .download-button {
+        .download-button::part(base) {
           justify-content: center;
           padding: 0 0;
           margin-inline-start: 8px;
@@ -126,9 +169,13 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           width: 100%;
         }
 
-        paper-progress {
-          --paper-progress-active-color: var(--primary-color);
+        sl-progress-bar {
+          --indicator-color: var(--primary-color);
+          --height: 4px;
           width: 100%;
+        }
+        sl-progress-bar::part(base) {
+          border-radius: unset;
         }
 
         .progress-container span {
@@ -140,11 +187,11 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           margin-inline-end: 8px;
         }
 
-        .change-button {
+        .change-button::part(base) {
           color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
         }
 
-        .file-actions paper-button {
+        .file-actions sl-button {
           vertical-align: middle;
         }
 
@@ -152,41 +199,49 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           justify-content: flex-start;
         }
       </style>
-      <paper-input-container
-        ?always-float-label="${this._showLabel(this.label)}"
-        ?no-label-float="${!this._showLabel(this.label)}"
-        ?disabled="${this.disabled}"
-        ?invalid="${this.invalid}"
+      <div
+        part="form-control"
+        class=${this.customClassMap({
+          'form-control': true,
+          'form-control--has-label': !this.noLabelFloat
+        })}
       >
-        <label slot="label" id="element-label" ?hidden="${!this._showLabel(this.label)}" aria-hidden="true">
-          test ${this.label}</label
+        <label
+          id="label"
+          part="form-control-label"
+          class="form-control__label"
+          aria-hidden=${!this._showLabel(this.label) ? 'false' : 'true'}
         >
+          ${this.label}
+        </label>
 
         <div slot="input">
-          <paper-button
+          <sl-button
+            variant="text"
+            size="small"
             class="upload-button"
-            @tap="${this._openFileChooser}"
+            @click="${this._openFileChooser}"
             title="${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILE')}"
             ?disabled="${this.readonly}"
             ?hidden="${this._thereIsAFileSelectedOrSaved(this._filename)}"
           >
             <span ?hidden="${this.readonly}">
-              <iron-icon icon="file-upload"></iron-icon>
+              <etools-icon name="file-upload"></etools-icon>
               ${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILE')}
             </span>
             <label ?hidden="${!this.readonly}">—</label>
-          </paper-button>
+          </sl-button>
 
           <div class="filename-and-actions-container">
             <div class="filename-container" ?hidden="${!this._thereIsAFileSelectedOrSaved(this._filename)}">
               <div class="filename-row">
-                <iron-icon class="file-icon" icon="attachment"></iron-icon>
+                <etools-icon class="file-icon" name="attachment"></etools-icon>
                 <span class="filename" title="${this._filename}">${this._filename}</span>
               </div>
               ${this.uploadProgressValue
                 ? html`
                     <div class="progress-container">
-                      <paper-progress .value="${this.uploadProgressValue}"></paper-progress>
+                      <sl-progress-bar .value="${this.uploadProgressValue}"></sl-progress-bar>
                       <span>${this.uploadProgressMsg}</span>
                       <div></div>
                     </div>
@@ -194,39 +249,45 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
                 : ''}
             </div>
             <div class="upload-status">
-              <iron-icon
+              <etools-icon
                 title="${getTranslation(this.language, 'UPLOADED_SUCCESSFULY')}"
-                icon="done"
+                name="done"
                 ?hidden="${!this.success}"
-              ></iron-icon>
-              <iron-icon icon="error-outline" ?hidden="${!this.fail}"></iron-icon>
+              ></etools-icon>
+              <etools-icon name="error-outline" ?hidden="${!this.fail}"></etools-icon>
             </div>
 
             <!-- File actions -->
             <div class="file-actions">
-              <paper-button
-                class="download-button"
-                @tap="${this._downloadFile}"
+              <sl-button
+                variant="text"
+                class="download-button primary-btn"
+                size="small"
+                @click="${this._downloadFile}"
                 ?disabled="${!this._showDownloadBtn(this.fileUrl)}"
                 ?hidden="${!this._showDownloadBtn(this.fileUrl)}"
                 title="${getTranslation(this.language, 'DOWNLOAD')}"
               >
-                <iron-icon icon="cloud-download" class="dw-icon"></iron-icon>
+                <etools-icon name="cloud-download" class="dw-icon"></etools-icon>
                 ${getTranslation(this.language, 'DOWNLOAD')}
-              </paper-button>
+              </sl-button>
 
-              <paper-button
+              <sl-button
+                variant="text"
+                size="small"
                 class="change-button"
-                @tap="${this._changeFile}"
+                @click="${this._changeFile}"
                 ?disabled="${!this._showChange(this.readonly, this._filename, this.uploadInProgress)}"
                 ?hidden="${!this._showChange(this.readonly, this._filename, this.uploadInProgress)}"
               >
                 ${getTranslation(this.language, 'CHANGE')}
-              </paper-button>
+              </sl-button>
 
-              <paper-button
+              <sl-button
+                variant="text"
+                size="small"
                 class="delete-button"
-                @tap="${this._deleteFile}"
+                @click="${this._deleteFile}"
                 ?disabled="${this.readonly}"
                 ?hidden="${!this._showDeleteBtn(
                   this.readonly,
@@ -236,16 +297,18 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
                 )}"
               >
                 ${getTranslation(this.language, 'DELETE')}
-              </paper-button>
+              </sl-button>
 
-              <paper-button
+              <sl-button
+                variant="text"
+                size="small"
                 class="delete-button"
-                @tap="${this._cancelUpload}"
+                @click="${this._cancelUpload}"
                 ?disabled="${!this._showCancelBtn(this.uploadInProgress, this.fileUrl, this.fail)}"
                 ?hidden="${!this._showCancelBtn(this.uploadInProgress, this.fileUrl, this.fail)}"
               >
                 ${getTranslation(this.language, 'CANCEL')}
-              </paper-button>
+              </sl-button>
             </div>
             <!-- ------------------ -->
           </div>
@@ -256,10 +319,10 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           <a id="downloader" hidden=""></a>
         </div>
 
-        ${this.invalid
-          ? html`<paper-input-error aria-live="assertive" slot="add-on">${this.errorMessage}</paper-input-error>`
-          : ''}
-      </paper-input-container>
+        <div part="invalid-message" class="invalid-message" ?visible=${this.invalid && this.errorMessage}>
+          ${this.errorMessage}
+        </div>
+      </div>
     `;
   }
 
@@ -631,5 +694,10 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
   'filename.with.many.dots.ext'	=> 'ext'*/
   _getFileExtension(fileName) {
     return fileName.slice(((fileName.lastIndexOf('.') - 1) >>> 0) + 2);
+  }
+  customClassMap(classes) {
+    return Object.keys(classes)
+      .filter((className) => classes[className])
+      .join(' ');
   }
 }

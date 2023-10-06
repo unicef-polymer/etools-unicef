@@ -1,5 +1,5 @@
 import {getTranslation} from './utils/translate';
-import {property} from 'lit-element';
+import {property} from 'lit/decorators.js';
 import {Constructor} from '@unicef-polymer/etools-types';
 
 export function CommonMixin<T extends Constructor<any>>(baseClass: T) {
@@ -18,7 +18,7 @@ export function CommonMixin<T extends Constructor<any>>(baseClass: T) {
     autoUpload = true;
     @property({type: Boolean, reflect: true})
     disabled = false;
-    @property({type: Boolean, reflect: true})
+    @property({type: Boolean, attribute: 'invalid', reflect: true})
     _invalid = false;
     @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
     autoValidate = false;

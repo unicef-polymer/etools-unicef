@@ -4,47 +4,37 @@ export const CommonStyles = html` <style>
     display: none !important;
   }
 
-  :host {
-    display: block;
-    width: 100%;
-    --paper-input-container-underline: {
-      display: none;
-    }
-    --paper-input-container-underline-focus: {
-      display: none;
-    }
-    --paper-input-container-underline-disabled: {
-      display: none;
-    }
-  }
-
-  :host {
-    --paper-input-container-underline_-_display: none;
-    --paper-input-container-underline-focus_-_display: none;
-    --paper-input-container-underline-disabled_-_display: none;
-  }
-
-  paper-button {
+  sl-button::part(base) {
+    text-transform: uppercase;
     font-weight: 700;
+    font-size: 16px;
     margin: 0 0;
-    padding: 0 0;
+    padding: 0 0 !important;
   }
-
+  sl-button.change-button::part(label),
+  sl-button.delete-button::part(label) {
+    padding-inline-start: 5px;
+    padding-inline-end: 5px;
+  }
+  sl-button::part(label) {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
   #uploadingSpinner {
     width: 18px;
     height: 18px;
   }
 
-  iron-icon[icon='done'] {
+  etools-icon[name='done'] {
     color: var(--etools-upload-success-color, #72c300);
   }
 
-  iron-icon[icon='error-outline'],
+  etools-icon[name='error-outline'],
   .delete-button {
     color: var(--etools-upload-danger-color, #ea4022);
   }
 
-  .delete-button {
+  .delete-button::part(base) {
     color: #f1572a;
   }
 
@@ -53,7 +43,7 @@ export const CommonStyles = html` <style>
     margin-inline-end: 8px;
   }
 
-  paper-button:focus {
+  sl-button:focus {
     outline: 0;
     box-shadow: 0 0 5px 5px rgba(170, 165, 165, 0.2);
     background-color: rgba(170, 165, 165, 0.2);
@@ -68,11 +58,11 @@ export const CommonStyles = html` <style>
     opacity: 0.33;
   }
 
-  .upload-button iron-icon {
+  .upload-button etools-icon {
     margin-inline-end: 8px;
   }
 
-  iron-icon {
+  etools-icon {
     min-width: 22px;
     min-height: 22px;
   }

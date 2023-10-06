@@ -24,10 +24,10 @@ export class EtoolsProfileDropdown extends LitElement {
   private userProfileDialog!: any;
 
   @property({type: Boolean, reflect: true})
-  opened: boolean = false;
+  opened = false;
 
   @property({type: Boolean, reflect: true})
-  readonly: boolean = true;
+  readonly = true;
   /**
    *
    * Expected structure of array elements :
@@ -84,13 +84,13 @@ export class EtoolsProfileDropdown extends LitElement {
   }
 
   @property({type: Boolean, attribute: 'show-email', reflect: true})
-  showEmail: boolean = false;
+  showEmail = false;
 
   @property({type: Boolean, attribute: 'hide-available-workspaces', reflect: true})
-  hideAvailableWorkspaces: boolean = false;
+  hideAvailableWorkspaces = false;
 
   @property({type: Boolean})
-  _loadingProfileMsgActive: boolean = false;
+  _loadingProfileMsgActive = false;
 
   @property({type: String})
   language: string = window.EtoolsLanguage || 'en';
