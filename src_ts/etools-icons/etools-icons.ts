@@ -24,7 +24,13 @@ export const initializeIcons = async (
 ) => {
   const iconSets = await Promise.all(
     iconSetsToLoad.map(async (iconSet) => ({
-      [iconSet]: (await import(`./icons/${iconSet}-icons.js`))?.default
+      [iconSet]: (
+        await import(
+          import.meta && import.meta.url
+            ? new URL(`icons/${iconSet}-icons.js`, import.meta.url).toString()
+            : `./icons/${iconSet}-icons.js`
+        )
+      )?.default
     }))
   );
 
