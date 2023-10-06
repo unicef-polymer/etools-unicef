@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import {html, TemplateResult} from 'lit-element';
+import {html, TemplateResult} from 'lit';
 
 export const dashIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="dashIcon">

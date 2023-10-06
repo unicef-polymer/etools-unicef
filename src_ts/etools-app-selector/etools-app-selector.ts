@@ -1,4 +1,5 @@
-import {LitElement, html, customElement, property, css, CSSResult} from 'lit-element';
+import {LitElement, html, css, CSSResult} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {
   adminIcon,
   apdIcon,

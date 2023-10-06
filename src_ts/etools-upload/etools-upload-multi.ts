@@ -1,4 +1,5 @@
-import {html, LitElement, property, customElement} from 'lit-element';
+import {html, LitElement} from 'lit';
+import {property, customElement} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import '../etools-icons/etools-icon';
@@ -154,10 +155,6 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMix
         <a id="downloader" hidden=""></a>
       </div>
     `;
-  }
-
-  static get is() {
-    return 'etools-upload-multi';
   }
 
   constructor() {
