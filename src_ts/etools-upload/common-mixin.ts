@@ -1,6 +1,6 @@
 import {getTranslation} from './utils/translate';
 import {property} from 'lit/decorators.js';
-import {Constructor} from '@unicef-polymer/etools-types';
+import {Constructor} from '../utils/types';
 
 export function CommonMixin<T extends Constructor<any>>(baseClass: T) {
   class CommonClass extends baseClass {

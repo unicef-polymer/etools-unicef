@@ -1,5 +1,5 @@
 import {upload} from '@unicef-polymer/etools-ajax/upload-helper';
-import {Constructor} from '@unicef-polymer/etools-types';
+import {Constructor} from '../utils/types';
 import {property} from 'lit/decorators.js';
 
 export function RequestHelperMixin<T extends Constructor<any>>(baseClass: T) {

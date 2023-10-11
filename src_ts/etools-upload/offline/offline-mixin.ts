@@ -1,7 +1,7 @@
 import {createAttachmentsDexie} from './dexie-config';
 import {generateRandomHash} from './dexie-operations';
 import {property} from 'lit/decorators.js';
-import {Constructor} from '@unicef-polymer/etools-types';
+import {Constructor} from '../utils/types';
 
 /**
  * App menu functionality mixin

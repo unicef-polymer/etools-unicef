@@ -1,5 +1,5 @@
 import {RequestHelperMixin} from './request-helper-mixin';
-import {Constructor} from '@unicef-polymer/etools-types';
+import {Constructor} from '../utils/types';
 import {property} from 'lit/decorators.js';
 
 export function RequestHelperMulti<T extends Constructor<any>>(baseClass: T) {
