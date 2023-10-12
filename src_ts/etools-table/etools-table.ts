@@ -19,7 +19,7 @@ export type EtoolsTableColumn = {
   label?: string;
   name?: string;
   type?: string;
-  sort?: string;
+  sort?: string | boolean;
   link_tmpl?: string;
   isExternalLink?: string;
   capitalize?: boolean;
@@ -108,23 +108,14 @@ export class EtoolsTable extends LitElement {
   @property({type: Object})
   extraCSS: any = css``;
 
-  @property({type: Boolean})
+  @property({type: Boolean, reflect: true, attribute: 'singlesort'})
   singleSort = false;
 
   render() {
     this.showChildRows = !!this.getChildRowTemplateMethod;
     return html`
       <style>
-        ${this
-          .extraCSS}
-        /*
-         * Do not use transparent colors here, it will make the chk border darker.
-         * rgba(117, 117, 117) is the equivalent of --secondary-text-color
-         */
-        paper-checkbox[readonly] {
-          --paper-checkbox-checked-color: rgba(117, 117, 117);
-        }
-        table td {
+        ${this.extraCSS} table td {
           line-height: 24px;
         }
       </style>
@@ -156,7 +147,7 @@ export class EtoolsTable extends LitElement {
 
   getColumnHtmlWithSort(column: any) {
     return html`
-      <th class="${this.getColumnClassList(column)}" @tap="${() => this.toggleAndSortBy(column)}">
+      <th class="${this.getColumnClassList(column)}" @click="${() => this.toggleAndSortBy(column)}">
         ${column.label}
         ${this.columnHasSort(column.sort)
           ? html`<etools-icon name="${this.getSortIcon(column.sort)}"> </etools-icon>`

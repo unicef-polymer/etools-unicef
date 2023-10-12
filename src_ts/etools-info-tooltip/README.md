@@ -50,10 +50,6 @@ You can use `paper-tooltip` and element variables and mixins to change tooltip s
 
 | Custom property                             | Description                                          | Default                                         |
 | ------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- |
-| `--paper-tooltip-background`                | Tooltip background                                   | `#ffffff`                                       |
-| `--paper-tooltip-opacity`                   | Tooltip opacity                                      | `1`                                             |
-| `--paper-tooltip-text-color`                | Tooltip text color                                   | `var(--primary-text-color, rgba(0, 0, 0, 0.87)` |
-| `--paper-tooltip`                           | Tooltip mixin                                        | `{}`                                            |
 | (Deprecated)`--etools-tooltip-trigger-icon` | Mixin applied to the icon that triggers tooltip open | `{}`                                            |
 | `--tooltip-box-style`                       | Mixin                                                |                                                 |
 | `--light-tooltip-style`                     | Mixin                                                |                                                 |

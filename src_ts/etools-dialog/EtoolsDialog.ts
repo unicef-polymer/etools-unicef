@@ -152,7 +152,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           border-top: none;
           margin-top: -15px;
           margin-bottom: 10px;
-          @apply --etools-dialog-confirmation-content;
         }
 
         :host([padded-content]) sl-dialog::part(body) {

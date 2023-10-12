@@ -125,7 +125,6 @@ export class EtoolsContentPanel extends LitElement {
         :host([disabled]) .panel-header,
         :host([disabled]) ::slotted(*) {
           opacity: 0.5;
-          @apply --ecp-disabled;
         }
 
         :host([disabled]) ::slotted(*) {

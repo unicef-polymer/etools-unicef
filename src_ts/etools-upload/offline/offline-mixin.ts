@@ -1,7 +1,7 @@
 import {createAttachmentsDexie} from './dexie-config';
 import {generateRandomHash} from './dexie-operations';
 import {property} from 'lit/decorators.js';
-import {Constructor} from '../utils/types';
+import {Constructor} from '../../utils/types';
 
 /**
  * App menu functionality mixin
@@ -15,6 +15,7 @@ export function OfflineMixin<T extends Constructor<any>>(baseClass: T) {
     constructor(...args) {
       super(...args);
     }
+
     connectedCallback() {
       super.connectedCallback();
       if (this.activateOffline) {
