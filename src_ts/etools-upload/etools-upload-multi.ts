@@ -6,15 +6,15 @@ import '../etools-icons/etools-icon';
 import {CommonStyles} from './common-styles';
 
 import {CommonMixin} from './common-mixin';
-import {RequestHelperMulti} from './request-helper-multi';
 import {getBlob, getFileUrl} from './offline/file-conversion';
 import {storeFileInDexie} from './offline/dexie-operations';
 import {abortActiveRequests, getActiveXhrRequests} from '@unicef-polymer/etools-ajax/upload-helper';
 import {OfflineMixin} from './offline/offline-mixin';
 import {getTranslation} from './utils/translate';
+import {RequestHelperMixin} from './request-helper-mixin';
 
 @customElement('etools-upload-multi')
-export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMixin(LitElement))) {
+export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMixin(CommonMixin(LitElement))) {
   @property({type: String, reflect: true, attribute: 'upload-btn-label'})
   uploadBtnLabel?: string;
   @property({type: Array, reflect: true, attribute: 'raw-files'})
@@ -123,20 +123,20 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMulti(CommonMix
                     name="done"
                     ?hidden="${!item.success}"
                   ></etools-icon>
-                  <etools-icon name="${getTranslation(this.language, 'UPLOAD_FAILED')}"
-                  ?hidden="${!item.fail}"}"></etools-icon>
+                  <etools-icon
+                    name="${getTranslation(this.language, 'UPLOAD_FAILED')}"
+                    ?hidden="${!item.fail}"
+                  ></etools-icon>
                 </div>
-                ${
-                  item.uploadProgressValue
-                    ? html`
-                        <div class="progress-container">
-                          <sl-progress-bar .value="${item.uploadProgressValue}"></sl-progress-bar>
-                          <span>${item.uploadProgressMsg}</span>
-                          <div></div>
-                        </div>
-                      `
-                    : ''
-                }
+                ${item.uploadProgressValue
+                  ? html`
+                      <div class="progress-container">
+                        <sl-progress-bar .value="${item.uploadProgressValue}"></sl-progress-bar>
+                        <span>${item.uploadProgressMsg}</span>
+                        <div></div>
+                      </div>
+                    `
+                  : ''}
               </div>
             `
           )}

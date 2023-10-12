@@ -106,14 +106,6 @@ export class EtoolsUserProfileDialog extends LitElement {
           display: none !important;
         }
 
-        :host {
-          --paper-dialog-scrollable: {
-            width: 100%;
-            overflow-x: hidden;
-            max-height: 600px;
-          }
-        }
-
         .paper-label {
           font-size: 12px;
           color: var(--secondary-text-color);

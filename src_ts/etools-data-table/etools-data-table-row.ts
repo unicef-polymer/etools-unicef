@@ -35,9 +35,6 @@ export class EtoolsDataTableRow extends LitElement {
         }
 
         :host {
-          --row-width: {
-            width: calc(100% - 96px);
-          }
           display: block;
         }
 
@@ -47,14 +44,10 @@ export class EtoolsDataTableRow extends LitElement {
 
         :host([secondary-bg-on-hover]) div#wrapper:hover {
           background-color: var(--list-second-bg-color, #eeeeee);
-          /*@apply --hover-setting;*/
-          /* the above mixin is replaced by etools-data-table-row::part(edt-list-row-wrapper):hover */
         }
 
         div#wrapper:hover {
           background-color: var(--list-second-bg-color, #eeeeee);
-          /*@apply --hover-setting;*/
-          /* the above mixin is replaced by etools-data-table-row::part(edt-list-row-wrapper):hover */
         }
 
         div#wrapper {
@@ -69,7 +62,7 @@ export class EtoolsDataTableRow extends LitElement {
 
         :host div#wrapper ::slotted([slot='row-data']) {
           text-overflow: ellipsis;
-          @apply --row-width;
+          width: calc(100% - 96px);
         }
 
         :host([no-collapse]) div#wrapper ::slotted([slot='row-data']) {
@@ -124,7 +117,7 @@ export class EtoolsDataTableRow extends LitElement {
 
         :host([no-collapse]) #wrapper {
           padding-inline: var(--list-row-wrapper-padding-inline, 24px);
-          @apply --list-row-no-collapse;
+          background-color: var(--list-row-no-collapse-bg-color, var(--list-bg-color, #ffffff));
         }
 
         /* Mobile view CSS */
