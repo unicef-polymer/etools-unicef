@@ -27,7 +27,7 @@ export const initializeIcons = async (
       [iconSet]: (
         await import(
           import.meta && import.meta.url
-            ? new URL(`icons/${iconSet}-icons.js`, import.meta.url).toString()
+            ? decodeURIComponent(new URL(`icons/${iconSet}-icons.js`, import.meta.url).toString())
             : `./icons/${iconSet}-icons.js`
         )
       )?.default
