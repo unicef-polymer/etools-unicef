@@ -166,11 +166,11 @@ export class AppDrawer extends LitElement {
   async setContainerTransition() {
     this.updateComplete.then(() => {
       setTimeout(() => {
-        if(this.contentContainer) {
+        if (this.contentContainer) {
           this.contentContainer.style.transitionDuration = this.transitionDuration + 'ms';
         }
       }, 1000);
-    })
+    });
   }
 
   open() {
