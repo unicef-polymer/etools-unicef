@@ -295,7 +295,7 @@ export class EtoolsFilters extends LitElement {
           </sl-button>
 
           <sl-menu @sl-select="${this.selectFilter}">
-            <sl-menu-item class="clear-all-filters" @tap="${this.clearAllFilters}">
+            <sl-menu-item class="clear-all-filters" @click="${this.clearAllFilters}">
               <sl-button variant="text" tabindex="-1"
                 >${this.textClearAll || getTranslation(this.language, 'CLEAR_ALL')}</sl-button
               >

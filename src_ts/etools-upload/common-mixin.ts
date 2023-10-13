@@ -55,6 +55,7 @@ export function CommonMixin<T extends Constructor<any>>(baseClass: T) {
     }
 
     // abstract method
+    // eslint-disable-next-line
     _invalidChanged() {}
 
     _showLabel(label) {

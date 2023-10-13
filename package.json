@@ -30,13 +30,13 @@
     "@a11y/focus-trap": "^1.0.5",
     "@open-wc/dedupe-mixin": "^1.4.0",
     "@shoelace-style/shoelace": "^2.5.2",
-    "@unicef-polymer/etools-types": ">=1.11.0",
-    "@unicef-polymer/etools-utils": ">=1.0.0",
+    "@unicef-polymer/etools-types": "1.11.16",
+    "@unicef-polymer/etools-utils": "^2.0.0-rc.2",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
     "@unicef-polymer/etools-types": ">=1.11.0",
-    "@unicef-polymer/etools-utils": ">=2.0.0"
+    "@unicef-polymer/etools-utils": ">=2.0.0",
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.7.0",

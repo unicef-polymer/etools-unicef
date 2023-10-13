@@ -5,6 +5,12 @@ import {UploadConfig} from './upload-helper';
 
 export function RequestHelperMixin<T extends Constructor<any>>(baseClass: T) {
   class RequestHelperClass extends baseClass {
+    @property({type: Boolean, reflect: true, attribute: 'endpoint-accepts-multi'})
+    endpointAcceptsMulti = false;
+
+    @property({type: Boolean, reflect: true, attribute: 'cancel-upload'})
+    cancelUpload = false;
+
     @property({type: String, reflect: true, attribute: 'upload-endpoint'})
     uploadEndpoint: string | null | undefined = null;
 
@@ -12,10 +18,12 @@ export function RequestHelperMixin<T extends Constructor<any>>(baseClass: T) {
     endpointInfo: object | null | undefined = null;
 
     @property({type: String, reflect: true, attribute: 'jwt-local-storage-key'})
-    jwtLocalStorageKey: string = '';
+    jwtLocalStorageKey = '';
+
     constructor(...args) {
       super(...args);
     }
+
     uploadRawFile(rawFile, requestKey, onProgressCallback) {
       const config = {
         endpointInfo: this.endpointInfo,

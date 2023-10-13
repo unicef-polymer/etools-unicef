@@ -45,9 +45,6 @@ export const etoolsFiltersStyles = css`
   }
 
   #filters .filter.date {
-    --paper-input-container: {
-      width: 182px;
-    }
     min-width: 180px;
   }
 
@@ -151,9 +148,7 @@ export const etoolsFiltersStyles = css`
     #filters .search {
       width: 100%;
     }
-    #filters .filter.date {
-      --paper-input-container_-_width: 100%;
-    }
+
     #filters-selector {
       border-inline-start: none;
       padding-inline-start: 8px;

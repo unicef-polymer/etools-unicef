@@ -15,6 +15,7 @@ export function OfflineMixin<T extends Constructor<any>>(baseClass: T) {
     constructor(...args) {
       super(...args);
     }
+
     connectedCallback() {
       super.connectedCallback();
       if (this.activateOffline) {

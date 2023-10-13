@@ -10,7 +10,7 @@ export const etoolsTableStyles = css`
   }
 
   a:focus {
-    border-bottom: 2px solid var(--paper-input-container-focus-color, var(--primary-color));
+    border-bottom: 2px solid var(--primary-color);
   }
 
   table {
@@ -26,7 +26,7 @@ export const etoolsTableStyles = css`
   table td,
   table th {
     padding: 0.75rem;
-    vertical-align: top;
+    vertical-align: middle;
     display: table-cell;
     text-align: start;
   }
