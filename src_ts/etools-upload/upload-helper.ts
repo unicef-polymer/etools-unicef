@@ -1,5 +1,5 @@
 import {deleteFileFromDexie, getFileFromDexieById} from './offline/dexie-operations';
-import {upload} from '@unicef-polymer/etools-ajax/upload-helper';
+import {upload} from '@unicef-polymer/etools-utils/dist/etools-ajax/upload-helper';
 
 export interface UploadConfig {
   endpointInfo?: {
@@ -7,7 +7,7 @@ export interface UploadConfig {
     extraInfo: any;
     rawFilePropertyName: string; // Defaults to 'file'
   };
-  uploadEndpoint?: string;
+  uploadEndpoint: string;
   jwtLocalStorageKey?: string;
 }
 export interface SequentialUploadFiles {

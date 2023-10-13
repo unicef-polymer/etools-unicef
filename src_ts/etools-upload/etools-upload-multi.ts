@@ -9,7 +9,7 @@ import {CommonMixin} from './common-mixin';
 import {RequestHelperMulti} from './request-helper-multi';
 import {getBlob, getFileUrl} from './offline/file-conversion';
 import {storeFileInDexie} from './offline/dexie-operations';
-import {abortActiveRequests, getActiveXhrRequests} from '@unicef-polymer/etools-ajax/upload-helper';
+import {abortActiveRequests, getActiveXhrRequests} from '@unicef-polymer/etools-utils/dist/etools-ajax/upload-helper';
 import {OfflineMixin} from './offline/offline-mixin';
 import {getTranslation} from './utils/translate';
 
