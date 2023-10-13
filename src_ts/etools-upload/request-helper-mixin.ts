@@ -1,6 +1,7 @@
-import {upload} from '@unicef-polymer/etools-ajax/upload-helper';
+import {upload} from '@unicef-polymer/etools-utils/dist/etools-ajax/upload-helper';
 import {Constructor} from '../utils/types';
 import {property} from 'lit/decorators.js';
+import {UploadConfig} from './upload-helper';
 
 export function RequestHelperMixin<T extends Constructor<any>>(baseClass: T) {
   class RequestHelperClass extends baseClass {
@@ -29,7 +30,7 @@ export function RequestHelperMixin<T extends Constructor<any>>(baseClass: T) {
         uploadEndpoint: this.uploadEndpoint,
         jwtLocalStorageKey: this.jwtLocalStorageKey
       };
-      return upload(config, rawFile, requestKey, onProgressCallback);
+      return upload(config as UploadConfig, rawFile, requestKey, onProgressCallback);
     }
   }
 
