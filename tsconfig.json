@@ -14,6 +14,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
+    "noEmitHelpers": true,
+    "importHelpers": true,
     "outDir": "src"
   },
   "include": ["src_ts/**/*.ts"]
