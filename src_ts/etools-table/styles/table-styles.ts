@@ -124,7 +124,7 @@ export const etoolsTableStyles = css`
     height: 100%;
     display: inline-flex;
     align-items: center;
-    --etools-icon-font-size: 18px;
+    --etools-icon-font-size: 24px;
   }
 
   tr:hover .row-actions .actions {
