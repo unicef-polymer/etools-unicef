@@ -1,10 +1,10 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "1.0.0-rc.25",
+  "version": "1.0.0-rc.26",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "scripts": {
-    "tsToJs": "tsc",
+    "tsToJs": "rm -rf src && tsc",
     "watch": "tsc --watch",
     "lint": "eslint ./src_ts/**/*.ts --ext ts",
     "format": "eslint --ext .ts ./src_ts/**/*.ts --fix --ignore-path .gitignore",
