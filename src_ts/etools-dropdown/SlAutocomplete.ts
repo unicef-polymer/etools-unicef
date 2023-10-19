@@ -289,7 +289,6 @@ export class SlAutocomplete extends LitElement {
       this.clearable && this.multiple && !this.disabled && !this.readonly && this.selectedValueCommaList.length > 0;
     const isPlaceholderVisible = this.placeholder && this.selectedValueCommaList.length === 0;
     // this.filteredOptions should be called only once otherwise it breaks pagination.
-    this.totalOptionsToShow = this.shownOptionsLimit;
     const options = this.filteredOptions?.slice(0, this.totalOptionsToShow);
 
     return html`
@@ -635,6 +634,9 @@ export class SlAutocomplete extends LitElement {
       if (this.selectedItems && !this.selectedItems.length) {
         this.removePreventDeselectListeners();
       }
+    }
+    if (changedProperties.has('shownOptionsLimit')) {
+      this.totalOptionsToShow = this.shownOptionsLimit;
     }
   }
 
