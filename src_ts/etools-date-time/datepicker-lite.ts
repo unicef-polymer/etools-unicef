@@ -286,6 +286,7 @@ export class DatePickerLite extends LitElement {
 
         :host(:not([readonly])) etools-icon {
           cursor: pointer;
+          --etools-icon-fill-color: var(--secondary-text-color);
         }
 
         etools-icon[slot='prefix'] {

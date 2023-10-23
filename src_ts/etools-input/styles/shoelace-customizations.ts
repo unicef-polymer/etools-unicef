@@ -128,6 +128,11 @@ export const ShoelaceCustomizations = css`
     border-color: var(--primary-color);
     border-bottom-width: 2px;
   }
+  :host(:not([readonly])) sl-input[required-placeholder]::part(suffix)::after {
+    content: var(--sl-input-required-content);
+    margin-inline-start: var(--sl-input-required-content-offset);
+    color: var(--sl-input-required-content-color);
+  }
 
   :host(:not([readonly])) sl-input[invalid]::part(form-control-input)::after,
   :host(:not([readonly])) sl-textarea[invalid]::part(form-control-input)::after {
