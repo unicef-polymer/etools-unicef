@@ -85,6 +85,10 @@ export const ShoelaceCustomizations = css`
     --sl-input-font-size-small: 16px;
   }
 
+  sl-input::part(prefix) {
+    margin-inline-end: 5px;
+  }
+
   :host([readonly]) sl-input,
   :host([readonly]) sl-textarea {
     --sl-input-border-width: 0;
