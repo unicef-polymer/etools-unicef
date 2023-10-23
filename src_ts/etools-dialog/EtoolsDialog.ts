@@ -143,6 +143,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           border-top: 1px solid var(--dark-divider-color);
         }
 
+        sl-dialog.default::part(footer) {
+          border-top: 1px solid var(--light-divider-color);
+        }
+
         sl-dialog.confirmation::part(body) {
           max-width: 90%;
           font-size: 20px;
