@@ -54,11 +54,6 @@ export class EtoolsCurrency extends EtoolsInputBase {
   render() {
     // language=HTML
     return html`
-      <style>
-        sl-input::part(prefix) {
-          margin-inline-end: 5px;
-        }
-      </style>
       <etools-input
         label="${this.label}"
         .value="${this.internalValue}"
