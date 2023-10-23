@@ -91,6 +91,10 @@ export const etoolsFiltersStyles = css`
     margin: 0;
   }
 
+  datepicker-lite::part(dp-etools-icon) {
+    color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
+  }
+
   #filterMenu .trigger-button::part(prefix) {
     font-size: 24px;
   }
