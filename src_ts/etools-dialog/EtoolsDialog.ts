@@ -82,7 +82,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         sl-button.confirm-btn {
           margin-inline-end: 5px;
         }
-
+        sl-button[hidden].confirm-btn {
+          display: none;
+        }
         sl-dialog.default sl-button.confirm-btn {
           min-width: 90px;
           --sl-color-primary-600: var(--etools-dialog-default-btn-bg, var(--primary-color));
@@ -255,7 +257,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   @property({type: Boolean, attribute: 'disable-dismiss-btn', reflect: true})
   disableDismissBtn!: boolean;
   @property({type: Boolean, attribute: 'hide-confirm-btn', reflect: true})
-  hideConfirmBtn!: boolean;
+  hideConfirmBtn = false;
   @property({type: String, reflect: true})
   theme!: string;
   @property({type: Boolean, attribute: 'no-auto-focus', reflect: true})
@@ -274,7 +276,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
   initializeProperties() {
     this.dialogTitle = '';
-    this.okBtnText = getTranslation(this.language, 'OK');
+    // this.okBtnText = getTranslation(this.language, 'OK');
+    this.okBtnText = 'test';
     this.cancelBtnText = getTranslation(this.language, 'CANCEL');
     this.size = 'sm';
     this.opened = false;
@@ -283,7 +286,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     this.noPadding = false;
     this.disableConfirmBtn = false;
     this.disableDismissBtn = false;
-    this.hideConfirmBtn = false;
     this.theme = 'default';
     this.noAutoFocus = false;
     this.showButtons = true;
@@ -353,7 +355,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             ?hidden="${this.hideConfirmBtn}"
             class="confirm-btn"
           >
-            ${this.okBtnText}
+            ${this.hideConfirmBtn}
           </sl-button>
         </div>`
       : html``;
