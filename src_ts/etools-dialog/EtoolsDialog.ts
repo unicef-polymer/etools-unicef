@@ -221,15 +221,15 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   }
 
   @property({type: String, attribute: 'dialog-title'})
-  dialogTitle!: string;
+  dialogTitle: string = '';
   @property({type: String, attribute: 'ok-btn-text'})
   okBtnText!: string;
   @property({type: String, attribute: 'cancel-btn-text'})
   cancelBtnText!: string;
   @property({type: String})
-  size!: string;
+  size: string = 'sm';
 
-  private _opened!: boolean;
+  private _opened: boolean = false;
   @property({type: Boolean, reflect: true})
   get opened() {
     return this._opened;
@@ -247,23 +247,23 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     }
   }
   @property({type: Boolean})
-  backdrop!: boolean;
+  backdrop: boolean = true;
   @property({type: Boolean})
-  modal!: boolean;
+  modal: boolean = true;
   @property({type: Boolean, attribute: 'no-padding', reflect: true})
-  noPadding!: boolean;
+  noPadding: boolean = false;
   @property({type: Boolean, attribute: 'disable-confirm-btn', reflect: true})
-  disableConfirmBtn!: boolean;
+  disableConfirmBtn: boolean = false;
   @property({type: Boolean, attribute: 'disable-dismiss-btn', reflect: true})
-  disableDismissBtn!: boolean;
+  disableDismissBtn: boolean = false;
   @property({type: Boolean, attribute: 'hide-confirm-btn', reflect: true})
   hideConfirmBtn = false;
   @property({type: String, reflect: true})
-  theme!: string;
+  theme: string = 'default';
   @property({type: Boolean, attribute: 'no-auto-focus', reflect: true})
-  noAutoFocus!: boolean;
+  noAutoFocus: boolean = false;
   @property({type: Boolean, attribute: 'show-buttons', reflect: true})
-  showButtons!: boolean;
+  showButtons: boolean = true;
   @property({type: String})
   language!: string;
   @query('#dialog')
@@ -275,20 +275,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   }
 
   initializeProperties() {
-    this.dialogTitle = '';
-    // this.okBtnText = getTranslation(this.language, 'OK');
-    this.okBtnText = 'test';
+    this.okBtnText = getTranslation(this.language, 'OK');
     this.cancelBtnText = getTranslation(this.language, 'CANCEL');
-    this.size = 'sm';
-    this.opened = false;
-    this.backdrop = true;
-    this.modal = true;
-    this.noPadding = false;
-    this.disableConfirmBtn = false;
-    this.disableDismissBtn = false;
-    this.theme = 'default';
-    this.noAutoFocus = false;
-    this.showButtons = true;
   }
 
   protected firstUpdated(_changedProperties: Map<string | number | symbol, unknown>): void {
