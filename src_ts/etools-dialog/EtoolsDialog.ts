@@ -343,7 +343,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             ?hidden="${this.hideConfirmBtn}"
             class="confirm-btn"
           >
-            ${this.hideConfirmBtn}
+            ${this.okBtnText}
           </sl-button>
         </div>`
       : html``;
