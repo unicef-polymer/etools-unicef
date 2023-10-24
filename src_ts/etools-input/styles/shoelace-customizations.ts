@@ -85,6 +85,10 @@ export const ShoelaceCustomizations = css`
     --sl-input-font-size-small: 16px;
   }
 
+  sl-input::part(prefix) {
+    margin-inline-end: 5px;
+  }
+
   :host([readonly]) sl-input,
   :host([readonly]) sl-textarea {
     --sl-input-border-width: 0;
@@ -127,6 +131,11 @@ export const ShoelaceCustomizations = css`
   :host(:not([readonly])) sl-textarea:focus::part(form-control-input)::after {
     border-color: var(--primary-color);
     border-bottom-width: 2px;
+  }
+  :host(:not([readonly])) sl-input[required-placeholder]::part(suffix)::after {
+    content: var(--sl-input-required-content);
+    margin-inline-start: var(--sl-input-required-content-offset);
+    color: var(--sl-input-required-content-color);
   }
 
   :host(:not([readonly])) sl-input[invalid]::part(form-control-input)::after,

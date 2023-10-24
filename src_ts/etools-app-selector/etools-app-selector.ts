@@ -134,7 +134,7 @@ export class AppSelector extends LitElement {
 
     svg #adminIcon path.option,
     svg #externalIcon path.option {
-      fill: var(--light-theme-secondary-color, #cccccc);
+      fill: var(--dark-icon-color, #cccccc);
     }
 
     #externalIcon {

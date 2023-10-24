@@ -1,5 +1,5 @@
 // import {styleMap} from 'lit/directives/style-map.js';
-import {LitElement, html, PropertyValues} from 'lit';
+import {html, LitElement, PropertyValues} from 'lit';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
@@ -17,6 +17,7 @@ import {classMap} from 'lit/directives/class-map.js';
 import {property, query, state} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate';
 import {callClickOnEnterPushListener} from '@unicef-polymer/etools-utils/dist/accessibility.util';
+
 /**
  * @summary Advanced dropdown capable of searching and filtering options,
  * get data dynamically, scroll by key typing etc.
@@ -240,7 +241,6 @@ export class SlAutocomplete extends LitElement {
       this.addOpenListeners();
       this.enableInfiniteScroll();
       this.shadowRoot?.querySelector('sl-menu')!.addEventListener('keydown', this.handleKeyDown);
-
       const parentDialog = this.getParentDialog();
       if (parentDialog) {
         if (!this.boundary) {
@@ -252,7 +252,12 @@ export class SlAutocomplete extends LitElement {
         if (!this.hideSearch) {
           this.searchInput.focus({preventScroll: true});
         } else {
-          this.shadowRoot?.querySelector('sl-menu-item')?.focus({preventScroll: true});
+          const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
+          if (selItem && !this.multiple) {
+            selItem!.focus();
+          } else {
+            this.shadowRoot?.querySelector('sl-menu-item')?.focus({preventScroll: true});
+          }
         }
       }, 0);
     }
@@ -279,7 +284,7 @@ export class SlAutocomplete extends LitElement {
   private previousSelMenuItemElem?: SlMenuItem;
 
   render() {
-    const hasHelpText = this.helpText ? true : false;
+    const hasHelpText = !!this.helpText;
     const hasClearIcon =
       this.clearable && this.multiple && !this.disabled && !this.readonly && this.selectedValueCommaList.length > 0;
     const isPlaceholderVisible = this.placeholder && this.selectedValueCommaList.length === 0;
@@ -557,7 +562,6 @@ export class SlAutocomplete extends LitElement {
   constructor() {
     super();
 
-    this.totalOptionsToShow = this.shownOptionsLimit;
     if (!this.language) {
       this.language = (window as any).EtoolsLanguage || 'en';
     }
@@ -631,6 +635,9 @@ export class SlAutocomplete extends LitElement {
       if (this.selectedItems && !this.selectedItems.length) {
         this.removePreventDeselectListeners();
       }
+    }
+    if (changedProperties.has('shownOptionsLimit')) {
+      this.totalOptionsToShow = this.shownOptionsLimit;
     }
   }
 
@@ -1138,7 +1145,6 @@ export class SlAutocomplete extends LitElement {
     if (typeof this.loadDataMethod !== 'function' && this.options.length < this.totalOptionsToShow) {
       this.noMoreItemsToLoad = true;
     }
-
     this.totalOptionsToShow += this.shownOptionsLimit;
   }
 

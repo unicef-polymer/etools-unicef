@@ -9,6 +9,9 @@ export class EtoolsInputBase extends LitElement {
   @property({type: String, reflect: true, attribute: 'placeholder'})
   placeholder!: string;
 
+  @property({type: Boolean, reflect: true, attribute: 'required-placeholder'})
+  requiredPlaceholder = false;
+
   @property({type: Boolean, reflect: true, attribute: 'no-label-float'})
   noLabelFloat = false;
 
