@@ -836,7 +836,7 @@ export class SlAutocomplete extends LitElement {
     }
 
     if (this.search) {
-      return this.options.filter(this.itemContainsSearchString.bind(this)) || [];
+      return this.options?.filter(this.itemContainsSearchString.bind(this)) || [];
     }
 
     return this.options || [];
