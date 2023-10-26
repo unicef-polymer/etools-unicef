@@ -105,6 +105,7 @@ export class EtoolsFilters extends LitElement {
         class="filter search"
         ?hidden="${!f.selected}"
         type="search"
+        clearable
         autocomplete="off"
         always-float-label
         .value="${f.selectedValue}"
