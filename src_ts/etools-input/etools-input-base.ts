@@ -48,14 +48,14 @@ export class EtoolsInputBase extends LitElement {
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel = false;
 
-  @property({type: Number, reflect: true, attribute: 'min'})
-  min: number | string = '';
+  @property({type: Number, attribute: 'min'})
+  min: number | string | undefined;
 
-  @property({type: Number, reflect: true, attribute: 'max'})
-  max: number | string = '';
+  @property({type: Number, attribute: 'max'})
+  max: number | string | undefined;
 
-  @property({type: Number, reflect: true, attribute: 'step'})
-  step: number | 'any' = 'any';
+  @property({type: Number, attribute: 'step'})
+  step: number | 'any' | undefined;
 
   @property({type: String, reflect: true, attribute: 'type'})
   type: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url' =
@@ -79,9 +79,9 @@ export class EtoolsInputBase extends LitElement {
   @property({type: Number, reflect: true, attribute: 'maxlength'})
   maxlength: number | undefined;
 
-  @property({type: String, reflect: true, attribute: 'autocapitalize'})
+  @property({type: String, attribute: 'autocapitalize'})
   autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters' = 'off';
 
-  @property({type: String, reflect: true, attribute: 'autocorrect'})
+  @property({type: String, attribute: 'autocorrect'})
   autocorrect: 'off' | 'on' = 'off';
 }

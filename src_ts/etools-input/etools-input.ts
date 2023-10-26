@@ -75,12 +75,14 @@ export class EtoolsInput extends EtoolsInputBase {
             }
           }}"
           @input="${(event) => {
-            const value = event.target!.value;
-            if (this.min !== undefined && value < this.min) {
-              this.value = this.min;
-            }
-            if (this.max !== undefined && value > this.max) {
-              this.value = this.max;
+            if (this.type === 'number') {
+              const value = event.target!.value;
+              if (this.min !== '' && this.min !== undefined && value < this.min) {
+                this.value = this.min;
+              }
+              if (this.max !== '' && this.max !== undefined && value > this.max) {
+                this.value = this.max;
+              }
             }
           }}"
           @sl-invalid="${(e: any) => e.preventDefault()}"
