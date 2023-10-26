@@ -630,8 +630,7 @@ export class SlAutocomplete extends LitElement {
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has('options') || changedProperties.has('selectedValues')) {
       const strSelectedVals = this.selectedValues ? this.selectedValues?.map((v) => String(v)) : this.selectedValues;
-      this.selectedItems =
-        this.options?.filter((o: any) => strSelectedVals?.includes(String(o[this.optionValue]))) ?? [];
+      this.selectedItems = (this.options || []).filter((o: any) => strSelectedVals?.includes(String(o[this.optionValue])));
       if (this.selectedItems && !this.selectedItems.length) {
         this.removePreventDeselectListeners();
       }
@@ -913,7 +912,7 @@ export class SlAutocomplete extends LitElement {
    * triggers and also selection-changed event
    */
   private setSelectedValues() {
-    this.selectedValues = this.selectedItems?.map((x) => x?.[this.optionValue]) ?? [];
+    this.selectedValues = (this.selectedItems || []).map((x) => x?.[this.optionValue]);
     if (this._autoValidate) {
       this.validate();
     }
