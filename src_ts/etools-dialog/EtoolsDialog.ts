@@ -202,6 +202,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             width: calc(100vw - 30px);
           }
         }
+
+        [hidden] {
+          display: none;
+        }
       </style>
       <focus-trap>
         <sl-dialog

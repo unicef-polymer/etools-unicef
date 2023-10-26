@@ -47,4 +47,41 @@ export class EtoolsInputBase extends LitElement {
 
   @property({type: Boolean, reflect: true, attribute: 'always-float-label'})
   alwaysFloatLabel = false;
+
+  @property({type: Number, reflect: true, attribute: 'min'})
+  min: number | string = '';
+
+  @property({type: Number, reflect: true, attribute: 'max'})
+  max: number | string = '';
+
+  @property({type: Number, reflect: true, attribute: 'step'})
+  step: number | 'any' = 'any';
+
+  @property({type: String, reflect: true, attribute: 'type'})
+  type: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url' =
+    'text';
+
+  @property({type: Boolean, reflect: true, attribute: 'no-spin-buttons'})
+  noSpinButtons = false;
+
+  @property({type: Boolean, reflect: true, attribute: 'password-toggle'})
+  passwordToggle = false;
+
+  @property({type: Boolean, reflect: true, attribute: 'password-visible'})
+  passwordVisible = false;
+
+  @property({type: Boolean, reflect: true, attribute: 'clearable'})
+  clearable = false;
+
+  @property({type: Number, reflect: true, attribute: 'minlength'})
+  minlength: number | undefined;
+
+  @property({type: Number, reflect: true, attribute: 'maxlength'})
+  maxlength: number | undefined;
+
+  @property({type: String, reflect: true, attribute: 'autocapitalize'})
+  autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters' = 'off';
+
+  @property({type: String, reflect: true, attribute: 'autocorrect'})
+  autocorrect: 'off' | 'on' = 'off';
 }

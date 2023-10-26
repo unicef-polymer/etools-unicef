@@ -5,6 +5,7 @@ import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import type SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
 import {EtoolsInputBase} from './etools-input-base';
+import {ifDefined} from 'lit/directives/if-defined.js';
 
 @customElement('etools-input')
 export class EtoolsInput extends EtoolsInputBase {
@@ -49,6 +50,18 @@ export class EtoolsInput extends EtoolsInputBase {
           ?required-placeholder="${this.requiredPlaceholder}"
           ?readonly="${this.preventUserDirectInput || this.readonly}"
           ?always-float-label="${this.alwaysFloatLabel}"
+          .min="${ifDefined(this.min)}"
+          .max="${ifDefined(this.max)}"
+          .step="${ifDefined(this.step)}"
+          .type="${ifDefined(this.type)}"
+          ?no-spin-buttons="${ifDefined(this.noSpinButtons)}"
+          ?password-toggle="${ifDefined(this.passwordToggle)}"
+          ?password-visible="${ifDefined(this.passwordVisible)}"
+          ?clearable="${ifDefined(this.clearable)}"
+          .minlength="${ifDefined(this.minlength)}"
+          .maxlength="${ifDefined(this.maxlength)}"
+          .autocapitalize="${ifDefined(this.autocapitalize)}"
+          .autocorrect="${ifDefined(this.autocorrect)}"
           .value="${this.value == undefined || this.value == null ? '' : this.value}"
           @keydown="${(event) => {
             if (this.autoValidate) {
@@ -59,6 +72,15 @@ export class EtoolsInput extends EtoolsInputBase {
               if (!regex.test(event.key) && event.keyCode > 46 && !event.ctrlKey && !event.altKey) {
                 event.preventDefault();
               }
+            }
+          }}"
+          @input="${(event) => {
+            const value = event.target!.value;
+            if (this.min !== undefined && value < this.min) {
+              this.value = this.min;
+            }
+            if (this.max !== undefined && value > this.max) {
+              this.value = this.max;
             }
           }}"
           @sl-invalid="${(e: any) => e.preventDefault()}"
