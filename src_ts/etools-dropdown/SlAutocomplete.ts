@@ -639,6 +639,13 @@ export class SlAutocomplete extends LitElement {
     if (changedProperties.has('shownOptionsLimit')) {
       this.totalOptionsToShow = this.shownOptionsLimit;
     }
+    if ((changedProperties.has('search') || changedProperties.has('totalOptionsToShow')) && !this.multiple) {
+      this.removePreventDeselectListeners();
+      const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
+      if (selItem) {
+        this.addPreventDeselectListeners(selItem);
+      }
+    }
   }
 
   handleKeyDown(e: KeyboardEvent) {
@@ -869,7 +876,6 @@ export class SlAutocomplete extends LitElement {
     if (!this.selectedValues) {
       this.selectedValues = [];
     }
-
     if (item.classList.contains('noneOption')) {
       this.removePreventDeselectListeners();
       this.selectedItems = [];
@@ -880,7 +886,6 @@ export class SlAutocomplete extends LitElement {
         const itemSelectedAtIndex = this.selectedItems.findIndex(
           (x) => x?.[this.optionValue].toString() === selectedItem[this.optionValue].toString()
         );
-
         if (itemSelectedAtIndex >= 0) {
           if (this.multiple) {
             this.selectedItems.splice(itemSelectedAtIndex, 1);
@@ -976,6 +981,9 @@ export class SlAutocomplete extends LitElement {
    */
   hide() {
     this.open = false;
+    setTimeout(() => {
+      this.search = '';
+    });
   }
 
   /**
