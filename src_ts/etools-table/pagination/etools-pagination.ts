@@ -149,7 +149,6 @@ export class EtoolsPagination extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
-    console.log(this.paginator);
   }
 
   disconnectedCallback() {
