@@ -79,6 +79,12 @@ export class EtoolsInputBase extends LitElement {
   @property({type: Number, reflect: true, attribute: 'maxlength'})
   maxlength: number | undefined;
 
+  @property({type: Boolean, reflect: true, attribute: 'char-counter'})
+  charCounter!: boolean;
+
+  @property({type: Number})
+  charCount = 0;
+
   @property({type: String, attribute: 'autocapitalize'})
   autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters' = 'off';
 

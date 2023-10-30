@@ -13,6 +13,8 @@ const validationStyles = css`
   sl-input div[slot='help-text'],
   sl-textarea div[slot='help-text'] {
     height: 0;
+    display: flex;
+    justify-content: space-between;
   }
 
   :host([readonly]) sl-input div[slot='help-text'] div.char-counter,

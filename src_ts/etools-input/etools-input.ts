@@ -63,34 +63,42 @@ export class EtoolsInput extends EtoolsInputBase {
           .autocapitalize="${ifDefined(this.autocapitalize)}"
           .autocorrect="${ifDefined(this.autocorrect)}"
           .value="${this.value == undefined || this.value == null ? '' : this.value}"
-          @keydown="${(event) => {
+          @keydown="${(e) => {
             if (this.autoValidate) {
               this._autoValidate = true;
             }
             if (this.allowedPattern) {
               const regex = new RegExp(this.allowedPattern);
-              if (!regex.test(event.key) && event.keyCode > 46 && !event.ctrlKey && !event.altKey) {
-                event.preventDefault();
-              }
-            }
-          }}"
-          @input="${(event) => {
-            if (this.type === 'number') {
-              const value = event.target!.value;
-              if (this.min !== '' && this.min !== undefined && value < this.min) {
-                this.value = this.min;
-              }
-              if (this.max !== '' && this.max !== undefined && value > this.max) {
-                this.value = this.max;
+              if (!regex.test(e.key) && e.keyCode > 46 && !e.ctrlKey && !e.altKey) {
+                e.preventDefault();
               }
             }
           }}"
           @sl-invalid="${(e: any) => e.preventDefault()}"
-          @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
+          @sl-input="${(e: any) => {
+            let value = e.target!.value;
+
+            if (this.type === 'number') {
+              if (this.min !== '' && this.min !== undefined && value < this.min) {
+                value = this.min.toString();
+                this.slInput.value = value;
+              }
+
+              if (this.max !== '' && this.max !== undefined && value > this.max) {
+                value = this.max.toString();
+                this.slInput.value = value;
+              }
+            }
+
+            fireEvent(this, 'value-changed', {value: value});
+
+            this.charCount = (value || '').toString().length;
+          }}"
           exportparts="base,input,form-control,form-control-label,form-control-help-text, form-control-input"
         >
           <div slot="help-text">
             <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>
+            <div class="char-counter" ?hidden="${!this.charCounter}">${this.charCount}/${this.maxlength}</div>
           </div>
           <slot slot="prefix" name="prefix"></slot>
           <slot slot="suffix" name="suffix"></slot>
