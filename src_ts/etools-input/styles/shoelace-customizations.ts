@@ -6,6 +6,12 @@ const validationStyles = css`
   sl-textarea div[slot='help-text'] div.char-counter {
     visibility: visible;
   }
+
+  sl-input[invalid] div[slot='help-text'] div.char-counter,
+  sl-textarea[invalid] div[slot='help-text'] div.char-counter {
+    color: var(--sl-input-required-content-color);
+  }
+
   sl-textarea[show-char-counter] div.err-msg {
     overflow-x: clip;
   }
