@@ -195,15 +195,15 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   }
 
   @property({type: String, attribute: 'dialog-title'})
-  dialogTitle: string = '';
+  dialogTitle = '';
   @property({type: String, attribute: 'ok-btn-text'})
   okBtnText!: string;
   @property({type: String, attribute: 'cancel-btn-text'})
   cancelBtnText!: string;
   @property({type: String})
-  size: string = 'sm';
+  size = 'sm';
 
-  private _opened: boolean = false;
+  private _opened = false;
   @property({type: Boolean, reflect: true})
   get opened() {
     return this._opened;
@@ -221,23 +221,23 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     }
   }
   @property({type: Boolean})
-  backdrop: boolean = true;
+  backdrop = true;
   @property({type: Boolean})
-  modal: boolean = true;
+  modal = true;
   @property({type: Boolean, attribute: 'no-padding', reflect: true})
-  noPadding: boolean = false;
+  noPadding = false;
   @property({type: Boolean, attribute: 'disable-confirm-btn', reflect: true})
-  disableConfirmBtn: boolean = false;
+  disableConfirmBtn = false;
   @property({type: Boolean, attribute: 'disable-dismiss-btn', reflect: true})
-  disableDismissBtn: boolean = false;
+  disableDismissBtn = false;
   @property({type: Boolean, attribute: 'hide-confirm-btn', reflect: true})
   hideConfirmBtn = false;
   @property({type: String, reflect: true})
-  theme: string = 'default';
+  theme = 'default';
   @property({type: Boolean, attribute: 'no-auto-focus', reflect: true})
-  noAutoFocus: boolean = false;
+  noAutoFocus = false;
   @property({type: Boolean, attribute: 'show-buttons', reflect: true})
-  showButtons: boolean = true;
+  showButtons = true;
   @property({type: String})
   language!: string;
   @query('#dialog')
