@@ -116,7 +116,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         }
 
         sl-dialog.confirmation::part(body) {
-          max-width: 90%;
+          max-width: 100%;
           font-size: 20px;
           line-height: 1.4;
           padding: 0;
@@ -234,6 +234,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   hideConfirmBtn = false;
   @property({type: String, reflect: true})
   theme: string = 'default';
+  @property({type: String})
+  confirmBtnVariant: string = 'primary';
   @property({type: Boolean, attribute: 'no-auto-focus', reflect: true})
   noAutoFocus: boolean = false;
   @property({type: Boolean, attribute: 'show-buttons', reflect: true})
@@ -311,7 +313,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             ${this.cancelBtnText}
           </sl-button>
           <sl-button
-            variant="primary"
+            .variant="${this.confirmBtnVariant}"
             @click="${this._confirmBtClicked}"
             ?disabled="${this.disableConfirmBtn}"
             ?hidden="${this.hideConfirmBtn}"
