@@ -86,7 +86,7 @@ export class EtoolsInput extends EtoolsInputBase {
             }
           }}"
           @sl-invalid="${(e: any) => e.preventDefault()}"
-          @sl-input="${(event: any) => fireEvent(this, 'value-changed', {value: event.target!.value})}"
+          @sl-input="${this.inputValueChanged}"
           exportparts="base,input,form-control,form-control-label,form-control-help-text, form-control-input"
         >
           <div slot="help-text">
@@ -103,6 +103,19 @@ export class EtoolsInput extends EtoolsInputBase {
     if (this._autoValidate && _changedProperties.has('value') && this.value !== undefined) {
       setTimeout(() => this.validate());
     }
+  }
+
+  inputValueChanged(event: any) {
+    let value = event.target!.value;
+    if (this.type === 'number') {
+      if (this.min !== '' && this.min !== undefined && value < this.min) {
+        value = this.min;
+      }
+      if (this.max !== '' && this.max !== undefined && value > this.max) {
+        value = this.max;
+      }
+    }
+    fireEvent(this, 'value-changed', {value: value});
   }
 
   validate() {
