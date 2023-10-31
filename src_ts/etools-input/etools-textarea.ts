@@ -128,7 +128,7 @@ export class EtoolsTextarea extends LitElement {
         }}"
         exportparts="textarea,base,form-control,form-control-input,form-control-label,form-control-help-text"
       >
-        <div slot="help-text" style="display: flex; justify-content: space-between;">
+        <div slot="help-text">
           <div class="err-msg">${this.errorMessage}</div>
           <div class="char-counter" ?hidden="${!this.charCounter}">${this.charCount}/${this.maxlength}</div>
         </div>

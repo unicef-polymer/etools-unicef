@@ -135,7 +135,7 @@ export class SlAutocomplete extends LitElement {
   hideSearch = false;
 
   @property({type: Boolean, reflect: true, attribute: 'preserve-search-on-close'})
-  preserveSearchOnClose = true;
+  preserveSearchOnClose = false;
 
   @property({type: Boolean, reflect: true, attribute: 'hide-close'})
   hideClose = false;
@@ -279,9 +279,6 @@ export class SlAutocomplete extends LitElement {
       }
     }
   }
-
-  // Used to prevent deselect by click/enter on single selection dropdw
-  private previousSelMenuItemElem?: SlMenuItem;
 
   render() {
     const hasHelpText = !!this.helpText;
@@ -483,6 +480,8 @@ export class SlAutocomplete extends LitElement {
                       ? html`<sl-menu-item
                           type="checkbox"
                           class="noneOption"
+                          @click="${this.preventDeselectByClick}"
+                          @keydown="${this.preventDeselectByEnter}"
                           ?checked=${!this.selectedItems?.length}
                           value=""
                           title="${this.noneOptionLabel || getTranslation(this.language, 'NONE')}"
@@ -498,6 +497,8 @@ export class SlAutocomplete extends LitElement {
                         ?checked=${this.isSelected(option)}
                         value="${option[this.optionValue]}"
                         tabindex="0"
+                        @click="${this.preventDeselectByClick}"
+                        @keydown="${this.preventDeselectByEnter}"
                         title="${option[this.optionLabel]}"
                       >
                         ${option[this.optionLabel]}
@@ -573,8 +574,6 @@ export class SlAutocomplete extends LitElement {
     this.handleParentFocus = this.handleParentFocus.bind(this);
     this.handleFocusOut = this.handleFocusOut.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.preventDeselectByEnter = this.preventDeselectByEnter.bind(this);
-    this.preventDeselectByClick = this.preventDeselectByClick.bind(this);
   }
 
   connectedCallback(): void {
@@ -585,38 +584,21 @@ export class SlAutocomplete extends LitElement {
     this.addEventListener('focusout', this.handleFocusOut);
     document.addEventListener('language-changed', this.handleLanguageChange);
 
-    setTimeout(() => {
-      if (this.multiple) {
-        callClickOnEnterPushListener(this.shadowRoot?.querySelector('#closeBtn'));
-        return;
-      }
-      const selItem = this.shadowRoot!.querySelector<SlMenuItem>('sl-menu-item[checked]');
-      if (selItem) {
-        this.addPreventDeselectListeners(selItem);
-      }
-    }, 1500);
+    if (this.multiple) {
+      callClickOnEnterPushListener(this.shadowRoot?.querySelector('#closeBtn'));
+    }
   }
 
   preventDeselectByEnter(e: KeyboardEvent) {
-    if (e.key === 'Enter') {
+    if (!this.multiple && e.key === 'Enter' && (e.currentTarget as any).hasAttribute('checked')) {
       e.stopImmediatePropagation();
     }
   }
-  preventDeselectByClick(e: MouseEvent) {
-    e.stopImmediatePropagation();
-  }
 
-  addPreventDeselectListeners(selItem: SlMenuItem) {
-    selItem.addEventListener('keydown', this.preventDeselectByEnter as any);
-    selItem.addEventListener('click', this.preventDeselectByClick as any);
-    this.previousSelMenuItemElem = selItem;
-  }
-  removePreventDeselectListeners() {
-    if (!this.previousSelMenuItemElem) {
-      return;
+  preventDeselectByClick(e: MouseEvent) {
+    if (!this.multiple && (e.currentTarget as any).hasAttribute('checked')) {
+      e.stopImmediatePropagation();
     }
-    this.previousSelMenuItemElem?.removeEventListener('keydown', this.preventDeselectByEnter as any);
-    this.previousSelMenuItemElem?.removeEventListener('click', this.preventDeselectByClick as any);
   }
 
   disconnectedCallback() {
@@ -630,10 +612,9 @@ export class SlAutocomplete extends LitElement {
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has('options') || changedProperties.has('selectedValues')) {
       const strSelectedVals = this.selectedValues ? this.selectedValues?.map((v) => String(v)) : this.selectedValues;
-      this.selectedItems = (this.options || []).filter((o: any) => strSelectedVals?.includes(String(o[this.optionValue])));
-      if (this.selectedItems && !this.selectedItems.length) {
-        this.removePreventDeselectListeners();
-      }
+      this.selectedItems = (this.options || []).filter((o: any) =>
+        strSelectedVals?.includes(String(o[this.optionValue]))
+      );
     }
     if (changedProperties.has('shownOptionsLimit')) {
       this.totalOptionsToShow = this.shownOptionsLimit;
@@ -870,9 +851,7 @@ export class SlAutocomplete extends LitElement {
     }
 
     if (item.classList.contains('noneOption')) {
-      this.removePreventDeselectListeners();
       this.selectedItems = [];
-      this.addPreventDeselectListeners(e.detail.item);
     } else {
       const selectedItem = this.options.find((x) => x[this.optionValue].toString() === item.value.toString());
       if (selectedItem) {
@@ -884,17 +863,11 @@ export class SlAutocomplete extends LitElement {
           if (this.multiple) {
             this.selectedItems.splice(itemSelectedAtIndex, 1);
           }
-          // Do nt allow deselect by click on single sel dropdown
-          // else {
-          //     this.selectedItems = [];
-          // }
         } else {
           if (this.multiple) {
             this.selectedItems = [...this.selectedItems, selectedItem];
           } else {
-            this.removePreventDeselectListeners();
             this.selectedItems = [selectedItem];
-            this.addPreventDeselectListeners(e.detail.item);
           }
         }
       }
