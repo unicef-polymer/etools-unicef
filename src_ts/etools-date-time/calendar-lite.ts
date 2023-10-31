@@ -324,7 +324,7 @@ export class CalendarLite extends LitElement {
           align-items: center;
           padding: 0 5px 0 5px;
           color: #474e54;
-          font-size: 1.2em;
+          font-size: 16px;
           font-weight: 700;
         }
 
@@ -419,6 +419,7 @@ export class CalendarLite extends LitElement {
           margin: 2px;
           border: solid 2px #dddddd;
           border-radius: 50%;
+          --etools-icon-font-size: 18px;
         }
 
         #dateContainer {
