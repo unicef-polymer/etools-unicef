@@ -32,6 +32,12 @@ export class CalendarLite extends LitElement {
     type: Date
   })
   set date(date) {
+    if (!date) {
+      return;
+    }
+    if (typeof date === 'string') {
+      date = dateLib(date, controlFormat).toDate();
+    }
     if (this._date && date && this._date.getTime() === date.getTime()) {
       return;
     }

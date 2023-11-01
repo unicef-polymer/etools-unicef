@@ -78,6 +78,10 @@ export const buttonsStylesContent = `
   sl-button[variant='text'].neutral::part(base):hover {
     color: var(--sl-color-neutral-500);
   }
+
+  sl-button[variant='text'].font-14 {
+    --sl-button-font-size-medium: 14px;
+  }
 `;
 // language=HTML
 export const buttonsStyles = css`
