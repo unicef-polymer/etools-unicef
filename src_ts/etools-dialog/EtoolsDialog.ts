@@ -65,9 +65,16 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           border-top: 1px solid var(--divider-color);
         }
 
+        sl-dialog.default::part(header) {
+          min-height: 40px;
+          padding: 8px 0;
+          align-items: center;
+        }
+
         sl-dialog.default::part(title) {
-          line-height: 40px;
           font-weight: 500;
+          font-size: 1.2rem;
+          line-height: 1.2;
           background: var(--etools-dialog-primary-color, var(--primary-color));
           color: var(--etools-dialog-contrast-text-color, #fff);
         }

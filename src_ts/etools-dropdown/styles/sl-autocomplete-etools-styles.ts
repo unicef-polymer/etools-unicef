@@ -128,12 +128,13 @@ export default css`
     color: rgba(255, 255, 255, 0.7);
   }
 
-  :host([disabled]) .form-control-input {
+  .select--standard.select--disabled .select__combobox:after {
     border-bottom-style: dashed;
     border-bottom-width: 1px;
   }
 
   .select--standard.select--invalid .select__combobox:after {
+    border-bottom-style: solid;
     border-color: #ea4022;
     border-bottom-width: 2px;
   }
