@@ -270,7 +270,9 @@ export class SlAutocomplete extends LitElement {
       if (!this.hideSearch) {
         this.searchInput?.blur();
         if (!this.preserveSearchOnClose) {
-          this.search = '';
+          setTimeout(() => {
+            this.search = '';
+          });
         }
       }
 

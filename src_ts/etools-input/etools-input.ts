@@ -6,6 +6,7 @@ import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import type SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
 import {EtoolsInputBase} from './etools-input-base';
 import {ifDefined} from 'lit/directives/if-defined.js';
+import '../etools-icons/etools-icon';
 
 @customElement('etools-input')
 export class EtoolsInput extends EtoolsInputBase {
@@ -26,8 +27,13 @@ export class EtoolsInput extends EtoolsInputBase {
         :host {
           width: 100%;
         }
+
         sl-input::part(input) {
           width: 100%;
+        }
+
+        etools-icon {
+          --etools-icon-font-size: 16px;
         }
       `
     ];
@@ -79,15 +85,26 @@ export class EtoolsInput extends EtoolsInputBase {
             let value = e.target!.value;
 
             if (this.type === 'number') {
-              if (this.min !== '' && this.min !== undefined && value < this.min) {
-                value = this.min.toString();
-                this.slInput.value = value;
-              }
+              // Regular expression to check if the input is a valid number
+              const numberRegex = /^-?\d*\.?\d+$/;
 
-              if (this.max !== '' && this.max !== undefined && value > this.max) {
-                value = this.max.toString();
+              if (!numberRegex.test(value)) {
+                // If the value is not a valid number, set it to the minimum
+                value = this.min !== '' && this.min !== undefined ? this.min : 0;
                 this.slInput.value = value;
+              } else {
+                value = parseFloat(value);
+                if (this.min !== '' && this.min !== undefined && value < this.min) {
+                  value = this.min.toString();
+                  this.slInput.value = value;
+                }
+
+                if (this.max !== '' && this.max !== undefined && value > this.max) {
+                  value = this.max.toString();
+                  this.slInput.value = value;
+                }
               }
+              value = value.toString();
             }
 
             fireEvent(this, 'value-changed', {value: value});
@@ -102,6 +119,9 @@ export class EtoolsInput extends EtoolsInputBase {
           </div>
           <slot slot="prefix" name="prefix"></slot>
           <slot slot="suffix" name="suffix"></slot>
+          <div slot="clear-icon">
+            <etools-icon name="cancel"></etools-icon>
+          </div>
         </sl-input>
       </div>
     `;
