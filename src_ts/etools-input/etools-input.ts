@@ -85,26 +85,15 @@ export class EtoolsInput extends EtoolsInputBase {
             let value = e.target!.value;
 
             if (this.type === 'number') {
-              // Regular expression to check if the input is a valid number
-              const numberRegex = /^-?\d*\.?\d+$/;
-
-              if (!numberRegex.test(value)) {
-                // If the value is not a valid number, set it to the minimum
-                value = this.min !== '' && this.min !== undefined ? this.min : 0;
+              if (this.min !== '' && this.min !== undefined && value < this.min) {
+                value = this.min.toString();
                 this.slInput.value = value;
-              } else {
-                value = parseFloat(value);
-                if (this.min !== '' && this.min !== undefined && value < this.min) {
-                  value = this.min.toString();
-                  this.slInput.value = value;
-                }
-
-                if (this.max !== '' && this.max !== undefined && value > this.max) {
-                  value = this.max.toString();
-                  this.slInput.value = value;
-                }
               }
-              value = value.toString();
+
+              if (this.max !== '' && this.max !== undefined && value > this.max) {
+                value = this.max.toString();
+                this.slInput.value = value;
+              }
             }
 
             fireEvent(this, 'value-changed', {value: value});
