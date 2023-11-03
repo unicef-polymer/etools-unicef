@@ -1,4 +1,3 @@
-// import {styleMap} from 'lit/directives/style-map.js';
 import {html, LitElement, PropertyValues} from 'lit';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
@@ -17,6 +16,7 @@ import {classMap} from 'lit/directives/class-map.js';
 import {property, query, state} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate';
 import {callClickOnEnterPushListener} from '@unicef-polymer/etools-utils/dist/accessibility.util';
+import {ifDefined} from 'lit/directives/if-defined.js';
 
 /**
  * @summary Advanced dropdown capable of searching and filtering options,
@@ -168,7 +168,7 @@ export class SlAutocomplete extends LitElement {
   maxHeight = '';
 
   @property({type: String, attribute: 'sync-width'})
-  syncWidth = false;
+  syncWidth = true;
 
   /**
    * The container relative to which the autosize clipping and shifting of the dropdown occurs.
@@ -244,9 +244,9 @@ export class SlAutocomplete extends LitElement {
       const parentDialog = this.getParentDialog();
       if (parentDialog) {
         if (!this.boundary) {
-          console.warn('Missing boundary for dropdown in dialog', this);
+          // console.warn('Missing boundary for dropdown in dialog', this);
+          this.hoist = true;
         }
-        this.hoist = true;
       }
       setTimeout(() => {
         if (!this.hideSearch) {
@@ -348,7 +348,7 @@ export class SlAutocomplete extends LitElement {
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
             shift
-            ${this.syncWidth ? `sync="width"` : ''}
+            sync="${ifDefined(this.syncWidth ? 'width' : undefined)}"
             ?active="${this.open}"
             auto-size="vertical"
             auto-size-padding="10"
