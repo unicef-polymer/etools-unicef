@@ -3,6 +3,7 @@ import {repeat} from 'lit/directives/repeat.js';
 
 import '@shoelace-style/shoelace/dist/components/alert/alert.js';
 import SlAlert from '@shoelace-style/shoelace/dist/components/alert/alert.js';
+import './etools-alert';
 
 const MAX_TOAST_SHOWN = 3;
 
@@ -27,7 +28,7 @@ export class EtoolsToasts extends LitElement {
       this.toastQueue.slice(0, MAX_TOAST_SHOWN),
       (toastOptions: ToastOptions) => toastOptions.text,
       (toastOptions: ToastOptions, index: number) =>
-        html`<sl-alert
+        html`<etools-alert
           open
           variant="${toastOptions.variant || DefaultToastOptions.variant}"
           duration="${toastOptions.duration || DefaultToastOptions.duration}"
@@ -36,7 +37,7 @@ export class EtoolsToasts extends LitElement {
         >
           ${toastOptions.icon ? html`<sl-icon slot="icon" name="${toastOptions.icon}"></sl-icon>` : html``}
           <div .innerHTML=${toastOptions.text?.replaceAll('\n', '<br/>')}></div>
-        </sl-alert>`
+        </etools-alert>`
     );
   }
 
@@ -48,7 +49,7 @@ export class EtoolsToasts extends LitElement {
   }
 
   closeAllToasts() {
-    this.shadowRoot?.querySelectorAll<SlAlert>('sl-alert').forEach((t: SlAlert) => t.hide());
+    this.shadowRoot?.querySelectorAll<SlAlert>('etools-alert').forEach((t: SlAlert) => t.hide());
     this.toastQueue = [];
   }
 
@@ -85,24 +86,6 @@ export class EtoolsToasts extends LitElement {
           inset-inline-start: 0;
           z-index: 999;
           --sl-panel-background-color: var(--etools-toasts-background-color, #323232);
-        }
-
-        sl-alert::part(close-button) {
-          color: var(--etools-toasts-color, #fff);
-        }
-
-        sl-alert::part(message) {
-          padding: var(--sl-spacing-small);
-        }
-
-        sl-alert::part(base) {
-          border-width: 0px;
-          border-top-width: calc(var(--sl-panel-border-width) * 3);
-          min-width: 288px;
-          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-          margin-top: 6px;
-          font-size: 14px;
-          color: var(--etools-toasts-color, #fff);
         }
       `
     ];

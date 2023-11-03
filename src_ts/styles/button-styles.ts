@@ -54,6 +54,7 @@ export const buttonsStylesContent = `
   }
   sl-button::part(base) {
     border: none !important;
+    align-items: center;
   }
 
   sl-button[variant='text'] {
