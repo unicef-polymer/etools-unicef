@@ -100,7 +100,7 @@ export class EtoolsInput extends EtoolsInputBase {
 
             this.charCount = (value || '').toString().length;
           }}"
-          exportparts="base,input,form-control,form-control-label,form-control-help-text, form-control-input"
+          exportparts="base,input,prefix,suffix,form-control,form-control-label,form-control-help-text, form-control-input"
         >
           <div slot="help-text">
             <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>
