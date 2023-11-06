@@ -52,6 +52,10 @@ export const buttonsStylesContent = `
     margin-inline-end: 5px;
     min-width: 82px;
   }
+  sl-dropdown sl-menu-item:focus-visible::part(base) {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--sl-color-neutral-1000);
+  }
   sl-button::part(base) {
     border: none !important;
     align-items: center;
