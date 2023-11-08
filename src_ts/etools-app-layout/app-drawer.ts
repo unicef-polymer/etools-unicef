@@ -145,7 +145,7 @@ export class AppDrawer extends LitElement {
   @query('#contentContainer') private contentContainer!: HTMLElement;
 
   protected firstUpdated(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    super.updated(changedProperties);
+    super.firstUpdated(changedProperties);
     this._resetPosition();
     this.setContainerTransition();
   }

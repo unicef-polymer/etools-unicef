@@ -58,34 +58,19 @@ export class EtoolsMediaQuery extends LitElement {
       return;
     }
 
-    if (window.matchMedia(this.query).matches) {
-      // changed from no match to match
-      if (!this.queryMatches) {
-        this.dispatchEvent(
-          new CustomEvent('query-matches-changed', {
-            detail: {
-              value: true
-            },
-            composed: true,
-            bubbles: true
-          })
-        );
-        this.queryMatches = true;
-      }
-    } else {
-      // changed from match to don't match
-      if (this.queryMatches) {
-        this.dispatchEvent(
-          new CustomEvent('query-matches-changed', {
-            detail: {
-              value: false
-            },
-            composed: true,
-            bubbles: true
-          })
-        );
-        this.queryMatches = false;
-      }
+    const queryMatches = window.matchMedia(this.query).matches;
+    // If match state is different from previous one then trigger query-matches-changed event
+    if (queryMatches !== this.queryMatches) {
+      this.dispatchEvent(
+        new CustomEvent('query-matches-changed', {
+          detail: {
+            value: queryMatches
+          },
+          composed: true,
+          bubbles: true
+        })
+      );
+      this.queryMatches = queryMatches;
     }
   }
 }

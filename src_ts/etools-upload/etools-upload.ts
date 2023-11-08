@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
+import {ifDefined} from 'lit/directives/if-defined.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import '../etools-icons/etools-icon';
@@ -222,7 +223,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
             size="small"
             class="upload-button"
             @click="${this._openFileChooser}"
-            title="${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILE')}"
+            title="${ifDefined(
+              !this.readonly ? this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILE') : undefined
+            )}"
             ?disabled="${this.readonly}"
             ?hidden="${this._thereIsAFileSelectedOrSaved(this._filename)}"
           >
