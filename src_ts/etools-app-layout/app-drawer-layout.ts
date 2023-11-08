@@ -100,19 +100,22 @@ export class AppDrawerLayout extends LitElement {
       return;
     }
 
-    this.drawerPosition = this.narrow ? null : drawer.position;
-    if (this._drawerNeedsReset) {
-      if (this.narrow) {
-        drawer.opened = this.openedWhenNarrow;
-        drawer.persistent = false;
-      } else {
-        drawer.opened = drawer.persistent = true;
+    setTimeout(() => {
+      this.drawerPosition = this.narrow ? null : drawer.position;
+      if (this._drawerNeedsReset) {
+        if (this.narrow) {
+          drawer.opened = this.openedWhenNarrow;
+          drawer.persistent = false;
+        } else {
+          drawer.opened = drawer.persistent = true;
+        }
+        if (drawer.hasAttribute('no-transition')) {
+          drawer.removeAttribute('no-transition');
+        }
+        this._drawerNeedsReset = false;
+        drawer.requestUpdate();
       }
-      if (drawer.hasAttribute('no-transition')) {
-        drawer.removeAttribute('no-transition');
-      }
-      this._drawerNeedsReset = false;
-    }
+    }, 0);
   }
 
   _onQueryMatchesChanged(event: CustomEvent) {
