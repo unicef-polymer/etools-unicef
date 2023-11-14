@@ -193,12 +193,21 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
         }
 
+        .readonly-placeholder {
+          color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
+        }
+
         .file-actions sl-button {
           vertical-align: middle;
         }
 
         .upload-button[disabled] {
           justify-content: flex-start;
+        }
+
+        sl-button[disabled]::part(base) {
+          cursor: default;
+          opacity: 1;
         }
       </style>
       <div
@@ -233,7 +242,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
               <etools-icon name="file-upload"></etools-icon>
               ${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILE')}
             </span>
-            <label ?hidden="${!this.readonly}">—</label>
+            <label class="readonly-placeholder" ?hidden="${!this.readonly}">—</label>
           </sl-button>
 
           <div class="filename-and-actions-container">

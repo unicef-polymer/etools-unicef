@@ -163,6 +163,11 @@ export default css`
     border-bottom: 1px solid rgba(0, 0, 0, 0.54);
   }
 
+  .search sl-input::part(prefix) {
+    --sl-input-spacing-medium: 0;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
   .search sl-input:focus:after {
     border-color: var(--sl-input-border-color-focus);
     border-bottom-width: 2px;
