@@ -7,6 +7,11 @@ const validationStyles = css`
     visibility: visible;
   }
 
+  :host(:not([readonly])) sl-input:not([invalid]):focus div[slot='help-text'] div.char-counter,
+  :host(:not([readonly])) sl-textarea:not([invalid]):focus div[slot='help-text'] div.char-counter {
+    color: var(--primary-color);
+  }
+
   sl-input[invalid] div[slot='help-text'] div.char-counter,
   sl-textarea[invalid] div[slot='help-text'] div.char-counter {
     color: var(--sl-input-required-content-color);

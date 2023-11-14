@@ -90,4 +90,7 @@ export class EtoolsInputBase extends LitElement {
 
   @property({type: String, attribute: 'autocorrect'})
   autocorrect: 'off' | 'on' = 'off';
+
+  @property({type: Boolean, reflect: true, attribute: 'wrap-text-in-readonly'})
+  wrapTextInReadonly = true;
 }

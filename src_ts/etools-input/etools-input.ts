@@ -35,6 +35,10 @@ export class EtoolsInput extends EtoolsInputBase {
         etools-icon {
           --etools-icon-font-size: 16px;
         }
+
+        sl-input[wrap-text-in-readonly][readonly]:not([prevent-user-direct-input])::part(form-control-input) {
+          display: none;
+        }
       `
     ];
   }
@@ -55,6 +59,8 @@ export class EtoolsInput extends EtoolsInputBase {
           ?required="${this.required}"
           ?required-placeholder="${this.requiredPlaceholder}"
           ?readonly="${this.preventUserDirectInput || this.readonly}"
+          ?prevent-user-direct-input="${this.preventUserDirectInput}"
+          ?wrap-text-in-readonly="${this.wrapTextInReadonly}"
           ?always-float-label="${this.alwaysFloatLabel}"
           .min="${ifDefined(this.min)}"
           .max="${ifDefined(this.max)}"
@@ -112,6 +118,12 @@ export class EtoolsInput extends EtoolsInputBase {
             <etools-icon name="cancel"></etools-icon>
           </div>
         </sl-input>
+        <div
+          part="readonly-input"
+          ?hidden=${!this.wrapTextInReadonly || this.preventUserDirectInput || !this.readonly || !this.value}
+        >
+          ${this.value}
+        </div>
       </div>
     `;
   }

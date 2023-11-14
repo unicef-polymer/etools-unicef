@@ -547,6 +547,10 @@ export default css`
     overflow: hidden;
   }
 
+  sl-menu-item::part(base) {
+    line-height: 38px;
+  }
+
   /* Shoelace did not implement this yet, so we disabled it */
   /* for now because it introduces extra space to the right */
   sl-menu-item::part(submenu-icon) {
@@ -565,11 +569,21 @@ export default css`
     opacity: 1;
     cursor: default;
     background-color: var(--sl-input-background-color-disabled);
+    text-overflow: unset;
+    overflow: visible;
+    text-wrap: wrap;
+    line-height: var(--sl-line-height-normal);
   }
-  .no-options-available-text::part(checked-icon) {
+
+  .loading-text::part(checked-icon),
+  .no-options-available-text::part(checked-icon),
+  .no-results-text::part(checked-icon) {
     display: none;
   }
-  .no-options-available-text::part(base) {
+
+  .loading-text::part(base),
+  .no-options-available-text::part(base),
+  .no-results-text::part(base) {
     padding-inline-start: 10px;
   }
 
@@ -582,8 +596,5 @@ export default css`
   :host([capitalize]) .select__tags sl-tag,
   :host([capitalize]) sl-menu-item::part(label) {
     text-transform: capitalize;
-  }
-  sl-menu-item::part(base) {
-    line-height: 38px;
   }
 `;
