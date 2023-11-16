@@ -185,7 +185,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           id="dialog"
           class="${this.getDialogClass(this.size, this.theme)}"
           .label="${this.dialogTitle}"
-          exportparts="panel,body,title,footer"
+          exportparts="panel,body,header,title,footer,close-button,header-actions"
         >
           <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
           </etools-loading>
