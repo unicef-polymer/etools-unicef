@@ -27,7 +27,7 @@ export enum EtoolsFilterTypes {
 
 export interface EtoolsFilter {
   filterName: string | Callback;
-  translationKey: string;
+  translationKey?: string;
   filterKey: string;
   type: EtoolsFilterTypes;
   selected: boolean; // flag filter as selected from filters menu

@@ -280,6 +280,8 @@ export class SlAutocomplete extends LitElement {
         this.validate();
       }
     }
+
+    this.triggerPopupOpenEvent(this._open);
   }
 
   render() {
@@ -408,6 +410,7 @@ export class SlAutocomplete extends LitElement {
                               ?pill=${this.pill}
                               size=${this.size}
                               ?removable=${!this.disabled && !this.readonly}
+                              @mousedown=${this.handleTagMouseDown}
                               @sl-remove=${() => this.handleTagRemove(option)}
                             >
                               ${option[this.optionLabel]}
@@ -770,9 +773,60 @@ export class SlAutocomplete extends LitElement {
       (x) => x?.[this.optionValue].toString() === option[this.optionValue].toString()
     );
     if (itemSelectedAtIndex >= 0) {
+      const itemToBeRemoved = this.selectedItems[itemSelectedAtIndex];
       this.selectedItems.splice(itemSelectedAtIndex, 1);
+      this.setSelectedValues();
+      this.triggerRemovedOptionsEvent([itemToBeRemoved]);
     }
-    this.setSelectedValues();
+  }
+
+  /**
+   * Clear all mouse down handler function. It is used to stop propagation to the elements
+   * @param event MouseEvent
+   */
+  private handleTagMouseDown(event: MouseEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  /**
+   * Trigger remove option event
+   * @param item - Item that has been removed
+   */
+  private triggerRemovedOptionsEvent(item: any[]) {
+    this.dispatchEvent(
+      new CustomEvent('removed-selected-items', {
+        detail: {value: item},
+        bubbles: true,
+        composed: true
+      })
+    );
+  }
+
+  /**
+   * Trigger popup open event
+   * @param boolean - If dialog is opened or closed
+   */
+  private triggerPopupOpenEvent(opened: boolean) {
+    if (opened) {
+      this.dispatchEvent(
+        new CustomEvent('dropdown-opened', {
+          detail: {value: opened},
+          bubbles: true,
+          composed: true
+        })
+      );
+    }
+
+    if (!opened) {
+      this.dispatchEvent(
+        new CustomEvent('dropdown-closed', {
+          detail: {value: opened},
+          bubbles: true,
+          composed: true
+        })
+      );
+    }
   }
 
   /**
@@ -934,8 +988,10 @@ export class SlAutocomplete extends LitElement {
    * Clears selected options
    */
   clearSelection() {
+    const itemsToBeRemoved = [...this.selectedItems];
     this.selectedItems = [];
     this.setSelectedValues();
+    this.triggerRemovedOptionsEvent(itemsToBeRemoved);
   }
 
   /**
