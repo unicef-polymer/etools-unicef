@@ -106,7 +106,11 @@ export class EtoolsInput extends EtoolsInputBase {
 
             this.charCount = (value || '').toString().length;
           }}"
-          exportparts="base,input,prefix,suffix,form-control,form-control-label,form-control-help-text, form-control-input"
+          exportparts="base,input,
+          prefix,suffix,form-control,
+          form-control-label,
+          form-control-help-text,
+          form-control-input"
         >
           <div slot="help-text">
             <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>
@@ -118,12 +122,7 @@ export class EtoolsInput extends EtoolsInputBase {
             <etools-icon name="cancel"></etools-icon>
           </div>
         </sl-input>
-        <div
-          part="readonly-input"
-          ?hidden=${!this.wrapTextInReadonly || this.preventUserDirectInput || !this.readonly || !this.value}
-        >
-          ${this.value}
-        </div>
+        <div part="readonly-input" ?hidden=${this.hideReadonlyText()}>${this.value}</div>
       </div>
     `;
   }
@@ -132,6 +131,10 @@ export class EtoolsInput extends EtoolsInputBase {
     if (this._autoValidate && _changedProperties.has('value') && this.value !== undefined) {
       setTimeout(() => this.validate());
     }
+  }
+
+  hideReadonlyText() {
+    return !this.wrapTextInReadonly || this.preventUserDirectInput || !this.readonly || !this.value;
   }
 
   validate() {
