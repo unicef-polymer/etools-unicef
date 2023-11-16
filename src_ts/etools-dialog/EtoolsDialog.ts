@@ -225,6 +225,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
       } else if (val != undefined) {
         this.slDialog!.hide();
       }
+
+      this.triggerPopupOpenEvent(this._opened);
     }
   }
   @property({type: Boolean})
@@ -360,5 +362,31 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         }
       }
     }, 100);
+  }
+
+  /**
+   * Trigger popup open event
+   * @param boolean - If dialog is opened or closed
+   */
+  private triggerPopupOpenEvent(opened: boolean) {
+    if (opened) {
+      this.dispatchEvent(
+        new CustomEvent('dialog-opened', {
+          detail: {value: opened},
+          bubbles: true,
+          composed: true
+        })
+      );
+    }
+
+    if (!opened) {
+      this.dispatchEvent(
+        new CustomEvent('dialog-closed', {
+          detail: {value: opened},
+          bubbles: true,
+          composed: true
+        })
+      );
+    }
   }
 }
