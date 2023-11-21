@@ -6,12 +6,14 @@ import {buttonsStyles} from './styles/button-styles';
 
 @customElement('etools-button')
 export class EtoolsButton extends SlButton {
-  static styles = [
-    SlButton.styles,
-    css`
-      ${buttonsStyles}
-    `
-  ];
+  static get styles() {
+    return [
+      SlButton.styles,
+      css`
+        ${buttonsStyles}
+      `
+    ];
+  }
 
   render() {
     // language=HTML

@@ -12,10 +12,10 @@ export class EtoolsCheckbox extends SlCheckbox {
         --sl-input-border-width: 2px;
         --sl-input-border-color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
       }
-      :host[disabled]::part(base) {
+      :host([disabled])::part(base) {
         opacity: 0.65;
       }
-      :host[disabled]::part(control--checked) {
+      :host([disabled])::part(control--checked) {
         opacity: 0.65;
       }
     `

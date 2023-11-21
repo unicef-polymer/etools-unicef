@@ -1,4 +1,6 @@
 import {css, unsafeCSS} from 'lit';
+
+//TODO remove this
 export const buttonsStylesContent = `
   :host.default.left-icon:not(variant=["text"])::part(base),
   :host.primary.left-icon:not(variant=["text"])::part(base),
@@ -16,22 +18,22 @@ export const buttonsStylesContent = `
     padding-inline-start: 12px;
   }
 
-  :host.default.left-icon etools-icon,
-  :host.primary.left-icon etools-icon,
-  :host.success.left-icon etools-icon,
-  :host.error.left-icon etools-icon {
+  :host(.default.left-icon) etools-icon,
+  :host(.primary.left-icon) etools-icon,
+  :host(.success.left-icon) etools-icon,
+  :host(.error.left-icon) etools-icon {
     margin-inline-end: 10px;
   }
 
-  :host.info.left-icon etools-icon {
+  :host(.info.left-icon etools-icon) {
     margin-inline-end: 4px;
   }
 
-  :host.default.right-icon etools-icon,
-  :host.primary.right-icon etools-icon,
-  :host.info.right-icon etools-icon,
-  :host.success.right-icon etools-icon,
-  :host.error.right-icon etools-icon {
+  :host(.default.right-icon) etools-icon,
+  :host(.primary.right-icon) etools-icon,
+  :host(.info.right-icon) etools-icon,
+  :host(.success.right-icon) etools-icon,
+  :host(.error.right-icon) etools-icon {
     margin-inline-start: 10px;
   }
 
@@ -52,36 +54,55 @@ export const buttonsStylesContent = `
     margin-inline-end: 5px;
     min-width: 82px;
   }
-  
+  sl-dropdown sl-menu-item:focus-visible::part(base) {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--sl-color-neutral-1000);
+  }
   :host::part(base) {
     border: none !important;
     align-items: center;
   }
 
-  :host[variant='text'] {
+  :host([variant='text']) {
     --sl-button-font-size-medium: 16px;
   }
 
-  :host[variant='text']::part(label) {
+  :host([variant='text'])::part(label) {
     font-weight: 700;
   }
 
-  :host.no-pad {
+  :host(.no-pad) {
     --sl-spacing-medium: 0;
   }
-  :host.no-marg {
+  :host(.no-marg) {
     margin:0;
   }
 
-  :host[variant='text'].neutral::part(base) {
+  :host([variant='text'].neutral)::part(base) {
     color: var(--sl-color-neutral-600);
   }
 
-  :host[variant='text'].neutral::part(base):hover {
+  :host([variant='text'].neutral)::part(base):hover {
     color: var(--sl-color-neutral-500);
   }
 
-  :host[variant='text'].font-14 {
+  :host([variant='text'].danger)::part(base) {
+    color: var(--sl-color-danger-600);
+  }
+
+  :host([variant='text'].danger)::part(base):hover {
+    color: var(--sl-color-danger-500);
+  }
+
+  :host([variant='text'].primary)::part(base) {
+    color: var(--sl-color-primary-600);
+  }
+
+  :host([variant='text'].primary)::part(base):hover {
+    color: var(--sl-color-primary-500);
+  }
+
+  :host([variant='text'].font-14) {
     --sl-button-font-size-medium: 14px;
   }
 `;
