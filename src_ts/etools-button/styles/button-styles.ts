@@ -2,19 +2,19 @@ import {css, unsafeCSS} from 'lit';
 
 //TODO remove this
 export const buttonsStylesContent = `
-  :host.default.left-icon:not(variant=["text"])::part(base),
-  :host.primary.left-icon:not(variant=["text"])::part(base),
-  :host.info.left-icon:not(variant=["text"])::part(base),
-  :host.success.left-icon:not(variant=["text"])::part(base),
-  :host.error.left-icon:not(variant=["text"])::part(base) {
+  :host(.default.left-icon:not(variant=["text"]))::part(base),
+  :host(.primary.left-icon:not(variant=["text"]))::part(base),
+  :host(.info.left-icon:not(variant=["text"]))::part(base),
+  :host(.success.left-icon:not(variant=["text"]))::part(base),
+  :host(.error.left-icon:not(variant=["text"]))::part(base) {
     padding-inline-end: 12px;
   }
 
-  :host.default.right-icon:not(variant=["text"])::part(base),
-  :host.primary.right-icon:not(variant=["text"])::part(base),
-  :host.info.right-icon:not(variant=["text"])::part(base),
-  :host.success.right-icon:not(variant=["text"])::part(base),
-  :host.error.right-icon:not(variant=["text"])::part(base) {
+  :host(.default.right-icon:not(variant=["text"]))::part(base),
+  :host(.primary.right-icon:not(variant=["text"]))::part(base),
+  :host(.info.right-icon:not(variant=["text"]))::part(base),
+  :host(.success.right-icon:not(variant=["text"]))::part(base),
+  :host(.error.right-icon:not(variant=["text"]))::part(base) {
     padding-inline-start: 12px;
   }
 
