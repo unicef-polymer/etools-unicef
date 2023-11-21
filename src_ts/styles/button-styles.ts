@@ -86,6 +86,22 @@ export const buttonsStylesContent = `
     color: var(--sl-color-neutral-500);
   }
 
+  sl-button[variant='text'].danger::part(base) {
+    color: var(--sl-color-danger-600);
+  }
+
+  sl-button[variant='text'].danger::part(base):hover {
+    color: var(--sl-color-danger-500);
+  }
+
+  sl-button[variant='text'].primary::part(base) {
+    color: var(--sl-color-primary-600);
+  }
+
+  sl-button[variant='text'].primary::part(base):hover {
+    color: var(--sl-color-primary-500);
+  }
+
   sl-button[variant='text'].font-14 {
     --sl-button-font-size-medium: 14px;
   }
