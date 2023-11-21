@@ -2,12 +2,13 @@ import {LitElement, html} from 'lit';
 import {property, query} from 'lit/decorators.js';
 import '@a11y/focus-trap/focus-trap.js';
 import '../etools-loading/etools-loading';
+import '../etools-button/etools-button';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import {SlDialog} from '@shoelace-style/shoelace';
 import {setDefaultAnimation} from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '../etools-button/etools-button';
 import {buttonsStyles} from '../styles/button-styles';
 
 /**
@@ -79,14 +80,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
-        sl-button.confirm-btn {
+        etools-button.confirm-btn {
           margin-inline-end: 5px;
         }
-        sl-button[hidden] {
+        etools-button[hidden] {
           display: none;
         }
 
-        sl-button {
+        etools-button {
           --sl-input-height-medium: 36px;
         }
 
@@ -313,22 +314,22 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   getButtonsHTML() {
     return this.showButtons
       ? html` <div class="buttons" part="ed-button-styles" slot="footer">
-          <sl-button
+          <etools-button
             variant="text"
             @click="${this._cancelBtClicked}"
             class="neutral"
             ?disabled="${this.disableDismissBtn}"
           >
             ${this.cancelBtnText}
-          </sl-button>
-          <sl-button
+          </etools-button>
+          <etools-button
             .variant="${this.confirmBtnVariant}"
             @click="${this._confirmBtClicked}"
             ?disabled="${this.disableConfirmBtn}"
             ?hidden="${this.hideConfirmBtn}"
           >
             ${this.okBtnText}
-          </sl-button>
+          </etools-button>
         </div>`
       : html``;
   }

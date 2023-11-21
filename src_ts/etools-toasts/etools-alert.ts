@@ -37,7 +37,7 @@ class EtoolsAlert extends SlAlert {
           <slot></slot>
         </div>
         ${this.closable
-          ? html`<sl-button class="close-btn" variant="text" @click="${this.hide}">OK</sl-button>`
+          ? html`<etools-button class="close-btn" variant="text" @click="${this.hide}">OK</etools-button>`
           : html``}
       </div>
     `;

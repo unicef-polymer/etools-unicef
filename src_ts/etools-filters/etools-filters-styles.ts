@@ -81,7 +81,7 @@ export const etoolsFiltersStyles = css`
    }
   */
 
-  #filterMenu sl-button::part(label) {
+  #filterMenu etools-button::part(label) {
     font-size: 16px;
     text-transform: uppercase;
   }
@@ -130,7 +130,7 @@ export const etoolsFiltersStyles = css`
     border-bottom: 1px solid var(--light-divider-color, rgba(0, 0, 0, 0.12));
   }
 
-  .clear-all-filters sl-button {
+  .clear-all-filters etools-button {
     pointer-events: none;
   }
 

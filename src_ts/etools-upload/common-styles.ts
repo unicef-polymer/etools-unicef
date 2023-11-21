@@ -4,19 +4,19 @@ export const CommonStyles = html` <style>
     display: none !important;
   }
 
-  sl-button::part(base) {
+  etools-button::part(base) {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 16px;
     margin: 0 0;
     padding: 0 0 !important;
   }
-  sl-button.change-button::part(label),
-  sl-button.delete-button::part(label) {
+  etools-button.change-button::part(label),
+  etools-button.delete-button::part(label) {
     padding-inline-start: 5px;
     padding-inline-end: 5px;
   }
-  sl-button::part(label) {
+  etools-button::part(label) {
     padding-inline-start: 0;
     padding-inline-end: 0;
   }
@@ -43,7 +43,7 @@ export const CommonStyles = html` <style>
     margin-inline-end: 8px;
   }
 
-  sl-button:focus {
+  etools-button:focus {
     outline: 0;
     box-shadow: 0 0 5px 5px rgba(170, 165, 165, 0.2);
     background-color: rgba(170, 165, 165, 0.2);

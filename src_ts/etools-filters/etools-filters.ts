@@ -4,7 +4,7 @@ import {etoolsFiltersStyles} from './etools-filters-styles';
 
 import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/switch/switch.js';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '../etools-button/etools-button';
 import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
 
 import '../etools-dropdown/etools-dropdown-multi';
@@ -91,7 +91,7 @@ export class EtoolsFilters extends LitElement {
         .date {
           margin-inline-end: 16px;
         }
-        sl-button[variant='text'] {
+        etools-button[variant='text'] {
           --sl-color-primary-600: var(--primary-color, rgb(2, 132, 199));
         }
       `
@@ -290,15 +290,15 @@ export class EtoolsFilters extends LitElement {
 
       <div id="filters-selector">
         <sl-dropdown id="filterMenu" stay-open-on-select>
-          <sl-button variant="text" class="trigger-button" slot="trigger">
+          <etools-button variant="text" class="trigger-button" slot="trigger">
             <etools-icon name="filter-list" slot="prefix"></etools-icon>
             ${this.textFilters || getTranslation(this.language, 'FILTERS')}
-          </sl-button>
+          </etools-button>
 
           <sl-menu @sl-select="${this.selectFilter}">
             <sl-menu-item class="clear-all-filters" @click="${this.clearAllFilters}">
-              <sl-button variant="text" tabindex="-1"
-                >${this.textClearAll || getTranslation(this.language, 'CLEAR_ALL')}</sl-button
+              <etools-button variant="text" tabindex="-1"
+                >${this.textClearAll || getTranslation(this.language, 'CLEAR_ALL')}</etools-button
               >
             </sl-menu-item>
             ${this.filterMenuOptions(this.filters)}
