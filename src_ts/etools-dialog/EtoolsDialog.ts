@@ -9,7 +9,6 @@ import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import {SlDialog} from '@shoelace-style/shoelace';
 import {setDefaultAnimation} from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
 import '../etools-button/etools-button';
-import {buttonsStyles} from '../styles/button-styles';
 
 /**
  * @customElement
@@ -22,7 +21,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     // language=HTML
     return html`
       <style>
-        ${buttonsStyles}:host {
+        :host {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         }
         sl-dialog {
