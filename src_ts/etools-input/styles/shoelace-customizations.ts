@@ -47,6 +47,9 @@ const validationStyles = css`
     overflow: hidden;
     white-space: nowrap;
   }
+  :host([disabled]) sl-input::part(form-control-input)::after {
+    border-bottom: 1px dashed var(--secondary-text-color);
+  }
   sl-input[invalid],
   sl-textarea[invalid] {
     --sl-input-border-color: red;
