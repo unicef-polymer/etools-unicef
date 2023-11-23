@@ -1,6 +1,6 @@
 import {html, LitElement} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '../etools-button/etools-button';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import '../etools-icons/etools-icon';
 import {CommonStyles} from './common-styles';
@@ -83,7 +83,7 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMixin(CommonMix
 
       <div>
         <div class="upload-btn-and-actions">
-          <sl-button
+          <etools-button
             variant="text"
             size="small"
             class="upload-button"
@@ -93,10 +93,10 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMixin(CommonMix
           >
             <etools-icon name="file-upload"></etools-icon>
             ${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILES')}
-          </sl-button>
+          </etools-button>
 
           <div class="file-actions">
-            <sl-button
+            <etools-button
               variant="text"
               size="small"
               class="delete-button"
@@ -106,7 +106,7 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMixin(CommonMix
             >
               <etools-icon name="clear"></etools-icon>
               ${getTranslation(this.language, 'CANCEL')}
-            </sl-button>
+            </etools-button>
           </div>
         </div>
 

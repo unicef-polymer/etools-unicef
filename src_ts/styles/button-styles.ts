@@ -1,4 +1,6 @@
 import {css, unsafeCSS} from 'lit';
+
+//TODO remove this
 export const buttonsStylesContent = `
   sl-button.default.left-icon:not(variant=["text"])::part(base),
   sl-button.primary.left-icon:not(variant=["text"])::part(base),
