@@ -3,7 +3,7 @@ import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tag/tag.js';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '../etools-button/etools-button';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import '@shoelace-style/shoelace/dist/components/popup/popup.js';
 import styles from './styles/sl-autocomplete-styles';
@@ -555,9 +555,9 @@ export class SlAutocomplete extends LitElement {
                 <div aria-hidden="true" style=${styleMap({width: `${this.clientWidth}px`})}></div>
               </div>
               <div class="footer" ?hidden="${!this.multiple || this.hideClose}">
-                <sl-button id="closeBtn" size="small" variant="text" @click="${() => this.hide()}">
+                <etools-button id="closeBtn" size="small" variant="text" @click="${() => this.hide()}">
                   ${getTranslation(this.language, 'CLOSE')}
-                </sl-button>
+                </etools-button>
               </div>
             </div>
           </sl-popup>

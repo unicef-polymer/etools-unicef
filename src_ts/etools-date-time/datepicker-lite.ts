@@ -2,7 +2,7 @@
 import {LitElement, html} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
 import '../etools-icons/etools-icon';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '../etools-button/etools-button';
 import '@a11y/focus-trap';
 
 import './calendar-lite';
@@ -424,15 +424,15 @@ export class DatePickerLite extends LitElement {
   getClearBtnHTML() {
     return this.readonly
       ? html``
-      : html`<sl-button class="clear-btn" @click="${this._clearData}" ?hidden="${!this.clearBtnInsideDr}"
-          >Clear</sl-button
+      : html`<etools-button class="clear-btn" @click="${this._clearData}" ?hidden="${!this.clearBtnInsideDr}"
+          >Clear</etools-button
         >`;
   }
 
   getCloseBtnHTML() {
     return this.closeOnSelect
       ? html``
-      : html`<sl-button class="close-btn" @click="${this.toggleCalendar}">Close</sl-button>`;
+      : html`<etools-button class="close-btn" @click="${this.toggleCalendar}">Close</etools-button>`;
   }
 
   getXBtnHTML() {

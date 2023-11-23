@@ -116,6 +116,7 @@ export class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?invalid="${this.invalid}"
         ?required="${this.required}"
+        ?disabled="${this.required}"
         ?readonly="${this.readonly}"
         ?always-float-label="${this.alwaysFloatLabel}"
         rows="${ifDefined(this.rows)}"

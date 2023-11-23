@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '../etools-button/etools-button';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import '../etools-icons/etools-icon';
 import {CommonStyles} from './common-styles';
@@ -202,7 +202,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
         }
 
-        .file-actions sl-button {
+        .file-actions etools-button {
           vertical-align: middle;
         }
 
@@ -210,7 +210,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           justify-content: flex-start;
         }
 
-        sl-button[disabled]::part(base) {
+        etools-button[disabled]::part(base) {
           cursor: default;
           opacity: 1;
         }
@@ -232,7 +232,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
         </label>
 
         <div slot="input">
-          <sl-button
+          <etools-button
             variant="text"
             size="small"
             class="upload-button"
@@ -248,7 +248,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
               ${this.uploadBtnLabel || getTranslation(this.language, 'UPLOAD_FILE')}
             </span>
             <label class="readonly-placeholder" ?hidden="${!this.readonly}">—</label>
-          </sl-button>
+          </etools-button>
 
           <div class="filename-and-actions-container">
             <div class="filename-container" ?hidden="${!this._thereIsAFileSelectedOrSaved(this._filename)}">
@@ -277,7 +277,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
 
             <!-- File actions -->
             <div class="file-actions">
-              <sl-button
+              <etools-button
                 variant="text"
                 class="download-button primary-btn"
                 size="small"
@@ -288,9 +288,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
               >
                 <etools-icon name="cloud-download" class="dw-icon"></etools-icon>
                 ${getTranslation(this.language, 'DOWNLOAD')}
-              </sl-button>
+              </etools-button>
 
-              <sl-button
+              <etools-button
                 variant="text"
                 size="small"
                 class="change-button"
@@ -299,9 +299,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
                 ?hidden="${!this._showChange(this.readonly, this._filename, this.uploadInProgress)}"
               >
                 ${getTranslation(this.language, 'CHANGE')}
-              </sl-button>
+              </etools-button>
 
-              <sl-button
+              <etools-button
                 variant="text"
                 size="small"
                 class="delete-button"
@@ -315,9 +315,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
                 )}"
               >
                 ${getTranslation(this.language, 'DELETE')}
-              </sl-button>
+              </etools-button>
 
-              <sl-button
+              <etools-button
                 variant="text"
                 size="small"
                 class="delete-button"
@@ -326,7 +326,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
                 ?hidden="${!this._showCancelBtn(this.uploadInProgress, this.fileUrl, this.fail)}"
               >
                 ${getTranslation(this.language, 'CANCEL')}
-              </sl-button>
+              </etools-button>
             </div>
             <!-- ------------------ -->
           </div>

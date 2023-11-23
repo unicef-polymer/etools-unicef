@@ -57,6 +57,7 @@ export class EtoolsInput extends EtoolsInputBase {
           allowed-pattern="${this.allowedPattern}"
           ?invalid="${this.invalid}"
           ?required="${this.required}"
+          ?disabled="${this.disabled}"
           ?required-placeholder="${this.requiredPlaceholder}"
           ?readonly="${this.preventUserDirectInput || this.readonly}"
           ?prevent-user-direct-input="${this.preventUserDirectInput}"
