@@ -27,7 +27,7 @@ export default css`
     display: none !important;
   }
 
-  :host([invalid]) {
+  :host([invalid]:not([readonly]):not([disabled])) {
     --sl-input-label-color: red;
   }
 
@@ -94,7 +94,11 @@ export default css`
   }
 
   :host([readonly]) .form-control--has-label .form-control__label::after {
-    content: unset;
+    content: '';
+  }
+
+  :host(:not([readonly]):not([disabled]):not([invalid])) .form-control__label.form-control__focused {
+    color: var(--sl-color-primary-600);
   }
 
   /* Help text */
@@ -243,7 +247,7 @@ export default css`
     border: solid var(--sl-input-border-width) var(--sl-input-border-color);
   }
 
-  .select--standard.select--disabled .select__combobox {
+  .select--standard.select--disabled:not(.select--readonly) .select__combobox {
     background-color: var(--sl-input-background-color-disabled);
     border-color: var(--sl-input-border-color-disabled);
     color: var(--sl-input-color-disabled);
@@ -259,8 +263,9 @@ export default css`
     outline: none;
   }
 
-  .select--standard:not(.select--disabled):not(.select--readonly).select--open .select__combobox,
-  .select--standard:not(.select--disabled):not(.select--readonly).select--focused .select__combobox {
+  .select--standard:not(.select--disabled):not(.select--readonly):not(.select--invalid).select--open .select__combobox,
+  .select--standard:not(.select--disabled):not(.select--readonly):not(.select--invalid).select--focused
+    .select__combobox {
     background-color: var(--sl-input-background-color-focus);
     border-color: var(--sl-input-border-color-focus);
     box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-input-focus-ring-color);
@@ -271,15 +276,18 @@ export default css`
     border: 0;
   }
 
-  .select--standard:not(.select--disabled):not(.select--readonly).select--transparent.select--open .select__combobox,
-  .select--standard:not(.select--disabled):not(.select--readonly).select--transparent.select--focused
+  .select--standard:not(.select--disabled):not(.select--readonly):not(.select--invalid).select--transparent.select--open
+    .select__combobox,
+  .select--standard:not(.select--disabled):not(.select--readonly):not(
+      .select--invalid
+    ).select--transparent.select--focused
     .select__combobox {
     background: none;
     border: 0;
     box-shadow: none;
   }
 
-  .select--standard.select--invalid .select__combobox {
+  .select--standard.select--invalid:not(.select--disabled):not(.select--readonly) .select__combobox {
     color: #ea4022;
     border-color: #ea4022;
   }

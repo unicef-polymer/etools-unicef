@@ -565,11 +565,15 @@ export class DatePickerLite extends LitElement {
 
   toggleCalendarFromIcon(e) {
     e.stopImmediatePropagation();
-    this.toggleCalendar();
+    (this.shadowRoot!.querySelector('#dateDisplayinputContainer') as any)?.click();
+
+    if (this.opened) {
+      (this.shadowRoot!.querySelector('#dateDisplayinputContainer') as any)?.focus();
+    }
   }
 
   toggleCalendar() {
-    if (!this.readonly) {
+    if (!this.readonly && !this.disabled) {
       (this.shadowRoot!.querySelector('#calendar') as any).style.marginTop = `${this._getCalendarMarginTop()}px`;
 
       this.opened = !this.opened;

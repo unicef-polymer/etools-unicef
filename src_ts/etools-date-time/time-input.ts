@@ -130,6 +130,10 @@ export class TimeInput extends LitElement {
           color: var(--sl-input-required-content-color);
         }
 
+        :host([readonly]) .form-control--has-label .form-control__label::after {
+          content: '';
+        }
+
         .input {
           flex: 1 1 auto;
           display: inline-flex;

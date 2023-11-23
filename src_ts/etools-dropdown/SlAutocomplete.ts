@@ -321,7 +321,10 @@ export class SlAutocomplete extends LitElement {
         <label
           id="label"
           part="form-control-label"
-          class="form-control__label"
+          class=${classMap({
+            'form-control__label': true,
+            'form-control__focused': this.open
+          })}
           aria-hidden=${this.label ? 'false' : 'true'}
         >
           <slot name="label">${this.label || html`&nbsp;`}</slot>
