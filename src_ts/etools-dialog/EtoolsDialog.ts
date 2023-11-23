@@ -371,7 +371,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   private triggerPopupOpenEvent(opened: boolean) {
     if (opened) {
       this.dispatchEvent(
-        new CustomEvent('dialog-opened', {
+        new CustomEvent('etools-dialog-opened', {
           detail: {value: opened},
           bubbles: true,
           composed: true
@@ -381,7 +381,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
     if (!opened) {
       this.dispatchEvent(
-        new CustomEvent('dialog-closed', {
+        new CustomEvent('etools-dialog-closed', {
           detail: {value: opened},
           bubbles: true,
           composed: true
