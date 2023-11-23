@@ -41,7 +41,7 @@ export default css`
     --sl-input-label-color: rgba(0, 0, 0, 0.54);
   }
 
-  :host([invalid]) .form-control__label {
+  :host([invalid]:not([readonly]):not([disabled])) .form-control__label {
     --sl-input-label-color: #ea4022;
   }
 
@@ -128,19 +128,21 @@ export default css`
     color: rgba(255, 255, 255, 0.7);
   }
 
-  .select--standard.select--disabled .select__combobox:after {
+  .select--standard.select--disabled:not(.select--readonly) .select__combobox:after {
     border-bottom-style: dashed;
     border-bottom-width: 1px;
   }
 
-  .select--standard.select--invalid .select__combobox:after {
+  .select--standard.select--invalid:not(.select--disabled):not(.select--readonly) .select__combobox:after {
     border-bottom-style: solid;
     border-color: #ea4022;
     border-bottom-width: 2px;
   }
 
-  .select--standard:not(.select--disabled):not(.select--readonly).select--open .select__combobox:after,
-  .select--standard:not(.select--disabled):not(.select--readonly).select--focused .select__combobox:after {
+  .select--standard:not(.select--disabled):not(.select--readonly):not(.select--invalid).select--open
+    .select__combobox:after,
+  .select--standard:not(.select--disabled):not(.select--readonly):not(.select--invalid).select--focused
+    .select__combobox:after {
     border-color: var(--sl-input-border-color-focus);
     border-bottom-width: 2px;
   }

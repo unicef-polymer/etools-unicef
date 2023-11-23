@@ -83,6 +83,11 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           margin-inline-start: var(--sl-input-required-content-offset);
           color: var(--sl-input-required-content-color);
         }
+
+        :host([readonly]) .form-control--has-label .form-control__label::after {
+          content: '';
+        }
+
         :host(:not([disabled]):not([readonly])) .invalid-message[visible] {
           font-size: 12px;
           visibility: visible;

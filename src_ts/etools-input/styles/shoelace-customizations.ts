@@ -7,13 +7,13 @@ const validationStyles = css`
     visibility: visible;
   }
 
-  :host(:not([readonly])) sl-input:not([invalid]):focus div[slot='help-text'] div.char-counter,
-  :host(:not([readonly])) sl-textarea:not([invalid]):focus div[slot='help-text'] div.char-counter {
+  :host(:not([readonly]):not([disabled])) sl-input:not([invalid]):focus div[slot='help-text'] div.char-counter,
+  :host(:not([readonly]):not([disabled])) sl-textarea:not([invalid]):focus div[slot='help-text'] div.char-counter {
     color: var(--primary-color);
   }
 
-  sl-input[invalid] div[slot='help-text'] div.char-counter,
-  sl-textarea[invalid] div[slot='help-text'] div.char-counter {
+  :host(:not([readonly]):not([disabled])) sl-input[invalid] div[slot='help-text'] div.char-counter,
+  :host(:not([readonly]):not([disabled])) sl-textarea[invalid] div[slot='help-text'] div.char-counter {
     color: var(--sl-input-required-content-color);
   }
 
@@ -33,8 +33,8 @@ const validationStyles = css`
     visibility: hidden;
   }
 
-  sl-input[invalid] div[slot='help-text'] div.err-msg,
-  sl-textarea[invalid] div[slot='help-text'] div.err-msg {
+  :host(:not([readonly]):not([disabled])) sl-input[invalid] div[slot='help-text'] div.err-msg,
+  :host(:not([readonly]):not([disabled])) sl-textarea[invalid] div[slot='help-text'] div.err-msg {
     visibility: visible;
     height: 0;
     overflow: visible;
@@ -47,18 +47,20 @@ const validationStyles = css`
     overflow: hidden;
     white-space: nowrap;
   }
-  :host([disabled]) sl-input::part(form-control-input)::after {
-    border-bottom: 1px dashed var(--secondary-text-color);
-  }
-  sl-input[invalid],
-  sl-textarea[invalid] {
+
+  :host(:not([readonly]):not([disabled])) sl-input[invalid],
+  :host(:not([readonly]):not([disabled])) sl-textarea[invalid],
+  :host([invalid]:not([disabled]):not([readonly])) .etools-label {
     --sl-input-border-color: red;
     --sl-input-label-color: red;
   }
+
   sl-input,
-  sl-textarea {
+  sl-textarea,
+  :host([invalid]:not([disabled]):not([readonly])) .etools-label {
     --sl-input-required-content-color: red;
   }
+
   .err-msg {
     color: red;
   }
@@ -66,20 +68,42 @@ const validationStyles = css`
 
 const labelStyles = css`
   sl-input,
-  sl-textarea {
+  sl-textarea,
+  .etools-label {
     --sl-input-label-color: var(--secondary-text-color);
     --sl-input-required-content-color: red;
     --sl-spacing-3x-small: 0;
     --sl-input-spacing-small: 2px;
+    --sl-input-required-content-offset: 3px;
   }
+
   sl-input::part(form-control-label) {
     line-height: 18px;
     font-size: 12px;
     display: block;
   }
+
   sl-textarea[always-float-label]::part(form-control-label),
   sl-input[always-float-label]::part(form-control-label) {
     min-height: 18px;
+  }
+
+  :host([required]) .etools-label::after {
+    content: var(--sl-input-required-content);
+    margin-inline-start: 2px;
+    color: var(--sl-input-required-content-color);
+  }
+
+  :host([readonly]) sl-input::part(form-control-label),
+  :host([readonly]) sl-textarea::part(form-control-label),
+  :host([readonly]) .etools-label::after {
+    --sl-input-required-content: '';
+  }
+
+  :host(:not([disabled]):not([readonly]):not([invalid])) sl-input:focus::part(form-control-label),
+  :host(:not([disabled]):not([readonly]):not([invalid])) sl-textarea:focus::part(form-control-label),
+  :host(:not([disabled]):not([readonly]):not([invalid])) .etools-label.focused {
+    color: var(--primary-color);
   }
 `;
 
@@ -138,24 +162,31 @@ export const ShoelaceCustomizations = css`
     border-bottom: 1px solid var(--secondary-text-color);
   }
 
+  :host([disabled]) sl-input::part(form-control-input)::after,
+  :host([disabled]) sl-textarea::part(form-control-input)::after {
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+  }
+
   sl-textarea::part(textarea) {
     font-family: inherit;
     color: var(--primary-text-color) !important;
   }
 
-  :host(:not([readonly])) sl-input:focus::part(form-control-input)::after,
-  :host(:not([readonly])) sl-textarea:focus::part(form-control-input)::after {
+  :host(:not([disabled]):not([readonly]):not([invalid])) sl-input:focus::part(form-control-input)::after,
+  :host(:not([disabled]):not([readonly]):not([invalid])) sl-textarea:focus::part(form-control-input)::after {
     border-color: var(--primary-color);
     border-bottom-width: 2px;
   }
-  :host(:not([readonly])) sl-input[required-placeholder]::part(suffix)::after {
+
+  :host(:not([disabled]):not([readonly])) sl-input[required-placeholder]::part(suffix)::after {
     content: var(--sl-input-required-content);
     margin-inline-start: var(--sl-input-required-content-offset);
     color: var(--sl-input-required-content-color);
   }
 
-  :host(:not([readonly])) sl-input[invalid]::part(form-control-input)::after,
-  :host(:not([readonly])) sl-textarea[invalid]::part(form-control-input)::after {
+  :host(:not([disabled]):not([readonly])) sl-input[invalid]::part(form-control-input)::after,
+  :host(:not([disabled]):not([readonly])) sl-textarea[invalid]::part(form-control-input)::after {
     border-bottom: 2px solid red;
   }
 

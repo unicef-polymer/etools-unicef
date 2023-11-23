@@ -123,7 +123,7 @@ export class EtoolsInput extends EtoolsInputBase {
             <etools-icon name="cancel"></etools-icon>
           </div>
         </sl-input>
-        <div part="readonly-input" ?hidden=${this.hideReadonlyText()}>${this.value}</div>
+        <div part="readonly-input" ?hidden=${this.hideReadonlyText()}>${this.value || this.placeholder}</div>
       </div>
     `;
   }
@@ -135,7 +135,7 @@ export class EtoolsInput extends EtoolsInputBase {
   }
 
   hideReadonlyText() {
-    return !this.wrapTextInReadonly || this.preventUserDirectInput || !this.readonly || !this.value;
+    return !this.wrapTextInReadonly || this.preventUserDirectInput || !this.readonly;
   }
 
   validate() {

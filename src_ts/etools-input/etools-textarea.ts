@@ -6,6 +6,7 @@ import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import type SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import '../etools-info-tooltip/info-icon-tooltip';
 import {ifDefined} from 'lit/directives/if-defined.js';
+import {classMap} from 'lit/directives/class-map.js';
 
 @customElement('etools-textarea')
 export class EtoolsTextarea extends LitElement {
@@ -66,6 +67,9 @@ export class EtoolsTextarea extends LitElement {
   @query('sl-textarea')
   slTextarea!: SlTextarea;
 
+  @state()
+  focused = false;
+
   static get styles() {
     return [
       ShoelaceCustomizations,
@@ -73,18 +77,20 @@ export class EtoolsTextarea extends LitElement {
         :host {
           width: 100%;
         }
+
         .spacing {
           padding-top: var(--etools-input-padding-top, 8px);
           padding-bottom: var(--etools-input-padding-bottom, 8px);
         }
+
         info-icon-tooltip {
           --iit-icon-size: 18px;
           --iit-margin: 0 0 4px 4px;
         }
 
-        .paper-label {
+        .etools-label {
           font-size: 12px;
-          color: var(--secondary-text-color);
+          color: var(--sl-input-label-color);
           padding-top: 8px;
         }
 
@@ -110,6 +116,7 @@ export class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?invalid="${this.invalid}"
         ?required="${this.required}"
+        ?disabled="${this.required}"
         ?readonly="${this.readonly}"
         ?always-float-label="${this.alwaysFloatLabel}"
         rows="${ifDefined(this.rows)}"
@@ -126,6 +133,8 @@ export class EtoolsTextarea extends LitElement {
           fireEvent(this, 'value-changed', {value: val});
           this.charCount = val.length;
         }}"
+        @sl-focus=${() => (this.focused = true)}
+        @sl-blur=${() => (this.focused = false)}
         exportparts="textarea,base,form-control,form-control-input,form-control-label,form-control-help-text"
       >
         <div slot="help-text">
@@ -146,7 +155,14 @@ export class EtoolsTextarea extends LitElement {
       return html``;
     }
     return html`
-      <label class="paper-label" for="sl-textarea">${this.label}</label>
+      <label
+        class=${classMap({
+          'etools-label': true,
+          focused: this.focused
+        })}
+        for="sl-textarea"
+        >${this.label}</label
+      >
       <info-icon-tooltip
         id="iit-context"
         ?hidden="${this.readonly}"
