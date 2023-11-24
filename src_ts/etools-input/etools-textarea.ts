@@ -28,6 +28,9 @@ export class EtoolsTextarea extends LitElement {
   @property({type: Boolean})
   readonly!: boolean;
 
+  @property({type: Boolean})
+  disabled!: boolean;
+
   @property({type: String, attribute: 'error-message', reflect: true})
   errorMessage!: string;
 
@@ -116,7 +119,7 @@ export class EtoolsTextarea extends LitElement {
         placeholder="${this.placeholder ? this.placeholder : ''}"
         ?invalid="${this.invalid}"
         ?required="${this.required}"
-        ?disabled="${this.required}"
+        ?disabled="${this.disabled}"
         ?readonly="${this.readonly}"
         ?always-float-label="${this.alwaysFloatLabel}"
         rows="${ifDefined(this.rows)}"
