@@ -103,6 +103,7 @@ export class EtoolsInput extends EtoolsInputBase {
               }
             }
 
+            this.value = value;
             fireEvent(this, 'value-changed', {value: value});
 
             this.charCount = (value || '').toString().length;

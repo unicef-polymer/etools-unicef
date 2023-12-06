@@ -210,10 +210,12 @@ export class SlAutocomplete extends LitElement {
   }
 
   set selected(value: any | null) {
-    this.selectedValues = value ? [value] : [];
+    this.selectedValues = value !== undefined && value !== null ? [value] : [];
     // sl-select is not fired when selected is set through binding
     // timeout to wait for selectedItems to be set
-    setTimeout(() => this.setSelectedValues());
+    if (this.options?.length) {
+      setTimeout(() => this.setSelectedValues());
+    }
   }
 
   @property({type: String})
