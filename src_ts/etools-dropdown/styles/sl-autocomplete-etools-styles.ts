@@ -93,6 +93,11 @@ export default css`
     min-height: 24px;
   }
 
+  .select--readonly .select__tags sl-tag:not(:last-child) {
+    padding-right: 5px;
+    border-right: 1px solid var(--sl-input-label-color);
+  }
+
   .select__expand-icon {
     color: rgba(0, 0, 0, 0.54);
     font-size: 22px;
