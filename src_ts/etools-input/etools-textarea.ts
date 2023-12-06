@@ -133,6 +133,7 @@ export class EtoolsTextarea extends LitElement {
         @sl-invalid="${(e: any) => e.preventDefault()}"
         @sl-input="${(event: any) => {
           const val = event.target!.value ? event.target!.value : '';
+          this.value = val;
           fireEvent(this, 'value-changed', {value: val});
           this.charCount = val.length;
         }}"
