@@ -122,6 +122,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           border-top: 1px solid var(--light-divider-color);
         }
 
+        sl-dialog.confirmation etools-button.confirm-btn::part(base) {
+          background-color: var(--etools-dialog-confirm-btn-bg, #ea4022);
+          color: var(--etools-dialog-confirm-btn-text-color, #fff);
+        }
+
         sl-dialog.confirmation::part(body) {
           max-width: 100%;
           font-size: 20px;
@@ -326,6 +331,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             @click="${this._confirmBtClicked}"
             ?disabled="${this.disableConfirmBtn}"
             ?hidden="${this.hideConfirmBtn}"
+            class="confirm-btn"
           >
             ${this.okBtnText}
           </etools-button>

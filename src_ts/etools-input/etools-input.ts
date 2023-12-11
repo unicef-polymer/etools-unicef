@@ -39,6 +39,29 @@ export class EtoolsInput extends EtoolsInputBase {
         sl-input[wrap-text-in-readonly][readonly]:not([prevent-user-direct-input])::part(form-control-input) {
           display: none;
         }
+
+        .readonly-input {
+          display: inline-flex;
+          align-items: stretch;
+          justify-content: start;
+          width: 100%;
+        }
+
+        .readonly-input-prefix,
+        .readonly-input-suffix {
+          display: inline-flex;
+          flex: 0 0 auto;
+          align-items: center;
+          cursor: default;
+        }
+
+        .readonly-input-value {
+          width: 100%;
+        }
+
+        [hidden] {
+          display: none;
+        }
       `
     ];
   }
@@ -118,13 +141,22 @@ export class EtoolsInput extends EtoolsInputBase {
             <div class="err-msg">${this.invalid && this.errorMessage ? this.errorMessage : ''}</div>
             <div class="char-counter" ?hidden="${!this.charCounter}">${this.charCount}/${this.maxlength}</div>
           </div>
-          <slot slot="prefix" name="prefix"></slot>
-          <slot slot="suffix" name="suffix"></slot>
+          ${this.hideReadonlyText()
+            ? html`<slot slot="prefix" name="prefix"></slot> <slot slot="suffix" name="suffix"></slot>`
+            : html``}
           <div slot="clear-icon">
             <etools-icon name="cancel"></etools-icon>
           </div>
         </sl-input>
-        <div part="readonly-input" ?hidden=${this.hideReadonlyText()}>${this.value || this.placeholder}</div>
+        <div part="readonly-input" class="readonly-input" ?hidden=${this.hideReadonlyText()}>
+          ${!this.hideReadonlyText()
+            ? html`<span part="readonly-input-prefix" class="readonly-input-prefix"><slot name="prefix"></slot></span>`
+            : html``}
+          <span part="readonly-input-value" class="readonly-input-value">${this.value || this.placeholder}</span>
+          ${!this.hideReadonlyText()
+            ? html`<span part="readonly-input-suffix" class="readonly-input-prefix"><slot name="suffix"></slot></span>`
+            : html``}
+        </div>
       </div>
     `;
   }
