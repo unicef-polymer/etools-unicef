@@ -636,6 +636,9 @@ export class DatePickerLite extends LitElement {
       this.invalid = false;
     }
     this._triggerDateChangeCustomEvent(this.value);
+    setTimeout(() => {
+      this._clearDateInProgress = false;
+    }, 0);
   }
 
   _isValidYear() {
