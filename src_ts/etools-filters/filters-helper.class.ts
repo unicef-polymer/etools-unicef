@@ -16,13 +16,13 @@ export class FiltersHelper {
 
     for (const filterKey in params) {
       if (params[filterKey]) {
-        if (this.selectedValueTypeByFilterKey[filterKey] === 'Array') {
-          selectedFilters[filterKey] = params[filterKey].split(',');
-        } else if (this.selectedValueTypeByFilterKey[filterKey] === 'boolean') {
-          selectedFilters[filterKey] = params[filterKey] === 'true';
-        } else {
-          selectedFilters[filterKey] = params[filterKey];
-        }
+         if (selectedFilters[filterKey] === 'Array' && !Array.isArray(params[filterKey])) {
+           selectedFilters[filterKey] = params[filterKey].split(',');
+         } else if (this.selectedValueTypeByFilterKey[filterKey] === 'boolean') {
+           selectedFilters[filterKey] = params[filterKey] === 'true';
+         } else {
+           selectedFilters[filterKey] = params[filterKey];
+         }
       }
     }
     return selectedFilters;
