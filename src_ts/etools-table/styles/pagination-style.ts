@@ -16,7 +16,7 @@ export const etoolsPaginationStyles = css`
   }
 
   etools-icon-button {
-    --etools-icon-font-size: 16px;
+    --etools-icon-font-size: 24px;
     color: var(--dark-icon-color, #6f6f70);
   }
 
