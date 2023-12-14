@@ -11,7 +11,7 @@ import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 // #region Paginator methods
 export const defaultPaginator = {
   page: 1,
-  page_size: 20,
+  page_size: 25,
   total_pages: 0,
   count: 0,
   visible_range: [] as any[]
@@ -83,7 +83,7 @@ export class EtoolsPagination extends LitElement {
   paginator: EtoolsPaginator = defaultPaginator;
 
   @property({type: Array})
-  pageSizeOptions: number[] = [5, 10, 20, 50];
+  pageSizeOptions: number[] = [5, 10, 25, 50];
 
   @property({type: String})
   language = 'en';
@@ -97,7 +97,7 @@ export class EtoolsPagination extends LitElement {
   }
 
   initializeProperties() {
-    this.pageSizeOptions = [5, 10, 20, 50];
+    this.pageSizeOptions = [5, 10, 25, 50];
     this.direction = 'ltr';
     if (!this.language) {
       this.language = window.localStorage.defaultLanguage || 'en';
