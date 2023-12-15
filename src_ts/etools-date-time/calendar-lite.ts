@@ -33,6 +33,8 @@ export class CalendarLite extends LitElement {
   })
   set date(date) {
     if (!date) {
+      this._date = undefined;
+      this._populate(this.date);
       return;
     }
     if (typeof date === 'string') {
