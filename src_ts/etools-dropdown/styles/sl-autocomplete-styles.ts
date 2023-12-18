@@ -221,6 +221,7 @@ export default css`
 
   .select__tags sl-tag {
     cursor: pointer !important;
+    pointer-events: none;
   }
 
   .select--disabled .select__tags,

@@ -790,6 +790,9 @@ export class SlAutocomplete extends LitElement {
    * @param event MouseEvent
    */
   private handleTagMouseDown(event: MouseEvent) {
+    // Prevent open dialog in case we click on X, works together with pointer-events: none on sl-tag.
+    // If pointer-events: none is removed from sl-tag this will prevent dialog popup to open on click of tag
+    // as well.
     event.stopPropagation();
     event.preventDefault();
   }
