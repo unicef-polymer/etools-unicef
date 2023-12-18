@@ -481,12 +481,12 @@ export class AppSelector extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    document.addEventListener('tap', () => {
+    document.addEventListener('click', () => {
       this.opened = false;
     });
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
-    this.addEventListener('tap', (e: Event) => e.stopPropagation());
+    this.addEventListener('click', (e: Event) => e.stopPropagation());
   }
 
   disconnectedCallback() {
