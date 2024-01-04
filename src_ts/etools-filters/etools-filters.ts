@@ -103,6 +103,7 @@ export class EtoolsFilters extends LitElement {
     return html`
       <etools-input
         class="filter search"
+        part="filter-search"
         ?hidden="${!f.selected}"
         type="search"
         clearable
@@ -124,6 +125,7 @@ export class EtoolsFilters extends LitElement {
       <etools-dropdown
         ?hidden="${!f.selected}"
         class="filter"
+        part="filter-dropdown"
         label="${f.filterName}"
         placeholder="&#8212;"
         ?disabled="${f.disabled}"
@@ -151,6 +153,7 @@ export class EtoolsFilters extends LitElement {
         id="${f.filterKey}"
         ?hidden="${!f.selected}"
         class="filter"
+        part="filter-dropdownmulti"
         label="${f.filterName}"
         placeholder="${getTranslation(this.language, 'SELECT')}"
         ?disabled="${f.disabled}"
@@ -175,6 +178,7 @@ export class EtoolsFilters extends LitElement {
     return html`
       <datepicker-lite
         class="filter date"
+        part="filter-datepicker"
         ?hidden="${!f.selected}"
         .label="${f.filterName}"
         .value="${f.selectedValue}"
@@ -194,6 +198,7 @@ export class EtoolsFilters extends LitElement {
         ${f.filterName}
         <sl-switch
           id="toggleFilter"
+          part="filter-toggle"
           ?checked="${f.selectedValue}"
           data-filter-key="${f.filterKey}"
           @sl-change="${this.filterToggleChange}"
