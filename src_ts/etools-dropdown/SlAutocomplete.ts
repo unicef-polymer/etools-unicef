@@ -101,8 +101,8 @@ export class SlAutocomplete extends LitElement {
   @property({type: Number})
   options: any[] = [];
 
-  @property({type: String, attribute: 'load-data-method'})
-  loadDataMethod: string | undefined;
+  @property({type: Object})
+  loadDataMethod!: (search: string, page: number, shownOptionsLimit: number) => void;
 
   @property({type: Boolean, reflect: true, attribute: 'multiple'})
   multiple = false;
@@ -1115,7 +1115,7 @@ export class SlAutocomplete extends LitElement {
       } else if (this.pageHasChanged) {
         this.pageHasChanged = false;
         this.loading = false;
-        if (options.length < this.totalOptionsToShow) {
+        if (options.length && options.length < this.totalOptionsToShow) {
           this.noMoreItemsToLoad = true;
         }
       }
