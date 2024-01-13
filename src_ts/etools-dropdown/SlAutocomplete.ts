@@ -4,7 +4,7 @@ import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tag/tag.js';
 import '../etools-button/etools-button';
-import '../etools-button/etools-icon';
+import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import '@shoelace-style/shoelace/dist/components/popup/popup.js';
 import styles from './styles/sl-autocomplete-styles';
