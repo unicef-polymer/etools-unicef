@@ -6,7 +6,7 @@ import '../etools-button/etools-button';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
-import {SlDialog} from '@shoelace-style/shoelace';
+import SlDialog from '@shoelace-style/shoelace/dist/components/dialog/dialog.component.js';
 import {setDefaultAnimation} from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
 import '../etools-button/etools-button';
 

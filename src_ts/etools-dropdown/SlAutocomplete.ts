@@ -10,8 +10,12 @@ import styles from './styles/sl-autocomplete-styles';
 import etoolsStyles from './styles/sl-autocomplete-etools-styles';
 
 import SlMenuItem from '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import SlInput from '@shoelace-style/shoelace/dist/components/input/input.component.js';
+import {SlInputEvent} from '@shoelace-style/shoelace/dist/events/sl-input';
+import SlMenu from '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import {styleMap} from 'lit/directives/style-map.js';
-import {SlInput, SlInputEvent, SlMenu} from '@shoelace-style/shoelace';
+
+
 import {classMap} from 'lit/directives/class-map.js';
 import {property, query, state} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate';

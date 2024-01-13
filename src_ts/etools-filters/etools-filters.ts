@@ -15,7 +15,7 @@ import '../etools-loading/etools-loading';
 import debounce from 'lodash-es/debounce';
 import {Callback} from '@unicef-polymer/etools-types';
 import {getTranslation} from './utils/translate';
-import {SlSelectEvent} from '@shoelace-style/shoelace';
+import {SlSelectEvent} from '@shoelace-style/shoelace/dist/events/sl-select';
 
 export enum EtoolsFilterTypes {
   Search,

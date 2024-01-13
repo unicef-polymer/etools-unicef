@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/radio-group/radio-group.js';
-import {SlRadioGroup} from '@shoelace-style/shoelace';
+import SlRadioGroup from '@shoelace-style/shoelace/dist/components/radio-group/radio-group.component.js';
 
 @customElement('etools-radio-group')
 export class EtoolsRadioGroup extends SlRadioGroup {
