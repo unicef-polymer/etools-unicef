@@ -148,6 +148,7 @@ export class EtoolsContentPanel extends LitElement {
         <div class="panel-header" part="ecp-header" ?hidden="${this.noHeader}">
           <div class="flex-h">
             <etools-icon-button
+              label="toggle content panel"
               class="toggle-btn"
               part="ecp-toggle-btn"
               @click="${this._toggle}"

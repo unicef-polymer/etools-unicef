@@ -125,7 +125,7 @@ export class EtoolsTable extends LitElement {
         </caption>
         <thead>
           <tr>
-            ${this.showChildRows ? html`<th class="expand-cell"></th>` : ''}
+            ${this.showChildRows ? html`<th class="expand-cell"><span hidden>empty</span></th>` : ''}
             ${this.columns.map((column) => this.getColumnHtml(column))} ${this.showRowActions() ? html`<th></th>` : ''}
           </tr>
         </thead>
@@ -232,24 +232,28 @@ export class EtoolsTable extends LitElement {
     return html`
       <div class="actions">
         <etools-icon-button
+          label="edit"
           ?hidden="${!showEdit}"
           name="create"
           @click="${() => this.triggerAction(EtoolsTableActionType.Edit, item)}"
           tabindex="0"
         ></etools-icon-button>
         <etools-icon-button
+          label="delete"
           ?hidden="${!showDelete}"
           name="delete"
           @click="${() => this.triggerAction(EtoolsTableActionType.Delete, item)}"
           tabindex="0"
         ></etools-icon-button>
         <etools-icon-button
+          label="copy"
           ?hidden="${!showCopy}"
           name="content-copy"
           @click="${() => this.triggerAction(EtoolsTableActionType.Copy, item)}"
           tabindex="0"
         ></etools-icon-button>
         <etools-icon-button
+          label="view"
           ?hidden="${!showView}"
           name="icons:visibility"
           @click="${() => this.triggerAction(EtoolsTableActionType.View, item)}"

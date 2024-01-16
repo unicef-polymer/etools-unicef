@@ -107,9 +107,20 @@ export class EtoolsPagination extends LitElement {
 
   render() {
     return html`
+      <style>
+        sl-select::part(form-control-label) {
+          display: none;
+        }
+      </style>
       <span class="pagination-item">
         <span id="rows">${getTranslation(this.language, 'ROWS_PER_PAGE')}</span>
-        <sl-select size="small" hoist @sl-change="${this.onPageSizeChanged}" value="${this.paginator.page_size}">
+        <sl-select
+          label="Page size"
+          size="small"
+          hoist
+          @sl-change="${this.onPageSizeChanged}"
+          value="${this.paginator.page_size}"
+        >
           ${this.pageSizeOptions.map((sizeOption) => html`<sl-option value="${sizeOption}">${sizeOption}</sl-option>`)}
         </sl-select>
         <span id="range">
@@ -120,24 +131,28 @@ export class EtoolsPagination extends LitElement {
 
       <span class="pagination-item pagination-btns">
         <etools-icon-button
+          label="first page"
           name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
           @click="${this.goToFirstPage}"
           ?disabled="${this.paginator.page === 1}"
         ></etools-icon-button>
 
         <etools-icon-button
+          label="previous page"
           name="${this.direction === 'ltr' ? 'chevron-left' : 'chevron-right'}"
           @click="${this.pageLeft}"
           ?disabled="${this.paginator.page === 1}"
         ></etools-icon-button>
 
         <etools-icon-button
+          label="next page"
           name="${this.direction === 'ltr' ? 'chevron-right' : 'chevron-left'}"
           @click="${this.pageRight}"
           ?disabled="${this.paginator.page === this.paginator.total_pages}"
         ></etools-icon-button>
 
         <etools-icon-button
+          label="last page"
           name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
           @click="${this.goToLastPage}"
           ?disabled="${this.paginator.page === this.paginator.total_pages}"

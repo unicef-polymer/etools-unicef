@@ -2,7 +2,7 @@ import {LitElement, html, CSSResultArray, css} from 'lit';
 import {repeat} from 'lit/directives/repeat.js';
 
 import '@shoelace-style/shoelace/dist/components/alert/alert.js';
-import SlAlert from '@shoelace-style/shoelace/dist/components/alert/alert.js';
+import SlAlert from '@shoelace-style/shoelace/dist/components/alert/alert.component.js';
 import './etools-alert';
 
 const MAX_TOAST_SHOWN = 3;

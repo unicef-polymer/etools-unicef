@@ -197,6 +197,7 @@ export class EtoolsFilters extends LitElement {
       <div class="filter toggle" ?hidden="${!f.selected}" style="padding: 8px 0; box-sizing: border-box;">
         ${f.filterName}
         <sl-switch
+          title="${f.filterName}"
           id="toggleFilter"
           part="filter-toggle"
           ?checked="${f.selectedValue}"

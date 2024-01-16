@@ -125,12 +125,12 @@ export default css`
   }
 
   :host([transparent]) {
-    --sl-input-color: rgba(255, 255, 255, 0.7);
-    --sl-input-color-hover: rgba(255, 255, 255, 0.7);
+    --sl-input-color: rgba(255, 255, 255, 1);
+    --sl-input-color-hover: rgba(255, 255, 255, 1);
   }
 
   :host([transparent]) .select__expand-icon {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 1);
   }
 
   .select--standard.select--disabled:not(.select--readonly) .select__combobox:after {

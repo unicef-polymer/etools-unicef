@@ -162,13 +162,22 @@ export class EtoolsDataTableFooter extends LitElement {
         :host([low-resolution-layout]) .pag-btns {
           margin-inline-start: -12px;
         }
+        sl-select::part(form-control-label) {
+          display: none;
+        }
       </style>
 
       <div id="table-footer">
         <span class="pagination-item">
           <span id="rows">${this.rowsPerPageText || getTranslation(this.language, 'ROWS_PER_PAGE')}</span>
 
-          <sl-select size="small" hoist @sl-change="${this._selectRowsPerPage}" value="${this.pageSize}">
+          <sl-select
+            label="Page size"
+            size="small"
+            hoist
+            @sl-change="${this._selectRowsPerPage}"
+            value="${this.pageSize}"
+          >
             ${this.pageSizeOptions.map(
               (sizeOption) => html`<sl-option value="${sizeOption}">${sizeOption}</sl-option>`
             )}
@@ -183,24 +192,28 @@ export class EtoolsDataTableFooter extends LitElement {
 
         <span class="pagination-item pag-btns">
           <etools-icon-button
+            label="first page"
             name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
             @click="${this._firstPage}"
             ?disabled="${this._pageBackDisabled(this.pageNumber)}"
           ></etools-icon-button>
 
           <etools-icon-button
+            label="previous page"
             name="${this.direction === 'ltr' ? 'chevron-left' : 'chevron-right'}"
             @click="${this._pageLeft}"
             ?disabled="${this._pageBackDisabled(this.pageNumber)}"
           ></etools-icon-button>
 
           <etools-icon-button
+            label="next page"
             name="${this.direction === 'ltr' ? 'chevron-right' : 'chevron-left'}"
             @click="${this._pageRight}"
             ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"
           ></etools-icon-button>
 
           <etools-icon-button
+            label="last page"
             name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
             @click="${this._lastPage}"
             ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"

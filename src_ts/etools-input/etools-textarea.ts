@@ -3,7 +3,7 @@ import {customElement, query, property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
-import type SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
+import SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.component.js';
 import '../etools-info-tooltip/info-icon-tooltip';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {classMap} from 'lit/directives/class-map.js';
