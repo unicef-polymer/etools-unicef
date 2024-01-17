@@ -16,7 +16,11 @@ export const getSelectedFiltersFromUrlParams = (params: AnyObject) => {
 
   for (const filterKey in params) {
     if (params[filterKey]) {
-      if ((selectedValueTypeByFilterKey && selectedValueTypeByFilterKey[filterKey] === 'Array') && !Array.isArray(params[filterKey])) {
+      if (
+        selectedValueTypeByFilterKey &&
+        selectedValueTypeByFilterKey[filterKey] === 'Array' &&
+        !Array.isArray(params[filterKey])
+      ) {
         selectedFilters[filterKey] = params[filterKey].split(',');
       } else if (selectedValueTypeByFilterKey && selectedValueTypeByFilterKey[filterKey] === 'boolean') {
         selectedFilters[filterKey] = params[filterKey] === 'true';
