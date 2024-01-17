@@ -1,5 +1,5 @@
 import {html, css} from 'lit';
-import {SlAlert} from '@shoelace-style/shoelace';
+import SlAlert from '@shoelace-style/shoelace/dist/components/alert/alert.component.js';
 
 class EtoolsAlert extends SlAlert {
   static styles = [

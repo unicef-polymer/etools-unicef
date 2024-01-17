@@ -107,7 +107,7 @@ export class EtoolsProfileDropdown extends LitElement {
           align-items: center;
           justify-content: center;
           --sl-border-radius-medium: 0;
-          color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+          color: var(--header-secondary-text-color, rgba(255, 255, 255, 1));
         }
 
         :host([opened]) #profile::part(base) {
@@ -147,7 +147,13 @@ export class EtoolsProfileDropdown extends LitElement {
           this.opened = false;
         }}"
       >
-        <etools-icon-button id="profile" name="social:person" slot="trigger" role="button"></etools-icon-button>
+        <etools-icon-button
+          label="profile"
+          id="profile"
+          name="social:person"
+          slot="trigger"
+          role="button"
+        ></etools-icon-button>
         <sl-menu>
           <sl-menu-item @click="${this._openUserProfileDialog}">
             <etools-icon slot="prefix" name="account-circle"></etools-icon>

@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
-import {SlCheckbox} from '@shoelace-style/shoelace';
+import SlCheckbox from '@shoelace-style/shoelace/dist/components/checkbox/checkbox.component.js';
 
 @customElement('etools-checkbox')
 export class EtoolsCheckbox extends SlCheckbox {

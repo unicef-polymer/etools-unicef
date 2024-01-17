@@ -15,7 +15,7 @@ import '../etools-loading/etools-loading';
 import debounce from 'lodash-es/debounce';
 import {Callback} from '@unicef-polymer/etools-types';
 import {getTranslation} from './utils/translate';
-import {SlSelectEvent} from '@shoelace-style/shoelace';
+import {SlSelectEvent} from '@shoelace-style/shoelace/dist/events/sl-select';
 
 export enum EtoolsFilterTypes {
   Search,
@@ -197,6 +197,7 @@ export class EtoolsFilters extends LitElement {
       <div class="filter toggle" ?hidden="${!f.selected}" style="padding: 8px 0; box-sizing: border-box;">
         ${f.filterName}
         <sl-switch
+          title="${f.filterName}"
           id="toggleFilter"
           part="filter-toggle"
           ?checked="${f.selectedValue}"

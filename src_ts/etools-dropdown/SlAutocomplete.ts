@@ -3,16 +3,19 @@ import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tag/tag.js';
-import '../etools-button/etools-button';
-import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import '@shoelace-style/shoelace/dist/components/popup/popup.js';
+import '../etools-button/etools-button';
+import '../etools-icons/etools-icon';
 import styles from './styles/sl-autocomplete-styles';
 import etoolsStyles from './styles/sl-autocomplete-etools-styles';
 
-import SlMenuItem from '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import SlMenuItem from '@shoelace-style/shoelace/dist/components/menu-item/menu-item.component.js';
+import SlInput from '@shoelace-style/shoelace/dist/components/input/input.component.js';
+import {SlInputEvent} from '@shoelace-style/shoelace/dist/events/sl-input.js';
+import SlMenu from '@shoelace-style/shoelace/dist/components/menu/menu.component.js';
 import {styleMap} from 'lit/directives/style-map.js';
-import {SlInput, SlInputEvent, SlMenu} from '@shoelace-style/shoelace';
+
 import {classMap} from 'lit/directives/class-map.js';
 import {property, query, state} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate';
@@ -384,6 +387,7 @@ export class SlAutocomplete extends LitElement {
                 ?disabled=${this.disabled}
                 ?invalid=${this.invalid}
                 value=${this.selectedLabels}
+                aria-label="${this.label || this.placeholder || this.id || this.selectedLabels || 'dropdown value'}"
                 autocomplete="off"
                 spellcheck="false"
                 autocapitalize="off"
@@ -446,7 +450,13 @@ export class SlAutocomplete extends LitElement {
 
               ${hasClearIcon
                 ? html`
-                    <button part="clear-button" class="select__clear" type="button" tabindex="-1">
+                    <button
+                      part="clear-button"
+                      class="select__clear"
+                      type="button"
+                      aria-label="clear all"
+                      tabindex="-1"
+                    >
                       <slot name="clear-icon">
                         <etools-icon
                           name="cancel"

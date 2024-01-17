@@ -3,7 +3,7 @@ import {customElement, query, property} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import {ShoelaceCustomizations} from './styles/shoelace-customizations';
 import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
-import type SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
+import SlInput from '@shoelace-style/shoelace/dist/components/input/input.component.js';
 import {EtoolsInputBase} from './etools-input-base';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import '../etools-icons/etools-icon';

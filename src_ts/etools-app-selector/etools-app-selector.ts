@@ -61,7 +61,7 @@ export class AppSelector extends LitElement {
     }
 
     apps-button {
-      color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+      color: var(--header-secondary-text-color, rgba(255, 255, 255, 1));
     }
 
     .dropdown {
@@ -218,7 +218,7 @@ export class AppSelector extends LitElement {
           flex-direction: row;
           --etools-icon-font-size: 24px;
           padding: var(--app-selector-button-padding, 10px 16px 10px 16px);
-          color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+          color: var(--header-secondary-text-color, rgba(255, 255, 255, 1));
           z-index: 100;
           box-sizing: content-box !important;
         }
@@ -229,6 +229,7 @@ export class AppSelector extends LitElement {
         }
       </style>
       <etools-icon-button
+        .label="${this.iconTitle === 'APP_SELECTOR' ? getTranslation(this.language, 'APP_SELECTOR') : this.iconTitle}"
         .title="${this.iconTitle === 'APP_SELECTOR' ? getTranslation(this.language, 'APP_SELECTOR') : this.iconTitle}"
         @click="${this.toggleMenu}"
         class="apps-button ${this.opened ? 'icon-opened' : ''}"

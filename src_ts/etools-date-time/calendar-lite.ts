@@ -476,7 +476,12 @@ export class CalendarLite extends LitElement {
                 @click="${this._show}"
               >
                 ${this.monthFormat}
-                <etools-icon-button type="monthsList" @click="${this._show}" name="expand-more"></etools-icon-button>
+                <etools-icon-button
+                  label="expand months"
+                  type="monthsList"
+                  @click="${this._show}"
+                  name="expand-more"
+                ></etools-icon-button>
               </div>
               <div
                 id="headerYear"
@@ -486,12 +491,22 @@ export class CalendarLite extends LitElement {
                 @click="${this._show}"
               >
                 ${this.yearFormat}
-                <etools-icon-button type="yearList" @click="${this._show}" name="expand-more"></etools-icon-button>
+                <etools-icon-button
+                  label="expand years"
+                  type="yearList"
+                  @click="${this._show}"
+                  name="expand-more"
+                ></etools-icon-button>
               </div>
             </div>
             <div class="swipePanel">
-              <etools-icon-button @click="${this._swipePrevMonth}" name="chevron-left"></etools-icon-button>
               <etools-icon-button
+                label="previous month"
+                @click="${this._swipePrevMonth}"
+                name="chevron-left"
+              ></etools-icon-button>
+              <etools-icon-button
+                label="next month"
                 @click="${this._swipeNextMonth}"
                 name="chevron-right"
                 @keydown="${this.onSwipeNextKeyDown}"

@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {property, query, customElement} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import SlIcon from '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import SlIcon from '@shoelace-style/shoelace/dist/components/icon/icon.component.js';
 
 /**
  * `etools-icon`
