@@ -3,11 +3,13 @@
   "version": "1.0.0-rc.54",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "tsToJs": "rm -rf src && tsc",
     "watch": "tsc --watch",
     "lint": "eslint ./src_ts/**/*.ts --ext ts",
     "format": "eslint --ext .ts ./src_ts/**/*.ts --fix --ignore-path .gitignore",
+    "generate-icons": "node ./src/etools-icons/etools-icons-generate.js",
     "prepublishOnly": "npm run tsToJs"
   },
   "repository": {
@@ -30,8 +32,9 @@
     "@a11y/focus-trap": "^1.0.5",
     "@open-wc/dedupe-mixin": "^1.4.0",
     "@shoelace-style/shoelace": "^2.10.0",
-    "@unicef-polymer/etools-types": "1.11.16",
-    "@unicef-polymer/etools-utils": "^2.0.0-rc.5",
+    "@unicef-polymer/etools-types": ">=1.11.0",
+    "@unicef-polymer/etools-utils": "2.0.0-rc.5",
+    "dayjs": "^1.11.10",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
@@ -39,6 +42,7 @@
     "@unicef-polymer/etools-utils": ">=2.0.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.5",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "@typescript-eslint/typescript-estree": "^5.7.0",
@@ -48,7 +52,8 @@
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-lit": "^1.6.1",
     "eslint-plugin-prettier": "^3.4.1",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "svg-sprite": "^2.0.2"
   },
   "publishConfig": {
     "access": "public"

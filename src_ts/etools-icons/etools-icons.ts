@@ -1,4 +1,3 @@
-import defaultIcons from './icons/icons-icons';
 import {registerIconLibrary} from '@shoelace-style/shoelace/dist/utilities/icon-library.js';
 import camelCase from 'lodash-es/camelCase';
 import kebabCase from 'lodash-es/kebabCase';
@@ -18,47 +17,36 @@ export enum EtoolsIconSet {
   custom = 'custom'
 }
 
-export const initializeIcons = async (
-  iconSetsToLoad: EtoolsIconSet[] = [],
-  additionalIcons: Record<string, string> = {}
-) => {
-  const iconSets = await Promise.all(
-    iconSetsToLoad.map(async (iconSet) => ({
-      [iconSet]: (
-        await import(
-          import.meta && import.meta.url
-            ? decodeURIComponent(new URL(`icons/${iconSet}-icons.js`, import.meta.url).toString())
-            : `./icons/${iconSet}-icons.js`
-        )
-      )?.default
-    }))
-  );
+export const initializeIcons = async (spritePath = 'assets/icons/sprite.svg') => {
+  var link = document.createElement('link');
+  link.href = spritePath;
+  link.type = 'text/css';
+  link.rel = 'prefetch';
+  link.as = 'image';
+  link.type = 'image/svg+xml';
 
-  const icons = Object.assign(
-    {
-      default: {
-        ...defaultIcons,
-        ...additionalIcons
-      }
-    },
-    ...iconSets
-  );
+  document.getElementsByTagName('head')[0].appendChild(link);
 
-  registerIconLibrary('default', {
-    resolver: (name: string) => {
-      const explodedName = name.split(':');
-      const setName = explodedName.length > 1 ? explodedName[0] : 'default';
-      const iconName = camelCase(explodedName[explodedName.length - 1]);
-      if (setName in icons && iconName in icons[setName]) {
-        return `data:image/svg+xml,${encodeURIComponent(
-          `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="icon icon-${kebabCase(
-            iconName
-          )}" viewBox="0 0 24 24">
-                ${icons[setName][iconName]}
-                </svg>`
-        )}`;
-      }
-      return '';
-    }
-  });
+  const resolver = (name: string) => {
+    const explodedName = name.split(':');
+    const iconName = camelCase(explodedName[explodedName.length - 1]);
+
+    return `${spritePath}#${kebabCase(iconName)}`;
+  };
+
+  const mutator = (svg) =>
+    svg
+      .setAttribute('fill', 'currentColor')
+      .setAttribute('width', '24')
+      .setAttribute('height', '24')
+      .setAttribute('viewBox', '0 0 24 24');
+
+  const libraryConfig = {
+    resolver,
+    mutator,
+    spriteSheet: true
+  };
+
+  registerIconLibrary('default', libraryConfig);
+  registerIconLibrary('system', libraryConfig);
 };
