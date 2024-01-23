@@ -1,6 +1,7 @@
-import {LitElement} from 'lit';
+import {LitElement,} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
+import {getTranslation} from './utils/translate';
 
 export class EtoolsInputBase extends LitElement {
   @property({type: String})
@@ -33,8 +34,11 @@ export class EtoolsInputBase extends LitElement {
   @property({type: Boolean, reflect: true, attribute: 'readonly'})
   readonly = false;
 
+  @property({type: String, attribute: 'language'})
+  language: string = '';
+
   @property({type: String, reflect: true, attribute: 'error-message'})
-  errorMessage = 'This field is required';
+  errorMessage!: string;
 
   @property({type: Boolean, reflect: true, attribute: 'auto-validate'})
   autoValidate = false;
@@ -93,4 +97,30 @@ export class EtoolsInputBase extends LitElement {
 
   @property({type: Boolean, reflect: true, attribute: 'wrap-text-in-readonly'})
   wrapTextInReadonly = true;
+
+  constructor() {
+    super();
+
+    if (!this.language) {
+      this.language = (window as any).EtoolsLanguage || 'en';
+    }
+    this.handleLanguageChange = this.handleLanguageChange.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+    this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  handleLanguageChange(e: any) {
+    this.language = e.detail.language;
+    this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
+  }
 }

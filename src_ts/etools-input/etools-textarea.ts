@@ -7,6 +7,7 @@ import SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textar
 import '../etools-info-tooltip/info-icon-tooltip';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {classMap} from 'lit/directives/class-map.js';
+import {getTranslation} from './utils/translate';
 
 @customElement('etools-textarea')
 export class EtoolsTextarea extends LitElement {
@@ -30,6 +31,9 @@ export class EtoolsTextarea extends LitElement {
 
   @property({type: Boolean})
   disabled!: boolean;
+
+  @property({type: String, attribute: 'language'})
+  language: string = '';
 
   @property({type: String, attribute: 'error-message', reflect: true})
   errorMessage!: string;
@@ -149,9 +153,31 @@ export class EtoolsTextarea extends LitElement {
     `;
   }
 
+  constructor() {
+    super();
+
+    if (!this.language) {
+      this.language = (window as any).EtoolsLanguage || 'en';
+    }
+    this.handleLanguageChange = this.handleLanguageChange.bind(this);
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
     this.setMaxHeight();
+
+    document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+    this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  handleLanguageChange(e: any) {
+    this.language = e.detail.language;
+    this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
   }
 
   getInfoIconTemplate() {
