@@ -8,7 +8,9 @@ import '@a11y/focus-trap';
 import './calendar-lite';
 import '../etools-input/etools-input';
 
-const dateLib = (window as any).dayjs || (window as any).moment;
+import dayjs from 'dayjs';
+
+const dateLib = dayjs || (window as any).moment;
 if (!dateLib) {
   throw new Error('DatepickerLite: dayjs or moment is not loaded');
 }
@@ -205,6 +207,8 @@ export class DatePickerLite extends LitElement {
         if (typeof value === 'string') {
           return dateLib(value, controlFormat).toDate();
         }
+
+        return value;
       }
     }
   })
@@ -219,6 +223,8 @@ export class DatePickerLite extends LitElement {
         if (typeof value === 'string') {
           return dateLib(value, controlFormat).toDate();
         }
+
+        return value;
       }
     }
   })
@@ -688,7 +694,7 @@ export class DatePickerLite extends LitElement {
 
   maxDateValidation() {
     if (this.maxDate && this.value) {
-      const valid = dateLib(this.value, controlFormat) <= this.maxDate;
+      const valid = dateLib(this.value, controlFormat).toDate() <= this.maxDate;
       if (!valid) {
         this.errorMessage = this.maxDateErrorMsg;
       }
@@ -699,7 +705,7 @@ export class DatePickerLite extends LitElement {
 
   minDateValidation() {
     if (this.minDate && this.value) {
-      const valid = dateLib(this.value, controlFormat) >= this.minDate;
+      const valid = dateLib(this.value, controlFormat).toDate() >= this.minDate;
       if (!valid) {
         this.errorMessage = this.minDateErrorMsg;
       }

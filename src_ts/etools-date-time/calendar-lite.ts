@@ -3,8 +3,9 @@ import {property, customElement} from 'lit/decorators.js';
 import '../etools-icon-button/etools-icon-button';
 import {elevationStyles} from './styles/elevation-styles';
 import {translatedDayNames, translatedDaysFirstLetter, translatedMonthNames} from './assets/translations';
+import dayjs from 'dayjs';
 
-const dateLib = (window as any).dayjs || (window as any).moment;
+const dateLib = dayjs || (window as any).moment;
 const controlFormat = 'YYYY-MM-DD';
 
 if (!dateLib) {
@@ -76,6 +77,8 @@ export class CalendarLite extends LitElement {
         if (typeof value === 'string') {
           return dateLib(value, controlFormat).toDate();
         }
+
+        return value;
       }
     }
   })
@@ -90,6 +93,8 @@ export class CalendarLite extends LitElement {
         if (typeof value === 'string') {
           return dateLib(value, controlFormat).toDate();
         }
+
+        return value;
       }
     }
   })

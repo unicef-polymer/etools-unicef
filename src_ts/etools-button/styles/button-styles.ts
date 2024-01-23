@@ -64,6 +64,10 @@ export const buttonsStylesContent = `
     align-items: center;
   }
 
+  :host::part(caret) {
+    height: 1em;
+  }
+
   :host([variant='text']) {
     --sl-button-font-size-medium: 16px;
   }

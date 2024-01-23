@@ -16,6 +16,7 @@
     "noImplicitAny": false,
     "noEmitHelpers": true,
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "src"
   },
   "include": ["src_ts/**/*.ts"]
