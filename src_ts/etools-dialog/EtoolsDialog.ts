@@ -163,6 +163,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           border-radius: 0.25rem 0 0 0;
         }
 
+        sl-dialog::part(base) {
+          align-items: start !important;
+          padding-top: 80px !important;
+        }
+
         [hidden] {
           display: none;
         }

@@ -248,7 +248,7 @@ export class EtoolsDataTableFooter extends LitElement {
     this.lowResolutionLayout = false;
     this.direction = 'ltr';
     if (!this.language) {
-      this.language = window.localStorage.defaultLanguage || 'en';
+      this.language = (window as any).EtoolsLanguage || 'en';
       this.direction = this.language === 'ar' ? 'rtl' : 'ltr';
     }
   }

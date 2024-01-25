@@ -1,31 +1,21 @@
 const translations = {
   en: {
-    ROWS_PER_PAGE: 'Rows per page:',
-    OF: 'of'
+    THIS_FIELD_IS_REQUIRED: 'This field is required'
   },
   fr: {
-    ROWS_PER_PAGE: 'Lignes par page:',
-    OF: 'sur'
-  },
-  ro: {
-    ROWS_PER_PAGE: 'Rânduri pe pagină:',
-    OF: 'din'
+    THIS_FIELD_IS_REQUIRED: 'Ce champ est obligatoire'
   },
   pt: {
-    ROWS_PER_PAGE: 'Linhas por página:',
-    OF: 'de'
+    THIS_FIELD_IS_REQUIRED: "Este campo é obrigatório"
   },
   ru: {
-    ROWS_PER_PAGE: 'Рядов на странице:',
-    OF: 'из'
+    THIS_FIELD_IS_REQUIRED: 'Это обязательное поле'
   },
   es: {
-    ROWS_PER_PAGE: 'Filas por página:',
-    OF: 'de'
+    THIS_FIELD_IS_REQUIRED: 'Este campo es obligatorio'
   },
   ar: {
-    ROWS_PER_PAGE: 'دد الصفوف في الصفحة:', // The browser moves the colon to the left
-    OF: 'من'
+    THIS_FIELD_IS_REQUIRED: 'هذه الخانة مطلوبه'
   }
 };
 export default translations;
