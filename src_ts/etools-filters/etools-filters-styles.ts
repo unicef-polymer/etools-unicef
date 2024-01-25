@@ -146,13 +146,20 @@ export const etoolsFiltersStyles = css`
 
   @media (max-width: 576px) {
     :host {
-      flex-direction: column;
+      flex-direction: row;
     }
     #filters .filter,
-    #filters .search {
+    #filters .search,
+    #filters .filter.date {
+      width: 100%;
+      min-width: 220px;
+    }
+    #filters etools-dropdown.filter {
       width: 100%;
     }
-
+    #filters .filter.date {
+      margin-inline-end: unset;
+    }
     #filters-selector {
       border-inline-start: none;
       padding-inline-start: 8px;
