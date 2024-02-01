@@ -33,7 +33,7 @@ export class EtoolsTextarea extends LitElement {
   disabled!: boolean;
 
   @property({type: String, attribute: 'language'})
-  language: string = '';
+  language = '';
 
   @property({type: String, attribute: 'error-message', reflect: true})
   errorMessage!: string;

@@ -1,4 +1,4 @@
-import {LitElement,} from 'lit';
+import {LitElement} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import {getTranslation} from './utils/translate';
@@ -35,7 +35,7 @@ export class EtoolsInputBase extends LitElement {
   readonly = false;
 
   @property({type: String, attribute: 'language'})
-  language: string = '';
+  language = '';
 
   @property({type: String, reflect: true, attribute: 'error-message'})
   errorMessage!: string;
