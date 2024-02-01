@@ -309,7 +309,7 @@ export class DatePickerLite extends LitElement {
           margin: 10px;
         }
 
-        .clear-btn {
+        .clear-btn::part(base) {
           background: var(--datepiker-lite-clear-btn-bg, #ff4747);
           color: #fff;
           padding: 6px;

@@ -21,7 +21,7 @@ const argv = (key) => {
 
 const readFiles = async (dirname: string, additionalIconsPath?: any) => {
   let icons = {};
-  let filenames = fs
+  const filenames = fs
     .readdirSync(dirname, {withFileTypes: true})
     .filter((file) => file.isFile() && file.name.includes('.js'))
     .map((file) => dirname + '/' + file.name);
@@ -46,7 +46,7 @@ const readFiles = async (dirname: string, additionalIconsPath?: any) => {
 };
 
 const generateIconsSprite = async (outPutDirectory?: string, additionalIconsPath?: any) => {
-  let icons = await readFiles(path.resolve(__dirname, './icons'), additionalIconsPath);
+  const icons = await readFiles(path.resolve(__dirname, './icons'), additionalIconsPath);
   const spriter = new SVGSpriter({
     dest: outPutDirectory || './assets/sprites',
     mode: {

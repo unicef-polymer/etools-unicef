@@ -119,6 +119,11 @@ export const dataTableStylesContent = `
     vertical-align: top;
     min-height: 24px;
   }
+  @media (max-width: 576px) {
+    *[slot="row-data"] .truncate {
+      white-space: normal;
+    }
+  }
 `;
 
 export const dataTableStylesLit = html`${unsafeCSS(dataTableStylesContent)}`;
