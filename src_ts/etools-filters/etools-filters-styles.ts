@@ -146,7 +146,7 @@ export const etoolsFiltersStyles = css`
 
   @media (max-width: 576px) {
     :host {
-      flex-direction: row;
+      flex-direction: column;
     }
     #filters .filter,
     #filters .search,
