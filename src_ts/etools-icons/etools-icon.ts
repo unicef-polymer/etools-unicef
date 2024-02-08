@@ -25,7 +25,7 @@ export class EtoolsIcon extends LitElement {
           align-items: center;
         }
         sl-icon {
-          font-size: var(--etools-icon-font-size, 24px);
+          font-size: var(--etools-icon-font-size, var(--etools-font-size-24, 24px));
         }
 
         sl-icon::part(svg) {

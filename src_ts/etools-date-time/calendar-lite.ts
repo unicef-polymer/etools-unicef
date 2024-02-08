@@ -178,7 +178,7 @@ export class CalendarLite extends LitElement {
           background-color: white;
           width: 312px;
           -webkit-font-smoothing: antialiased;
-          font-family: Helvetica, Arial, sans-serif;
+          font-family: var(--sl-font-sans, 'Roboto, Noto, sans-serif');
           border: 1px solid #eee;
           --my-elem-primary: var(--primary-color, #3acfe3);
           text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
@@ -337,7 +337,7 @@ export class CalendarLite extends LitElement {
           align-items: center;
           padding: 0 5px 0 5px;
           color: #474e54;
-          font-size: 16px;
+          font-size: var(--etools-font-size-16, 16px);
           font-weight: 700;
         }
 
@@ -362,7 +362,7 @@ export class CalendarLite extends LitElement {
           height: 24px;
           cursor: pointer;
           margin: 1px;
-          font-size: 14px;
+          font-size: var(--etools-font-size-14, 14px);
         }
 
         .notextselect,
@@ -375,7 +375,7 @@ export class CalendarLite extends LitElement {
 
         .dayNames > div {
           padding: 8px 12px;
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           color: #474e54;
           font-weight: 700;
         }
@@ -405,7 +405,7 @@ export class CalendarLite extends LitElement {
         .dateItem {
           border: 1px solid transparent;
           cursor: pointer;
-          font-size: 15px;
+          font-size: var(--etools-font-size-15, 15px);
           padding: 8px 12px;
           border-radius: 4px;
         }
@@ -413,7 +413,7 @@ export class CalendarLite extends LitElement {
         .flex-wrap div {
           padding: 8px;
           margin: 3px;
-          font-size: 13px;
+          font-size: var(--etools-font-size-13, 13px);
         }
 
         .pageContainer {
@@ -432,7 +432,7 @@ export class CalendarLite extends LitElement {
           margin: 2px;
           border: solid 2px #dddddd;
           border-radius: 50%;
-          --etools-icon-font-size: 18px;
+          --etools-icon-font-size: var(--etools-font-size-18, 18px);
         }
 
         #dateContainer {

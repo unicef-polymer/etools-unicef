@@ -32,7 +32,7 @@ export const etoolsTableStyles = css`
   }
 
   table th {
-    font-size: var(--etools-table-col-header-font-size, 12px);
+    font-size: var(--etools-table-col-header-font-size, var(--etools-font-size-12, 12px));
   }
 
   table td.align-right,
@@ -42,7 +42,7 @@ export const etoolsTableStyles = css`
 
   table td {
     border-top: 1px solid var(--etools-table-rows-border-color, #dee2e6);
-    font-size: var(--etools-table-col-font-size, 13px);
+    font-size: var(--etools-table-col-font-size, var(--etools-font-size-13, 13px));
   }
 
   table td a {
@@ -66,7 +66,7 @@ export const etoolsTableStyles = css`
   }
 
   table th.sort etools-icon {
-    --etools-icon-font-size: 20px;
+    --etools-icon-font-size: var(--etools-font-size-20, 20px);
     line-height: 0;
     vertical-align: middle;
   }
@@ -75,7 +75,7 @@ export const etoolsTableStyles = css`
     width: 100%;
     height: 64px;
     line-height: 64px;
-    font-size: 20px;
+    font-size: var(--etools-font-size-20, 20px);
     text-align: start;
     color: var(--etools-table-text-color, #2b2b2b);
     padding: 0 var(--etools-table-side-padding, 24px);
@@ -124,7 +124,7 @@ export const etoolsTableStyles = css`
     height: 100%;
     display: inline-flex;
     align-items: center;
-    --etools-icon-font-size: 24px;
+    --etools-icon-font-size: var(--etools-font-size-24, 24px);
   }
 
   tr:hover .row-actions .actions {

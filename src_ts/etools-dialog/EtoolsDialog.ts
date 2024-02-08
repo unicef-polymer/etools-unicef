@@ -54,7 +54,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         sl-dialog::part(close-button) {
           color: var(--sl-color-neutral-800, #000000);
-          font-size: 18px;
+          font-size: var(--etools-font-size-18, 18px);
         }
 
         sl-dialog::part(close-button__base):hover {
@@ -73,7 +73,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         sl-dialog.default::part(title) {
           font-weight: 500;
-          font-size: 1.2rem;
+          font-size: var(--etools-font-size-20, 20px);
           line-height: 1.2;
           background: var(--etools-dialog-primary-color, var(--primary-color));
           color: var(--etools-dialog-contrast-text-color, #fff);
@@ -129,7 +129,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         sl-dialog.confirmation::part(body) {
           max-width: 100%;
-          font-size: 20px;
+          font-size: var(--etools-font-size-20, 20px);
           line-height: 1.4;
           padding: 0;
           padding-inline: 15px;

@@ -32,7 +32,7 @@ export class InfoIconTooltip extends LitElement {
           padding: 6px;
           margin: 10px 0px;
           box-sizing: border-box;
-          font-size: var(--iit-font-size, 14px);
+          font-size: var(--iit-font-size, var(--etools-font-size-14, 14px));
           color: var(--primary-text-color);
           line-height: 22px;
           font-weight: bold;
@@ -44,7 +44,7 @@ export class InfoIconTooltip extends LitElement {
         }
         etools-icon {
           margin: var(--iit-margin, 0);
-          --etools-icon-font-size: var(--iit-icon-size, 24px);
+          --etools-icon-font-size: var(--iit-icon-size, var(--etools-font-size-24, 24px));
         }
 
         sl-tooltip {

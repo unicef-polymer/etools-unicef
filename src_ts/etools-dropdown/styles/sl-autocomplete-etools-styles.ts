@@ -9,8 +9,8 @@ export default css`
     --sl-shadow-x-large: 0 4px 16px hsl(240 3.8% 46.1% / 30%);
 
     --sl-input-border-width: 0;
-    --sl-input-font-family: Roboto, Noto, sans-serif;
-    --sl-button-font-size-medium: 16px;
+    --sl-input-font-family: var(--sl-font-sans, 'Roboto, Noto, sans-serif');
+    --sl-button-font-size-medium: var(--etools-font-size-16, 16px);
     --sl-input-border-color-focus: #0099ff;
     --sl-color-primary-600: #0099ff;
     --sl-input-required-content-color: #ea4022;
@@ -33,12 +33,8 @@ export default css`
   }
 
   .form-control {
-    --sl-input-label-font-size-medium: 12px;
+    --sl-input-label-font-size-medium: var(--etools-font-size-12, 12px);
     padding: 8px 0;
-  }
-
-  .form-control__label {
-    --sl-input-label-color: rgba(0, 0, 0, 0.54);
   }
 
   :host([invalid]:not([readonly]):not([disabled])) .form-control__label {
@@ -55,7 +51,6 @@ export default css`
   }
 
   .select--standard .select__combobox {
-    --sl-input-label-color: rgba(0, 0, 0, 0.54);
     --sl-input-height-medium: 26px;
     --sl-input-border-radius-medium: 0;
     --sl-input-spacing-medium: 0;
@@ -100,7 +95,7 @@ export default css`
 
   .select__expand-icon {
     color: rgba(0, 0, 0, 0.54);
-    font-size: 22px;
+    font-size: var(--etools-font-size-22, 22px);
   }
 
   :host-context([multiple]) sl-tag::part(base) {
@@ -201,6 +196,6 @@ export default css`
   }
 
   etools-icon[name='cancel'] {
-    --etools-icon-font-size: 16px;
+    --etools-icon-font-size: var(--etools-font-size-16, 16px);
   }
 `;

@@ -47,7 +47,7 @@ export const buttonsStylesContent = `
     text-transform: uppercase;
   }
   :host {
-    --sl-button-font-size-medium: 16px;
+    --sl-button-font-size-medium: var(--etools-font-size-16, 16px);
     --sl-input-height-medium: 36px;
     --sl-spacing-medium: 8px;
     margin-inline-start: 5px;
@@ -69,7 +69,7 @@ export const buttonsStylesContent = `
   }
 
   :host([variant='text']) {
-    --sl-button-font-size-medium: 16px;
+    --sl-button-font-size-medium: var(--etools-font-size-16, 16px);
   }
 
   :host([variant='text'])::part(label) {
@@ -108,7 +108,7 @@ export const buttonsStylesContent = `
   }
 
   :host([variant='text'].font-14) {
-    --sl-button-font-size-medium: 14px;
+    --sl-button-font-size-medium: var(--etools-font-size-14, 14px);
   }
 `;
 // language=HTML

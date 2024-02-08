@@ -33,7 +33,7 @@ export class EtoolsInput extends EtoolsInputBase {
         }
 
         etools-icon {
-          --etools-icon-font-size: 16px;
+          --etools-icon-font-size: var(--etools-font-size-16, 16px);
         }
 
         sl-input[wrap-text-in-readonly][readonly]:not([prevent-user-direct-input])::part(form-control-input) {

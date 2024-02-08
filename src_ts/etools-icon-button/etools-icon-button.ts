@@ -53,7 +53,7 @@ export class EtoolsIconButton extends LitElement {
         }
 
         sl-icon-button {
-          font-size: var(--etools-icon-font-size, 24px);
+          font-size: var(--etools-icon-font-size, var(--etools-font-size-24, 24px));
           color: inherit;
         }
 

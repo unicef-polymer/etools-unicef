@@ -103,7 +103,7 @@ export class EtoolsContentPanel extends LitElement {
 
         h2.title {
           margin: auto;
-          font-size: 21px;
+          font-size: var(--etools-font-size-20, 20px);
           font-weight: bold;
           min-width: 0;
           flex: 1;
@@ -140,7 +140,7 @@ export class EtoolsContentPanel extends LitElement {
         }
 
         etools-icon-button {
-          --etools-icon-font-size: 24px;
+          --etools-icon-font-size: var(--etools-font-size-24, 24px);
         }
       </style>
 

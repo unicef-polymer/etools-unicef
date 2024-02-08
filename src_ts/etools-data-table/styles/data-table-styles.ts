@@ -53,7 +53,7 @@ export const dataTableStylesContent = `
     padding-inline-end: 0;
   }
   .row-details-content {
-    font-size: 12px;
+    font-size: var(--etools-font-size-12, 12px);
   }
   .row-details-content .rdc-title {
     display: inline-block;

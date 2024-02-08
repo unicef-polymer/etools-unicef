@@ -14,7 +14,7 @@ export class AppToolbar extends LitElement {
           height: 64px;
           padding: 0 16px;
           pointer-events: none;
-          font-size: var(--app-toolbar-font-size, 20px);
+          font-size: var(--app-toolbar-font-size, var(--etools-font-size-20, 20px));
         }
 
         :host ::slotted(*) {

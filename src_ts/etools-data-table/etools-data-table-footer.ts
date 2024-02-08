@@ -89,7 +89,7 @@ export class EtoolsDataTableFooter extends LitElement {
       <style>
         :host {
           display: block;
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           color: var(--list-text-color, rgba(0, 0, 0, 0.54));
         }
 
