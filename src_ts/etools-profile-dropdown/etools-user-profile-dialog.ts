@@ -107,7 +107,7 @@ export class EtoolsUserProfileDialog extends LitElement {
         }
 
         .paper-label {
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           color: var(--secondary-text-color);
           padding-top: 6px;
         }
@@ -117,7 +117,7 @@ export class EtoolsUserProfileDialog extends LitElement {
           padding-top: 4px;
           padding-bottom: 6px;
           min-width: 0;
-          font-size: 16px;
+          font-size: var(--etools-font-size-16, 16px);
         }
 
         .input-label[empty]::after {

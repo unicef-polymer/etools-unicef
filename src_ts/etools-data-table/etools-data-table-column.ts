@@ -29,7 +29,7 @@ export class EtoolsDataTableColumn extends LitElement {
           flex-direction: row;
           align-items: center;
           height: var(--list-header-column-height, 56px);
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           color: var(--list-secondary-text-color, #757575);
           font-weight: bold;
         }
@@ -48,7 +48,7 @@ export class EtoolsDataTableColumn extends LitElement {
 
         #icon-wrapper,
         etools-icon {
-          --etools-icon-font-size: 16px;
+          --etools-icon-font-size: var(--etools-font-size-16, 16px);
         }
 
         #up,

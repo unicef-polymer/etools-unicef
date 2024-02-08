@@ -14,7 +14,7 @@ export const etoolsTableResponsiveStyles = css`
       border: 0;
     }
     table caption {
-      font-size: 1.3em;
+      font-size: var(--etools-font-size-20, 20px);
       line-height: 1.5em;
       height: auto;
       padding-bottom: 6px;

@@ -55,7 +55,7 @@ export class EtoolsDataTableRow extends LitElement {
           flex-direction: row;
           align-items: center;
           padding-inline: var(--list-row-wrapper-padding-inline, 0 24px);
-          font-size: 13px;
+          font-size: var(--etools-font-size-13, 13px);
           color: var(--list-text-color, #2b2b2b);
           background-color: var(--list-bg-color, #ffffff);
         }

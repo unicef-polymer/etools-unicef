@@ -7,7 +7,7 @@ export const CommonStyles = html` <style>
   etools-button::part(base) {
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--etools-font-size-16, 16px);
     margin: 0 0;
     padding: 0 0 !important;
   }

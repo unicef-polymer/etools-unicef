@@ -121,7 +121,7 @@ export class TimeInput extends LitElement {
           display: block;
           color: var(--secondary-text-color);
           line-height: 18px;
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
         }
 
         :host([required]) .form-control--has-label .form-control__label::after {
@@ -188,7 +188,7 @@ export class TimeInput extends LitElement {
         }
 
         :host(:not([disabled]):not([readonly])) .invalid-message[visible] {
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           visibility: visible;
           height: 0;
           overflow: visible;

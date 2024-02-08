@@ -96,14 +96,14 @@ export class EtoolsTextarea extends LitElement {
         }
 
         .etools-label {
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           color: var(--sl-input-label-color);
           padding-top: 8px;
         }
 
         .char-counter {
           color: var(--primary-text-color);
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
         }
       `
     ];

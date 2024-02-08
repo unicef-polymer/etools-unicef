@@ -301,7 +301,7 @@ export class DatePickerLite extends LitElement {
 
         etools-icon[slot='suffix'] {
           margin-inline-start: 8px;
-          --etools-icon-font-size: 20px;
+          --etools-icon-font-size: var(--etools-font-size-20, 20px);
         }
 
         .clear-btn,

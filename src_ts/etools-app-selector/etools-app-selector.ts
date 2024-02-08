@@ -95,7 +95,7 @@ export class AppSelector extends LitElement {
       flex-direction: row;
       padding: 5px;
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: var(--etools-font-size-14, 14px);
       white-space: nowrap;
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       border-left: 1px solid rgba(0, 0, 0, 0.12);
@@ -116,7 +116,7 @@ export class AppSelector extends LitElement {
     }
 
     .app-title {
-      font-size: 13px;
+      font-size: var(--etools-font-size-13, 13px);
       font-weight: 500;
       padding-left: 6px;
       padding-right: 6px;
@@ -169,7 +169,7 @@ export class AppSelector extends LitElement {
       font-weight: 450;
       padding: 6px;
       background: #eeeeee;
-      font-size: 12px;
+      font-size: var(--etools-font-size-12, 12px);
       border-right: 1px solid var(--divider-color);
       border-left: 1px solid var(--divider-color);
       display: flex;
@@ -216,7 +216,7 @@ export class AppSelector extends LitElement {
         etools-icon-button.apps-button {
           display: flex;
           flex-direction: row;
-          --etools-icon-font-size: 24px;
+          --etools-icon-font-size: var(--etools-font-size-24, 24px);
           padding: var(--app-selector-button-padding, 10px 16px 10px 16px);
           color: var(--header-secondary-text-color, rgba(255, 255, 255, 1));
           z-index: 100;

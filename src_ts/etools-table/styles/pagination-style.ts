@@ -7,7 +7,7 @@ export const etoolsPaginationStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    font-size: 12px;
+    font-size: var(--etools-font-size-12, 12px);
     color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
   }
 
@@ -16,7 +16,7 @@ export const etoolsPaginationStyles = css`
   }
 
   etools-icon-button {
-    --etools-icon-font-size: 24px;
+    --etools-icon-font-size: var(--etools-font-size-24, 24px);
     color: var(--dark-icon-color, #6f6f70);
   }
 
@@ -30,7 +30,7 @@ export const etoolsPaginationStyles = css`
 
   sl-select {
     --sl-input-border-width: 0;
-    --sl-input-font-size-small: 12px;
+    --sl-input-font-size-small: var(--etools-font-size-12, 12px);
     --sl-input-color: var(--gray-mid);
     width: 70px;
   }

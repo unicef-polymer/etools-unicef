@@ -63,7 +63,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           padding: 8px 0;
           --sl-input-required-content-offset: 3px;
           --sl-input-required-content-color: #ea4022;
-          --sl-input-label-font-size-medium: 12px;
+          --sl-input-label-font-size-medium: var(--etools-font-size-12, 12px);
         }
 
         .form-control .form-control__label {
@@ -75,7 +75,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           display: block;
           color: var(--secondary-text-color);
           line-height: 18px;
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
         }
 
         :host([required]) .form-control--has-label .form-control__label::after {
@@ -89,7 +89,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
         }
 
         :host(:not([disabled]):not([readonly])) .invalid-message[visible] {
-          font-size: 12px;
+          font-size: var(--etools-font-size-12, 12px);
           visibility: visible;
           height: 0;
           overflow: visible;
@@ -166,7 +166,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
           margin-inline-end: 8px;
           min-width: 145px;
           overflow-wrap: break-word;
-          font-size: 16px;
+          font-size: var(--etools-font-size-16, 16px);
         }
 
         .progress-container {
@@ -186,7 +186,7 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
         }
 
         .progress-container span {
-          font-size: 11px;
+          font-size: var(--etools-font-size-11, 11px);
           margin: 0 auto;
         }
 

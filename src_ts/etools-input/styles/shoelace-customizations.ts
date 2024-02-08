@@ -79,7 +79,7 @@ const labelStyles = css`
 
   sl-input::part(form-control-label) {
     line-height: 18px;
-    font-size: 12px;
+    font-size: var(--etools-font-size-12, 12px);
     display: block;
   }
 
@@ -122,7 +122,7 @@ export const ShoelaceCustomizations = css`
   sl-input,
   sl-textarea {
     position: relative;
-    --sl-input-font-size-small: 16px;
+    --sl-input-font-size-small: var(--etools-font-size-16, 16px);
   }
 
   sl-input::part(prefix) {

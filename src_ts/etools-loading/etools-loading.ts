@@ -95,7 +95,7 @@ export class EtoolsLoading extends LitElement {
         }
 
         sl-spinner {
-          font-size: var(--etools-loading-spinner-size, 20px);
+          font-size: var(--etools-loading-spinner-size, var(--etools-font-size-20, 20px));
           --track-width: var(--etools-loading-spinner-track-width, 3px);
           --indicator-color: var(--etools-loading-spinner-indicator-color, #659cf7);
           --track-color: var(--etools-loading-spinner-track-color, #dfdfdf);

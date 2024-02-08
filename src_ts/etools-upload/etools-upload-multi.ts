@@ -76,7 +76,7 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMixin(CommonMix
           border-radius: unset;
         }
         .progress-container span {
-          font-size: 11px;
+          font-size: var(--etools-font-size-11, 11px);
           margin: 0 auto;
         }
       </style>

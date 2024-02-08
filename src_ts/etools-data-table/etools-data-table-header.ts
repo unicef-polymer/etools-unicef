@@ -64,7 +64,7 @@ export class EtoolsDataTableHeader extends LitElement {
           width: 100%;
           height: 64px;
           line-height: 64px;
-          font-size: 20px;
+          font-size: var(--etools-font-size-20, 20px);
           color: var(--list-text-color, #2b2b2b);
         }
 

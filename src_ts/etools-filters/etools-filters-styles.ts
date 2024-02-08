@@ -55,7 +55,7 @@ export const etoolsFiltersStyles = css`
 
     cursor: pointer;
     font-weight: normal;
-    font-size: 16px;
+    font-size: var(--etools-font-size-16, 16px);
   }
 
   #filters .filter.toggle sl-switch {
@@ -82,7 +82,7 @@ export const etoolsFiltersStyles = css`
   */
 
   #filterMenu etools-button::part(label) {
-    font-size: 16px;
+    font-size: var(--etools-font-size-16, 16px);
     text-transform: uppercase;
   }
 
@@ -96,7 +96,7 @@ export const etoolsFiltersStyles = css`
   }
 
   #filterMenu .trigger-button::part(prefix) {
-    font-size: 24px;
+    font-size: var(--etools-font-size-24, 24px);
   }
 
   #filterMenu sl-menu-item::part(base) {
