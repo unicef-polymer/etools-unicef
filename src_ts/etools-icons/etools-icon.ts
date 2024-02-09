@@ -24,12 +24,14 @@ export class EtoolsIcon extends LitElement {
           justify-content: center;
           align-items: center;
         }
+
         sl-icon {
           font-size: var(--etools-icon-font-size, var(--etools-font-size-24, 24px));
         }
 
         sl-icon::part(svg) {
           fill: var(--etools-icon-fill-color, currentColor);
+          color: var(--etools-icon-fill-color, currentColor);
         }
       </style>
       <sl-icon
