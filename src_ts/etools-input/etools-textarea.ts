@@ -164,7 +164,10 @@ export class EtoolsTextarea extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.setMaxHeight();
+
+    this.updateComplete.then(() => {
+      this.setMaxHeight();
+    });
 
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
     this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
@@ -224,8 +227,9 @@ export class EtoolsTextarea extends LitElement {
         const lineHeightPx: number = parseInt(lineHeight, 10);
 
         if (lineHeightPx) {
-          const maxHeight: number = this.maxRows * lineHeightPx + 5;
+          const maxHeight: number = this.maxRows! * lineHeightPx + 5;
           textarea.style.maxHeight = `${maxHeight}px`;
+          textarea.style.overflowY = 'auto';
         }
       }
     }
