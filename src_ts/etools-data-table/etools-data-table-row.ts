@@ -60,6 +60,12 @@ export class EtoolsDataTableRow extends LitElement {
           background-color: var(--list-bg-color, #ffffff);
         }
 
+        @media (max-width: 576px) {
+          div#wrapper {
+            align-items: end;
+          }
+        }
+
         :host div#wrapper ::slotted([slot='row-data']) {
           text-overflow: ellipsis;
           width: calc(100% - 96px);
