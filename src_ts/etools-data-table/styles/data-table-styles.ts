@@ -93,6 +93,10 @@ export const dataTableStylesContent = `
     overflow: unset;
     text-overflow: unset;
   }
+   etools-data-table-row[low-resolution-layout] *[slot="row-data"].row {
+     margin-left: 0;
+     margin-right: 0;
+   }
 
   etools-data-table-row[low-resolution-layout] *[slot="row-data"],
   etools-data-table-row[low-resolution-layout] *[slot="row-data-details"] {
