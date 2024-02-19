@@ -112,13 +112,14 @@ export class EtoolsAccesibility extends LitElement {
       </style>
       <etools-icon-button
         id="toggleAccesibility"
+        part="icon"
         name="accessibility"
         label="${getTranslation(this.language, 'ACCESIBILITY_TOOLBAR')}"
         title="${getTranslation(this.language, 'ACCESIBILITY_TOOLBAR')}"
         @click="${() => this.toggle()}"
       ></etools-icon-button>
       <sl-popup anchor="toggleAccesibility" placement="bottom-end" ?active=${this.opened}>
-        <div class="toolbox">
+        <div part="toolbox" class="toolbox">
           <div
             class="toolbox-item"
             ?active=${this.optionsActiveStatus.contrastMonochrome}
