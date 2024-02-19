@@ -46,7 +46,11 @@ export const updateFiltersSelectedValues = (params: RouteQueryParams, filters: E
       if (selectedValue) {
         const filter = availableFilters.find((f: EtoolsFilter) => f.filterKey === fKey);
         if (filter) {
-          filter.selectedValue = selectedValue instanceof Array ? [...selectedValue] : selectedValue;
+          if (filter.type === EtoolsFilterTypes.DropdownMulti && (typeof selectedValue === 'string')) {
+            filter.selectedValue = selectedValue.split(',');
+          } else {
+            filter.selectedValue = selectedValue instanceof Array ? [...selectedValue] : selectedValue;
+          }
 
           filter.selected = true;
         }
