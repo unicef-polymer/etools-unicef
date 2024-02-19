@@ -64,6 +64,12 @@ const validationStyles = css`
   .err-msg {
     color: red;
   }
+
+  ::-ms-input-placeholder,
+  ::-webkit-input-placeholder,
+  ::placeholder {
+    color: var(--sl-input-placeholder-color, rgba(0, 0, 0, 0.55));
+  }
 `;
 
 const labelStyles = css`

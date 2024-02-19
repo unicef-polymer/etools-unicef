@@ -379,18 +379,14 @@ export class SlAutocomplete extends LitElement {
             >
               <slot part="prefix" name="prefix" class="select__prefix"></slot>
 
-              <input
+              <div
                 part="display-input"
                 class="select__display-input"
-                type="text"
-                placeholder=${this.placeholder}
+                ?is-placeholder=${!this.selectedLabels && this.placeholder}
                 ?disabled=${this.disabled}
                 ?invalid=${this.invalid}
                 value=${this.selectedLabels}
                 aria-label="${this.label || this.placeholder || this.id || this.selectedLabels || 'dropdown value'}"
-                autocomplete="off"
-                spellcheck="false"
-                autocapitalize="off"
                 readonly
                 aria-controls="listbox"
                 aria-expanded=${this.open ? 'true' : 'false'}
@@ -401,7 +397,9 @@ export class SlAutocomplete extends LitElement {
                 aria-describedby="help-text"
                 role="combobox"
                 tabindex="-1"
-              />
+              >
+                ${this.selectedLabels || this.placeholder}
+              </div>
 
               ${this.multiple && this.selectedItems?.length
                 ? html`

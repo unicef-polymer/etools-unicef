@@ -59,6 +59,7 @@ export default css`
     box-shadow: none !important;
     position: relative;
     background: inherit;
+    min-width: 30px;
   }
 
   .select--standard .select__combobox:after {

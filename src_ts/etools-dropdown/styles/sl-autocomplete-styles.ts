@@ -178,14 +178,20 @@ export default css`
     padding: 0;
     margin: 0;
     -webkit-appearance: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
-  .select:not(.select--disabled):hover .select__display-input {
+  .select:not(.select--disabled):hover .select__display-input:not([is-placeholder]) {
     color: var(--sl-input-color-hover);
   }
 
   .select__display-input:focus {
     outline: none;
+  }
+
+  .select__display-input[is-placeholder] {
+    color: var(--sl-input-placeholder-color, rgba(0, 0, 0, 0.55));
   }
 
   /* Visually hide the display input when multiple is enabled */
