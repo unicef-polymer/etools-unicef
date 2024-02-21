@@ -129,6 +129,10 @@ export default css`
     color: rgba(255, 255, 255, 1);
   }
 
+  :host([transparent]) .select__display-input[is-placeholder] {
+    color: var(--sl-input-placeholder-light-color, rgba(255, 255, 255, 0.7));
+  }
+
   .select--standard.select--disabled:not(.select--readonly) .select__combobox:after {
     border-bottom-style: dashed;
     border-bottom-width: 1px;
