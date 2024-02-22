@@ -55,6 +55,10 @@ export class EtoolsInput extends EtoolsInputBase {
           cursor: default;
         }
 
+        .readonly-input-prefix ::slotted(*){
+          margin-inline-end: 5px;
+        }
+    
         .readonly-input-value {
           width: 100%;
         }
