@@ -138,7 +138,7 @@ export class EtoolsProfileDropdown extends LitElement {
 
       <sl-dropdown
         hoist
-        placement="bottom-start"
+        placement="bottom-end"
         .open="${this.opened}"
         @sl-show="${() => {
           this.opened = true;
