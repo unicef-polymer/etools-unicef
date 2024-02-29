@@ -123,7 +123,6 @@ export default css`
   :host([transparent]) {
     --sl-input-color: rgba(255, 255, 255, 1);
     --sl-input-color-hover: rgba(255, 255, 255, 1);
-    width: 100%;
   }
 
   :host([transparent]) .select__expand-icon {
