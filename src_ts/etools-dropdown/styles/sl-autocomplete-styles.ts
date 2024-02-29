@@ -4,6 +4,8 @@ export default css`
   :host {
     box-sizing: border-box;
     display: block;
+    min-width: 100%;
+    width: 0;
   }
 
   :host *,
