@@ -142,6 +142,16 @@ export class EtoolsContentPanel extends LitElement {
         etools-icon-button {
           --etools-icon-font-size: var(--etools-font-size-24, 24px);
         }
+        @media (max-width: 820px) {
+          .panel-header .flex-h {
+            max-width: 88%;
+          }
+        }
+        @media (max-width: 576px) {
+          .panel-header .flex-h {
+            max-width: 85%;
+          }
+        }
       </style>
 
       <div class="elevation" elevation="${this.elevation}">
