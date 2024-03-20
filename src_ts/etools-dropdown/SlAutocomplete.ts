@@ -398,7 +398,9 @@ export class SlAutocomplete extends LitElement {
                 role="combobox"
                 tabindex="-1"
               >
-                ${this.selectedLabels || this.placeholder}
+                <div class="outer-text">
+                  <div class="inner-text">${this.selectedLabels || this.placeholder}</div>
+                </div>
               </div>
 
               ${this.multiple && this.selectedItems?.length
