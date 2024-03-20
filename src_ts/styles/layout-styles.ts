@@ -81,6 +81,10 @@ export const layoutStyles = css`
     margin-right: auto;
     margin-left: auto;
   }
+  .padding-v {
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+  }
   .row {
     display: flex;
     flex-wrap: wrap;

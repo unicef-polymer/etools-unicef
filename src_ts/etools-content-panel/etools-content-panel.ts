@@ -98,7 +98,11 @@ export class EtoolsContentPanel extends LitElement {
 
         .panel-btns-wrapper ::slotted(*) {
           display: flex;
-          align-items: center;
+          align-items: center;          
+        }
+
+        .panel-btns-wrapper {
+          margin-inline-start: auto;
         }
 
         h2.title {
@@ -133,6 +137,8 @@ export class EtoolsContentPanel extends LitElement {
         .panel-header .flex-h {
           display: flex;
           max-width: 100%;
+          flex-wrap: wrap;
+          align-items: center;
         }
 
         :host-context([dir='rtl']) [name='chevron-right'] {
@@ -141,6 +147,11 @@ export class EtoolsContentPanel extends LitElement {
 
         etools-icon-button {
           --etools-icon-font-size: var(--etools-font-size-24, 24px);
+        }
+        @media(max-width:576px) {
+          .panel-header {
+            padding: 4px;
+          }
         }
       </style>
 
@@ -156,10 +167,10 @@ export class EtoolsContentPanel extends LitElement {
               ?hidden="${!this.showExpandBtn}"
               ?disabled="${this.disabled}"
             ></etools-icon-button>
-            <h2 class="title" part="ecp-header-title">
+            <h2 class="title" part="ecp-header-title" title="${this.panelTitle}">
               <span>${this.panelTitle}</span>
             </h2>
-            <slot name="after-title"></slot>
+            <slot name="after-title" part="ecp-header-after-title"></slot>
           </div>
 
           <div class="panel-btns-wrapper" part="ecp-header-btns-wrapper">
