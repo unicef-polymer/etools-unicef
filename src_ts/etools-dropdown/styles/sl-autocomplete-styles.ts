@@ -174,12 +174,9 @@ export default css`
     background: none;
     color: var(--sl-input-color);
     cursor: inherit;
-    overflow: hidden;
     padding: 0;
     margin: 0;
     -webkit-appearance: none;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   .select:not(.select--disabled):hover .select__display-input:not([is-placeholder]) {
@@ -611,5 +608,16 @@ export default css`
   :host([capitalize]) .select__tags sl-tag,
   :host([capitalize]) sl-menu-item::part(label) {
     text-transform: capitalize;
+  }
+
+  :host .outer-text {
+    display: grid;
+  }
+
+  :host .inner-text {
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    width: 100%;
+    overflow: hidden;
   }
 `;
