@@ -55,8 +55,8 @@ export class InfoIconTooltip extends LitElement {
         sl-tooltip::part(body) {
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
             0 3px 1px -2px rgba(0, 0, 0, 0.2);
+          pointer-events: unset;
         }
-
         etools-icon:focus-visible {
           outline: 0;
           background-color: rgba(170, 165, 165, 0.5);
@@ -70,7 +70,7 @@ export class InfoIconTooltip extends LitElement {
   render() {
     // language=HTML
     return html`
-      <sl-tooltip id="tooltip" trigger="click manual" .position="${this.position}">
+      <sl-tooltip id="tooltip" trigger="manual" .position="${this.position}">
         <div slot="content">
           <div id="etools-iit-content" part="etools-iit-content">
             <div class="tooltip-info gray-border">
@@ -110,6 +110,7 @@ export class InfoIconTooltip extends LitElement {
     this.position = 'right';
     this.offset = 14;
     this.language = window.EtoolsLanguage || 'en';
+    this._tooltipHandler = this.hideTooltip.bind(this);
   }
 
   connectedCallback() {
@@ -132,7 +133,6 @@ export class InfoIconTooltip extends LitElement {
     const tooltip = this.shadowRoot!.querySelector('#tooltip')! as any;
     tooltip.show();
 
-    this._tooltipHandler = this.hideTooltip.bind(this);
     document.addEventListener('click', this._tooltipHandler, true);
   }
 
@@ -142,15 +142,15 @@ export class InfoIconTooltip extends LitElement {
    */
   hideTooltip(e) {
     const path = e.composedPath() || [];
-    if (path.length && path[0].id !== 'close-link' && this._isInPath(path, 'id', 'etools-iit-content')) {
+    if (path.length && path[0].id !== 'close-link' && this._isInPath(path, 'tagName', 'A')) {
       e.stopImmediatePropagation();
       return;
     }
 
     const paperTooltip = this.shadowRoot!.querySelector('#tooltip')! as any;
     if (paperTooltip.open) {
-      paperTooltip.hide();
       document.removeEventListener('click', this._tooltipHandler);
+      paperTooltip.hide();
       if (!this.clickedOnOtherInfoIcon(path)) {
         e.stopImmediatePropagation();
       }
