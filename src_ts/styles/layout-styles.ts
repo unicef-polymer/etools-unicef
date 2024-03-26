@@ -87,6 +87,19 @@ export const layoutStyles = css`
     margin-right: -15px;
     margin-left: -15px;
   }
+
+  .row.b-border {
+    border-bottom: 1px solid var(--light-divider-color);
+  }
+
+  .row.header-row {
+    color: var(--secondary-text-color);
+    border-bottom: 1px solid var(--light-divider-color);
+    font-weight: 600;
+  }
+  .row-second-bg {
+    background-color: var(--light-theme-background-color);
+  }
   .no-gutters {
     margin-right: 0;
     margin-left: 0;

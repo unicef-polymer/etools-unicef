@@ -60,10 +60,10 @@ export const etoolsTableResponsiveStyles = css`
       color: var(--etools-table-secondary-text-color, rgba(0, 0, 0, 0.54));
       inset-inline-start: 5px;
       inset-inline-end: 5px;
-      width: 34%;
-      white-space: nowrap;
+<!--      width: 34%;-->
+<!--      white-space: nowrap;-->
       overflow: hidden;
-      text-overflow: ellipsis;
+<!--      text-overflow: ellipsis;-->
     }
     .row-actions .actions {
       visibility: visible !important;
