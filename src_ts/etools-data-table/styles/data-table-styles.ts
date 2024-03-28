@@ -112,6 +112,7 @@ export const dataTableStylesContent = `
     max-width: 100%;
     padding: 8px 0;
     box-sizing: border-box;
+    white-space: normal;
   }
 
   etools-data-table-row[medium-resolution-layout] *[slot="row-data"] .col-data:before,
