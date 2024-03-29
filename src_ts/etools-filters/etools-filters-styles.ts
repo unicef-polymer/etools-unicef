@@ -170,4 +170,11 @@ export const etoolsFiltersStyles = css`
       padding: 0px;
     }
   }
+  @media (max-width: 300px) {
+    #filters .filter,
+    #filters .search,
+    #filters .filter.date {
+      min-width: 160px;
+    }
+  }
 `;
