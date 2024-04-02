@@ -51,14 +51,20 @@ export class EtoolsDataTableHeader extends LitElement {
         }
 
         div#header-wrapper {
-          padding: 0 24px;
           height: var(--list-header-wrapper-height, 118px);
+          padding-inline: var(--list-row-wrapper-padding-inline, 16px);
           background-color: var(--list-bg-color, #ffffff);
         }
 
-        :host([no-title]) div#header-wrapper {
+        :host div#header-wrapper {
+          padding-inline: var(--list-row-wrapper-padding-inline, 36px 16px);
           height: auto;
         }
+
+        :host([no-collapse]) div#header-wrapper {
+          padding-inline: var(--list-row-wrapper-padding-inline, 16px);
+          height: auto;
+        }        
 
         #title {
           width: 100%;
@@ -76,10 +82,9 @@ export class EtoolsDataTableHeader extends LitElement {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          margin-inline-start: 32px;
           height: var(--list-header-wrapper-column-height, 56px);
         }
-
+ 
         :host([no-collapse]) #columns {
           margin-inline-start: 0;
           flex: 1;

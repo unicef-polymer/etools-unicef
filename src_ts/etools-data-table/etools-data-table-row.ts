@@ -54,7 +54,7 @@ export class EtoolsDataTableRow extends LitElement {
           display: flex;
           flex-direction: row;
           align-items: center;
-          padding-inline: var(--list-row-wrapper-padding-inline, 0 24px);
+          padding-inline: var(--list-row-wrapper-padding-inline, 0 16px);
           font-size: var(--etools-font-size-13, 13px);
           color: var(--list-text-color, #2b2b2b);
           background-color: var(--list-bg-color, #ffffff);
@@ -68,7 +68,6 @@ export class EtoolsDataTableRow extends LitElement {
 
         :host div#wrapper ::slotted([slot='row-data']) {
           text-overflow: ellipsis;
-          width: calc(100% - 96px);
         }
 
         :host([no-collapse]) div#wrapper ::slotted([slot='row-data']) {
@@ -87,7 +86,7 @@ export class EtoolsDataTableRow extends LitElement {
         #iconWrapper {
           min-height: 48px;
           line-height: 48px;
-          padding: 0 16px;
+          padding: 0 6px;
           cursor: pointer;
           width: 24px;
         }
@@ -122,14 +121,14 @@ export class EtoolsDataTableRow extends LitElement {
         }
 
         :host([no-collapse]) #wrapper {
-          padding-inline: var(--list-row-wrapper-padding-inline, 24px);
+          padding-inline: var(--list-row-wrapper-padding-inline, 16px);
           background-color: var(--list-row-no-collapse-bg-color, var(--list-bg-color, #ffffff));
         }
 
         /* Mobile view CSS */
         :host([medium-resolution-layout]) div#wrapper,
         :host([low-resolution-layout]) div#wrapper {
-          padding-inline-end: 0;
+          padding-inline-end: 16px;
         }
 
         :host([medium-resolution-layout]) #iconWrapper,
@@ -142,7 +141,7 @@ export class EtoolsDataTableRow extends LitElement {
         :host([medium-resolution-layout]) #collapse-wrapper,
         :host([low-resolution-layout]) #collapse-wrapper {
           padding: 0;
-          padding-inline-start: 40px;
+          padding-inline-start: 58px;
         }
       </style>
 

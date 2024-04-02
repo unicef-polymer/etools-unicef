@@ -90,6 +90,7 @@ export const layoutStyles = css`
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+    width: 100%;
   }
   .no-gutters {
     margin-right: 0;
@@ -99,6 +100,10 @@ export const layoutStyles = css`
   .no-gutters > [class*='col-'] {
     padding-right: 0;
     padding-left: 0;
+  }
+  .no-padding {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
   .col-1,
   .col-2,
