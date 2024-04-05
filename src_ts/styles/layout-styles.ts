@@ -90,7 +90,6 @@ export const layoutStyles = css`
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-    width: 100%;
   }
   .no-gutters {
     margin-right: 0;

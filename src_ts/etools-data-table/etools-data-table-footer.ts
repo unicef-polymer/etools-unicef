@@ -147,20 +147,22 @@ export class EtoolsDataTableFooter extends LitElement {
 
         /* Mobile view CSS */
         :host([low-resolution-layout]) #table-footer {
-          padding: 8px 0;
+          padding: 12px;
           height: auto;
-          display: flex;
-          flex-direction: column;
-          justify-content: start;
+          flex-wrap: wrap;
+        }
+
+        :host([low-resolution-layout]) #rows {
+          margin-inline-end: 8px;
         }
 
         :host([low-resolution-layout]) #range {
           margin: 0;
-          margin-inline-start: 24px;
+          margin-inline-start: 8px;
         }
 
         :host([low-resolution-layout]) .pag-btns {
-          margin-inline-start: -12px;
+          margin-inline-start: 12px;
         }
         sl-select::part(form-control-label) {
           display: none;

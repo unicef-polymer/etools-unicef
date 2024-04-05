@@ -182,6 +182,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           sl-dialog.md {
             width: calc(100vw - 30px);
           }
+          sl-dialog.default::part(title) {
+            font-size: var(--etools-font-size-16, 16px);
+          }
         }
 
         @media screen and (max-width: 480px) {
