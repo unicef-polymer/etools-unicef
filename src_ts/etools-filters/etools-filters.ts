@@ -292,9 +292,9 @@ export class EtoolsFilters extends LitElement {
           opacity: 60%;
         }
       </style>
-      <div id="filters">${this.selectedFiltersTmpl(this.filters)}</div>
+      <div id="filters" part="filters">${this.selectedFiltersTmpl(this.filters)}</div>
 
-      <div id="filters-selector">
+      <div id="filters-selector" part="filters-selector">
         <sl-dropdown id="filterMenu" stay-open-on-select>
           <etools-button variant="text" class="trigger-button" slot="trigger">
             <etools-icon name="filter-list" slot="prefix"></etools-icon>

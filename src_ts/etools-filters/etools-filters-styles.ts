@@ -152,7 +152,7 @@ export const etoolsFiltersStyles = css`
     #filters .search,
     #filters .filter.date {
       width: 100%;
-      min-width: 220px;
+      min-width: 100%;
     }
     #filters etools-dropdown.filter {
       width: 100%;

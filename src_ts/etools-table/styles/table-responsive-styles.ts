@@ -52,7 +52,7 @@ export const etoolsTableResponsiveStyles = css`
       border: none !important;
       line-height: inherit;
       position: relative;
-      padding-inline-start: 36% !important;
+      padding-inline-start: 45% !important;
     }
     tr:not(.child-row) td:before {
       position: absolute;
@@ -60,10 +60,13 @@ export const etoolsTableResponsiveStyles = css`
       color: var(--etools-table-secondary-text-color, rgba(0, 0, 0, 0.54));
       inset-inline-start: 5px;
       inset-inline-end: 5px;
-      width: 34%;
+      max-width: 44%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    td[data-label] {
+      width: 55%;
     }
     .row-actions .actions {
       visibility: visible !important;

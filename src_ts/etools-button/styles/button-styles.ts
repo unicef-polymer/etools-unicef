@@ -49,7 +49,7 @@ export const buttonsStylesContent = `
   :host {
     --sl-button-font-size-medium: var(--etools-font-size-16, 16px);
     --sl-input-height-medium: 36px;
-    --sl-spacing-medium: 8px;
+    --sl-spacing-medium: 12px;
     margin-inline-start: 5px;
     margin-inline-end: 5px;
     min-width: 82px;

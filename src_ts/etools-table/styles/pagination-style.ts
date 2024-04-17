@@ -59,11 +59,14 @@ export const etoolsPaginationStyles = css`
   }
 
   @media (max-width: 576px) {
-    #rows {
-      display: none;
-    }
     #range {
-      margin: 0px 10px;
+      margin: 0px 4px;
+    }    
+    #rows {
+      margin-inline-end: 4px;
+    }
+    :host {
+      flex-wrap: wrap;
     }
   }
 `;

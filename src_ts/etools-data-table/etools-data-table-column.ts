@@ -32,6 +32,8 @@ export class EtoolsDataTableColumn extends LitElement {
           font-size: var(--etools-font-size-12, 12px);
           color: var(--list-secondary-text-color, #757575);
           font-weight: bold;
+          padding-right: 8px !important;
+          padding-left: 8px !important;  
         }
 
         :host([sortable]) {

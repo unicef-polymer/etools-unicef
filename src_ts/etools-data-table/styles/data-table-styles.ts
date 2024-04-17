@@ -19,19 +19,34 @@ export const dataTableStylesContent = `
   }
 
   *[slot="row-data"] {
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin: 4px 0px 4px 0 !important;
   }
+
   *[slot="row-data"],
-  *[slot="row-data-details"] {
+  *[slot="row-data-details"] {    
     display: flex;
     flex-direction: row;
+    width: 100%;
+    max-width: calc(100% - 28px);
+    min-width: 100px; <!-- for truncated cells -->
+  }
+
+  etools-data-table-row[no-collapse] *[slot="row-data"],
+  etools-data-table-row[no-collapse] *[slot="row-data-details"] {
+    max-width: 100%;
+  }
+
+  *[slot="row-data"] > *,
+  *[slot="row-data-details"]  > * {    
+    padding-right: 8px !important;
+    padding-left: 8px !important;
   }
 
   *[slot="row-data"] .col-data {
     display: inline-flex;
     line-height: 24px;
     align-items: center;
+    justify-content: flex-start;
   }
 
   *[slot="row-data"] .truncate {
@@ -46,11 +61,10 @@ export const dataTableStylesContent = `
   etools-data-table-column,
   *[slot="row-data"] .col-data {
     box-sizing: border-box;
-    padding-inline-end: 16px;
   }
   etools-data-table-column:last-child,
   *[slot="row-data"] .col-data:last-child {
-    padding-inline-end: 0;
+    <!-- padding-inline-end: 0; -->
   }
   .row-details-content {
     font-size: var(--etools-font-size-12, 12px);
@@ -74,7 +88,7 @@ export const dataTableStylesContent = `
   etools-data-table-row[medium-resolution-layout] *[slot="row-data-details"] {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
     box-sizing: border-box;
   }
 
@@ -93,9 +107,9 @@ export const dataTableStylesContent = `
     overflow: unset;
     text-overflow: unset;
   }
-   etools-data-table-row[low-resolution-layout] *[slot="row-data"].row {
-     margin-left: 0;
-     margin-right: 0;
+  etools-data-table-row[low-resolution-layout] *[slot="row-data"].row {
+     margin-left: 6px !important;
+     margin-right: 6px !important;
    }
 
   etools-data-table-row[low-resolution-layout] *[slot="row-data"],
