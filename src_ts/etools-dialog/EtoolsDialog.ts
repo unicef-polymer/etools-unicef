@@ -50,6 +50,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           padding: 8px;
           display: flex;
           justify-content: flex-end;
+          flex-wrap: wrap;
+        }
+
+        .buttons etools-button {
+          position: initial;
         }
 
         sl-dialog::part(close-button) {
