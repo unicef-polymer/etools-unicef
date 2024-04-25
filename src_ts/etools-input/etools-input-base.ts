@@ -111,7 +111,9 @@ export class EtoolsInputBase extends LitElement {
     super.connectedCallback();
 
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
-    this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
+    if (!this.errorMessage) {
+      this.errorMessage = getTranslation(this.language, 'THIS_FIELD_IS_REQUIRED');
+    }
   }
 
   disconnectedCallback() {

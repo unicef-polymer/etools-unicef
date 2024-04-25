@@ -65,7 +65,7 @@ export const buttonsStylesContent = `
   }
 
   :host::part(caret) {
-    height: 1em;
+    height: 1em !important;
   }
 
   :host([variant='text']) {
