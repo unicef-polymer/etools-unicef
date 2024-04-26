@@ -14,6 +14,7 @@ import {
   tripsIcon,
   unppIcon,
   ampIcon,
+  menuIcon,
   storageIcon
 } from './app-selector-icons';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
@@ -28,10 +29,12 @@ export enum Applications {
   AP = 'ap',
   PSEA = 'psea',
   FM = 'fm',
+  LM = 'lastmile',
   APD = 'apd',
   DASH = 'dash',
   ADMIN = 'admin',
-  AMP = 'amp'
+  AMP = 'amp',
+  MENU = 'menu'
 }
 
 export enum GROUPS {
@@ -142,10 +145,15 @@ export class AppSelector extends LitElement {
     }
 
     .admin {
-      background: #eeeeee;
       display: flex;
       align-items: center;
       padding-left: 4px;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .gray {
+      background: #eeeeee;
     }
 
     a,
@@ -463,6 +471,7 @@ export class AppSelector extends LitElement {
                               `
                             : ''
                         }
+                        <div class="module-group gray">
                         ${
                           this.checkAllowedApps([Applications.ADMIN])
                             ? html`
@@ -473,7 +482,12 @@ export class AppSelector extends LitElement {
                               `
                             : ''
                         }
+                         <a class="admin" rel="external" href="${this.baseSite}/${Applications.MENU}/">
+                            ${menuIcon}
+                            <div class="app-title">${getTranslation(this.language, 'MENU')}</div>
+                          </a>
                         </div>
+                      </div>
                     `
           : ''}
       </div>
