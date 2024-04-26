@@ -18,7 +18,9 @@ const translations = {
     IMPLEMENTATION_INTELLIGENCE: 'Implementation Intelligence',
     DATAMART: 'Datamart',
     ADMIN: 'ADMIN',
-    APP_SELECTOR: 'App Selector'
+    APP_SELECTOR: 'App Selector',
+    LAST_MILE: 'Last Mile',
+    MENU: 'Menu'
   },
   fr: {
     PROGRAMME_MANAGEMENT: 'Gestion de programme',
@@ -39,7 +41,9 @@ const translations = {
     IMPLEMENTATION_INTELLIGENCE: 'Intelligence de mise en œuvre',
     DATAMART: 'Datamart',
     ADMIN: 'ADMIN',
-    APP_SELECTOR: "Sélecteur d'applications"
+    APP_SELECTOR: "Sélecteur d'applications",
+    LAST_MILE: 'Dernier kilomètre',
+    MENU: 'Menu'
   },
   es: {
     PROGRAMME_MANAGEMENT: 'Gestión de programas',
@@ -60,7 +64,9 @@ const translations = {
     IMPLEMENTATION_INTELLIGENCE: 'Inteligencia de implementación',
     DATAMART: 'Datamart',
     ADMIN: 'ADMIN',
-    APP_SELECTOR: 'Selector de aplicaciones'
+    APP_SELECTOR: 'Selector de aplicaciones',
+    LAST_MILE: 'Última milla',
+    MENU: 'Menú'
   },
   pt: {
     PROGRAMME_MANAGEMENT: 'Gerenciamento do Programa',
@@ -81,7 +87,9 @@ const translations = {
     IMPLEMENTATION_INTELLIGENCE: 'Inteligência de Implementação',
     DATAMART: 'Datamart',
     ADMIN: 'ADMIN',
-    APP_SELECTOR: 'Seletor de aplicativos'
+    APP_SELECTOR: 'Seletor de aplicativos',
+    LAST_MILE: 'Última milha',
+    MENU: 'Cardápio'
   },
   ru: {
     PROGRAMME_MANAGEMENT: 'Управление программой',
@@ -102,7 +110,9 @@ const translations = {
     IMPLEMENTATION_INTELLIGENCE: 'Интеллект реализации',
     DATAMART: 'Витрина данных',
     ADMIN: 'АДМИН',
-    APP_SELECTOR: 'Селектор приложений'
+    APP_SELECTOR: 'Селектор приложений',
+    LAST_MILE: 'Последняя миля',
+    MENU: 'Меню'
   },
   ar: {
     PROGRAMME_MANAGEMENT: 'إدارة البرنامج',
@@ -123,7 +133,9 @@ const translations = {
     IMPLEMENTATION_INTELLIGENCE: 'استخبارات التنفيذ',
     DATAMART: 'داتامارت',
     ADMIN: 'المشرف',
-    APP_SELECTOR: 'محدد التطبيق'
+    APP_SELECTOR: 'محدد التطبيق',
+    LAST_MILE: 'الميل الأخير',
+    MENU: 'قائمة طعام'
   }
 };
 
