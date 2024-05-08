@@ -539,7 +539,7 @@ export class AppSelector extends LitElement {
   // [ch14186], https://github.com/unicef-polymer/etools-app-selector/pull/54/files
   goToPage(e: any): void {
     const path: string = (e.target! as HTMLElement).closest('a')?.getAttribute('href') || '';
-    if (!e.detail.sourceEvent?.ctrlKey && !e.detail.sourceEvent?.metaKey) {
+    if (!e.ctrlKey && !e.metaKey) {
       window.location.href = path;
     }
   }
