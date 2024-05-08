@@ -57,6 +57,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           position: initial;
         }
 
+        sl-dialog::part(panel) {
+          position: relative;
+        }
+
         sl-dialog::part(close-button) {
           color: var(--sl-color-neutral-800, #000000);
           font-size: var(--etools-font-size-18, 18px);
