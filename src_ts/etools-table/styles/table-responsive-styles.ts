@@ -30,7 +30,7 @@ export const etoolsTableResponsiveStyles = css`
       width: 1px;
     }
     table tr:not(.child-row) td {
-      padding: 0.75rem 0;
+      padding: 1.25rem 0;
       padding-inline-start: 36%;
     }
     table td,
@@ -56,12 +56,12 @@ export const etoolsTableResponsiveStyles = css`
     }
     tr:not(.child-row) td:before {
       position: absolute;
-      content: attr(data-label);
+      content: attr(data-label) ':';
       color: var(--etools-table-secondary-text-color, rgba(0, 0, 0, 0.54));
       inset-inline-start: 5px;
       inset-inline-end: 5px;
       max-width: 44%;
-      white-space: nowrap;
+      white-space: break-spaces;
       overflow: hidden;
       text-overflow: ellipsis;
     }

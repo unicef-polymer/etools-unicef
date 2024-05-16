@@ -76,7 +76,8 @@ export class EtoolsContentPanel extends LitElement {
           flex-wrap: wrap;
           box-sizing: border-box;
           background-color: var(--ecp-header-bg, #0099ff);
-          height: var(--ecp-header-height, 48px);
+          min-height: var(--ecp-header-height, 48px);
+          height: auto;
           padding: 4px 16px;
         }
 
@@ -98,7 +99,7 @@ export class EtoolsContentPanel extends LitElement {
 
         .panel-btns-wrapper ::slotted(*) {
           display: flex;
-          align-items: center;          
+          align-items: center;
         }
 
         .panel-btns-wrapper {
@@ -148,7 +149,7 @@ export class EtoolsContentPanel extends LitElement {
         etools-icon-button {
           --etools-icon-font-size: var(--etools-font-size-24, 24px);
         }
-        @media(max-width:576px) {
+        @media (max-width: 576px) {
           .panel-header {
             padding: 4px;
           }
