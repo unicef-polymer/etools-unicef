@@ -95,6 +95,12 @@ export const layoutStyles = css`
     margin-right: 0;
     margin-left: 0;
   }
+  .row.b-border {
+    border-bottom: 1px solid var(--light-divider-color);
+  }
+  .row-second-bg {
+    background-color: var(--light-theme-background-color);
+  }
   .no-gutters > .col,
   .no-gutters > [class*='col-'] {
     padding-right: 0;
