@@ -224,7 +224,6 @@ export class AppToolbar extends LitElement {
   }
 
   private setBgColor(): void {
-    console.log('the env is: ', Environment.get());
     // If not production environment, changing header color to red
     if (!Environment.is(EnvironmentType.PROD)) {
       this.headerColor = 'var(--nonprod-header-color)';

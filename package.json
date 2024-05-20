@@ -45,7 +45,7 @@
     "@typescript-eslint/parser": "^5.7.0",
     "@typescript-eslint/typescript-estree": "^5.7.0",
     "@unicef-polymer/etools-types": "^1.11.17",
-    "@unicef-polymer/etools-utils": "^2.0.0-rc.8",
+    "@unicef-polymer/etools-utils": "^2.0.0-rc.9",
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.15.0",
