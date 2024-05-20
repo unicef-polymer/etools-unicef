@@ -19,9 +19,7 @@ export class EtoolsButton extends SlButton {
 
   render() {
     // language=HTML
-
-    return html`
-      <etools-media-query
+    return html`<etools-media-query
         query="(max-width: 767px)"
         @query-matches-changed="${(e: CustomEvent) => {
           if (e.detail.value) {
@@ -32,6 +30,6 @@ export class EtoolsButton extends SlButton {
           }
         }}"
       ></etools-media-query>
-    ${super.render()}`;
+      ${super.render()}`;
   }
 }

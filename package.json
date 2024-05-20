@@ -1,6 +1,6 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "1.0.0-rc.87",
+  "version": "1.0.0-rc.88",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "type": "module",
@@ -40,12 +40,12 @@
     "@unicef-polymer/etools-utils": ">=2.0.0"
   },
   "devDependencies": {
-    "@unicef-polymer/etools-types": "^1.11.17",
-    "@unicef-polymer/etools-utils": "^2.0.0-rc.6",
     "@types/node": "^20.11.5",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "@typescript-eslint/typescript-estree": "^5.7.0",
+    "@unicef-polymer/etools-types": "^1.11.17",
+    "@unicef-polymer/etools-utils": "^2.0.0-rc.8",
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.15.0",

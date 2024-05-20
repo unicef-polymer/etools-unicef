@@ -64,7 +64,7 @@ export class EtoolsDataTableHeader extends LitElement {
         :host([no-collapse]) div#header-wrapper {
           padding-inline: var(--list-row-wrapper-padding-inline, 16px);
           height: auto;
-        }        
+        }
 
         #title {
           width: 100%;
@@ -84,7 +84,7 @@ export class EtoolsDataTableHeader extends LitElement {
           justify-content: center;
           height: var(--list-header-wrapper-column-height, 56px);
         }
- 
+
         :host([no-collapse]) #columns {
           margin-inline-start: 0;
           flex: 1;

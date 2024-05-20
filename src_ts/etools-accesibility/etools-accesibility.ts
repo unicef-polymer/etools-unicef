@@ -40,6 +40,7 @@ export class EtoolsAccesibility extends LitElement {
           display: flex;
           overflow: hidden;
           width: 270px;
+          color: var(--primary-text-color);
         }
 
         .toolbox-item {
