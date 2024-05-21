@@ -100,7 +100,6 @@ export class EtoolsProfileDropdown extends LitElement {
     return html`
       <style>
         #profile::part(base) {
-          width: 60px;
           height: 60px;
           display: flex;
           flex-direction: row;
