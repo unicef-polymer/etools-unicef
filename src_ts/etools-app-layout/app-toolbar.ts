@@ -5,6 +5,9 @@ import {Environment, EnvironmentType} from '@unicef-polymer/etools-utils/dist/si
 
 @customElement('app-toolbar')
 export class AppToolbar extends LitElement {
+  @property({type: String, attribute: 'responsive-width'})
+  responsiveWidth = '850px';
+
   @property({type: String, attribute: 'language'})
   language = '';
 
@@ -43,7 +46,7 @@ export class AppToolbar extends LitElement {
           margin-inline-start: 16px;
         }
 
-        @media (min-width: 850px) {
+        @media (min-width: ${this.responsiveWidth}) {
           #menuButton {
             display: none;
           }
