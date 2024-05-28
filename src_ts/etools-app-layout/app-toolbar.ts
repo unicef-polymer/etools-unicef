@@ -52,7 +52,7 @@ export class AppToolbar extends LitElement {
           }
         }
 
-        @media (max-width: 849px) {
+        @media (max-width: calc(${this.responsiveWidth} - 1px)) {
           etools-app-selector {
             --app-selector-button-padding: 10px 0px;
             width: auto;
