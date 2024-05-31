@@ -110,7 +110,6 @@ export class EtoolsContentPanel extends LitElement {
           margin: auto;
           font-size: var(--etools-font-size-20, 20px);
           font-weight: bold;
-          min-width: 0;
           flex: 1;
         }
 
