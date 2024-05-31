@@ -26,6 +26,7 @@ export class InfoIconTooltip extends LitElement {
         #etools-iit-content {
           padding: 20px;
           position: relative;
+          white-space: normal;
         }
 
         .tooltip-info {
