@@ -253,11 +253,11 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     return this.hideDeleteBtn;
   }
 
-  _showFileType(fileTypesLength, readonly, fileType) {
+  _showFileType(fileTypesLength, readonly, _fileType) {
     return this.activateFileTypes && fileTypesLength > 0 && !readonly;
   }
 
-  _showReadonlyType(fileType, readonly) {
+  _showReadonlyType(_fileType, readonly) {
     return this.activateFileTypes && readonly;
   }
 
@@ -312,7 +312,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     }
   }
 
-  _typeChanged(event) {
+  _typeChanged(_event) {
     // var typeVal = event.target.selected;
     // console.log(event.model.index, typeVal);
     return;
