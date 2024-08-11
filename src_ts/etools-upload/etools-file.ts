@@ -100,7 +100,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                     ${this._showFileType(this.fileTypes.length, this.readonly, file.type) ? html`
                         <etools-dropdown
                           id="typeDropdown_${index}"
-                          label=${this.fileTypesLabel}
+                          label="${this.fileTypesLabel}"
                           placeholder="&#8212;"
                           .selected="${file.type}"
                           .options="${this.fileTypes}"
@@ -127,7 +127,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                       ?hidden="${!this._showDownloadBtn(file)}"
                       title="${getTranslation(this.language, 'DOWNLOAD')}"
                     >
-                      <etools-icon name="cloud-download" class="dw-icon"></etools-icon>
+                      <etools-icon slot="prefix" name="cloud-download" class="dw-icon"></etools-icon>
                       ${getTranslation(this.language, 'DOWNLOAD')}
                     </etools-button>
 
@@ -162,10 +162,10 @@ export class EtoolsFile extends CommonMixin(LitElement) {
 
             <div class="upload-button-wrapper" ?hidden="${!this._showUploadBtn(this.files.length, this.readonly)}">
             <span>
-                <etools-button variant="text" size="small" class="upload-button" .title="${this.uploadLabel}"
+              <etools-button variant="text" size="small" class="upload-button" .title="${this.uploadLabel}"
                  ?disabled="${this.readonly}" @click="${this._openFileChooser}">
-                <etools-icon name="file-upload"></etools-icon>
-              ${this.uploadLabel}
+                <etools-icon slot="prefix" name="file-upload"></etools-icon>
+                ${this.uploadLabel}
               </etools-button>
             </span>
             </div>
@@ -174,7 +174,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
             </div>
           </div>
 
-          <input class="paper-input-input" type="file" id="fileInput" @change="${this._fileSelected}"
+          <input hidden type="file" id="fileInput" @change="${this._fileSelected}"
                  .multiple="${this.multiple}" .accept="${this.accept}">
 
           <a id="downloader"></a>
