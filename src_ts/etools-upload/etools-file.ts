@@ -28,15 +28,17 @@
  */
 
 
- import {LitElement, PropertyValues, html} from 'lit';
- import {property, customElement, query} from 'lit/decorators.js';
- import {prettyDate} from '@unicef-polymer/etools-utils/dist/date.util';
- import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
- import '../etools-button/etools-button';
-import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
+import {LitElement, PropertyValues, html} from 'lit';
+import {property, customElement, query} from 'lit/decorators.js';
+import {prettyDate} from '@unicef-polymer/etools-utils/dist/date.util';
+import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
+import '../etools-button/etools-button';
 import '../etools-icons/etools-icon';
+import '../etools-dropdown/etools-dropdown';
+import '../etools-button/etools-button';
+import '../etools-input/etools-input';
 import {CommonStyles} from './common-styles';
-import { CommonMixin } from './common-mixin';
+import {CommonMixin } from './common-mixin';
 import {getTranslation} from './utils/translate';
 
 /**
@@ -54,9 +56,12 @@ export class EtoolsFile extends CommonMixin(LitElement) {
         .toast-style {
           min-width: 330px;
         }
+        .main-panel {
+          text-align: left;
+        }
       </style>
 
-      <div ?disabled="${this.disabled}" ?invalid="${this.invalid}">
+      <div class="main-panel" ?disabled="${this.disabled}" ?invalid="${this.invalid}">
 
         <label id="element-label" ?hidden="${!this._showLabel(this.label)}" aria-hidden="true">${this.label}</label>
         <div class="input">
@@ -65,27 +70,30 @@ export class EtoolsFile extends CommonMixin(LitElement) {
              
             
             ${(this.files || []).map((file: any, index: number) => {
-                html`div class="file-area">
+                html`<div class="file-area">
 
                   <div class="selected-file-container ${this._getFileSelectedClass(file)}">
 
                     ${this.showUploadDate ? html` <div class="upload-date">
-                        <div always-float-label="">
-                          <label slot="label">Upload Date</label>
-                          <div slot="input" class="paper-input-input">
+                        <div>
+                          <label>Upload Date</label>
+                          <div>
                             ${this._formatUploadDate(file.created, file.id)}
                           </div>
                         </div>
                       </div>` : ``}
                     <div class="file-name-wrapper">
-                      <iron-icon class="file-icon" icon="attachment"></iron-icon>
-                      <span class="file-name" .title="${file.file_name}">[[file.file_name]]</span>
+                      <etools-icon class="file-icon" name="attachment"></etools-icon>
+                      <span class="file-name" .title="${file.file_name}">${file.file_name}</span>
                     </div>
 
                     ${this._showReadonlyType(file.type, this.readonly) ? html`
                       <div class="file-type-input-wrapper">
-                        <etools-input class="file-type-input" .label="${this.fileTypesLabel}"
-                                     .value="${this._getFileTypeStr(file.type)}" placeholder="—" readonly>
+                        <etools-input class="file-type-input"
+                          .label="${this.fileTypesLabel}"
+                          .value="${this._getFileTypeStr(file.type)}"
+                          placeholder="—"
+                          readonly>
                         </etools-input>
                       </div>` : ``}
                                         
@@ -107,13 +115,13 @@ export class EtoolsFile extends CommonMixin(LitElement) {
 
                   </div>
 
-                  <div class$="file-actions ${this._getFileSelectedClass(file)}">
+                  <div class="file-actions ${this._getFileSelectedClass(file)}">
                     <!-- download btn if file was uploaded -->
                       <etools-button
                       variant="text"
                       class="download-button primary-btn"
                       size="small"
-                      .index="${index}"
+                      index="${index}"
                       @click="${this._downloadFile}"
                       ?disabled="${!this._showDownloadBtn(file)}"
                       ?hidden="${!this._showDownloadBtn(file)}"
@@ -127,7 +135,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                       variant="text"
                       size="small"
                       class="change-button"
-                      .index="${index}"
+                      index="${index}"
                       @click="${this._changeFile}"
                       ?disabled="${this.readonly}"
                       ?hidden="${this.readonly}"
@@ -148,9 +156,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                   </div>
 
                 </div>
-              </template>
                   `;
-
             })}
             </div>
 
@@ -168,13 +174,13 @@ export class EtoolsFile extends CommonMixin(LitElement) {
             </div>
           </div>
 
-          <input hidden="" class="paper-input-input" type="file" id="fileInput" @change="${this._fileSelected}"
+          <input class="paper-input-input" type="file" id="fileInput" @change="${this._fileSelected}"
                  .multiple="${this.multiple}" .accept="${this.accept}">
 
-          <a id="downloader" hidden=""></a>
+          <a id="downloader"></a>
         </div>
 
-        <div part="invalid-message" class="invalid-message" ?visible=${this.invalid && this.errorMessage}>
+        <div part="invalid-message" class="invalid-message" ?visible="${this.invalid && this.errorMessage}">
           ${this.errorMessage}
         </div>
       </div>
@@ -204,9 +210,9 @@ export class EtoolsFile extends CommonMixin(LitElement) {
 
   @query('#fileInput') private fileInputEl!: HTMLInputElement;
   
- 
-  connectedCallback() {
-    super.connectedCallback();
+  protected firstUpdated(changedProperties: PropertyValues): void {
+    super.firstUpdated(changedProperties);
+
     if (this.multiple && this.label === 'File attachment') {
       this.label += '(s)';
     }
@@ -398,6 +404,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
       return {
         id: null,
         file_name: null,
+        type: null,
         path: null,
         raw: null
       };
@@ -408,6 +415,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     if (file) {
       let fileObj = this._getFileModel();
       fileObj.file_name = file.name;
+      fileObj.type = file.type;
       fileObj.raw = file;
 
       if (this.files.length === 0) {
@@ -417,7 +425,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
         // replace/change file
         this.files[0] = fileObj;        
       }
-      this.requestUpdate();
+      this.files = [...this.files];
     }
   }
 
