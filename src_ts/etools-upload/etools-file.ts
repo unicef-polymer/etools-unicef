@@ -27,7 +27,6 @@
  `--etools-file-upload-button` | Upload button mixin | `{}`
  */
 
-
 import {LitElement, PropertyValues, html} from 'lit';
 import {property, customElement, query} from 'lit/decorators.js';
 import {prettyDate} from '@unicef-polymer/etools-utils/dist/date.util';
@@ -38,7 +37,7 @@ import '../etools-dropdown/etools-dropdown';
 import '../etools-button/etools-button';
 import '../etools-input/etools-input';
 import {CommonStyles} from './common-styles';
-import {CommonMixin } from './common-mixin';
+import {CommonMixin} from './common-mixin';
 import {getTranslation} from './utils/translate';
 
 /**
@@ -62,62 +61,60 @@ export class EtoolsFile extends CommonMixin(LitElement) {
       </style>
 
       <div class="main-panel" ?disabled="${this.disabled}" ?invalid="${this.invalid}">
-
         <label id="element-label" ?hidden="${!this._showLabel(this.label)}" aria-hidden="true">${this.label}</label>
         <div class="input">
           <div class="files-container  ${this._getMultipleClass(this.multiple)}">
             <div class="files-wrapper" ?hidden="${!this.showFilesContainer}">
-             
-            
-            ${(this.files || []).map((file: any, index: number) => {
+              ${(this.files || []).map((file: any, index: number) => {
                 html`<div class="file-area">
-
                   <div class="selected-file-container ${this._getFileSelectedClass(file)}">
-
-                    ${this.showUploadDate ? html` <div class="upload-date">
-                        <div>
-                          <label>Upload Date</label>
+                    ${this.showUploadDate
+                      ? html` <div class="upload-date">
                           <div>
-                            ${this._formatUploadDate(file.created, file.id)}
+                            <label>Upload Date</label>
+                            <div>${this._formatUploadDate(file.created, file.id)}</div>
                           </div>
-                        </div>
-                      </div>` : ``}
+                        </div>`
+                      : ``}
                     <div class="file-name-wrapper">
                       <etools-icon class="file-icon" name="attachment"></etools-icon>
                       <span class="file-name" .title="${file.file_name}">${file.file_name}</span>
                     </div>
 
-                    ${this._showReadonlyType(file.type, this.readonly) ? html`
-                      <div class="file-type-input-wrapper">
-                        <etools-input class="file-type-input"
-                          .label="${this.fileTypesLabel}"
-                          .value="${this._getFileTypeStr(file.type)}"
-                          placeholder="—"
-                          readonly>
-                        </etools-input>
-                      </div>` : ``}
-                                        
-                    ${this._showFileType(this.fileTypes.length, this.readonly, file.type) ? html`
-                        <etools-dropdown
-                          id="typeDropdown_${index}"
-                          label="${this.fileTypesLabel}"
-                          placeholder="&#8212;"
-                          .selected="${file.type}"
-                          .options="${this.fileTypes}"
-                          option-value="id"
-                          option-label="name"
-                          @etools-selected-item-changed="${this._typeChanged}"
-                          trigger-value-change-event
-                          hide-search
-                        >
-                        </etools-dropdown>
-                    ` : ``}
-
+                    ${this._showReadonlyType(file.type, this.readonly)
+                      ? html` <div class="file-type-input-wrapper">
+                          <etools-input
+                            class="file-type-input"
+                            .label="${this.fileTypesLabel}"
+                            .value="${this._getFileTypeStr(file.type)}"
+                            placeholder="—"
+                            readonly
+                          >
+                          </etools-input>
+                        </div>`
+                      : ``}
+                    ${this._showFileType(this.fileTypes.length, this.readonly, file.type)
+                      ? html`
+                          <etools-dropdown
+                            id="typeDropdown_${index}"
+                            label="${this.fileTypesLabel}"
+                            placeholder="&#8212;"
+                            .selected="${file.type}"
+                            .options="${this.fileTypes}"
+                            option-value="id"
+                            option-label="name"
+                            @etools-selected-item-changed="${this._typeChanged}"
+                            trigger-value-change-event
+                            hide-search
+                          >
+                          </etools-dropdown>
+                        `
+                      : ``}
                   </div>
 
                   <div class="file-actions ${this._getFileSelectedClass(file)}">
                     <!-- download btn if file was uploaded -->
-                      <etools-button
+                    <etools-button
                       variant="text"
                       class="download-button primary-btn"
                       size="small"
@@ -154,28 +151,41 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                       ${getTranslation(this.language, 'DELETE')}
                     </etools-button>
                   </div>
-
-                </div>
-                  `;
-            })}
+                </div> `;
+              })}
             </div>
 
             <div class="upload-button-wrapper" ?hidden="${!this._showUploadBtn(this.files.length, this.readonly)}">
-            <span>
-              <etools-button variant="text" size="small" class="upload-button" .title="${this.uploadLabel}"
-                 ?disabled="${this.readonly}" @click="${this._openFileChooser}">
-                <etools-icon slot="prefix" name="file-upload"></etools-icon>
-                ${this.uploadLabel}
-              </etools-button>
-            </span>
+              <span>
+                <etools-button
+                  variant="text"
+                  size="small"
+                  class="upload-button"
+                  .title="${this.uploadLabel}"
+                  ?disabled="${this.readonly}"
+                  @click="${this._openFileChooser}"
+                >
+                  <etools-icon slot="prefix" name="file-upload"></etools-icon>
+                  ${this.uploadLabel}
+                </etools-button>
+              </span>
             </div>
-            <div class="no-file-and-readonly" ?hidden="${!this._showNoFileAttachedMsg(this.files.length, this.readonly)}">
+            <div
+              class="no-file-and-readonly"
+              ?hidden="${!this._showNoFileAttachedMsg(this.files.length, this.readonly)}"
+            >
               ${this.noFileAttachedMsg}
             </div>
           </div>
 
-          <input hidden type="file" id="fileInput" @change="${this._fileSelected}"
-                 .multiple="${this.multiple}" .accept="${this.accept}">
+          <input
+            hidden
+            type="file"
+            id="fileInput"
+            @change="${this._fileSelected}"
+            .multiple="${this.multiple}"
+            .accept="${this.accept}"
+          />
 
           <a id="downloader"></a>
         </div>
@@ -188,7 +198,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
   }
 
   @property({type: String}) label = 'File attachment';
-  @property({type: Array}) files:any[] = [];
+  @property({type: Array}) files: any[] = [];
   @property({type: Boolean}) multiple = false;
   @property({type: Boolean}) disabled = false;
   @property({type: String}) accept!: string;
@@ -209,7 +219,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
   @property({type: Number}) changeFileIndex!: number;
 
   @query('#fileInput') private fileInputEl!: HTMLInputElement;
-  
+
   protected firstUpdated(changedProperties: PropertyValues): void {
     super.firstUpdated(changedProperties);
 
@@ -220,7 +230,6 @@ export class EtoolsFile extends CommonMixin(LitElement) {
       this.files = [];
     }
   }
-
 
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has('files')) {
@@ -271,7 +280,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     if (!this.fileTypes.length || !fileType) {
       return null;
     }
-    let type: any = this._findInAvailableFileTypes(fileType);
+    const type: any = this._findInAvailableFileTypes(fileType);
     if (type) {
       return type.name;
     }
@@ -279,7 +288,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
   }
 
   _findInAvailableFileTypes(fileType) {
-    let type = this.fileTypes.filter(function (type: any) {
+    const type = this.fileTypes.filter(function (type: any) {
       return parseInt(type.id, 10) === parseInt(fileType, 10);
     });
     if (type && type.length) {
@@ -331,7 +340,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
       if (this.files[this.changeFileIndex]) {
         if (this.multiple) {
           // check for already selected
-          let fileAlreadySelected = this._checkFileAlreadySelected(newFile);
+          const fileAlreadySelected = this._checkFileAlreadySelected(newFile);
           if (fileAlreadySelected.length > 0) {
             this._displayAlreadySelectedWarning(fileAlreadySelected);
             this.changeFileIndex = -1;
@@ -340,8 +349,8 @@ export class EtoolsFile extends CommonMixin(LitElement) {
             return;
           }
         }
-        let oldFile = this.files[this.changeFileIndex];
-        let newFileObj = JSON.parse(JSON.stringify(oldFile));
+        const oldFile = this.files[this.changeFileIndex];
+        const newFileObj = JSON.parse(JSON.stringify(oldFile));
         newFileObj.file_name = newFile.name;
         newFileObj.raw = newFile;
         newFileObj.path = null;
@@ -358,11 +367,11 @@ export class EtoolsFile extends CommonMixin(LitElement) {
   }
 
   _addMultipleFiles(files) {
-    let filesAlreadySelected: any[] = [];
+    const filesAlreadySelected: any[] = [];
     for (let i = 0; i < files.length; i++) {
-      let fileAlreadySelected = this._checkFileAlreadySelected(files[i]);
+      const fileAlreadySelected = this._checkFileAlreadySelected(files[i]);
       if (fileAlreadySelected.length === 0) {
-        let fileObj = this._getFileModel();
+        const fileObj = this._getFileModel();
         fileObj.file_name = files[i].name;
         fileObj.raw = files[i];
         if (this.showUploadBtnAbove) {
@@ -382,7 +391,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
   }
 
   _checkFileAlreadySelected(file) {
-    let fileAlreadySelected = this.files.filter(function (f) {
+    const fileAlreadySelected = this.files.filter(function (f) {
       return f.file_name === file.name && (f.path === '' || f.path === null || typeof f.path === 'undefined');
     });
     return fileAlreadySelected;
@@ -413,7 +422,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
 
   _addSingleFile(file) {
     if (file) {
-      let fileObj = this._getFileModel();
+      const fileObj = this._getFileModel();
       fileObj.file_name = file.name;
       fileObj.type = file.type;
       fileObj.raw = file;
@@ -423,14 +432,14 @@ export class EtoolsFile extends CommonMixin(LitElement) {
         this.files.push(fileObj);
       } else {
         // replace/change file
-        this.files[0] = fileObj;        
+        this.files[0] = fileObj;
       }
       this.files = [...this.files];
     }
   }
 
   _fileSelected(e) {
-    let files = e.target.files;
+    const files = e.target.files;
     // replace file if case
     if (this._replaceFile(files[0]) === true) {
       return;
@@ -441,7 +450,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
       this._addMultipleFiles(files);
     } else {
       // single file upload
-      let file = e.target.files[0];
+      const file = e.target.files[0];
       this._addSingleFile(file);
     }
     // reset file input
@@ -462,11 +471,13 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     if (!this.multiple) {
       if (this.files.length > 0) {
         if (this.useDeleteEvents) {
-          this.dispatchEvent(new CustomEvent('delete-file', {
-            detail: {file: this.files[0], index: 0},
-            bubbles: true,
-            composed: true
-          }));
+          this.dispatchEvent(
+            new CustomEvent('delete-file', {
+              detail: {file: this.files[0], index: 0},
+              bubbles: true,
+              composed: true
+            })
+          );
         } else {
           this.files = [];
           this.requestUpdate();
@@ -476,12 +487,16 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     } else {
       if (typeof e.model.index === 'number' && e.model.index >= 0) {
         if (this.useDeleteEvents) {
-          this.dispatchEvent(new CustomEvent('delete-file', {
-            detail: {
-              file: this.files[e.model.index],
-              index: e.model.index
-            }, bubbles: true, composed: true
-          }));
+          this.dispatchEvent(
+            new CustomEvent('delete-file', {
+              detail: {
+                file: this.files[e.model.index],
+                index: e.model.index
+              },
+              bubbles: true,
+              composed: true
+            })
+          );
         } else {
           this.files.splice(e.model.index, 1);
           this.requestUpdate();
@@ -492,7 +507,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
 
   _filesChange() {
     this.showFilesContainer = this.files instanceof Array && this.files.length > 0;
-    
+
     if (!this.multiple) {
       if (this.files instanceof Array && this.files.length > 1) {
         this.files = [this.files[0]];
@@ -501,15 +516,15 @@ export class EtoolsFile extends CommonMixin(LitElement) {
     }
   }
 
-  _downloadFile(e) {    
+  _downloadFile(e) {
     if (this.files.length > 0) {
       let file = this.files[0];
       const index = parseInt(e.target.getAttribute('index'));
       if (this.multiple && !isNaN(index) && index >= 0) {
         file = this.files[index];
       }
-      if (typeof file !== 'undefined' && file.path !== '') {        
-        this.downloadFile(file.file_name, file.path, this.openInNewTab);        
+      if (typeof file !== 'undefined' && file.path !== '') {
+        this.downloadFile(file.file_name, file.path, this.openInNewTab);
       }
     }
   }
