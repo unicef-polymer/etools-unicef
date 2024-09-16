@@ -153,6 +153,7 @@ export class EtoolsLoading extends LitElement {
 
   handleLanguageChange(e) {
     this.language = e.detail.language;
+    this.loadingText = getTranslation(this.language, 'LOADING');
   }
 
   _loadingStateChanged(active) {
