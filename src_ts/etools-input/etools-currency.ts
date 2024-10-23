@@ -222,35 +222,24 @@ export class EtoolsCurrency extends EtoolsInputBase {
   _setExternalValue(value: any, preserveFloatingPoint: any) {
     let cleanValStr = this._getValueWithoutFormat(value, this.noOfDecimals);
     const valuePieces = cleanValStr.split('.');
-    let limitExceeded = false;
     if (valuePieces[0].length > this.noOfSignificantDigits) {
       // limit number integer part to max 12 digits
       valuePieces[0] = valuePieces[0].slice(0, this.noOfSignificantDigits);
-      limitExceeded = true;
     }
     cleanValStr = valuePieces.join('.');
     if (preserveFloatingPoint) {
       cleanValStr += '.';
     }
-    if (limitExceeded) {
-      this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
-      return;
-    }
-    const realFloatValue = this._getRealNumberValue(cleanValStr);
-    if (realFloatValue !== this.value) {
-      // update value only if needed
-      this.value = realFloatValue;
-      this.dispatchEvent(
-        new CustomEvent('value-changed', {
-          detail: {value: this.value},
-          bubbles: true,
-          composed: true
-        })
-      );
-    } else {
-      // update internal value
-      this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
-    }
+    this.value = this._getRealNumberValue(cleanValStr);
+    // trigger new value-changed event to override etools-input value-changed event
+    this.dispatchEvent(
+      new CustomEvent('value-changed', {
+        detail: {value: this.value},
+        bubbles: true,
+        composed: true
+      })
+    );
+    this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
   }
 
   _formatValue(value: any) {
