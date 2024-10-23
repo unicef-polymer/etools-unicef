@@ -233,7 +233,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
     this.value = this._getRealNumberValue(cleanValStr);
     // trigger new value-changed event to override etools-input value-changed event
     this.dispatchEvent(
-      new CustomEvent('value-changed', {
+      new CustomEvent('etools-value-changed', {
         detail: {value: this.value},
         bubbles: true,
         composed: true
