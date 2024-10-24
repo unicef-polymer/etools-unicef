@@ -4,6 +4,7 @@ import './etools-input';
 import {EtoolsInputBase} from './etools-input-base';
 import {addCurrencyAmountDelimiter} from '../utils/currency';
 import {EtoolsInput} from './etools-input';
+import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 
 /**
  * `etools-currency`
@@ -69,8 +70,11 @@ export class EtoolsCurrency extends EtoolsInputBase {
         @keydown="${this._onKeyDown}"
         @blur="${this._onBlur}"
         @focus="${this._onFocus}"
-        @value-changed="${({detail}: CustomEvent) => {
-          this.internalValue = detail.value;
+        @value-changed="${(e: CustomEvent) => {
+          this.internalValue = e.detail.value;
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
         }}"
         exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
@@ -222,24 +226,30 @@ export class EtoolsCurrency extends EtoolsInputBase {
   _setExternalValue(value: any, preserveFloatingPoint: any) {
     let cleanValStr = this._getValueWithoutFormat(value, this.noOfDecimals);
     const valuePieces = cleanValStr.split('.');
+    let limitExceeded = false;
     if (valuePieces[0].length > this.noOfSignificantDigits) {
       // limit number integer part to max 12 digits
       valuePieces[0] = valuePieces[0].slice(0, this.noOfSignificantDigits);
+      limitExceeded = true;
     }
     cleanValStr = valuePieces.join('.');
     if (preserveFloatingPoint) {
       cleanValStr += '.';
     }
-    this.value = this._getRealNumberValue(cleanValStr);
-    // trigger new value-changed event to override etools-input value-changed event
-    this.dispatchEvent(
-      new CustomEvent('etools-value-changed', {
-        detail: {value: this.value},
-        bubbles: true,
-        composed: true
-      })
-    );
-    this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
+
+    if (limitExceeded) {
+      this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
+      return;
+    }
+    const realFloatValue = this._getRealNumberValue(cleanValStr);
+    if (realFloatValue !== this.value) {
+      // update value only if needed
+      this.value = realFloatValue;
+      fireEvent(this, 'value-changed', {value: this.value});
+    } else {
+      // update internal value
+      this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
+    }
   }
 
   _formatValue(value: any) {
