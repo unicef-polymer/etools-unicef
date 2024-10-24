@@ -4,6 +4,7 @@ import './etools-input';
 import {EtoolsInputBase} from './etools-input-base';
 import {addCurrencyAmountDelimiter} from '../utils/currency';
 import {EtoolsInput} from './etools-input';
+import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 
 /**
  * `etools-currency`
@@ -69,8 +70,11 @@ export class EtoolsCurrency extends EtoolsInputBase {
         @keydown="${this._onKeyDown}"
         @blur="${this._onBlur}"
         @focus="${this._onFocus}"
-        @value-changed="${({detail}: CustomEvent) => {
-          this.internalValue = detail.value;
+        @value-changed="${(e: CustomEvent) => {
+          this.internalValue = e.detail.value;
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
         }}"
         exportparts="base,input,form-control,form-control-label,form-control-help-text"
       >
@@ -232,6 +236,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
     if (preserveFloatingPoint) {
       cleanValStr += '.';
     }
+
     if (limitExceeded) {
       this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
       return;
@@ -240,13 +245,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
     if (realFloatValue !== this.value) {
       // update value only if needed
       this.value = realFloatValue;
-      this.dispatchEvent(
-        new CustomEvent('value-changed', {
-          detail: {value: this.value},
-          bubbles: true,
-          composed: true
-        })
-      );
+      fireEvent(this, 'value-changed', {value: this.value});
     } else {
       // update internal value
       this.internalValue = addCurrencyAmountDelimiter(cleanValStr);
