@@ -60,13 +60,13 @@ export const etoolsTableResponsiveStyles = css`
       color: var(--etools-table-secondary-text-color, rgba(0, 0, 0, 0.54));
       inset-inline-start: 5px;
       inset-inline-end: 5px;
-      max-width: 44%;
+      max-width: 42%;
       white-space: break-spaces;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     td[data-label] {
-      width: 55%;
+      width: 53%;
     }
     .row-actions .actions {
       visibility: visible !important;

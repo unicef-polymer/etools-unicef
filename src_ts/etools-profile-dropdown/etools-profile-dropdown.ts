@@ -83,6 +83,9 @@ export class EtoolsProfileDropdown extends LitElement {
     return this._profile;
   }
 
+  @property({type: String, attribute: 'profile-dialog-component'})
+  profileDialogComponent = 'etools-user-profile-dialog';
+
   @property({type: Boolean, attribute: 'show-email', reflect: true})
   showEmail = false;
 
@@ -169,8 +172,11 @@ export class EtoolsProfileDropdown extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+  }
+
+  firstUpdated() {
     document.addEventListener('language-changed', this._handleLanguageChange.bind(this));
-    this.userProfileDialog = document.createElement('etools-user-profile-dialog');
+    this.userProfileDialog = document.createElement(this.profileDialogComponent);
     this.userProfileDialog.addEventListener('save-profile', this._dispatchSaveProfileEvent.bind(this));
     this.userProfileDialog.setAttribute('id', 'userProfileDialog');
     this.userProfileDialog.language = this.language;
