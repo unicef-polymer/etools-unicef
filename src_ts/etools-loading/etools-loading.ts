@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {property, customElement} from 'lit/decorators.js';
+import {property, customElement, state} from 'lit/decorators.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 /**
@@ -56,7 +56,10 @@ export class EtoolsLoading extends LitElement {
   }
 
   @property({type: String, attribute: 'loading-text'})
-  loadingText: string;
+  loadingText?: string;
+
+  @state()
+  defaultLoadingText!: string;
 
   @property({type: String, attribute: 'language'})
   language!: string;
@@ -124,7 +127,7 @@ export class EtoolsLoading extends LitElement {
       <div class="flex-h self-center">
         <div class="flex-h self-center loading-content" part="container">
           <sl-spinner></sl-spinner>
-          <span class="loading-message self-center" part="message">${this.loadingText}</span>
+          <span class="loading-message self-center" part="message">${this.loadingText || this.defaultLoadingText}</span>
         </div>
       </div>
     `;
@@ -138,7 +141,7 @@ export class EtoolsLoading extends LitElement {
       this.language = window.EtoolsLanguage || 'en';
     }
 
-    this.loadingText = getTranslation(this.language, 'LOADING');
+    this.defaultLoadingText = getTranslation(this.language, 'LOADING');
   }
 
   async connectedCallback() {
@@ -153,6 +156,7 @@ export class EtoolsLoading extends LitElement {
 
   handleLanguageChange(e) {
     this.language = e.detail.language;
+    this.defaultLoadingText = getTranslation(this.language, 'LOADING');
   }
 
   _loadingStateChanged(active) {
