@@ -26,6 +26,9 @@ export class AppToolbar extends LitElement {
   @property({type: Boolean, attribute: 'hide-app-selector'})
   hideAppSelector = false;
 
+  @property({type: Boolean, attribute: 'text-under-logo'})
+  textUnderLogo = '';
+
   protected render() {
     return html`
       <style>
@@ -201,11 +204,13 @@ export class AppToolbar extends LitElement {
               src="${Environment.baseUrl}assets/images/etools-logo-color-white.svg"
               alt="eTools"
             />
-            ${Environment.is(EnvironmentType.PROD)
-              ? ``
-              : html`<div class="envWarning" title="${Environment.get().toUpperCase()} TESTING ENVIRONMENT">
+            ${this.textUnderLogo
+              ? html`<div class="envWarning" title="${this.textUnderLogo}">${this.textUnderLogo}</div>`
+              : !Environment.is(EnvironmentType.PROD)
+              ? html`<div class="envWarning" title="${Environment.get().toUpperCase()} TESTING ENVIRONMENT">
                   ${Environment.get()}
-                </div>`}
+                </div>`
+              : html``}
           </div>`
         : html``}
     </div>`;
