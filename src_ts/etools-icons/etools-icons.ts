@@ -34,12 +34,13 @@ export const initializeIcons = async (spritePath = 'assets/icons/sprite.svg') =>
     return `${spritePath}#${kebabCase(iconName)}`;
   };
 
-  const mutator = (svg) =>
-    svg
-      .setAttribute('fill', 'currentColor')
-      .setAttribute('width', '24')
-      .setAttribute('height', '24')
-      .setAttribute('viewBox', '0 0 24 24');
+  const mutator = (svg) => {
+    svg.setAttribute('fill', 'currentColor');
+    svg.setAttribute('width', '24');
+    svg.setAttribute('height', '24');
+    svg.setAttribute('viewBox', '0 0 24 24');
+  };
+    
 
   const libraryConfig = {
     resolver,
