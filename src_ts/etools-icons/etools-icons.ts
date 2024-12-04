@@ -40,7 +40,6 @@ export const initializeIcons = async (spritePath = 'assets/icons/sprite.svg') =>
     svg.setAttribute('height', '24');
     svg.setAttribute('viewBox', '0 0 24 24');
   };
-    
 
   const libraryConfig = {
     resolver,
