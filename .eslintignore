@@ -1,6 +1,0 @@
-.gitignore
-demo/*
-test/*
-node_modules/*
-*.d.ts
-*.md

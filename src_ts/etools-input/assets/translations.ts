@@ -6,7 +6,7 @@ const translations = {
     THIS_FIELD_IS_REQUIRED: 'Ce champ est obligatoire'
   },
   pt: {
-    THIS_FIELD_IS_REQUIRED: "Este campo é obrigatório"
+    THIS_FIELD_IS_REQUIRED: 'Este campo é obrigatório'
   },
   ru: {
     THIS_FIELD_IS_REQUIRED: 'Это обязательное поле'

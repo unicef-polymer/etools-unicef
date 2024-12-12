@@ -1,4 +1,4 @@
-// tslint:disable:max-line-length
+/* eslint-disable max-len */
 export default {
   equalizer: `<path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"></path>`,
   playArrow: `<path d="M8 5v14l11-7z"></path>`,

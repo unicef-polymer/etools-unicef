@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* Create etools-dialog programmatically and add them directly to the body.
   Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body),
   everything becomes unselectable.

@@ -1,7 +1,7 @@
 import {directive} from 'lit/directive.js';
 import {ITranslateConfig, Key, Values, ValuesCallback} from '../types';
 import {get} from '../util';
-// eslint-disable-next-line prettier/prettier
+
 import {LangChangedDirectiveBase} from './lang-changed-base';
 
 /**

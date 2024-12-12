@@ -63,24 +63,24 @@ type ObjectLookupStringHelper<
     ? CurrentDepth extends MaxDepth
       ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`
       : T[Key] extends IgnoredLookupValue
-      ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`
-      : T[Key] extends (infer El)[] | readonly (infer El)[]
-      ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}${Separator}${number}` | El extends IgnoredLookupValue
-        ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}${Separator}${number}`
-        : ObjectLookupStringHelper<
-            El,
-            `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}${Separator}${number}`,
-            MaxDepth,
-            Next<CurrentDepth>
-          >
-      :
-          | `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`
-          | ObjectLookupStringHelper<
-              NonNullable<T[Key]>,
-              `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`,
-              MaxDepth,
-              Next<CurrentDepth>
-            >
+        ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`
+        : T[Key] extends (infer El)[] | readonly (infer El)[]
+          ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}${Separator}${number}` | El extends IgnoredLookupValue
+            ? `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}${Separator}${number}`
+            : ObjectLookupStringHelper<
+                El,
+                `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}${Separator}${number}`,
+                MaxDepth,
+                Next<CurrentDepth>
+              >
+          :
+              | `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`
+              | ObjectLookupStringHelper<
+                  NonNullable<T[Key]>,
+                  `${MaybeSuffixWithSeparator<Acc, Separator>}${Key}`,
+                  MaxDepth,
+                  Next<CurrentDepth>
+                >
     : never;
 }[keyof T];
 

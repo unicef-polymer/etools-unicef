@@ -230,7 +230,7 @@ export class EtoolsUploadMulti extends OfflineMixin(RequestHelperMixin(CommonMix
           success: true,
           uploadInProgress: false
         });
-      } catch (error) {
+      } catch (_error) {
         errors.push(
           `${getTranslation(this.language, 'ERROR_SAVING_ATTACHMENT_INDEXDB').replace('{0}', fileInfo.filename)}`
         );

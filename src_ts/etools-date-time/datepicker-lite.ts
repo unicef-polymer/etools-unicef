@@ -721,8 +721,8 @@ export class DatePickerLite extends LitElement {
         this.errorMessage = this.requiredErrorMsg
           ? this.requiredErrorMsg
           : this.maxDate
-          ? 'This field is required'
-          : this.errorMessage;
+            ? 'This field is required'
+            : this.errorMessage;
       }
       return valid;
     }
