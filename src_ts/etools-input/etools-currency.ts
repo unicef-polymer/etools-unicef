@@ -114,7 +114,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
   _getStrValue(value: number) {
     try {
       return value === 0 ? '0' : value.toString();
-    } catch (error) {
+    } catch (_error) {
       return '0';
     }
   }

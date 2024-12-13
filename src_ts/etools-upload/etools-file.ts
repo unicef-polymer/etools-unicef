@@ -66,7 +66,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
           <div class="files-container  ${this._getMultipleClass(this.multiple)}">
             <div class="files-wrapper" ?hidden="${!this.showFilesContainer}">
               ${(this.files || []).map((file: any, index: number) => {
-                html`<div class="file-area">
+                return html`<div class="file-area">
                   <div class="selected-file-container ${this._getFileSelectedClass(file)}">
                     ${this.showUploadDate
                       ? html` <div class="upload-date">

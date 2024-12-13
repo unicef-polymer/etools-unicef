@@ -81,7 +81,7 @@ export class EtoolsFilters extends LitElement {
         datepicker-lite {
           --etools-input-prefix: {
             color: var(--secondary-text-color, rgba(0, 0, 0, 0.54));
-          }
+          };
         }
 
         *[hidden] {

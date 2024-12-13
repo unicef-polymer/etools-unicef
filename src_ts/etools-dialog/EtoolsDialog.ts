@@ -16,7 +16,6 @@ import '../etools-button/etools-button';
  * @demo demo/index.html
  */
 export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
-  // eslint-disable-line new-cap
   render() {
     // language=HTML
     return html`

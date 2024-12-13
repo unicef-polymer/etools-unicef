@@ -138,7 +138,7 @@ export class EtoolsUserProfileDialog extends LitElement {
           pointer-events: none;
           --etools-input-container-underline: {
             display: none;
-          }
+          };
         }
 
         #profile-content {

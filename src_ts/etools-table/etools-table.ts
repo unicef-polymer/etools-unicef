@@ -193,9 +193,10 @@ export class EtoolsTable extends LitElement {
             </td>`
           : ''}
         ${this.columns.map(
-          (col) => html`<td data-label="${col.label}" class="${this.getRowDataColumnClassList(col)}">
-            ${this.getItemValue(item, col, showEdit, customData)}
-          </td>`
+          (col) =>
+            html`<td data-label="${col.label}" class="${this.getRowDataColumnClassList(col)}">
+              ${this.getItemValue(item, col, showEdit, customData)}
+            </td>`
         )}
         ${this.showRowActions()
           ? html`<td data-label="${this.actionsLabel}" class="row-actions">&nbsp;${this.getRowActionsTmpl(item)}</td>`
@@ -362,8 +363,8 @@ export class EtoolsTable extends LitElement {
         return item[key]
           ? prettyDate(item[key], this.dateFormat)
           : column.placeholder
-          ? column.placeholder
-          : this.defaultPlaceholder;
+            ? column.placeholder
+            : this.defaultPlaceholder;
       case EtoolsTableColumnType.Link:
         return this.getLinkTmpl(column.link_tmpl, item, key, column.isExternalLink);
       case EtoolsTableColumnType.Checkbox:

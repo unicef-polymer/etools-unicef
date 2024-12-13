@@ -1108,7 +1108,6 @@ export class SlAutocomplete extends LitElement {
       }
 
       if (this.searchHasChanged) {
-        // eslint-disable-next-line max-len
         // if search is changed we return nothing as options to be shown, options (if any) will be set in loadDataMethod
         return [];
       }
