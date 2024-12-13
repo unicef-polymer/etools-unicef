@@ -8,7 +8,6 @@ import {
   famIcon,
   fmIcon,
   pmpIcon,
-  powerBiIcon,
   pseaIcon,
   tpmIcon,
   tripsIcon,
@@ -427,22 +426,6 @@ export class AppSelector extends LitElement {
                                       `
                                     : ''
                                 }
-
-                                <a
-                                        class="content-wrapper"
-                                        rel="external"
-                                        target="_blank"
-                                        href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52"
-                                >
-                                    ${powerBiIcon}
-                                    <span class="app-title"
-                                    >${getTranslation(
-                                      this.language,
-                                      'IMPLEMENTATION_INTELLIGENCE'
-                                    )} (I<sup>2</sup>)</span
-                                    >
-                                    ${externalIcon}
-                                </a>
 
                                 <a class="datamart content-wrapper" rel="external" href="https://datamart.unicef.io"
                                    target="_blank">
