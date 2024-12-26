@@ -223,6 +223,7 @@ export default css`
     align-items: center;
     flex-wrap: wrap;
     margin-inline-start: var(--sl-spacing-2x-small);
+    max-width: calc(100% - 54px);
   }
 
   .select__tags sl-tag {
@@ -448,7 +449,7 @@ export default css`
     align-items: center;
     transition: var(--sl-transition-medium) rotate ease;
     rotate: 0;
-    margin-inline-start: var(--sl-spacing-small);
+    margin-inline-start: var(--sl-spacing-x-small);
   }
 
   .select--open .select__expand-icon {
