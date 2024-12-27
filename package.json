@@ -1,14 +1,16 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "1.0.1",
+  "version": "1.1.5",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "tsToJs": "rm -rf src && tsc",
     "watch": "tsc --watch",
-    "lint": "eslint ./src_ts/**/*.ts --ext ts",
-    "format": "eslint --ext .ts ./src_ts/**/*.ts --fix --ignore-path .gitignore",
+    "lint:eslint": "eslint src_ts/**",
+    "format:eslint": "eslint src_ts/** --fix",
+    "lint": "npm run lint:eslint",
+    "format": "npm run format:eslint",
     "generate-icons": "node ./src/etools-icons/etools-icons-generate.js",
     "prepublishOnly": "npm run tsToJs"
   },
@@ -29,30 +31,30 @@
   },
   "homepage": "https://github.com/unicef-polymer/etools-unicef#readme",
   "dependencies": {
+    "lit": "^3.2.1",
     "@a11y/focus-trap": "^1.0.5",
     "@open-wc/dedupe-mixin": "^1.4.0",
-    "@shoelace-style/shoelace": "2.10.0",
+    "@shoelace-style/shoelace": "2.18.0",
     "dayjs": "^1.11.10",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@unicef-polymer/etools-types": ">=1.11.19",
-    "@unicef-polymer/etools-utils": ">=2.0.1"
+    "@unicef-polymer/etools-types": ">=1.11.20",
+    "@unicef-polymer/etools-utils": ">=2.0.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
-    "@typescript-eslint/typescript-estree": "^5.7.0",
-    "@unicef-polymer/etools-types": "^1.11.19",
-    "@unicef-polymer/etools-utils": "^2.0.1",
-    "eslint": "^7.32.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-lit": "^1.6.1",
-    "eslint-plugin-prettier": "^3.4.1",
-    "prettier": "^2.3.2",
+    "eslint": "^9.16.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-html": "^8.1.2",
+    "eslint-plugin-lit": "^1.15.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.13.0",
+    "prettier": "^3.4.2",
     "svg-sprite": "^2.0.2"
   },
   "publishConfig": {

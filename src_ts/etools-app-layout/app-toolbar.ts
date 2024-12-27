@@ -207,10 +207,10 @@ export class AppToolbar extends LitElement {
             ${this.textUnderLogo
               ? html`<div class="envWarning" title="${this.textUnderLogo}">${this.textUnderLogo}</div>`
               : !Environment.is(EnvironmentType.PROD)
-              ? html`<div class="envWarning" title="${Environment.get().toUpperCase()} TESTING ENVIRONMENT">
-                  ${Environment.get()}
-                </div>`
-              : html``}
+                ? html`<div class="envWarning" title="${Environment.get().toUpperCase()} TESTING ENVIRONMENT">
+                    ${Environment.get()}
+                  </div>`
+                : html``}
           </div>`
         : html``}
     </div>`;

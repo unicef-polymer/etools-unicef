@@ -161,7 +161,10 @@ export default css`
     overflow: hidden;
     color: var(--sl-input-color);
     cursor: pointer;
-    transition: var(--sl-transition-fast) color, var(--sl-transition-fast) border, var(--sl-transition-fast) box-shadow,
+    transition:
+      var(--sl-transition-fast) color,
+      var(--sl-transition-fast) border,
+      var(--sl-transition-fast) box-shadow,
       var(--sl-transition-fast) background-color;
     outline: none;
   }
@@ -220,6 +223,7 @@ export default css`
     align-items: center;
     flex-wrap: wrap;
     margin-inline-start: var(--sl-spacing-2x-small);
+    max-width: calc(100% - 54px);
   }
 
   .select__tags sl-tag {
@@ -445,7 +449,7 @@ export default css`
     align-items: center;
     transition: var(--sl-transition-medium) rotate ease;
     rotate: 0;
-    margin-inline-start: var(--sl-spacing-small);
+    margin-inline-start: var(--sl-spacing-x-small);
   }
 
   .select--open .select__expand-icon {

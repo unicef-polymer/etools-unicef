@@ -4,6 +4,7 @@ import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
 import {LitElement, html, css} from 'lit';
 import {property} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
+import {repeat} from 'lit/directives/repeat.js';
 
 import {etoolsTableStyles} from './styles/table-styles';
 import {etoolsTableResponsiveStyles} from './styles/table-responsive-styles';
@@ -126,11 +127,16 @@ export class EtoolsTable extends LitElement {
         <thead>
           <tr>
             ${this.showChildRows ? html`<th class="expand-cell"><span hidden>empty</span></th>` : ''}
-            ${this.columns.map((column) => this.getColumnHtml(column))} ${this.showRowActions() ? html`<th></th>` : ''}
+            ${repeat(this.columns, (column) => this.getColumnHtml(column))}
+            ${this.showRowActions() ? html`<th></th>` : ''}
           </tr>
         </thead>
         <tbody>
-          ${this.items.map((item) => this.getRowDataHtml(item, this.showEdit, this.customData))}
+          ${repeat(
+            this.items,
+            (_item: any) => Date.now(),
+            (item) => this.getRowDataHtml(item, this.showEdit, this.customData)
+          )}
           ${this.paginator ? this.paginationHtml : ''}
         </tbody>
       </table>
@@ -193,9 +199,10 @@ export class EtoolsTable extends LitElement {
             </td>`
           : ''}
         ${this.columns.map(
-          (col) => html`<td data-label="${col.label}" class="${this.getRowDataColumnClassList(col)}">
-            ${this.getItemValue(item, col, showEdit, customData)}
-          </td>`
+          (col) =>
+            html`<td data-label="${col.label}" class="${this.getRowDataColumnClassList(col)}">
+              ${this.getItemValue(item, col, showEdit, customData)}
+            </td>`
         )}
         ${this.showRowActions()
           ? html`<td data-label="${this.actionsLabel}" class="row-actions">&nbsp;${this.getRowActionsTmpl(item)}</td>`
@@ -213,8 +220,9 @@ export class EtoolsTable extends LitElement {
       console.log(err);
       childRow = {};
     }
+    const rowClass = childRow.showExpanded ? 'child-row' : 'child-row display-none';
     childRow.rowHTML = html`
-      <tr class="child-row${childRow.showExpanded ? '' : ' display-none'}">
+      <tr class="${rowClass}">
         ${childRow.rowHTML}
       </tr>
     `;
@@ -362,8 +370,8 @@ export class EtoolsTable extends LitElement {
         return item[key]
           ? prettyDate(item[key], this.dateFormat)
           : column.placeholder
-          ? column.placeholder
-          : this.defaultPlaceholder;
+            ? column.placeholder
+            : this.defaultPlaceholder;
       case EtoolsTableColumnType.Link:
         return this.getLinkTmpl(column.link_tmpl, item, key, column.isExternalLink);
       case EtoolsTableColumnType.Checkbox:
