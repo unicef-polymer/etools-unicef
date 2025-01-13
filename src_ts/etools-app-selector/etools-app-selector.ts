@@ -532,9 +532,6 @@ export class AppSelector extends LitElement {
   }
 
   goToPageWithConfirm(e: any): void {
-    if (e.ctrlKey || e.metaKey) {
-      return;
-    }
     const path: string = (e.target! as HTMLElement).closest('a')?.getAttribute('href') || '';
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -544,7 +541,11 @@ export class AppSelector extends LitElement {
       dialogData: {}
     }).then(({confirmed}) => {
       if (confirmed) {
-        window.location.href = path;
+        if (e.ctrlKey || e.metaKey) {
+          window!.open(path, '_blank')!.focus();
+        } else {
+          window.location.href = path;
+        }
       }
     });
   }
