@@ -99,7 +99,7 @@ export const etoolsTableStyles = css`
   /* action styles */
   .row-actions {
     position: relative;
-    min-width: 130px;
+    min-width: 100px;
   }
 
   .row-actions .actions {
@@ -125,6 +125,7 @@ export const etoolsTableStyles = css`
     display: inline-flex;
     align-items: center;
     --etools-icon-font-size: var(--etools-font-size-24, 24px);
+    width: var(--etools-table-action-icon-width, 32px);
   }
 
   tr:hover .row-actions .actions {
