@@ -18,7 +18,9 @@ import {
 } from './app-selector-icons';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
 import '../etools-icon-button/etools-icon-button';
+import './selector-confirm';
 import {getTranslation} from './utils/translate';
+import {openDialog} from '../utils/utils';
 
 export enum Applications {
   PMP = 'pmp',
@@ -316,7 +318,7 @@ export class AppSelector extends LitElement {
                                             <a
                                               class="content-wrapper"
                                               rel="external"
-                                              @click="${this.goToPage}"
+                                              @click="${this.goToPageWithConfirm}"
                                               href="${this.baseSite}/${Applications.T2F}/"
                                             >
                                               ${tripsIcon}
@@ -527,6 +529,25 @@ export class AppSelector extends LitElement {
     if (!e.ctrlKey && !e.metaKey) {
       window.location.href = path;
     }
+  }
+
+  goToPageWithConfirm(e: any): void {
+    const path: string = (e.target! as HTMLElement).closest('a')?.getAttribute('href') || '';
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    openDialog({
+      dialog: 'selector-confirm',
+      dialogData: {}
+    }).then(({confirmed}) => {
+      if (confirmed) {
+        if (e.ctrlKey || e.metaKey) {
+          window!.open(path, '_blank')!.focus();
+        } else {
+          window.location.href = path;
+        }
+      }
+    });
   }
 
   private getPresetAllowedApps(user: EtoolsUser) {

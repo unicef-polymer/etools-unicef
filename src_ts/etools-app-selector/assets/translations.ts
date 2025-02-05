@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const translations = {
   en: {
     PROGRAMME_MANAGEMENT: 'Programme Management',
@@ -20,7 +21,11 @@ const translations = {
     ADMIN: 'ADMIN',
     APP_SELECTOR: 'App Selector',
     LAST_MILE: 'Last Mile',
-    MENU: 'Menu'
+    MENU: 'Menu',
+    CONTINUE: 'Continue',
+    CANCEL: 'Cancel',
+    CONFIRM_NAVIGATE_TO_TRIP:
+      'The capturing of Programmatic Visits in the Trip Management Module has been discontinued. Please use the Field Monitoring Module instead.'
   },
   fr: {
     PROGRAMME_MANAGEMENT: 'Gestion de programme',
@@ -43,7 +48,11 @@ const translations = {
     ADMIN: 'ADMIN',
     APP_SELECTOR: "Sélecteur d'applications",
     LAST_MILE: 'Dernier kilomètre',
-    MENU: 'Menu'
+    MENU: 'Menu',
+    CONTINUE: 'Continuer',
+    CANCEL: 'Annuler',
+    CONFIRM_NAVIGATE_TO_TRIP:
+      'La capture des visites programmatiques dans le module de gestion des voyages a été interrompue. Veuillez plutôt utiliser le module de surveillance sur le terrain.'
   },
   es: {
     PROGRAMME_MANAGEMENT: 'Gestión de programas',
@@ -66,7 +75,11 @@ const translations = {
     ADMIN: 'ADMIN',
     APP_SELECTOR: 'Selector de aplicaciones',
     LAST_MILE: 'Última milla',
-    MENU: 'Menú'
+    MENU: 'Menú',
+    CONTINUE: 'Continuar',
+    CANCEL: 'Cancelar',
+    CONFIRM_NAVIGATE_TO_TRIP:
+      'Se discontinua la captura de Visitas Programáticas en el Módulo de Gestión de Viajes. Utilice en su lugar el módulo de monitoreo de campo.'
   },
   pt: {
     PROGRAMME_MANAGEMENT: 'Gerenciamento do Programa',
@@ -89,7 +102,11 @@ const translations = {
     ADMIN: 'ADMIN',
     APP_SELECTOR: 'Seletor de aplicativos',
     LAST_MILE: 'Última milha',
-    MENU: 'Cardápio'
+    MENU: 'Cardápio',
+    CONTINUE: 'Continuar',
+    CANCEL: 'Cancelar',
+    CONFIRM_NAVIGATE_TO_TRIP:
+      'A captação de Visitas Programáticas no Módulo Gestão de Viagens foi descontinuada. Utilize o Módulo de Monitoramento de Campo.'
   },
   ru: {
     PROGRAMME_MANAGEMENT: 'Управление программой',
@@ -112,7 +129,11 @@ const translations = {
     ADMIN: 'АДМИН',
     APP_SELECTOR: 'Селектор приложений',
     LAST_MILE: 'Последняя миля',
-    MENU: 'Меню'
+    MENU: 'Меню',
+    CONTINUE: 'Продолжить',
+    CANCEL: 'Отмена',
+    CONFIRM_NAVIGATE_TO_TRIP:
+      'Регистрация программных посещений в модуле управления поездками прекращена. Вместо этого используйте модуль полевого мониторинга.'
   },
   ar: {
     PROGRAMME_MANAGEMENT: 'إدارة البرنامج',
@@ -135,7 +156,11 @@ const translations = {
     ADMIN: 'المشرف',
     APP_SELECTOR: 'محدد التطبيق',
     LAST_MILE: 'الميل الأخير',
-    MENU: 'قائمة طعام'
+    MENU: 'قائمة طعام',
+    CONTINUE: 'يكمل',
+    CANCEL: 'إلغاء',
+    CONFIRM_NAVIGATE_TO_TRIP:
+      'لقد تم إيقاف تسجيل الزيارات البرنامجية في وحدة إدارة الرحلة. الرجاء استخدام وحدة المراقبة الميدانية بدلاً من ذلك.'
   }
 };
 
