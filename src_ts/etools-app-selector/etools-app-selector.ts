@@ -35,7 +35,8 @@ export enum Applications {
   DASH = 'dash',
   ADMIN = 'admin',
   AMP = 'amp',
-  MENU = 'menu'
+  MENU = 'menu',
+  GPD = 'government'
 }
 
 export enum GROUPS {
@@ -299,6 +300,21 @@ export class AppSelector extends LitElement {
                                       `
                                     : ''
                                 }
+                                 ${
+                                   this.checkAllowedApps([Applications.GPD])
+                                     ? html`
+                                         <a
+                                           class="content-wrapper"
+                                           rel="external"
+                                           @click="${this.goToPage}"
+                                           href="${this.baseSite}/${Applications.GPD}/"
+                                         >
+                                           ${pmpIcon}
+                                           <div class="app-title">${getTranslation(this.language, 'GPD')}</div>
+                                         </a>
+                                       `
+                                     : ''
+                                 }
                             </div>
 
                             ${
@@ -568,6 +584,9 @@ export class AppSelector extends LitElement {
     }
     if (!user.is_unicef_user && !isTPM && !isAuditor) {
       allowedApplications.push(Applications.EPD);
+    }
+    if (!user.is_unicef_user && user.show_gpd) {
+      allowedApplications.push(Applications.GPD);
     }
     return allowedApplications;
   }
