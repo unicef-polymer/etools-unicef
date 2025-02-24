@@ -585,7 +585,7 @@ export class AppSelector extends LitElement {
     if (!user.is_unicef_user && !isTPM && !isAuditor) {
       allowedApplications.push(Applications.EPD);
     }
-    if (!user.is_unicef_user && user.show_gpd) {
+    if (!user.is_unicef_user && user.show_gpd && (user.organization as any).is_government) {
       allowedApplications.push(Applications.GPD);
     }
     return allowedApplications;
