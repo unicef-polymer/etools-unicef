@@ -19,7 +19,7 @@ export const dashIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 7
 
 export const pmpIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="pmpIcon">
-    <polygon id="pmShape" fill="#0099FF" points="0,0 72,0 72,72 0,72     " />
+    <polygon id="pmShape" fill="#0099FF" points="0,0 72,0 72,72 0,72" />
     <path
       id="Spmhape_1_"
       fill="#FFFFFF"
@@ -33,6 +33,36 @@ export const pmpIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72
       c-0.144-1.303,0.794-2.476,2.101-2.624c5.768-0.637,7.83-3.198,9.649-5.442c0.812-1.01,1.581-1.958,2.601-2.63
       c0.023-0.019,0.062-0.019,0.094-0.043c0.861-0.717,1.968-1.172,3.174-1.172H55.006z"
     />
+  </g>
+</svg>`;
+
+export const gPDIcon: TemplateResult = html` <svg
+  width="36px"
+  height="36px"
+  viewBox="-4.2 -4.2 22.40 22.40"
+  fill="#ffffff"
+  stroke="#ffffff"
+>
+  <g id="gPDIcon" stroke-width="0">
+    <rect x="-4.2" y="-4.2" width="22.40" height="22.40" rx="0" fill="#009B56" strokewidth="0"></rect>
+  </g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <metadata id="metadata8">
+      <rdf:rdf>
+        <cc:work rdf:about="">
+          <dc:format>image/svg+xml</dc:format>
+          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type> <dc:title></dc:title>
+        </cc:work>
+      </rdf:rdf>
+    </metadata>
+    <defs id="defs6"></defs>
+    <rect width="14" height="14" x="0" y="0" id="canvas" style="fill:none;stroke:none;visibility:hidden"></rect>
+    <path
+      d="M 7,0 C 6.75,0.0032 6.5,0.1644239 6.5,0.5 l 0,4.03125 C 3.906144,4.6951647 3,6.060613 3,7 l 8,0 C 11,6.060613 10.093856,4.6951647 7.5,4.53125 L 7.5,0.5 C 7.5,0.1516409 7.25,-0.0031957 7,0 z M 8,0 8,3 12,3 10,1.5 12,0 8,0 z m -7,8 0,1 1,0 0,4 -1,0 -1,1 14,0 -1,-1 -1,0 0,-4 1,0 0,-1 -12,0 z m 3,1 1,0 0,4 -1,0 0,-4 z m 2,0 2,0 0,4 -2,0 0,-4 z m 3,0 1,0 0,4 -1,0 0,-4 z"
+      id="government"
+      style="fill:#ffffff;fill-opacity:1;stroke:none"
+    ></path>
   </g>
 </svg>`;
 

@@ -8,6 +8,7 @@ import {
   famIcon,
   fmIcon,
   pmpIcon,
+  gPDIcon,
   pseaIcon,
   tpmIcon,
   tripsIcon,
@@ -309,7 +310,7 @@ export class AppSelector extends LitElement {
                                            @click="${this.goToPage}"
                                            href="${this.baseSite}/${Applications.GPD}/"
                                          >
-                                           ${pmpIcon}
+                                           ${gPDIcon}
                                            <div class="app-title">${getTranslation(this.language, 'GPD')}</div>
                                          </a>
                                        `
