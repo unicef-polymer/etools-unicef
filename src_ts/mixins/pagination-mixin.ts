@@ -1,4 +1,3 @@
-import {LitElement} from 'lit';
 import {property} from 'lit/decorators.js';
 import {Constructor} from '@unicef-polymer/etools-types';
 
@@ -11,7 +10,7 @@ class Paginator {
   visible_range: string[] | number[] = [0, 0];
 }
 
-function PaginationMixin<T extends Constructor<LitElement>>(baseClass: T) {
+function PaginationMixin<T extends Constructor<any>>(baseClass: T) {
   class PaginationClass extends baseClass {
     _paginator = new Paginator();
     _prevLocalName = '';
