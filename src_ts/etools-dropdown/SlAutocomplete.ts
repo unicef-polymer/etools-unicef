@@ -696,9 +696,10 @@ export class SlAutocomplete extends LitElement {
     }
   }
 
-  handleFocusOut(e: FocusEvent) {
-    if (this.open) {
-      e.stopImmediatePropagation();
+  handleFocusOut(event: FocusEvent) {
+    const path = event.composedPath();
+    if (this && !path.includes(this)) {
+      event.stopImmediatePropagation();
       this.hide();
     }
   }
