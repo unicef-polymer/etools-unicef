@@ -5,6 +5,7 @@ import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tag/tag.js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import '@shoelace-style/shoelace/dist/components/popup/popup.js';
+import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 import '../etools-button/etools-button';
 import '../etools-icons/etools-icon';
 import styles from './styles/sl-autocomplete-styles';
@@ -419,7 +420,7 @@ export class SlAutocomplete extends LitElement {
                               "
                               ?pill=${this.pill}
                               size=${this.size}
-                              ?removable=${!this.disabled && !this.readonly}
+                              ?removable=${!this.disabled && !this.readonly && !option.disabled}
                               @mousedown=${this.handleTagMouseDown}
                               @sl-remove=${() => this.handleTagRemove(option)}
                             >
@@ -513,17 +514,11 @@ export class SlAutocomplete extends LitElement {
                   }
                   ${options?.map(
                     (option: any) => html`
-                      <sl-menu-item
-                        type="checkbox"
-                        ?checked=${this.isSelected(option)}
-                        value="${option[this.optionValue]}"
-                        tabindex="0"
-                        @click="${this.preventDeselectByClick}"
-                        @keydown="${this.preventDeselectByEnter}"
-                        title="${option[this.optionLabel]}"
-                      >
-                        ${option[this.optionLabel]}
-                      </sl-menu-item>
+                      ${option.disabled && option.disabledTooltip
+                        ? html`<sl-tooltip hoist content="${option.disabledTooltip}"
+                            >${this.renderMenuItem(option)}</sl-tooltip
+                          >`
+                        : this.renderMenuItem(option)}
                     `
                   )}
 
@@ -614,6 +609,21 @@ export class SlAutocomplete extends LitElement {
     if (!this.multiple && e.key === 'Enter' && (e.currentTarget as any).hasAttribute('checked')) {
       e.stopImmediatePropagation();
     }
+  }
+
+  renderMenuItem(option) {
+    return html`<sl-menu-item
+      type="checkbox"
+      ?checked=${this.isSelected(option)}
+      value="${option[this.optionValue]}"
+      tabindex="0"
+      @click="${this.preventDeselectByClick}"
+      @keydown="${this.preventDeselectByEnter}"
+      title="${option[this.optionLabel]}"
+      disabled="${ifDefined(option.disabled ? true : undefined)}"
+    >
+      ${option[this.optionLabel]}
+    </sl-menu-item>`;
   }
 
   preventDeselectByClick(e: MouseEvent) {
@@ -1008,8 +1018,10 @@ export class SlAutocomplete extends LitElement {
    * Clears selected options
    */
   clearSelection() {
-    const itemsToBeRemoved = [...this.selectedItems];
-    this.selectedItems = [];
+    // filter out selected disabled items, this items should not be removable if they came like this from backend
+    const itemsToBeRemoved = [...this.selectedItems.filter((x) => !x.disabled)];
+    // keeps disabled items selected in case of clear all
+    this.selectedItems = [...this.selectedItems.filter((x) => !!x.disabled)];
     this.setSelectedValues();
     this.triggerRemovedOptionsEvent(itemsToBeRemoved);
   }
