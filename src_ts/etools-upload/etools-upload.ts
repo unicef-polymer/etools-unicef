@@ -13,9 +13,10 @@ import {OfflineMixin} from './offline/offline-mixin';
 import {getBlob, getFileUrl} from './offline/file-conversion';
 import {storeFileInDexie} from './offline/dexie-operations';
 import {getTranslation} from './utils/translate';
+import {UploadsMixin} from './uploads-mixin';
 
 @customElement('etools-upload')
-export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(LitElement))) {
+export class EtoolsUpload extends UploadsMixin(OfflineMixin(RequestHelperMixin(CommonMixin(LitElement)))) {
   @property({type: String, reflect: true, attribute: 'upload-btn-label'})
   uploadBtnLabel?: string | null | undefined;
   @property({type: Boolean, attribute: 'no-label-float'})
@@ -52,6 +53,8 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
   _cancelTriggered?: boolean | null | undefined;
   @property({type: String})
   _savedFileUrl?: string | null | undefined;
+  @property({type: Boolean, attribute: 'track-upload-status'})
+  trackUploadStatus?: boolean;
 
   render() {
     // language=HTML
@@ -449,7 +452,10 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
   _fireChangeFileEventIfApplicable() {
     if (this.fileUrl && !this.isNotNumber(this.fileUrl)) {
       // if fileUrl is a number , then the previous upload was not saved
-      this.fireEvent('change-unsaved-file');
+      this.fireEvent('change-unsaved-file', true);
+      if (this.trackUploadStatus && !this.readonly) {
+        this._onChangeUnsavedFile();
+      }
     }
   }
 
@@ -464,11 +470,17 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
     }
     this._cancelTriggered = false;
     this.uploadInProgress = true;
-    this.fireEvent('upload-started');
+    this.fireEvent('upload-started', true);
+    if (this.trackUploadStatus && !this.readonly) {
+      this._onUploadStarted();
+    }
     if (this.activateOffline && navigator.onLine === false) {
       const response = await this.saveFileInIndexedDb(this.rawFile);
       this.uploadInProgress = false;
       this.fireEvent('upload-finished', response);
+      if (this.trackUploadStatus && !this.readonly) {
+        this._onUploadFinished(false);
+      }
       setTimeout(() => {
         this.resetRawFile();
         this.resetUploadProgress();
@@ -481,6 +493,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
         this.success = true;
         this.uploadInProgress = false;
         this.fireEvent('upload-finished', {success: response});
+        if (this.trackUploadStatus && !this.readonly) {
+          this._onUploadFinished(!!response);
+        }
         setTimeout(() => {
           this.resetRawFile();
           this.resetUploadProgress();
@@ -499,6 +514,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
         }
 
         this.fireEvent('upload-finished', {error: err});
+        if (this.trackUploadStatus && !this.readonly) {
+          this._onUploadFinished(false);
+        }
 
         this._cancelTriggered = false;
         this.uploadInProgress = false;
@@ -601,6 +619,10 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
 
     this.resetRawFile();
     this.resetValidations();
+    this.fireEvent('upload-canceled', true);
+    if (this.trackUploadStatus && !this.readonly) {
+      this._onUploadDelete();
+    }
   }
 
   _deleteFile() {
@@ -612,6 +634,9 @@ export class EtoolsUpload extends OfflineMixin(RequestHelperMixin(CommonMixin(Li
     this.resetValidations();
 
     this.fireEvent('delete-file', {file: this.fileUrl});
+    if (this.trackUploadStatus && !this.readonly) {
+      this._onUploadDelete();
+    }
   }
 
   _changeFile() {
