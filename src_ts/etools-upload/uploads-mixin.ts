@@ -129,7 +129,6 @@ export const UploadsMixin = <T extends Constructor<LitElement>>(superClass: T) =
       if (key === UPLOAD_STATUS_KEYS.IN_PROGRESS) this.uploadsInProgress = value;
       if (key === UPLOAD_STATUS_KEYS.UNSAVED) this.unsavedUploads = value;
       this.requestUpdate();
-      console.log('_handleStorageChange', key, value, [this.uploadsInProgress, this.unsavedUploads], e);
     };
 
     _uploadsHandleStorageReset = (e: Event) => {
@@ -149,7 +148,6 @@ export const UploadsMixin = <T extends Constructor<LitElement>>(superClass: T) =
 
     /** Trigger when a file upload starts */
     _onUploadStarted(e?: Event) {
-      console.log('_onUploadStarted');
       if (e) {
         e.stopImmediatePropagation();
       }
@@ -158,14 +156,12 @@ export const UploadsMixin = <T extends Constructor<LitElement>>(superClass: T) =
 
     /** Trigger when a file upload finishes */
     _onUploadFinished(success?: boolean) {
-      console.log('_onUploadFinished');
       decrease(UPLOAD_STATUS_KEYS.IN_PROGRESS);
       if (success) increase(UPLOAD_STATUS_KEYS.UNSAVED);
     }
 
     /** Trigger when unsaved file is edited or removed */
     _onChangeUnsavedFile(e?: Event) {
-      console.log('_onChangeUnsavedFile');
       if (e) {
         e.stopImmediatePropagation();
       }
@@ -174,13 +170,11 @@ export const UploadsMixin = <T extends Constructor<LitElement>>(superClass: T) =
 
     /** Trigger when an uploaded file is deleted */
     _onUploadDelete() {
-      console.log('_onUploadDelete');
       decrease(UPLOAD_STATUS_KEYS.UNSAVED);
     }
 
     /** Trigger when an uploaded file is saved */
     _onUploadSaved() {
-      console.log('_onUploadSaved');
       decrease(UPLOAD_STATUS_KEYS.UNSAVED);
     }
 
