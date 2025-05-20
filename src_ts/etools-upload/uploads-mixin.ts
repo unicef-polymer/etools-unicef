@@ -212,4 +212,4 @@ export const UploadsMixin = <T extends Constructor<LitElement>>(superClass: T) =
   }
 
   return UploadsClass as Constructor<IUploadsClass> & T;
-}
+};
