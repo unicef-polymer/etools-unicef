@@ -65,7 +65,7 @@ const translations = {
   },
   pt: {
     UPLOADED_SUCCESSFULY: 'Enviado com sucesso!',
-    DOWNLOAD: 'Download',
+    DOWNLOAD: 'Descarregue',
     CHANGE: 'Mudar',
     DELETE: 'Excluir',
     CANCEL: 'Cancelar',
