@@ -206,6 +206,9 @@ export class AppSelector extends LitElement {
   @property({type: Array})
   allowedAps: Applications[] = [];
 
+  @property({type: Array})
+  hiddenApps: Applications[] = [Applications.PSEA];
+
   @property({type: Boolean, attribute: 'opened', reflect: true})
   opened = false;
 
@@ -537,6 +540,10 @@ export class AppSelector extends LitElement {
   }
 
   checkAllowedApps(applications: Applications[]): boolean {
+    if (applications.every((application: Applications) => this.hiddenApps.includes(application))) {
+      return false;
+    }
+
     return applications.some((application: Applications) => this.allowedAps.includes(application));
   }
 
