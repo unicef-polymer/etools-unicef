@@ -43,6 +43,9 @@ export class EtoolsDataTableFooter extends LitElement {
   @property({type: String})
   rowsPerPageText!: string;
 
+  @property({type: Boolean})
+  syncQueryParams = false;
+
   @property({type: String})
   get pageSize() {
     return this._pageSize;
@@ -54,6 +57,9 @@ export class EtoolsDataTableFooter extends LitElement {
       this._computeTotalPages(this.pageSize, this.totalResults);
       this._computeVisibleRange(this.pageNumber, this.pageSize, this.totalResults, this.totalPages);
       this._dispatchEvent('page-size-changed', this.pageSize);
+      if (this.syncQueryParams) {
+        this._updateQueryParam('size', this.pageSize);
+      }
     }
   }
 
@@ -67,6 +73,9 @@ export class EtoolsDataTableFooter extends LitElement {
       this._pageNumber = pageNumber;
       this._computeVisibleRange(this.pageNumber, this.pageSize, this.totalResults, this.totalPages);
       this._dispatchEvent('page-number-changed', this.pageNumber);
+      if (this.syncQueryParams) {
+        this._updateQueryParam('page', this.pageNumber);
+      }
     }
   }
 
@@ -228,6 +237,7 @@ export class EtoolsDataTableFooter extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+    this._updateFromQueryParams();
   }
 
   disconnectedCallback() {
@@ -348,5 +358,27 @@ export class EtoolsDataTableFooter extends LitElement {
 
   _closeRowsPerPageDropdown() {
     (this.shadowRoot!.querySelector('.rows-per-page-dropdown iron-dropdown') as any)?.close();
+  }
+
+  _updateQueryParam(key: string, value: any) {
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, value);
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  _updateFromQueryParams() {
+    if (this.syncQueryParams) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pageNumberParam = urlParams.get('page');
+      const pageSizeParam = urlParams.get('size');
+
+      if (pageSizeParam) {
+        this.pageSize = Number(pageSizeParam);
+      }
+
+      if (pageNumberParam) {
+        this.pageNumber = Number(pageNumberParam);
+      }
+    }
   }
 }

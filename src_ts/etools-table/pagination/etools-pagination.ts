@@ -91,6 +91,9 @@ export class EtoolsPagination extends LitElement {
   @property({type: String})
   direction = 'ltr';
 
+  @property({type: Boolean})
+  syncQueryParams = false;
+
   constructor() {
     super();
     this.initializeProperties();
@@ -164,6 +167,9 @@ export class EtoolsPagination extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+    if (this.syncQueryParams) {
+      this.updateFromQueryParams();
+    }
   }
 
   disconnectedCallback() {
@@ -211,7 +217,36 @@ export class EtoolsPagination extends LitElement {
   }
 
   firePaginatorChangeEvent(paginatorData: Partial<EtoolsPaginator>) {
-    fireEvent(this, 'paginator-change', Object.assign({}, this.paginator, paginatorData));
+    const newPaginator = Object.assign({}, this.paginator, paginatorData);
+    fireEvent(this, 'paginator-change', newPaginator);
+    if (this.syncQueryParams) {
+      this.updateUrlQueryParams(newPaginator);
+    }
+  }
+
+  updateUrlQueryParams(paginator: EtoolsPaginator) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', String(paginator.page));
+    url.searchParams.set('size', String(paginator.page_size));
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  updateFromQueryParams() {
+    const url = new URL(window.location.href);
+    const page = Number(url.searchParams.get('page'));
+    const pageSize = Number(url.searchParams.get('size'));
+    const paginatorUpdates: Partial<EtoolsPaginator> = {};
+    if (!isNaN(page) && page > 0) {
+      paginatorUpdates.page = page;
+      this.paginator.page = page;
+    }
+    if (!isNaN(pageSize) && pageSize > 0) {
+      paginatorUpdates.page_size = pageSize;
+      this.paginator.page_size = pageSize;
+    }
+    if (Object.keys(paginatorUpdates).length) {
+      this.firePaginatorChangeEvent(paginatorUpdates);
+    }
   }
 }
 window.customElements.define('etools-pagination', EtoolsPagination);
