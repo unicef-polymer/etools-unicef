@@ -137,6 +137,15 @@ export const dataTableStylesContent = `
     vertical-align: top;
     min-height: 24px;
   }
+  etools-data-table-row[medium-resolution-layout] *[slot="row-data"] .col-data.no-colon:before,
+  etools-data-table-row[low-resolution-layout] *[slot="row-data"]  .col-data.no-colon:before {
+    content: attr(data-col-header-label);
+    color: var(--list-secondary-text-color, #757575);
+    font-weight: bold;
+    margin-inline-end: 8px;
+    vertical-align: top;
+    min-height: 24px;
+  }
   @media (max-width: 576px) {
     *[slot="row-data"] .truncate {
       white-space: normal;
