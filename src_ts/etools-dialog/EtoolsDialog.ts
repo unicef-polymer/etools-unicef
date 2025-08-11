@@ -210,6 +210,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         >
           <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
           </etools-loading>
+          <slot slot="header-actions" name="header-actions"></slot>
           <slot></slot>
           <div id="dynamicContent"></div>
           <slot slot="footer" id="buttons" name="buttons"> ${this.getButtonsHTML()} </slot>
