@@ -424,7 +424,7 @@ export class SlAutocomplete extends LitElement {
                               @mousedown=${this.handleTagMouseDown}
                               @sl-remove=${() => this.handleTagRemove(option)}
                             >
-                              ${option[this.optionLabel]}
+                              ${Object.hasOwn(option, 'itemTemplate') ? option.itemTemplate : option[this.optionLabel]}
                             </sl-tag>
                           `;
                         } else if (index === this.maxOptionsVisible) {
@@ -622,7 +622,7 @@ export class SlAutocomplete extends LitElement {
       title="${option[this.optionLabel]}"
       disabled="${ifDefined(option.disabled ? true : undefined)}"
     >
-      ${option[this.optionLabel]}
+      ${Object.hasOwn(option, 'itemTemplate') ? option.itemTemplate : option[this.optionLabel]}
     </sl-menu-item>`;
   }
 
