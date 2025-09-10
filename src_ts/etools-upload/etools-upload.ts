@@ -505,8 +505,12 @@ export class EtoolsUpload extends UploadsMixin(OfflineMixin(RequestHelperMixin(C
         if (!this._cancelTriggered) {
           this.fail = true;
           const errorMessage = this.prepareErrorMessage(this.language, err);
-          this.serverErrorMsg =
-            getTranslation(this.language, 'ERROR_UPLOADING') + (errorMessage ? ': ' + errorMessage : '');
+          this.serverErrorMsg = getTranslation(this.language, 'ERROR_UPLOADING');
+          if (err?.status === 413) {
+            this.serverErrorMsg += `: ${getTranslation(this.language, 'FILE_TOO_LARGE')}`;
+          } else {
+            this.serverErrorMsg += errorMessage ? ': ' + errorMessage : '';
+          }
           this.setInvalid(true, this.serverErrorMsg);
         } else {
           this.serverErrorMsg = getTranslation(this.language, 'UPLOAD_CANCELED');
