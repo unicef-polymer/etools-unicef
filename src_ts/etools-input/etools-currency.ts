@@ -46,6 +46,9 @@ export class EtoolsCurrency extends EtoolsInputBase {
   @property({type: Number, reflect: true, attribute: 'no-of-significant-digits'})
   noOfSignificantDigits = 12;
 
+  @property({type: Function})
+  onCurrencyChange: ((event: any) => any) | undefined = undefined;
+
   @state()
   private internalValue: string | null = null;
 
@@ -389,6 +392,11 @@ export class EtoolsCurrency extends EtoolsInputBase {
   }
 
   _onKeyDown(e: any) {
+    // call custom function if exists
+    if (this.onCurrencyChange) {
+      this.onCurrencyChange(e);
+    }
+
     if (e.key !== 'Escape' && !(e.key == 's' && e.ctrlKey)) {
       e.stopImmediatePropagation();
     }

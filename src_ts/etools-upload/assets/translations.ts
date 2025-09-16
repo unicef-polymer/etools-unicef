@@ -13,7 +13,7 @@ const translations = {
     UPLOAD_FILE: 'Upload file',
     ERROR_SAVING_ATTACHMENT_INDEXDB: 'Error saving attachment {0} in IndexedDb',
     UPLOAD_FAILED: 'Upload Failed!',
-    FILE_TOO_LARGE: 'File too large'
+    FILE_TOO_LARGE: 'File too large!'
   },
   ar: {
     UPLOADED_SUCCESSFULY: 'تم الرفع بنجاح!',
@@ -45,7 +45,7 @@ const translations = {
     UPLOAD_FILE: 'Téléverser un fichier',
     ERROR_SAVING_ATTACHMENT_INDEXDB: "Erreur lors de l'enregistrement de la pièce jointe {0} dans IndexedDb",
     UPLOAD_FAILED: 'Échec du téléchargement!',
-    FILE_TOO_LARGE: 'Fichier trop large'
+    FILE_TOO_LARGE: 'Fichier trop large!'
   },
   ro: {
     UPLOADED_SUCCESSFULY: 'Încărcat cu succes!',
@@ -77,7 +77,7 @@ const translations = {
     UPLOAD_FILE: 'Subir arquivo',
     ERROR_SAVING_ATTACHMENT_INDEXDB: 'Erro ao salvar o anexo {0} no IndexedDb',
     UPLOAD_FAILED: 'Falha ao enviar!',
-    FILE_TOO_LARGE: 'Arquivo muito grande'
+    FILE_TOO_LARGE: 'Arquivo muito grande!'
   },
   es: {
     UPLOADED_SUCCESSFULY: '¡Subido correctamente!',
@@ -93,7 +93,7 @@ const translations = {
     UPLOAD_FILE: 'Subir archivo',
     ERROR_SAVING_ATTACHMENT_INDEXDB: 'Error al guardar {0} de datos adjuntos en IndexedDb',
     UPLOAD_FAILED: '¡Error de carga!',
-    FILE_TOO_LARGE: 'Archivo demasiado grande'
+    FILE_TOO_LARGE: '¡Archivo demasiado grande'
   },
   ru: {
     UPLOADED_SUCCESSFULY: 'Загружено успешно!',
@@ -110,7 +110,7 @@ const translations = {
     ERROR_SAVING_ATTACHMENT_INDEXDB: 'Ошибка сохранения вложения {0} в IndexedDb',
     IN: 'в',
     UPLOAD_FAILED: 'Загрузка не удалась!',
-    FILE_TOO_LARGE: 'Файл слишком большой'
+    FILE_TOO_LARGE: 'Файл слишком большой!'
   }
 };
 export default translations;
