@@ -1,7 +1,7 @@
 import '../etools-icon-button/etools-icon-button';
 import '../etools-icons/etools-icon';
 import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
-import {LitElement, html, css} from 'lit';
+import {LitElement, html, css, TemplateResult} from 'lit';
 import {property} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {repeat} from 'lit/directives/repeat.js';
@@ -17,7 +17,7 @@ import {fireEvent} from '@unicef-polymer/etools-utils/dist/fire-event.util';
 import {prettyDate} from '@unicef-polymer/etools-utils/dist/date.util';
 
 export type EtoolsTableColumn = {
-  label?: string;
+  label?: string | (() => TemplateResult<1>);
   name?: string;
   type?: string;
   sort?: string | boolean;
@@ -145,7 +145,7 @@ export class EtoolsTable extends LitElement {
 
   getColumnHtml(column: any) {
     if (!Object.prototype.hasOwnProperty.call(column, 'sort')) {
-      return html` <th class="${this.getColumnClassList(column)}">${column.label}</th> `;
+      return html` <th class="${this.getColumnClassList(column)}">${typeof column.label === 'function' ? column.label() : column.label}</th> `;
     } else {
       return this.getColumnHtmlWithSort(column);
     }
@@ -154,7 +154,7 @@ export class EtoolsTable extends LitElement {
   getColumnHtmlWithSort(column: any) {
     return html`
       <th class="${this.getColumnClassList(column)}" @click="${() => this.toggleAndSortBy(column)}">
-        ${column.label}
+        ${typeof column.label === 'function' ? column.label() : column.label}
         ${this.columnHasSort(column.sort)
           ? html`<etools-icon name="${this.getSortIcon(column.sort)}"> </etools-icon>`
           : ''}
