@@ -424,7 +424,11 @@ export class SlAutocomplete extends LitElement {
                               @mousedown=${this.handleTagMouseDown}
                               @sl-remove=${() => this.handleTagRemove(option)}
                             >
-                              ${Object.hasOwn(option, 'itemTemplate') ? option.itemTemplate : option[this.optionLabel]}
+                              ${Object.hasOwn(option, 'selectedTemplate')
+                                ? option.selectedTemplate
+                                : Object.hasOwn(option, 'itemTemplate')
+                                  ? option.itemTemplate
+                                  : option[this.optionLabel]}
                             </sl-tag>
                           `;
                         } else if (index === this.maxOptionsVisible) {
