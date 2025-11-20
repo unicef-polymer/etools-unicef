@@ -12,7 +12,6 @@ import {
   ecnIcon,
   prpIcon,
   pseaIcon,
-  tpmIcon,
   tripsIcon,
   unppIcon,
   ampIcon,
