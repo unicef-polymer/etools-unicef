@@ -9,6 +9,8 @@ import {
   fmIcon,
   pmpIcon,
   gPDIcon,
+  ecnIcon,
+  prpIcon,
   pseaIcon,
   tpmIcon,
   tripsIcon,
@@ -18,6 +20,7 @@ import {
   storageIcon
 } from './app-selector-icons';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
+import {Environment} from '@unicef-polymer/etools-utils/dist/singleton/environment';
 import '../etools-icon-button/etools-icon-button';
 import './selector-confirm';
 import {getTranslation} from './utils/translate';
@@ -26,8 +29,9 @@ import {openDialog} from '../utils/utils';
 export enum Applications {
   PMP = 'pmp',
   EPD = 'epd',
+  ECN = 'ecn',
+  PRP = 'prp',
   T2F = 't2f',
-  TPM = 'tpm',
   AP = 'ap',
   PSEA = 'psea',
   FM = 'fm',
@@ -220,7 +224,6 @@ export class AppSelector extends LitElement {
     [Applications.DASH, [GROUPS.USER]],
     [Applications.PMP, [GROUPS.USER]],
     [Applications.T2F, [GROUPS.USER]],
-    [Applications.TPM, [GROUPS.USER, GROUPS.TPM]],
     [Applications.AP, [GROUPS.USER, GROUPS.AUDITOR]],
     [Applications.APD, [GROUPS.USER]],
     [Applications.FM, [GROUPS.USER, GROUPS.TPM]]
@@ -304,6 +307,21 @@ export class AppSelector extends LitElement {
                                       `
                                     : ''
                                 }
+                                  ${
+                                    this.checkAllowedApps([Applications.ECN])
+                                      ? html`
+                                          <a
+                                            class="content-wrapper"
+                                            rel="external"
+                                            @click="${this.goToPage}"
+                                            href="${Environment.getECNHost()}/"
+                                          >
+                                            ${ecnIcon}
+                                            <div class="app-title">${getTranslation(this.language, 'ECN')}</div>
+                                          </a>
+                                        `
+                                      : ''
+                                  }
                                  ${
                                    this.checkAllowedApps([Applications.GPD])
                                      ? html`
@@ -324,8 +342,8 @@ export class AppSelector extends LitElement {
                             ${
                               this.checkAllowedApps([
                                 Applications.T2F,
+                                Applications.PRP,
                                 Applications.AP,
-                                Applications.TPM,
                                 Applications.PSEA
                               ])
                                 ? html`
@@ -348,18 +366,16 @@ export class AppSelector extends LitElement {
                                             </a>
                                           `
                                         : ''}
-                                      ${this.checkAllowedApps([Applications.TPM])
+                                      ${this.checkAllowedApps([Applications.PRP])
                                         ? html`
                                             <a
                                               class="content-wrapper"
                                               rel="external"
                                               @click="${this.goToPage}"
-                                              href="${this.baseSite}/${Applications.TPM}/"
+                                              href="${Environment.getHost('prp')}"
                                             >
-                                              ${tpmIcon}
-                                              <div class="app-title">
-                                                ${getTranslation(this.language, 'THIRD_PARTY_MONITORING')}
-                                              </div>
+                                              ${prpIcon}
+                                              <div class="app-title">${getTranslation(this.language, 'PRP')}</div>
                                             </a>
                                           `
                                         : ''}
@@ -592,9 +608,13 @@ export class AppSelector extends LitElement {
     }
     if (!user.is_unicef_user && !isTPM && !isAuditor) {
       allowedApplications.push(Applications.EPD);
+      allowedApplications.push(Applications.ECN);
     }
-    if (!user.is_unicef_user && user.show_gpd && (user.organization as any).is_government) {
+    if (this.showGPD(user)) {
       allowedApplications.push(Applications.GPD);
+    }
+    if (!!(this.user as any)._partner_staff_member || this.hasVisibilityByPartnerGroups(user) || this.showGPD(user)) {
+      allowedApplications.push(Applications.PRP);
     }
     return allowedApplications;
   }
@@ -614,5 +634,17 @@ export class AppSelector extends LitElement {
       }
     }
     this.allowedAps = allowedApplications;
+  }
+
+  showGPD(user: any) {
+    if (!user) {
+      return false;
+    }
+    return !user.is_unicef_user && user.show_gpd && user.organization?.is_government;
+  }
+
+  hasVisibilityByPartnerGroups(user: any) {
+    const partnersGroups = ['IP Viewer', 'IP Admin', 'IP Editor', 'IP Authorized Officer'];
+    return user?.groups?.some((g: {id: number; name: string}) => partnersGroups.includes(g.name));
   }
 }
