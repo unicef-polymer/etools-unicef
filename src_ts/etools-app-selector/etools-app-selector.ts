@@ -313,7 +313,7 @@ export class AppSelector extends LitElement {
                                             class="content-wrapper"
                                             rel="external"
                                             @click="${this.goToPage}"
-                                            href="${Environment.getECNHost()}/"
+                                            href="${Environment.getECNHost()}"
                                           >
                                             ${ecnIcon}
                                             <div class="app-title">${getTranslation(this.language, 'ECN')}</div>
