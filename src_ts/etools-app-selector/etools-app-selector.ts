@@ -612,7 +612,7 @@ export class AppSelector extends LitElement {
     if (this.showGPD(user)) {
       allowedApplications.push(Applications.GPD);
     }
-    if (!!(this.user as any)._partner_staff_member || this.hasVisibilityByPartnerGroups(user) || this.showGPD(user)) {
+    if (!!(user as any)._partner_staff_member || this.hasVisibilityByPartnerGroups(user) || this.showGPD(user)) {
       allowedApplications.push(Applications.PRP);
     }
     return allowedApplications;
