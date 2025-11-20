@@ -73,7 +73,7 @@ export const ecnIcon = html` <svg
   xmlns:xlink="http://www.w3.org/1999/xlink"
   width="36"
   height="36"
-  viewBox="0 0 36"
+  viewBox="0 0 36 36"
 >
   <g id="ecnIcon">
     <path
@@ -127,7 +127,7 @@ export const prpIcon = html`
     xmlns:xlink="http://www.w3.org/1999/xlink"
     width="36"
     height="36"
-    viewBox="0 0 36"
+    viewBox="0 0 36 36"
   >
     <g id="svgg">
       <path
