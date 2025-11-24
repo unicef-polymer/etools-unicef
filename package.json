@@ -1,6 +1,6 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "1.2.24",
+  "version": "2.0.0-rc.1",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "type": "module",
@@ -31,19 +31,19 @@
   },
   "homepage": "https://github.com/unicef-polymer/etools-unicef#readme",
   "dependencies": {
-    "lit": "^3.2.1",
+    "lit": "^3.3.1",
     "@a11y/focus-trap": "^1.0.5",
     "@open-wc/dedupe-mixin": "^1.4.0",
-    "@shoelace-style/shoelace": "2.18.0",
-    "dayjs": "^1.11.10",
+    "@shoelace-style/shoelace": "2.20.1",
+    "dayjs": "^1.11.13",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@unicef-polymer/etools-types": ">=1.11.21",
-    "@unicef-polymer/etools-utils": ">=2.0.7"
+    "@unicef-polymer/etools-types": "2.0.0-rc.1",
+    "@unicef-polymer/etools-utils": "3.0.0-rc.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.5",
+    "@types/node": "^24.10.1",
     "eslint": "^9.16.0",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.16.0",
@@ -52,10 +52,12 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-html": "^8.1.2",
     "eslint-plugin-lit": "^1.15.0",
+    "eslint-plugin-lit-a11y": "^4.1.4",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.13.0",
-    "prettier": "^3.4.2",
-    "svg-sprite": "^2.0.2"
+    "prettier": "~3.4.2",
+    "svg-sprite": "^2.0.4",
+    "tslib": "^2.8.1"
   },
   "publishConfig": {
     "access": "public"
