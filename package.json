@@ -39,8 +39,8 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@unicef-polymer/etools-types": "2.0.0-rc.1",
-    "@unicef-polymer/etools-utils": "3.0.0-rc.1"
+    "@unicef-polymer/etools-types": "2.0.0-rc.2",
+    "@unicef-polymer/etools-utils": "3.0.0-rc.2"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
