@@ -92,8 +92,8 @@ export class EtoolsInputBase extends LitElement {
   @property({type: String, attribute: 'autocapitalize'})
   autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters' = 'off';
 
-  @property({type: String, attribute: 'autocorrect'})
-  autocorrect: 'off' | 'on' = 'off';
+  @property({type: Boolean, attribute: 'autocorrect'})
+  autocorrect = false;
 
   @property({type: Boolean, reflect: true, attribute: 'wrap-text-in-readonly'})
   wrapTextInReadonly = true;
