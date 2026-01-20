@@ -658,11 +658,20 @@ export class SlAutocomplete extends LitElement {
   }
 
   restoreSelectedItemsIfNecessary() {
-    if (this.selectedValues?.length && this.selectedValues?.length !== this.selectedItems?.length) {
-      const storageSelectedItems = this.getSelectedItemsFromSessionStorage();
-      if (storageSelectedItems?.length && this.selectedValues?.length === storageSelectedItems?.length) {
-        this.selectedItems = storageSelectedItems;
+    const storageSelectedItems = this.getSelectedItemsFromSessionStorage();
+    if (
+      storageSelectedItems?.length &&
+      this.selectedValues?.length &&
+      this.selectedValues?.length !== this.selectedItems?.length
+    ) {
+      if (!this.selectedItems) {
+        this.selectedItems = [];
       }
+      const selectedIDs = this.selectedItems.map((x: any) => x[this.optionValue]);
+      const selectedItemsFromStorage = storageSelectedItems.filter(
+        (x: any) => this.selectedValues.includes(x[this.optionValue]) && !selectedIDs.includes(x[this.optionValue])
+      );
+      this.selectedItems = [...this.selectedItems, ...selectedItemsFromStorage];
     }
   }
 

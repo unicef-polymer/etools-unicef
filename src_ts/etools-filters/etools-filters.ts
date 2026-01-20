@@ -38,6 +38,7 @@ export interface EtoolsFilter {
   hideSearch?: boolean; // used only by dropdowns
   optionValue?: string; // used only by dropdowns
   optionLabel?: string; // used only by dropdowns
+  loadDataDropdownOptions?: (search: string, page: number, shownOptionsLimit: number) => void; // used only by dropdowns
 }
 
 @customElement('etools-filters')
@@ -123,6 +124,7 @@ export class EtoolsFilters extends LitElement {
     // language=HTML
     return html`
       <etools-dropdown
+        id="${f.filterKey}"
         ?hidden="${!f.selected}"
         class="filter"
         part="filter-dropdown"
@@ -138,6 +140,7 @@ export class EtoolsFilters extends LitElement {
         data-filter-key="${f.filterKey}"
         ?hide-search="${f.hideSearch}"
         .minWidth="${f.minWidth}"
+        .loadDataMethod="${f.loadDataDropdownOptions}"
         horizontal-align="left"
         no-dynamic-align
         enable-none-option
@@ -166,6 +169,7 @@ export class EtoolsFilters extends LitElement {
         data-filter-key="${f.filterKey}"
         ?hide-search="${f.hideSearch}"
         .minWidth="${f.minWidth}"
+        .loadDataMethod="${f.loadDataDropdownOptions}"
         horizontal-align="left"
         no-dynamic-align
       >
