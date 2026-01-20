@@ -650,9 +650,19 @@ export class SlAutocomplete extends LitElement {
       this.selectedItems = (this.options || []).filter((o: any) =>
         strSelectedVals?.includes(String(o[this.optionValue]))
       );
+      this.restoreSelectedItemsIfNecessary();
     }
     if (changedProperties.has('shownOptionsLimit')) {
       this.totalOptionsToShow = this.shownOptionsLimit;
+    }
+  }
+
+  restoreSelectedItemsIfNecessary() {
+    if (this.selectedValues?.length && this.selectedValues?.length !== this.selectedItems?.length) {
+      const storageSelectedItems = this.getSelectedItemsFromSessionStorage();
+      if (storageSelectedItems?.length && this.selectedValues?.length === storageSelectedItems?.length) {
+        this.selectedItems = storageSelectedItems;
+      }
     }
   }
 
@@ -979,6 +989,9 @@ export class SlAutocomplete extends LitElement {
     if (this._autoValidate) {
       this.validate();
     }
+
+    this.saveSelectedItemsToSessionStorage(this.selectedItems);
+
     this.dispatchEvent(
       new CustomEvent('selection-changed', {
         detail: {value: this.multiple ? this.selectedItems : this.selectedItems?.[0] || undefined},
@@ -1016,6 +1029,26 @@ export class SlAutocomplete extends LitElement {
         composed: true
       })
     );
+  }
+
+  saveSelectedItemsToSessionStorage(selectedItems: any[]) {
+    if (typeof this.loadDataMethod === 'function' && this.id) {
+      if (selectedItems?.length) {
+        sessionStorage.setItem(`dd_${this.id}_selected`, JSON.stringify(selectedItems));
+      } else {
+        sessionStorage.removeItem(`dd_${this.id}_selected`);
+      }
+    }
+  }
+
+  getSelectedItemsFromSessionStorage() {
+    if (typeof this.loadDataMethod === 'function' && this.id) {
+      const selectedItems = sessionStorage.getItem(`dd_${this.id}_selected`);
+      if (selectedItems) {
+        return JSON.parse(selectedItems);
+      }
+      return null;
+    }
   }
 
   /**
