@@ -145,7 +145,11 @@ export class EtoolsTable extends LitElement {
 
   getColumnHtml(column: any) {
     if (!Object.prototype.hasOwnProperty.call(column, 'sort')) {
-      return html` <th class="${this.getColumnClassList(column)}">${typeof column.label === 'function' ? column.label() : column.label}</th> `;
+      return html`
+        <th class="${this.getColumnClassList(column)}">
+          ${typeof column.label === 'function' ? column.label() : column.label}
+        </th>
+      `;
     } else {
       return this.getColumnHtmlWithSort(column);
     }

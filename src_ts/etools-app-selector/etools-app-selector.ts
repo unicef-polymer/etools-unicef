@@ -16,6 +16,7 @@ import {
   unppIcon,
   ampIcon,
   menuIcon,
+  rssIcon,
   storageIcon
 } from './app-selector-icons';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
@@ -40,14 +41,16 @@ export enum Applications {
   ADMIN = 'admin',
   AMP = 'amp',
   MENU = 'menu',
-  GPD = 'government'
+  GPD = 'government',
+  RSS = 'administration'
 }
 
 export enum GROUPS {
   TPM = 'Third Party Monitor',
   USER = 'UNICEF User',
   AUDITOR = 'Auditor',
-  CO_ADMINISTRATOR = 'Country Office Administrator'
+  CO_ADMINISTRATOR = 'Country Office Administrator',
+  RSS = 'RSS'
 }
 
 @customElement('etools-app-selector')
@@ -225,7 +228,8 @@ export class AppSelector extends LitElement {
     [Applications.T2F, [GROUPS.USER]],
     [Applications.AP, [GROUPS.USER, GROUPS.AUDITOR]],
     [Applications.APD, [GROUPS.USER]],
-    [Applications.FM, [GROUPS.USER, GROUPS.TPM]]
+    [Applications.FM, [GROUPS.USER, GROUPS.TPM]],
+    [Applications.RSS, [GROUPS.RSS]]
   ]);
 
   render(): unknown {
@@ -473,22 +477,38 @@ export class AppSelector extends LitElement {
                             </div>
                         </div>
                         ${
-                          this.checkAllowedApps([Applications.AMP])
+                          this.checkAllowedApps([Applications.AMP, Applications.RSS])
                             ? html`
                                 <span class="module-group-title"
                                   >${getTranslation(this.language, 'ADMINISTRATION')}</span
                                 >
                                 <div class="module-group">
-                                  <a
-                                    class="content-wrapper"
-                                    rel="external"
-                                    @click="${this.goToPage}"
-                                    href="${this.baseSite}/${Applications.AMP}/"
-                                  >
-                                    ${ampIcon}
-                                    <div class="app-title">${getTranslation(this.language, 'AMP')}</div>
-                                  </a>
-                                  <div class="content-wrapper empty-wrapper"></div>
+                                  ${this.checkAllowedApps([Applications.AMP])
+                                    ? html`
+                                        <a
+                                          class="content-wrapper"
+                                          rel="external"
+                                          @click="${this.goToPage}"
+                                          href="${this.baseSite}/${Applications.AMP}/"
+                                        >
+                                          ${ampIcon}
+                                          <div class="app-title">${getTranslation(this.language, 'AMP')}</div>
+                                        </a>
+                                      `
+                                    : ''}
+                                  ${this.checkAllowedApps([Applications.RSS])
+                                    ? html`
+                                        <a
+                                          class="content-wrapper"
+                                          rel="external"
+                                          @click="${this.goToPage}"
+                                          href="${this.baseSite}/${Applications.RSS}/"
+                                        >
+                                          ${rssIcon}
+                                          <div class="app-title">${getTranslation(this.language, 'RSS')}</div>
+                                        </a>
+                                      `
+                                    : ''}
                                 </div>
                               `
                             : ''
