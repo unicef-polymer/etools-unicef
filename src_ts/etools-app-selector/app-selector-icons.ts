@@ -315,6 +315,42 @@ export const ampIcon: TemplateResult = html` <svg
   </g>
 </svg>`;
 
+export const rssIcon: TemplateResult = html`<svg width="36" height="36" viewBox="0 0 20 20">
+  <g id="rssAdminIcon">
+    <rect fill="#568CA5" width="20" height="20"></rect>
+    <g>
+      <text
+        x="50%"
+        y="45%"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="7"
+        fill="#FFFFFF"
+        font-weight="bold"
+        letter-spacing="0.2"
+        dominant-baseline="middle"
+      >
+        RSS
+      </text>
+      <text
+        x="50%"
+        y="70%"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="4"
+        fill="#FFFFFF"
+        font-weight="bold"
+        letter-spacing="0.1"
+        dominant-baseline="middle"
+      >
+        ADMIN
+      </text>
+    </g>
+  </g>
+</svg>`;
+
 export const lastMileIcon: TemplateResult = html` <svg
   width="36px"
   height="36px"
