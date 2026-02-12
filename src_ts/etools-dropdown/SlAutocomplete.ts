@@ -1252,7 +1252,9 @@ export class SlAutocomplete extends LitElement {
     if (typeof this.loadDataMethod !== 'function' && this.options.length < this.totalOptionsToShow) {
       this.noMoreItemsToLoad = true;
     }
-    this.totalOptionsToShow += this.shownOptionsLimit;
+    if (this.options.length >= this.totalOptionsToShow) {
+      this.totalOptionsToShow += this.shownOptionsLimit;
+    }
   }
 
   /**
