@@ -1,6 +1,6 @@
 {
   "name": "@unicef-polymer/etools-unicef",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "eTools UNICEF library of reusable components",
   "main": "index.js",
   "type": "module",
@@ -34,7 +34,7 @@
     "lit": "^3.3.1",
     "@a11y/focus-trap": "^1.0.5",
     "@open-wc/dedupe-mixin": "^1.4.0",
-    "@shoelace-style/shoelace": "2.18.0",
+    "@shoelace-style/shoelace": "2.20.1",
     "dayjs": "^1.11.13",
     "typescript": "5.3.3",
     "tslib": "^2.8.1"
