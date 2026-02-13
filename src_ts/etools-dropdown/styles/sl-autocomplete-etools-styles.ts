@@ -196,11 +196,45 @@ export default css`
   }
 
   /* We need to keep it here for the button because it is used to calculate the line-height*/
-  .footer {
+  .dropdown .footer {
     --sl-input-border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 9px;
+  }
+
+  .dropdown .footer .add-new-button {
+    margin-inline-start: 0;
+    margin-inline-end: auto;
+  }
+
+  .dropdown .footer .add-new-button::part(base) {
+    justify-content: flex-start;
+    padding-inline-start: 0;
+  }
+
+  .dropdown .footer #closeBtn::part(base) {
+    justify-content: flex-end;
+  }
+
+  .dropdown .footer #closeBtn::part(label) {
+    padding-inline-end: 0;
   }
 
   etools-icon[name='cancel'] {
     --etools-icon-font-size: var(--etools-font-size-16, 16px);
+  }
+
+  .select--multiple sl-menu-item[type='normal']::part(checked-icon) {
+    display: none;
+  }
+
+  .select--multiple sl-menu-item[type='normal']::part(prefix) {
+    margin: 0 5px !important;
+  }
+
+  .select--multiple sl-menu-item[type='normal'] [slot='prefix'] {
+    margin: 0 !important;
   }
 `;

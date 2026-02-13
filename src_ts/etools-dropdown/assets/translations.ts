@@ -5,7 +5,8 @@ const translations = {
     NONE: 'None',
     NO_OPTIONS_AVAILABLE: 'No options available.',
     LOADING: 'Request in progress.',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'No results found. Try other keywords.'
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'No results found. Try other keywords.',
+    ADD_NEW: 'Add '
   },
   fr: {
     SEARCH: 'Chercher',
@@ -13,7 +14,8 @@ const translations = {
     NONE: 'Rien',
     NO_OPTIONS_AVAILABLE: 'Aucune option disponible.',
     LOADING: 'Demande en cours.',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: "Aucun résultat trouvé. Essayez d'autres mots clés."
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: "Aucun résultat trouvé. Essayez d'autres mots clés.",
+    ADD_NEW: 'Ajouter'
   },
   ro: {
     SEARCH: 'Cauta',
@@ -21,7 +23,8 @@ const translations = {
     NONE: 'Nici unul',
     NO_OPTIONS_AVAILABLE: 'Nu sunt optiuni disonibile.',
     LOADING: 'Cerere in procesare.',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'Nu sunt rezultate. Incearca alte cuvinte cheie.'
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'Nu sunt rezultate. Incearca alte cuvinte cheie.',
+    ADD_NEW: 'Adăugați '
   },
   pt: {
     SEARCH: 'Procurar',
@@ -29,7 +32,8 @@ const translations = {
     NONE: 'Nenhum',
     NO_OPTIONS_AVAILABLE: 'Nenhuma opção disponível.',
     LOADING: 'Solicitação em andamento.',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'Nenhum resultado encontrado. Tente outras palavras-chave.'
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'Nenhum resultado encontrado. Tente outras palavras-chave.',
+    ADD_NEW: 'Adicionar '
   },
   ru: {
     SEARCH: 'поиск',
@@ -37,7 +41,8 @@ const translations = {
     NONE: 'никто',
     NO_OPTIONS_AVAILABLE: 'Нет доступных вариантов.',
     LOADING: 'Выполняется запрос.',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'Результатов не найдено. Попробуйте другие ключевые слова.'
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'Результатов не найдено. Попробуйте другие ключевые слова.',
+    ADD_NEW: 'Добавить '
   },
   es: {
     SEARCH: 'Buscar',
@@ -45,7 +50,8 @@ const translations = {
     NONE: 'Ninguna',
     NO_OPTIONS_AVAILABLE: 'No hay opciones disponibles.',
     LOADING: 'Solicitud en curso.',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'No se han encontrado resultados. Pruebe otras palabras clave.'
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'No se han encontrado resultados. Pruebe otras palabras clave.',
+    ADD_NEW: 'Agregar '
   },
   ar: {
     SEARCH: 'يبحث',
@@ -53,7 +59,8 @@ const translations = {
     NONE: 'لا أحد',
     NO_OPTIONS_AVAILABLE: '.لا توجد خيارات متاحة',
     LOADING: '.طلب قيد التقدم',
-    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'لم يتم العثور على نتائج. جربكلمات رئيسية أخرى'
+    NO_RESULTS_FOUND_TRY_OTHER_KEYWORDS: 'لم يتم العثور على نتائج. جربكلمات رئيسية أخرى',
+    ADD_NEW: 'إضافة '
   }
 };
 export default translations;
