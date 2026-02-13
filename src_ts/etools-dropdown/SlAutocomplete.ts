@@ -151,6 +151,12 @@ export class SlAutocomplete extends LitElement {
   @property({type: String, attribute: 'none-option-label'})
   noneOptionLabel = '';
 
+  @property({type: Boolean, reflect: true, attribute: 'enable-add-new'})
+  enableAddNew = false;
+
+  @property({type: String, attribute: 'add-new-label'})
+  addNewLabel = '';
+
   @property({type: Number, attribute: 'shown-options-limit'})
   shownOptionsLimit = 30;
 
@@ -567,6 +573,17 @@ export class SlAutocomplete extends LitElement {
                 <div aria-hidden="true" style=${styleMap({width: `${this.clientWidth}px`})}></div>
               </div>
               <div class="footer" ?hidden="${!this.multiple || this.hideClose}">
+                ${this.shouldShowAddNewOption(options.length)
+                  ? html`<etools-button
+                      class="add-new-button"
+                      variant="text"
+                      size="small"
+                      @click="${this.handleAddNewClick}"
+                    >
+                      <etools-icon name="add-box" slot="prefix"></etools-icon>
+                      ${this.addNewLabel || getTranslation(this.language, 'ADD_NEW')} "${this.search}"
+                    </etools-button>`
+                  : ''}
                 <etools-button id="closeBtn" size="small" variant="text" @click="${() => this.hide()}">
                   ${getTranslation(this.language, 'CLOSE')}
                 </etools-button>
@@ -647,10 +664,34 @@ export class SlAutocomplete extends LitElement {
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has('options') || changedProperties.has('selectedValues')) {
       const strSelectedVals = this.selectedValues ? this.selectedValues?.map((v) => String(v)) : this.selectedValues;
-      this.selectedItems = (this.options || []).filter((o: any) =>
+      const matchedItems = (this.options || []).filter((o: any) =>
         strSelectedVals?.includes(String(o[this.optionValue]))
       );
-      this.restoreSelectedItemsIfNecessary();
+
+      // In multiple mode with "add new", preserve temporary items that haven't been replaced yet
+      if (this.multiple && this.selectedItems) {
+        const tempItems = this.selectedItems.filter((item: any) => item._isTemporary);
+        // Try to match temporary items with newly added options by label
+        const updatedItems = [...matchedItems];
+        tempItems.forEach((tempItem: any) => {
+          const tempLabel = tempItem[this.optionLabel]?.toString().toLowerCase().trim();
+          const foundMatch = this.options?.find((o: any) => {
+            const optionLabel = o[this.optionLabel]?.toString().toLowerCase().trim();
+            return optionLabel === tempLabel && !strSelectedVals?.includes(String(o[this.optionValue]));
+          });
+          if (foundMatch) {
+            // Replace temporary item with actual option
+            updatedItems.push(foundMatch);
+          } else {
+            // Keep temporary item if no match found yet
+            updatedItems.push(tempItem);
+          }
+        });
+        this.selectedItems = updatedItems;
+      } else {
+        this.selectedItems = matchedItems;
+      }
+      // this.restoreSelectedItemsIfNecessary();
     }
     if (changedProperties.has('shownOptionsLimit')) {
       this.totalOptionsToShow = this.shownOptionsLimit;
@@ -941,6 +982,32 @@ export class SlAutocomplete extends LitElement {
     }
 
     return this.options && this.options.length > 0 && totalFilteredItems === 0;
+  }
+
+  /**
+   * Check if we should show the "add new" option
+   * Shows when enableAddNew is true, there's a search value, and no results are found
+   * Also checks if the search value is already selected (to avoid duplicates)
+   */
+  private shouldShowAddNewOption(_totalFilteredItems = 0) {
+    if (!this.enableAddNew || !this.search || this.loading) {
+      return false;
+    }
+
+    // Don't show if no results found but search value is already in selectedItems
+    if (this.selectedItems && this.selectedItems.length > 0) {
+      const searchLower = this.search.toLowerCase().trim();
+      const isAlreadySelected = this.selectedItems.some((item: any) => {
+        const itemLabel = item[this.optionLabel]?.toString().toLowerCase().trim();
+        return itemLabel === searchLower;
+      });
+      if (isAlreadySelected) {
+        return false;
+      }
+    }
+
+    // Show when no results found (either no options at all, or search returned no results)
+    return true;
   }
 
   /**
@@ -1262,5 +1329,35 @@ export class SlAutocomplete extends LitElement {
    */
   private getParentDialog() {
     return ((this.shadowRoot?.getRootNode() as any).host as HTMLElement)?.closest('etools-dialog');
+  }
+
+  /**
+   * Handle "add new" option click
+   * Dispatches a custom event with the search value so parent can handle adding the new item
+   */
+  private handleAddNewClick() {
+    if (this.multiple && this.search) {
+      // Check if not already selected
+      const isAlreadySelected = this.selectedItems.some((item: any) => {
+        return item[this.optionLabel]?.toString().toLowerCase().trim() === this.search.toLowerCase().trim();
+      });
+
+      if (!isAlreadySelected) {
+        let tempItem: any = this.options.find(
+          (x) => x[this.optionValue].toString().toLowerCase().trim() === this.search.toString().toLowerCase().trim()
+        );
+        if (!tempItem) {
+          tempItem = {};
+          tempItem[this.optionValue] = this.search;
+          tempItem[this.optionLabel] = this.search;
+          tempItem._isTemporary = true;
+        }
+
+        this.selectedItems = [...this.selectedItems, tempItem];
+      }
+
+      this.search = '';
+      this.setSelectedValues();
+    }
   }
 }
