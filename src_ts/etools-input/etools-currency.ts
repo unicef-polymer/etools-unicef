@@ -415,18 +415,20 @@ export class EtoolsCurrency extends EtoolsInputBase {
   }
 
   _onBlur() {
-    if (this.internalValue) {
+    // add necessary 0 at the end, based on noOfDecimals param
+    if (this.internalValue && this.noOfDecimals > 0) {
+      const suffix = '0'.repeat(this.noOfDecimals);
       // adjust decimals on focus lost
       if (this.internalValue.substring(this.internalValue.length - 1) === '.') {
-        this.internalValue = this.internalValue + '00';
+        this.internalValue = this.internalValue + suffix;
       }
       const _floatingPointPos = this.internalValue.indexOf('.');
       if (_floatingPointPos === -1) {
-        this.internalValue = this.internalValue + '.00';
+        this.internalValue = this.internalValue + `.${suffix}`;
       } else {
-        if (this.internalValue.slice(_floatingPointPos + 1).length == 1) {
+        if (this.internalValue.slice(_floatingPointPos + 1).length == 1 && this.noOfDecimals > 1) {
           // add second missing decimal
-          this.internalValue = this.internalValue + '0';
+          this.internalValue = this.internalValue + suffix.substring(1);
         }
       }
       if (this.internalValue.substring(0, 1) === '.') {
