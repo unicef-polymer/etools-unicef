@@ -1,0 +1,357 @@
+import { __decorate } from "tslib";
+import { LitElement, html } from 'lit';
+import '@shoelace-style/shoelace/dist/components/select/select.js';
+import '@shoelace-style/shoelace/dist/components/option/option.js';
+import '../etools-icon-button/etools-icon-button';
+import '../etools-icons/etools-icon';
+import { getTranslation } from './utils/translate';
+import { customElement, property } from 'lit/decorators.js';
+/**
+ * `etools-data-table-footer`
+ * @LitElement
+ * @customElement
+ * @extends {LitElement}
+ * @demo demo/index.html
+ */
+let EtoolsDataTableFooter = class EtoolsDataTableFooter extends LitElement {
+    get pageSize() {
+        return this._pageSize;
+    }
+    set pageSize(pageSize) {
+        if (this._pageSize !== pageSize) {
+            this._pageSize = pageSize;
+            this._computeTotalPages(this.pageSize, this.totalResults);
+            this._computeVisibleRange(this.pageNumber, this.pageSize, this.totalResults, this.totalPages);
+            this._dispatchEvent('page-size-changed', this.pageSize);
+            if (this.syncQueryParams) {
+                this._updateQueryParam('size', this.pageSize);
+            }
+        }
+    }
+    get pageNumber() {
+        return this._pageNumber;
+    }
+    set pageNumber(pageNumber) {
+        if (this._pageNumber !== pageNumber) {
+            this._pageNumber = pageNumber;
+            this._computeVisibleRange(this.pageNumber, this.pageSize, this.totalResults, this.totalPages);
+            this._dispatchEvent('page-number-changed', this.pageNumber);
+            if (this.syncQueryParams) {
+                this._updateQueryParam('page', this.pageNumber);
+            }
+        }
+    }
+    get totalResults() {
+        return this._totalResults;
+    }
+    set totalResults(totalResults) {
+        this._totalResults = totalResults;
+        this._computeTotalPages(this.pageSize, this.totalResults);
+        this._computeVisibleRange(this.pageNumber, this.pageSize, this.totalResults, this.totalPages);
+        this._hideFooter(this.totalResults);
+        this.requestUpdate();
+    }
+    render() {
+        // language=HTML
+        return html `
+      <style>
+        :host {
+          display: block;
+          font-size: var(--etools-font-size-12, 12px);
+          color: var(--list-text-color, rgba(0, 0, 0, 0.54));
+        }
+
+        :host([do-not-show]) {
+          display: none;
+        }
+
+        etools-icon-button {
+          color: var(--dark-icon-color, #6f6f70);
+        }
+
+        #table-footer {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          padding: 0;
+          padding-inline-end: 8px;
+          padding-inline-start: 16px;
+          height: 48px;
+          background-color: var(--list-bg-color, #ffffff);
+        }
+
+        #table-footer etools-icon-button {
+          color: var(--list-disabled-icon-color, rgba(0, 0, 0, 0.64));
+        }
+
+        #table-footer etools-icon-button:not([disabled]) {
+          color: var(--list-icon-color, #2b2b2b);
+        }
+
+        #table-footer etools-icon-button:not([disabled]):hover {
+          color: var(--list-icon-hover-color, rgba(0, 0, 0, 0.87));
+        }
+
+        #rows {
+          margin-inline-end: 24px;
+        }
+
+        #range {
+          margin: 0 32px;
+        }
+
+        sl-select {
+          --sl-input-border-width: 0;
+          --sl-input-font-size-small: 12px;
+          --sl-input-color: var(--gray-mid);
+          width: 70px;
+        }
+
+        .pagination-item {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        /* Mobile view CSS */
+        :host([low-resolution-layout]) #table-footer {
+          padding: 12px;
+          height: auto;
+          flex-wrap: wrap;
+        }
+
+        :host([low-resolution-layout]) #rows {
+          margin-inline-end: 8px;
+        }
+
+        :host([low-resolution-layout]) #range {
+          margin: 0;
+          margin-inline-start: 8px;
+        }
+
+        :host([low-resolution-layout]) .pag-btns {
+          margin-inline-start: 12px;
+        }
+        sl-select::part(form-control-label) {
+          display: none;
+        }
+      </style>
+
+      <div id="table-footer">
+        <span class="pagination-item">
+          <span id="rows">${this.rowsPerPageText || getTranslation(this.language, 'ROWS_PER_PAGE')}</span>
+
+          <sl-select
+            label="Page size"
+            size="small"
+            hoist
+            @sl-change="${this._selectRowsPerPage}"
+            value="${this.pageSize}"
+          >
+            ${this.pageSizeOptions.map((sizeOption) => html `<sl-option value="${sizeOption}">${sizeOption}</sl-option>`)}
+          </sl-select>
+
+          <span id="range"
+            >${`${this.visibleRange[0]}-${this.visibleRange[1]} ${getTranslation(this.language, 'OF')} ${this.totalResults}`}</span
+          >
+        </span>
+
+        <span class="pagination-item pag-btns">
+          <etools-icon-button
+            label="first page"
+            name="${this.direction === 'ltr' ? 'first-page' : 'last-page'}"
+            @click="${this._firstPage}"
+            ?disabled="${this._pageBackDisabled(this.pageNumber)}"
+          ></etools-icon-button>
+
+          <etools-icon-button
+            label="previous page"
+            name="${this.direction === 'ltr' ? 'chevron-left' : 'chevron-right'}"
+            @click="${this._pageLeft}"
+            ?disabled="${this._pageBackDisabled(this.pageNumber)}"
+          ></etools-icon-button>
+
+          <etools-icon-button
+            label="next page"
+            name="${this.direction === 'ltr' ? 'chevron-right' : 'chevron-left'}"
+            @click="${this._pageRight}"
+            ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"
+          ></etools-icon-button>
+
+          <etools-icon-button
+            label="last page"
+            name="${this.direction === 'ltr' ? 'last-page' : 'first-page'}"
+            @click="${this._lastPage}"
+            ?disabled="${this._pageForwardDisabled(this.pageNumber, this.totalPages)}"
+          ></etools-icon-button>
+        </span>
+      </div>
+    `;
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+        this._updateFromQueryParams();
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+    }
+    handleLanguageChange(e) {
+        this.language = e.detail.language;
+        this.direction = this.language === 'ar' ? 'rtl' : 'ltr';
+    }
+    constructor() {
+        super();
+        this.syncQueryParams = false;
+        this.initializeProperties();
+    }
+    initializeProperties() {
+        this.pageSizeOptions = [5, 10, 25, 50];
+        this.lowResolutionLayout = false;
+        this.direction = 'ltr';
+        if (!this.language) {
+            this.language = window.EtoolsLanguage || 'en';
+            this.direction = this.language === 'ar' ? 'rtl' : 'ltr';
+        }
+    }
+    _pageLeft() {
+        if (this.pageNumber > 1) {
+            this.pageNumber = this.pageNumber - 1;
+        }
+    }
+    _pageRight() {
+        if (this.pageNumber < this.totalPages) {
+            this.pageNumber = this.pageNumber + 1;
+        }
+    }
+    _firstPage() {
+        if (this.pageNumber > 1) {
+            this.pageNumber = 1;
+        }
+    }
+    _lastPage() {
+        if (this.pageNumber < this.totalPages) {
+            this.pageNumber = this.totalPages;
+        }
+    }
+    _computeTotalPages(pageSize, totalResults) {
+        let result = 1;
+        if (pageSize < totalResults) {
+            result = Math.ceil(totalResults / pageSize);
+        }
+        this.totalPages = result;
+    }
+    _computeVisibleRange(pageNumber, pageSize, totalResults, totalPages) {
+        totalResults = Number(totalResults);
+        pageSize = Number(pageSize);
+        pageNumber = Number(pageNumber);
+        totalPages = Number(totalPages);
+        let start = 1;
+        let end = totalResults;
+        if (!totalResults) {
+            start = 0;
+        }
+        else {
+            if (pageNumber !== 1) {
+                start = (pageNumber - 1) * pageSize + 1;
+            }
+            if (pageNumber !== totalPages) {
+                end = start + pageSize - 1;
+            }
+        }
+        if (JSON.stringify(this.visibleRange) !== JSON.stringify([start, end])) {
+            this.visibleRange = [start, end];
+            this._dispatchEvent('visible-range-changed', this.visibleRange);
+        }
+    }
+    _pageBackDisabled(pageNumber) {
+        return pageNumber === 1;
+    }
+    _pageForwardDisabled(pageNumber, totalPages) {
+        return pageNumber === totalPages;
+    }
+    _hideFooter(totalResults) {
+        this.doNotShow = totalResults <= 5;
+    }
+    _dispatchEvent(eventName, eventValue) {
+        this.dispatchEvent(new CustomEvent(eventName, {
+            detail: { value: eventValue },
+            bubbles: true,
+            composed: true
+        }));
+    }
+    _selectRowsPerPage(e) {
+        if (!e.target.value) {
+            return;
+        }
+        this.pageSize = Number(e.target.value);
+        this._closeRowsPerPageDropdown();
+    }
+    _openRowsPerPageDropdown() {
+        var _a;
+        (_a = this.shadowRoot.querySelector('.rows-per-page-dropdown iron-dropdown')) === null || _a === void 0 ? void 0 : _a.open();
+    }
+    _closeRowsPerPageDropdown() {
+        var _a;
+        (_a = this.shadowRoot.querySelector('.rows-per-page-dropdown iron-dropdown')) === null || _a === void 0 ? void 0 : _a.close();
+    }
+    _updateQueryParam(key, value) {
+        const url = new URL(window.location.href);
+        url.searchParams.set(key, value);
+        window.history.replaceState({}, '', url.toString());
+    }
+    _updateFromQueryParams() {
+        if (this.syncQueryParams) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageNumberParam = urlParams.get('page');
+            const pageSizeParam = urlParams.get('size');
+            if (pageSizeParam) {
+                this.pageSize = Number(pageSizeParam);
+            }
+            if (pageNumberParam) {
+                this.pageNumber = Number(pageNumberParam);
+            }
+        }
+    }
+};
+__decorate([
+    property({ type: String })
+], EtoolsDataTableFooter.prototype, "language", void 0);
+__decorate([
+    property({ type: String })
+], EtoolsDataTableFooter.prototype, "direction", void 0);
+__decorate([
+    property({ type: Array })
+], EtoolsDataTableFooter.prototype, "pageSizeOptions", void 0);
+__decorate([
+    property({ type: Number })
+], EtoolsDataTableFooter.prototype, "totalPages", void 0);
+__decorate([
+    property({ type: Array })
+], EtoolsDataTableFooter.prototype, "visibleRange", void 0);
+__decorate([
+    property({ type: Boolean, reflect: true, attribute: 'do-not-show' })
+], EtoolsDataTableFooter.prototype, "doNotShow", void 0);
+__decorate([
+    property({ type: Boolean, reflect: true, attribute: 'low-resolution-layout' })
+], EtoolsDataTableFooter.prototype, "lowResolutionLayout", void 0);
+__decorate([
+    property({ type: String })
+], EtoolsDataTableFooter.prototype, "rowsPerPageText", void 0);
+__decorate([
+    property({ type: Boolean })
+], EtoolsDataTableFooter.prototype, "syncQueryParams", void 0);
+__decorate([
+    property({ type: String })
+], EtoolsDataTableFooter.prototype, "pageSize", null);
+__decorate([
+    property({ type: Number })
+], EtoolsDataTableFooter.prototype, "pageNumber", null);
+__decorate([
+    property({ type: Number })
+], EtoolsDataTableFooter.prototype, "totalResults", null);
+EtoolsDataTableFooter = __decorate([
+    customElement('etools-data-table-footer')
+], EtoolsDataTableFooter);
+export { EtoolsDataTableFooter };

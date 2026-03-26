@@ -1,0 +1,2 @@
+export declare const buttonsGroupStylesContent = "\n        :host {\n          display: flex;\n          background: var(--etools-button-group-color, --sl-color-primary-600);\n          flex: 1;\n          border-radius: var(--sl-input-border-radius-medium);\n        }\n\n        :host::part(base) {\n          width: 100%;\n        }\n\n        ::slotted(etools-button) {\n          margin-inline: 0;\n        }\n";
+export declare const buttonsGroupStyles: import("lit").CSSResult;

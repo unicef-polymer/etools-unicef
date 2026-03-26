@@ -1,0 +1,82 @@
+import { LitElement } from 'lit';
+import '../etools-icons/etools-icon';
+import '../etools-button/etools-button';
+import '@a11y/focus-trap';
+import './calendar-lite';
+import '../etools-input/etools-input';
+/**
+ * @customElement
+ * @polymer
+ * @appliesMixin GestureEventListeners
+ */
+export declare class DatePickerLite extends LitElement {
+    private _value;
+    private _monthInput;
+    private _dayInput;
+    private _yearInput;
+    set value(value: string | null | undefined);
+    get value(): string | null | undefined;
+    readonly: boolean;
+    required: boolean;
+    errorMessage: string;
+    disabled: boolean;
+    label: string;
+    set monthInput(monthInput: number | undefined);
+    get monthInput(): number | undefined;
+    set dayInput(dayInput: number | undefined);
+    get dayInput(): number | undefined;
+    set yearInput(yearInput: number | undefined);
+    get yearInput(): number | undefined;
+    invalid: boolean;
+    inputDate: Date | null | undefined;
+    opened: boolean;
+    clearBtnInsideDr: boolean;
+    closeOnSelect: boolean;
+    _clearDateInProgress: boolean;
+    _stopDateCompute: boolean;
+    autoValidate: boolean;
+    minDate: Date;
+    maxDate: Date;
+    fireDateHasChanged: boolean;
+    minDateErrorMsg: string;
+    maxDateErrorMsg: string;
+    requiredErrorMsg: string;
+    selectedDateDisplayFormat: string;
+    inputDateFormat: string;
+    render(): import("lit-html").TemplateResult<1>;
+    constructor();
+    connectedCallback(): void;
+    updated(changedProperties: any): void;
+    getActionsHTML(): import("lit-html").TemplateResult<1>;
+    getClearBtnHTML(): import("lit-html").TemplateResult<1>;
+    getCloseBtnHTML(): import("lit-html").TemplateResult<1>;
+    getXBtnHTML(): import("lit-html").TemplateResult<1>;
+    activateOnEnterAndSpace(event: any): boolean;
+    closeCalendarOnEsc(event: any): void;
+    _getDateString(date: any): string;
+    _getTabindexByReadonly(readOnly: any): "-1" | "0";
+    _triggerDateChangeCustomEvent(date: any): void;
+    datePicked(event: any): void;
+    _setDayMonthYearInInputElements(date: any): void;
+    computeDate(month: any, day: any, year: any): void;
+    toggleCalendarFromPaperInput(): void;
+    toggleCalendarFromIcon(e: any): void;
+    toggleCalendar(): void;
+    _getCalendarMarginTop(): number;
+    _toggelOnKeyPressFromPaperInput(event: any): void;
+    _toggelOnKeyPressFromIcon(event: any): void;
+    _toggelOnKeyPress(event: any): void;
+    _clearData(e?: any): void;
+    _isValidYear(): boolean;
+    _isValidMonth(): boolean;
+    _isValidDay(): boolean;
+    _enteredDateIsValid(): boolean;
+    validate(): boolean;
+    maxDateValidation(): boolean;
+    minDateValidation(): boolean;
+    requiredValidation(): boolean;
+    _valueChanged(newValue: any): void;
+    _handleOnBlur(): void;
+    formatDateForDisplay(selectedDt: any, readonly: any): string;
+    showXBtn(readonly: any, disabled: any, selectedDt: any): any;
+}

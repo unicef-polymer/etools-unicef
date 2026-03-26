@@ -1,0 +1,21 @@
+declare const _default: {
+    caret: string;
+    check: string;
+    'chevron-down': string;
+    'chevron-left': string;
+    'chevron-right': string;
+    copy: string;
+    eye: string;
+    'eye-slash': string;
+    eyedropper: string;
+    'grip-vertical': string;
+    indeterminate: string;
+    'person-fill': string;
+    'play-fill': string;
+    'pause-fill': string;
+    radio: string;
+    'star-fill': string;
+    'x-lg': string;
+    'x-circle-fill': string;
+};
+export default _default;
