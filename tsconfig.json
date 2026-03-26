@@ -17,7 +17,7 @@
     "noEmitHelpers": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "outDir": "src"
+    "outDir": "dist"
   },
-  "include": ["src_ts/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "tsToJs": "rm -rf src && tsc",
+    "tsToJs": "tsc",
     "watch": "tsc --watch",
     "lint:eslint": "eslint src_ts/**",
     "format:eslint": "eslint src_ts/** --fix",
@@ -35,13 +35,14 @@
     "@a11y/focus-trap": "^1.0.5",
     "@open-wc/dedupe-mixin": "^1.4.0",
     "@shoelace-style/shoelace": "2.20.1",
+    "dexie": "^3.2.4",
     "dayjs": "^1.11.13",
     "typescript": "5.3.3",
     "tslib": "^2.8.1"
   },
   "peerDependencies": {
-    "@unicef-polymer/etools-types": ">=2.0.0",
-    "@unicef-polymer/etools-utils": ">=3.0.0"
+    "@unicef-polymer/etools-types": "workspace:*",
+    "@unicef-polymer/etools-utils": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
@@ -54,6 +55,7 @@
     "eslint-plugin-html": "^8.1.2",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "lodash-es": "^4.17.23",
     "globals": "^15.13.0",
     "prettier": "^3.4.2",
     "svg-sprite": "^2.0.2"
