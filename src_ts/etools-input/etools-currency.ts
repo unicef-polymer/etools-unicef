@@ -416,7 +416,8 @@ export class EtoolsCurrency extends EtoolsInputBase {
 
   _onBlur() {
     // add necessary 0 at the end, based on noOfDecimals param
-    if (this.internalValue && this.noOfDecimals > 0) {
+    if (this.internalValue ) {
+      if (this.noOfDecimals > 0) {
       const suffix = '0'.repeat(this.noOfDecimals);
       // adjust decimals on focus lost
       if (this.internalValue.substring(this.internalValue.length - 1) === '.') {
@@ -433,6 +434,11 @@ export class EtoolsCurrency extends EtoolsInputBase {
       }
       if (this.internalValue.substring(0, 1) === '.') {
         this.internalValue = '0' + this.internalValue;
+      }
+    }
+     else if (this.internalValue.substring(this.internalValue.length - 1) === '.') {
+        // if no decimals to add and number ends with '.', remove it
+        this.internalValue = this.internalValue.slice(0, -1)
       }
     }
   }
