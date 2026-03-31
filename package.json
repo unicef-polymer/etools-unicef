@@ -7,8 +7,8 @@
   "scripts": {
     "tsToJs": "tsc",
     "watch": "tsc --watch",
-    "lint:eslint": "eslint src_ts/**",
-    "format:eslint": "eslint src_ts/** --fix",
+    "lint:eslint": "eslint src/**",
+    "format:eslint": "eslint src/** --fix",
     "lint": "npm run lint:eslint",
     "format": "npm run format:eslint",
     "generate-icons": "node ./src/etools-icons/etools-icons-generate.js",
