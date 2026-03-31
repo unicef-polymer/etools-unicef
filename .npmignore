@@ -3,7 +3,7 @@
 /.circleci
 /demo
 /test
-/src_ts
+/src
 .eslintignore
 .eslintrc.json
 .prettierrc
