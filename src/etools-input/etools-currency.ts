@@ -305,6 +305,9 @@ export class EtoolsCurrency extends EtoolsInputBase {
   }
 
   _updateValueAndPreserveCaretPosition(value: any, oldValue: any) {
+    if (!this.nativeInput) {
+      return;
+    }
     let cursorPos = this._getCaretPosition(this.nativeInput);
 
     // Required to be able to set correct caret position.
