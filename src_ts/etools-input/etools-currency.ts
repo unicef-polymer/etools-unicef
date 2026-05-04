@@ -245,9 +245,9 @@ export class EtoolsCurrency extends EtoolsInputBase {
       return;
     }
     const realFloatValue = this._getRealNumberValue(cleanValStr);
-    if (realFloatValue !== this.value) {
+    if (Number(realFloatValue) !== Number(this.value)) {
       // update value only if needed
-      this.value = realFloatValue;
+      this.value = Number(realFloatValue);
       fireEvent(this, 'value-changed', {value: this.value});
     } else {
       // update internal value
@@ -376,10 +376,7 @@ export class EtoolsCurrency extends EtoolsInputBase {
     return value === '' ? true : false;
   }
 
-  _getRealNumberValue(value: any, decimals?: any) {
-    if (!decimals) {
-      decimals = false;
-    }
+  _getRealNumberValue(value: any) {
     if (this._emptyValue(value)) {
       return null;
     }
@@ -387,9 +384,6 @@ export class EtoolsCurrency extends EtoolsInputBase {
     const floatVal = parseFloat(value);
     if (isNaN(floatVal)) {
       return null;
-    }
-    if (decimals) {
-      return parseFloat(floatVal.toFixed(decimals));
     }
     return floatVal;
   }
