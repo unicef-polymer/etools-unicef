@@ -28,7 +28,8 @@ export const displayCurrencyAmount = (value?: any, placeholder?: any, noOfDecima
   if (!value) {
     return placeholder;
   }
-  const floatValue = parseFloat(value).toFixed(noOfDecimals);
+  const sValue = String(value).replaceAll(',', '');
+  const floatValue = parseFloat(sValue).toFixed(noOfDecimals);
   if (isNaN(+floatValue)) {
     return placeholder;
   }
