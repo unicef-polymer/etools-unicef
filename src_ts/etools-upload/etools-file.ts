@@ -66,8 +66,11 @@ export class EtoolsFile extends CommonMixin(LitElement) {
           <div class="files-container  ${this._getMultipleClass(this.multiple)}">
             <div class="files-wrapper" ?hidden="${!this.showFilesContainer}">
               ${(this.files || []).map((file: any, index: number) => {
-                return html`<div class="file-area">
-                  <div class="selected-file-container ${this._getFileSelectedClass(file)}">
+                return html`<div part="file-area" class="file-area">
+                  <div
+                    part="selected-file-container"
+                    class="selected-file-container ${this._getFileSelectedClass(file)}"
+                  >
                     ${this.showUploadDate
                       ? html` <div class="upload-date">
                           <div>
@@ -76,7 +79,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                           </div>
                         </div>`
                       : ``}
-                    <div class="file-name-wrapper">
+                    <div part="file-name-wrapper" class="file-name-wrapper">
                       <etools-icon class="file-icon" name="attachment"></etools-icon>
                       <span class="file-name" .title="${file.file_name}">${file.file_name}</span>
                     </div>
@@ -112,10 +115,11 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                       : ``}
                   </div>
 
-                  <div class="file-actions ${this._getFileSelectedClass(file)}">
+                  <div part="file-actions" class="file-actions ${this._getFileSelectedClass(file)}">
                     <!-- download btn if file was uploaded -->
                     <etools-button
                       variant="text"
+                      part="download-button"
                       class="download-button primary-btn"
                       size="small"
                       index="${index}"
@@ -125,17 +129,18 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                       title="${getTranslation(this.language, 'DOWNLOAD')}"
                     >
                       <etools-icon slot="prefix" name="cloud-download" class="dw-icon"></etools-icon>
-                      ${getTranslation(this.language, 'DOWNLOAD')}
+                      ${this.showDownloadText ? getTranslation(this.language, 'DOWNLOAD') : ''}
                     </etools-button>
 
                     <etools-button
                       variant="text"
                       size="small"
+                      part="change-button"
                       class="change-button"
                       index="${index}"
                       @click="${this._changeFile}"
                       ?disabled="${this.readonly}"
-                      ?hidden="${this.readonly}"
+                      ?hidden="${this.readonly || !this.showChange}"
                     >
                       ${getTranslation(this.language, 'CHANGE')}
                     </etools-button>
@@ -143,6 +148,7 @@ export class EtoolsFile extends CommonMixin(LitElement) {
                     <etools-button
                       variant="text"
                       size="small"
+                      part="delete-button"
                       class="delete-button"
                       @click="${this._deleteFile}"
                       ?disabled="${this.readonly}"
@@ -216,6 +222,8 @@ export class EtoolsFile extends CommonMixin(LitElement) {
   @property({type: Boolean, reflect: true}) hideDeleteBtn = false;
   @property({type: Object}) toastFitInto!: any;
   @property({type: Boolean}) showFilesContainer = false;
+  @property({type: Boolean}) showChange = true;
+  @property({type: Boolean}) showDownloadText = true;
   @property({type: Number}) changeFileIndex!: number;
 
   @query('#fileInput') private fileInputEl!: HTMLInputElement;
